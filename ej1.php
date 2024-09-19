@@ -11,7 +11,7 @@
             print("La ip " . $ip . " en binario es ");
 
             for ($i = 0; $i < count($octetos); $i++) {
-                printf("%b", $octetos[$i]);
+                printf("%08b", $octetos[$i]);
                 if ($i < count($octetos)) {
                     print(".");
                 }
