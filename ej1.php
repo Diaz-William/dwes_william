@@ -8,14 +8,15 @@
             $ip="192.18.16.204";
             $octetos = explode(".", $ip);
 
-            print("<p>La ip " . $ip . " en binario es ");
+            print("La ip " . $ip . " en binario es ");
 
             for ($i = 0; $i < count($octetos); $i++) {
                 printf("%b", $octetos[$i]);
+                if ($i < count($octetos)) {
+                    print(".");
+                }
             }
-
-            $txt = sprintf("La ip " . $ip ." en binario es %b.", $ip);
-            echo $txt;
+            
         ?>
     </body>
 </html>
