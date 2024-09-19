@@ -6,7 +6,13 @@
     <body>
         <?php
             $ip="192.18.16.204";
-            printf("<p>La ip " . $ip ." en binario es %b.</p>" . PHP_EOL, $ip);
+            $octetos = explode(".", $ip);
+
+            print("<p>La ip " . $ip . " en binario es ");
+
+            for ($i = 0; $i < count($octetos); $i++) {
+                printf("%b", $octetos[$i]);
+            }
 
             $txt = sprintf("La ip " . $ip ." en binario es %b.", $ip);
             echo $txt;
