@@ -12,7 +12,7 @@
 
             for ($i = 0; $i < count($octetos); $i++) {
                 printf("%08b", $octetos[$i]);
-                if ($i < count($octetos)) {
+                if ($i < count($octetos) - 1) {
                     print(".");
                 }
             }
