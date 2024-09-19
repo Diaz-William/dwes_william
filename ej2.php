@@ -16,7 +16,7 @@
 
             for ($i = 0; $i < count($octetos); $i++) {
                 if (strlen($octetos[$i]) < 8) {
-                    for ($j = 0; $j < (8 - strlen($octetos[$i])); $j++) {
+                    for ($j = 0; $j <= (8 - strlen($octetos[$i])); $j++) {
                         $octetos[$i] = "0" . $octetos[$i];
                     }
                 }
