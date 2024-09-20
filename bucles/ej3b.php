@@ -5,10 +5,11 @@
     </head>
     <body>
         <?php
-            $decimal = "15";
+            $decimal = "1515";
             $convertido = "";
             $base = "16";
             $letras = array("A", "B", "C", "D", "E", "F");
+            $copia = $decimal;
 
             while ($decimal > 0) {
                 $resto = $decimal % $base;
@@ -22,7 +23,7 @@
                 $decimal = floor($decimal / $base);
             }
             
-            print($convertido);
+            print("Número " . $copia . " en base " . $base . " = " . $convertido);
         ?>
     </body>
 </html>

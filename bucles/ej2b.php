@@ -7,7 +7,8 @@
         <?php
             $decimal = "48";
             $convertido = "";
-            $base = "2";
+            $base = "8";
+            $copia = $decimal;
 
             while ($decimal > 0) {
                 $resto = $decimal % $base;
@@ -15,7 +16,7 @@
                 $decimal = floor($decimal / $base);
             }
             
-            print($convertido);
+            print("Número " . $copia . " en base " . $base . " = " . $convertido);
         ?>
     </body>
 </html>

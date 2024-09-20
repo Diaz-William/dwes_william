@@ -5,8 +5,9 @@
     </head>
     <body>
         <?php
-            $decimal = "1";
+            $decimal = "168";
             $binario = "";
+            $copia = $decimal;
 
             while ($decimal > 0) {
                 $resto = $decimal % 2;
@@ -14,7 +15,7 @@
                 $decimal = floor($decimal / 2);
             }
             
-            print($binario);
+            print("Número " . $copia . " en binario = " . $binario);
         ?>
     </body>
 </html>
