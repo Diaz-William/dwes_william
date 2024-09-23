@@ -10,20 +10,25 @@
     </head>
     <body>
         <?php
-            $array;
+            $array = array();
+            $i = 0;//indice
 
-            for ($i = 0; $i < 20; $i++) {
-                $array[$i] = decbin($i);
+            while ($i < 20) {
+                $array[] = decbin($i);
+                $i += 1;
             }
+
+            $i = 0;
 
             print("<table>");
             print("<tr><th>Indice</th><th>Binario</th><th>Octal</th></tr>");
-            for ($i = 0; $i < count($array); $i++) { 
+            foreach ($array as $x) {
                 print("<tr>");
                 print("<td>" . $i ."</td>");
-                print("<td>" . $array[$i] ."</td>");
+                print("<td>" . $x ."</td>");
                 print("<td>" . decoct($i) ."</td>");
                 print("</tr>");
+                $i += 1;
             }
             print("</table>");
         ?>

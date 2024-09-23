@@ -10,34 +10,41 @@
     </head>
     <body>
         <?php
-            $array;
-            $arrayInverso;
+            $array = array();
+            $arrayInverso = array();
+            $i = 0;//indice
 
-            for ($i = 0; $i < 20; $i++) {
-                $array[$i] = decbin($i);
+            while ($i < 20) {
+                $array[] = decbin($i);
+                $i += 1;
             }
+
+            $i = 0;
 
             print("<table>");
             print("<tr><th>Indice</th><th>Binario</th><th>Octal</th></tr>");
-            for ($i = 0; $i < count($array); $i++) { 
+            foreach ($array as $x) {
                 print("<tr>");
                 print("<td>" . $i ."</td>");
-                print("<td>" . $array[$i] ."</td>");
+                print("<td>" . $x ."</td>");
                 print("<td>" . decoct($i) ."</td>");
                 print("</tr>");
+                $i += 1;
             }
             print("</table>");
 
+            $i = 0;
             $arrayInverso = array_reverse($array);
 
             print("<table>");
             print("<tr><th>Indice</th><th>Binario</th><th>Octal</th></tr>");
-            for ($i = 0; $i < count($arrayInverso); $i++) { 
+            foreach ($arrayInverso as $x) {
                 print("<tr>");
                 print("<td>" . $i ."</td>");
-                print("<td>" . $arrayInverso[$i] ."</td>");
-                print("<td>" . decoct(bindec($arrayInverso[$i])) ."</td>");
+                print("<td>" . $x ."</td>");
+                print("<td>" . decoct(bindec($x)) ."</td>");
                 print("</tr>");
+                $i += 1;
             }
             print("</table>");
         ?>

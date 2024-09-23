@@ -10,7 +10,7 @@
     </head>
     <body>
         <?php
-            $array;
+            $array = array();
             $suma = 0;
             $impar = 0;
             $cont = 0;
@@ -27,31 +27,36 @@
 
             print("<table>");
             print("<tr><th>Indice</th><th>Valor</th><th>Suma</th></tr>");
-            for ($i = 0; $i < count($array); $i++) { 
+            foreach ($array as $x) {
                 print("<tr>");
                 print("<td>" . $i ."</td>");
-                print("<td>" . $array[$i] ."</td>");
-                $suma += $array[$i];
+                print("<td>" . $x ."</td>");
+                $suma += $x;
                 print("<td>" . $suma ."</td>");
                 print("</tr>");
+                $i += 1;
             }
             print("</table>");
 
-            for ($i = 0; $i < count($array); $i++) {
+            $i = 0;
+            foreach ($array as $x) {
                 if ($i % 2 == 0) {
                     $cont += 1;
-                    $mediaPar += $array[$i];
+                    $mediaPar += $x;
                 }
+                $i += 1;
             }
 
             $mediaPar /= $cont;
             $cont = 0;
+            $i = 0;
 
-            for ($i = 0; $i < count($array); $i++) {
+            foreach ($array as $x) {
                 if ($i % 2 == 1) {
                     $cont += 1;
-                    $mediaImpar += $array[$i];
+                    $mediaImpar += $x;
                 }
+                $i += 1;
             }
 
             $mediaImpar /= $cont;
