@@ -6,6 +6,8 @@
             $jugador2 = array("Carton1" => array(), "Carton2" => array(), "Carton3" => array());
             $jugador3 = array("Carton1" => array(), "Carton2" => array(), "Carton3" => array());
             $jugador4 = array("Carton1" => array(), "Carton2" => array(), "Carton3" => array());
+            $bolas = range(1, 60);
+            shuffle($bolas);
 
             $jugador1 = rellenar($jugador1);
             $jugador2 = rellenar($jugador2);
@@ -89,9 +91,6 @@
                 }
                 echo "</div>";
             }
-
-            $bolas = range(1, 60);
-            shuffle($bolas);
         ?>
         <script>
             // Creamos un array en JavaScript a partir de los datos que genera PHP
