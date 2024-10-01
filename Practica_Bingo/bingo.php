@@ -136,9 +136,9 @@
             document.body.contenedor.appendChild(img);*/
             cont++;
         } else {
-        	let p = document.createElement('p');
-            p = "No hay más bolas";
-            document.body.bolaActual.appendChild(p);
+        	/*let p = document.createElement('p');*/
+            document.getElementById("bolaActual").innerHTML = "No hay más bolas";
+            /*document.body.bolaActual.appendChild(p);*/
         }
     }
 </script>
