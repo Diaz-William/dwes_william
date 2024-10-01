@@ -113,8 +113,8 @@
             let ruta = "imagenes/" + bolas[cont] + ".PNG";
             let img = document.createElement('img');
             img.src = ruta;
-            img.style.width = "100px";  // Ajustar tamaño de la imagen
-            img.style.height = "100px"; // Ajustar tamaño de la imagen
+            img.style.width = "250px";  // Ajustar tamaño de la imagen
+            img.style.height = "250px"; // Ajustar tamaño de la imagen
             document.getElementById("bolaActual").innerHTML = ""; // Limpiar texto anterior
             document.getElementById("bolaActual").appendChild(img); // Añadir imagen al contenedor
             
