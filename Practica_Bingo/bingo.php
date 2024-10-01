@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
-<!-- Contenedor visual del bombo -->
-<div name="contenedor" style="border: 1px solid black; border-radius: 25px; height:50vh;">
-	<div id="bolaActual" style='height:37.5vh; font-size: 100pt; text-align:center;'></div>
-    <button onclick="generarBola();" style="height:min-content; margin: 0 45vw; margin-top: 10px;">Tirada</button>
-</div>
 <?php
+	//Contenedor visual del bombo
+	echo "<div name='contenedor' style='border: 1px solid black; border-radius: 25px; height:50vh;'>";
+	echo "<div id='bolaActual' style='height:37.5vh; font-size: 100pt; text-align:center;'></div>";
+    // Bombo con bolas de 1 a 60
+    $bolas = range(1, 60);
+    shuffle($bolas);
+    echo "<button onclick='generarBola();' style='height:min-content; margin: 0 45vw; margin-top: 10px;'>Tirada</button>";
+	echo "</div>";
+    $contador = 1;
 	$jugador1 = array("Carton1" => array(), "Carton2" => array(), "Carton3" => array());
     $jugador2 = array("Carton1" => array(), "Carton2" => array(), "Carton3" => array());
     $jugador3 = array("Carton1" => array(), "Carton2" => array(), "Carton3" => array());
@@ -15,10 +19,13 @@
     $jugador2 = rellenar($jugador2);
     $jugador3 = rellenar($jugador3);
     $jugador4 = rellenar($jugador4);
-    visualizar($jugador1, 1);
-    visualizar($jugador2, 2);
-    visualizar($jugador3, 3);
-    visualizar($jugador4, 4);
+    visualizar($jugador1, 1, $contador);
+    $contador += 3;
+    visualizar($jugador2, 2, $contador);
+    $contador += 3;
+    visualizar($jugador3, 3, $contador);
+    $contador += 3;
+    visualizar($jugador4, 4, $contador);
     function rellenar($jugador)
     {
         foreach ($jugador as $key => $valor)
@@ -62,7 +69,7 @@
         }
         return ($numeros);
     }
-        function visualizar($jugador, $num)
+        function visualizar($jugador, $num, $contador)
         {
             echo "<div style='margin-bottom: 30px;'>";
             echo "<h2 style='text-align: center;'>Jugador $num</h2>";
@@ -71,27 +78,24 @@
             foreach ($jugador as $key => $valor) {
                 echo "<div style='margin: 10px;'>";
                 echo "<h3 style='text-align: center;'>$key</h3>";
-                echo "<table border='1' style='border-collapse: collapse;'>";
+                echo "<table id='$contador' border='1' style='border-collapse: collapse;'>";
                 // Para formar 3 filas (5 columnas cada una)
                 for ($fila = 0; $fila < 3; $fila++) {
                     echo "<tr>";
                     for ($columna = 0; $columna < 5; $columna++) {
                         // Calcular el índice correcto del array
                         $indice = $fila * 5 + $columna;
-                        echo "<td style='padding: 10px; text-align: center;'>{$valor[$indice]}</td>";
+                        echo "<td class='$valor[$indice]'; style='padding: 10px; text-align: center;'>{$valor[$indice]}</td>";
                     }
                     echo "</tr>";
                 }
                 echo "</table>";
+                $contador++;
                 echo "</div>";
             }
             echo "</div>";
             echo "</div>";
         }
-
-    // Bombo con bolas de 1 a 60
-    $bolas = range(1, 60);
-    shuffle($bolas);
 ?>
 <script>
     // Creamos un array en JavaScript a partir de los datos que genera PHP
@@ -107,28 +111,48 @@
         if (cont < bolas.length)
         {
             document.getElementById("bolaActual").innerHTML = "Bola: " + bolas[cont];
-            <?php
-            	/*eliminarBola($jugador1, 1);
-                eliminarBola($jugador2, 2);
-                eliminarBola($jugador3, 3);
-                eliminarBola($jugador4, 4);
-                
-                function eliminarBola($jugador)
+            const arrayBolas = document.getElementsByClassName(bolas[cont]);
+            for (let i=0 ; i<arrayBolas.length; i++)
+            {
+            	arrayBolas[i].style.backgroundColor = "#ADD8E6";
+                arrayBolas[i].classList.toggle("tachado");
+                for (let i=1 ; i<=12; i++)
                 {
-                	foreach ($jugador as $key => $valor) 
+                	let contarTachados = 0;
+                	let tabla = document.getElementById(i);
+                    for (let j=0 ; j < tabla.rows.length ; j++)
                     {
-                    	if ($bolas[cont] == $valor)
+                    	let fila = tabla.rows[j];
+                    	for (let x=0 ; x < fila.cells.length ; x++)
                         {
-                        	unset($valor[$key]);
+                        	let celda = fila.cells[x];
+                            if (celda.getElementsByClassName("tachado")
+                            {
+                            	contarTachados++;
+                                if (contarTachados == 15)
+                                {
+                                	switch (i)
+                                    {
+                                    	case 1:
+                                        case 2:
+                                        case 3: 				document.getElementById("bolaActual").innerHTML = "Ha hanado el jugador 1";break;
+                                        case 4:
+                                        case 5:
+                                        case 6: 				document.getElementById("bolaActual").innerHTML = "Ha hanado el jugador 2";break;
+                                        case 7:
+                                        case 8:
+                                        case 9: 				document.getElementById("bolaActual").innerHTML = "Ha hanado el jugador 3";break;
+                                        case 10:
+                                        case 11:
+                                        case 12: 				document.getElementById("bolaActual").innerHTML = "Ha hanado el jugador 4";break;
+                                    }
+                                	
+                                }
+                            }
                         }
                     }
                 }
-            
-            	visualizar($jugador1, 1);
-    			visualizar($jugador2, 2);
-    			visualizar($jugador3, 3);
-          		visualizar($jugador4, 4);*/
-            ?>
+            }
             // Mostrar la bola actual
             /*let ruta = "imagenes/"+bolas[cont]+".png";
             let img = document.createElement('img');
@@ -136,12 +160,11 @@
             document.body.contenedor.appendChild(img);*/
             cont++;
         } else {
-        	/*let p = document.createElement('p');*/
+        	//let p = document.createElement('p');
             document.getElementById("bolaActual").innerHTML = "No hay más bolas";
-            /*document.body.bolaActual.appendChild(p);*/
+            //document.body.bolaActual.appendChild(p);
         }
     }
 </script>
-
 </body>
 </html>
