@@ -110,7 +110,7 @@
     {
         if (cont < bolas.length)
         {
-            let ruta = "/Practica_Bingo/imagenes/" + bolas[cont] + ".png";
+            let ruta = "/Practica_Bingo/imagenes/" + bolas[cont] + ".PNG";
             let img = document.createElement('img');
             img.src = ruta;
             img.style.width = "100px";  // Ajustar tamaño de la imagen
