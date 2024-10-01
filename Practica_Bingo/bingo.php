@@ -110,7 +110,12 @@
     {
         if (cont < bolas.length)
         {
-            document.getElementById("bolaActual").innerHTML = "Bola: " + bolas[cont];
+            let ruta = "/Practica_Bingo/imagenes/"+bolas[cont]+".png";
+            let img = document.createElement('img');
+            img.src = ruta;
+            document.body.contenedor.appendChild(img);
+            //document.getElementById("bolaActual").innerHTML = "Bola: " + bolas[cont];
+            
             const arrayBolas = document.getElementsByClassName(bolas[cont]);
             for (let i=0 ; i<arrayBolas.length; i++)
             {
