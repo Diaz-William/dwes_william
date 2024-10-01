@@ -8,7 +8,7 @@
     // Bombo con bolas de 1 a 60
     $bolas = range(1, 60);
     shuffle($bolas);
-    echo "<button id='boton'onclick='generarBola();' style='height:min-content; margin: 0 45vw; margin-top: 10px;'>Tirada</button>";
+    echo "<button id='boton'onclick='generarBola();' style='height:min-content; margin: 0 50vw; margin-top: 10px;'>Tirada</button>";
 	echo "</div>";
     $contador = 1;
 	$jugador1 = array("Carton1" => array(), "Carton2" => array(), "Carton3" => array());
