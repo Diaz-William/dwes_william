@@ -138,7 +138,7 @@
         } else {
         	let p = document.createElement('p');
             p = "No hay más bolas";
-            document.body.contenedor.appendChild(p);
+            document.body.bolaActual.appendChild(p);
         }
     }
 </script>
