@@ -74,10 +74,10 @@
 
             contarAciertos($jugadores, $bolas);
 
-            //echo "<pre>";
+            echo "<pre>";
             echo "Cartones después de contar aciertos:\n";
             print_r($jugadores);
-            //echo "</pre>";
+            echo "</pre>";
         ?>
     </body>
 </html>
