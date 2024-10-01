@@ -71,7 +71,7 @@
     }
         function visualizar($jugador, $num, $contador)
         {
-            echo "<div style='margin-bottom: 30px;'>";
+            echo "<div style='margin: 30px 0; background-color:beige; border-radius:25px; padding:30px'>";
             echo "<h2 style='text-align: center;'>Jugador $num</h2>";
             echo "<div style='display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: center;'>";
             // Visualizar los cartones del jugador 1 en una tabla 3x5
