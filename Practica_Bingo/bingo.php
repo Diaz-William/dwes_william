@@ -126,7 +126,7 @@
                     	for (let x=0 ; x < fila.cells.length ; x++)
                         {
                         	let celda = fila.cells[x];
-                            if (celda.getElementsByClassName("tachado")
+                            if (celda.classList.contains("tachado"))
                             {
                             	contarTachados++;
                                 if (contarTachados == 15)
@@ -135,16 +135,16 @@
                                     {
                                     	case 1:
                                         case 2:
-                                        case 3: 				document.getElementById("bolaActual").innerHTML = "Ha hanado el jugador 1";break;
+                                        case 3: 				document.getElementById("bolaActual").innerHTML = "Ha ganado el jugador 1";break;
                                         case 4:
                                         case 5:
-                                        case 6: 				document.getElementById("bolaActual").innerHTML = "Ha hanado el jugador 2";break;
+                                        case 6: 				document.getElementById("bolaActual").innerHTML = "Ha ganado el jugador 2";break;
                                         case 7:
                                         case 8:
-                                        case 9: 				document.getElementById("bolaActual").innerHTML = "Ha hanado el jugador 3";break;
+                                        case 9: 				document.getElementById("bolaActual").innerHTML = "Ha ganado el jugador 3";break;
                                         case 10:
                                         case 11:
-                                        case 12: 				document.getElementById("bolaActual").innerHTML = "Ha hanado el jugador 4";break;
+                                        case 12: 				document.getElementById("bolaActual").innerHTML = "Ha ganado el jugador 4";break;
                                     }
                                 	
                                 }
