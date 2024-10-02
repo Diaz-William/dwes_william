@@ -36,8 +36,8 @@
                             }
                             if ($datosCarton['aciertos'] == 15) {
                                 echo "$jugador ha ganado con el $carton<br>";
-                                $salir = true;
-                                break;
+                                //$salir = true;
+                                //break;
                             }
                             if ($salir) {
                                 break;
