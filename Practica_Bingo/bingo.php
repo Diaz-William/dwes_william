@@ -29,10 +29,13 @@
                 foreach ($bolas as $bola) {
                     foreach ($jugadores as $jugador => &$cartones) {
                         foreach ($cartones as $carton => &$datosCarton) {
-                            foreach ($datosCarton['numeros'] as $numero) {
+                            /*foreach ($datosCarton['numeros'] as $numero) {
                                 if ($bola == $numero) {
                                     $datosCarton['aciertos']++;
                                 }
+                            }*/
+                            if (in_array($bola, $datosCarton['numeros'])) {
+                                $datosCarton['aciertos']++;
                             }
                             if ($datosCarton['aciertos'] == 15) {
                                 echo "$jugador ha ganado con el $carton<br>";
