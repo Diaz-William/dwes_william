@@ -54,7 +54,7 @@
             }
             function mostrarBolas($bolas) {
             	//Contenedor visual del bombo
-    			echo "<div name='contenedor' style='border: 1px solid black; border-radius: 25px; height:50vh; padding: 50px;'>";
+    			echo "<div name='contenedor' style='border: 1px solid black; border-radius: 25px; height:max-content; padding: 50px;'>";
                 for ($i = 0; $i < count($bolas); $i++) {
                     echo "<img src='imagenes/$bolas[$i].PNG'>";
                     if ($i < count($bolas) - 1) {
