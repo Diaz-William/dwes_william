@@ -18,7 +18,7 @@
             function rellenarCartones(&$jugadores) {
                 foreach ($jugadores as $jugador => &$cartones) {
                     foreach ($cartones as $carton => &$datosCarton) {
-                        $bolasCarton = range(1, 60);
+                        $bolasCarton = range(1, 15);
                         shuffle($bolasCarton);
                         $datosCarton['numeros'] = array_slice($bolasCarton, 0, 15);
                     }
