@@ -25,33 +25,19 @@
                 }
             }
             function contarAciertos(&$jugadores, $bolas) {
-                $salir = false;
+                $aciertos = 0;
+                
                 foreach ($bolas as $bola) {
                     foreach ($jugadores as $jugador => &$cartones) {
                         foreach ($cartones as $carton => &$datosCarton) {
-                            /*foreach ($datosCarton['numeros'] as $numero) {
-                                if ($bola == $numero) {
-                                    $datosCarton['aciertos']++;
-                                }
-                            }*/
                             if (in_array($bola, $datosCarton['numeros'])) {
                                 $datosCarton['aciertos']++;
                             }
-                            if ($datosCarton['aciertos'] == 15) {
-                                echo "$jugador ha ganado con el $carton<br>";
-                                //$salir = true;
-                                //break;
-                            }
-                            if ($salir) {
-                                break;
-                            }
+                            $aciertos = $datosCarton['aciertos'];
                         }
-                        if ($salir) {
-                            break;
+                        if ($aciertos == 15) {
+                            echo "$jugador ha ganado con el $carton<br>";
                         }
-                    }
-                    if ($salir) {
-                        break;
                     }
                 }
             }
