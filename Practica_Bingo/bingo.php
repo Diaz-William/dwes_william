@@ -35,9 +35,9 @@
                             }
                             $aciertos = $datosCarton['aciertos'];
                         }
-                        if ($aciertos == 15) {
-                            echo "$jugador ha ganado con el $carton<br>";
-                        }
+                    }
+                    if ($aciertos == 15) {
+                        echo "$jugador ha ganado con el $carton<br>";
                     }
                 }
             }
