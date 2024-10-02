@@ -3,8 +3,8 @@
     <body>
         <?php
             $jugadores = array();
-            $cantJugadores = 1;
-            $cantCartones = 1;
+            $cantJugadores = 4;
+            $cantCartones = 3;
             
             for ($i = 1; $i <= $cantJugadores; $i++) {
                 $jugadores["Jugador" . $i] = array();
