@@ -18,7 +18,7 @@
             function rellenarCartones(&$jugadores) {
                 foreach ($jugadores as $jugador => &$cartones) {
                     foreach ($cartones as $carton => &$datosCarton) {
-                        $bolasCarton = range(1, 15);
+                        $bolasCarton = range(1, 60);
                         shuffle($bolasCarton);
                         $datosCarton['numeros'] = array_slice($bolasCarton, 0, 15);
                     }
@@ -26,9 +26,10 @@
             }
             function contarAciertos(&$jugadores, $bolas) {
                 $aciertos = 0;
-                
+
                 foreach ($bolas as $bola) {
                     foreach ($jugadores as $jugador => &$cartones) {
+                        $aciertos = 0;
                         foreach ($cartones as $carton => &$datosCarton) {
                             if (in_array($bola, $datosCarton['numeros'])) {
                                 $datosCarton['aciertos']++;
@@ -37,7 +38,18 @@
                         }
                     }
                     if ($aciertos == 15) {
-                        echo "$jugador ha ganado con el $carton<br>";
+                        visualizarGanadores($jugadores);
+                    }
+                }
+                
+            }
+
+            function visualizarGanadores($jugadores) {
+                foreach ($jugadores as $jugador => &$cartones) {
+                    foreach ($cartones as $carton => &$datosCarton) {
+                        if ($datosCarton['aciertos'] == 15) {
+                            echo "$jugador ha ganado con el $carton<br>";
+                        }
                     }
                 }
             }
