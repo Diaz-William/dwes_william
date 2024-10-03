@@ -26,12 +26,15 @@
             }
             function contarAciertos(&$jugadores, $bolas) {
                 $aciertos = 0;
+                $cont = 1;
+                $seguir = true;
 
-                foreach ($bolas as $bola) {
+                while ($cont < 61 && $seguir )
+                {
                     foreach ($jugadores as $jugador => &$cartones) {
                         $aciertos = 0;
                         foreach ($cartones as $carton => &$datosCarton) {
-                            if (in_array($bola, $datosCarton['numeros'])) {
+                            if (in_array($bolas[$cont-1], $datosCarton['numeros'])) {
                                 $datosCarton['aciertos']++;
                             }
                             $aciertos = $datosCarton['aciertos'];
@@ -39,7 +42,9 @@
                     }
                     if ($aciertos == 15) {
                         visualizarGanadores($jugadores);
+                        $seguir = false;
                     }
+                    $cont++;
                 }
                 
             }
