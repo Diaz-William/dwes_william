@@ -29,8 +29,11 @@
                 $cont = 1;
                 $seguir = true;
 
+                echo "<div name='contenedor' style='border: 1px solid black; border-radius: 25px; height:max-content; padding: 50px;'>";
+
                 while ($cont < 61 && $seguir )
                 {
+                    mostrarBolas($bolas[$cont]);
                     foreach ($jugadores as $jugador => &$cartones) {
                         $aciertos = 0;
                         foreach ($cartones as $carton => &$datosCarton) {
@@ -46,6 +49,9 @@
                     }
                     $cont++;
                 }
+
+                echo "</div>";
+                echo "<br><br>";
                 
             }
 
@@ -58,17 +64,12 @@
                     }
                 }
             }
-            function mostrarBolas($bolas) {
-            	//Contenedor visual del bombo
-    			echo "<div name='contenedor' style='border: 1px solid black; border-radius: 25px; height:max-content; padding: 50px;'>";
-                for ($i = 0; $i < count($bolas); $i++) {
-                    echo "<img src='imagenes/$bolas[$i].PNG'>";
-                }
-                echo "</div>";
-                echo "<br><br>";
+            function mostrarBolas($bola) {
+            	//Contenedor visual del bombo   
+                    echo "<img src='imagenes/$bola.PNG'>";
             }
             rellenarCartones($jugadores);
-            mostrarBolas($bolas);
+            
             contarAciertos($jugadores, $bolas);
             visualizar($jugadores);
             function visualizar($jugadores){
