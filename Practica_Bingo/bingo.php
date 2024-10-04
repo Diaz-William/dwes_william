@@ -4,24 +4,15 @@
         <?php
             include 'lib.php';
             $jugadores = array();
+            $bolas = array();
             $cantJugadores = 4;
             $cantCartones = 3;
-            
-            for ($i = 1; $i <= $cantJugadores; $i++) {
-                $jugadores["Jugador" . $i] = array();
-                for ($j = 1; $j <= $cantCartones; $j++) {
-                    $jugadores["Jugador" . $i]["Carton" . $j] = array("numeros" => array(), "aciertos" => 0);
-                }
-            }
-            //BOLAS BOMBO
-            $bolas = range(1, 60);
-            shuffle($bolas);
-
-            rellenarCartones($jugadores);
+            $jugadores = rellenarJugadores($jugadores, $cantJugadores, $cantCartones);
+            $bolas = bombo($bolas);            
+            $jugadores = rellenarCartones($jugadores);
             mostrarBolas($bolas);
-            contarAciertos($jugadores, $bolas);
+            $jugadores = contarAciertos($jugadores, $bolas);
             visualizar($jugadores);
-            
         ?>
     </body>
 </html>

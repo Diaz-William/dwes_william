@@ -1,15 +1,36 @@
 <?php
-    function rellenarCartones(&$jugadores) {
-        foreach ($jugadores as $jugador => &$cartones) {
-            foreach ($cartones as $carton => &$datosCarton) {
+//--------------------------------------------------------------------------
+    function rellenarJugadores($jugadores, $cantJugadores, $cantCartones) {
+        for ($i = 1; $i <= $cantJugadores; $i++) {
+            $jugadores["Jugador" . $i] = array();
+            for ($j = 1; $j <= $cantCartones; $j++) {
+                $jugadores["Jugador" . $i]["Carton" . $j] = array("numeros" => array(), "aciertos" => 0);
+            }
+        }
+
+        return $jugadores;
+    }
+//--------------------------------------------------------------------------
+    function bombo($bolas) {
+        $bolas = range(1, 60);
+        shuffle($bolas);
+
+        return $bolas;
+    }
+//--------------------------------------------------------------------------
+    function rellenarCartones($jugadores) {
+        foreach ($jugadores as $jugador => $cartones) {
+            foreach ($cartones as $carton => $datosCarton) {
                 $bolasCarton = range(1, 60);
                 shuffle($bolasCarton);
                 $datosCarton['numeros'] = array_slice($bolasCarton, 0, 15);
             }
         }
-    }
 
-    function contarAciertos(&$jugadores, $bolas) {
+        return $jugadores;
+    }
+//--------------------------------------------------------------------------
+    function contarAciertos($jugadores, $bolas) {
         $aciertos = 0;
         $cont = 1;
         $seguir = true;
@@ -17,9 +38,9 @@
         while ($cont < 61 && $seguir )
         {
             
-            foreach ($jugadores as $jugador => &$cartones) {
+            foreach ($jugadores as $jugador => $cartones) {
                 $aciertos = 0;
-                foreach ($cartones as $carton => &$datosCarton) {
+                foreach ($cartones as $carton => $datosCarton) {
                     if (in_array($bolas[$cont-1], $datosCarton['numeros'])) {
                         $datosCarton['aciertos']++;
                     }
@@ -33,8 +54,9 @@
             $cont++;
         }
         
+        return $jugadores;
     }
-
+//--------------------------------------------------------------------------
     function visualizarGanadores($jugadores) {
         foreach ($jugadores as $jugador => &$cartones) {
             foreach ($cartones as $carton => &$datosCarton) {
@@ -44,7 +66,7 @@
             }
         }
     }
-
+//--------------------------------------------------------------------------
     function mostrarBolas($bolas) {
         //Contenedor visual del bombo
         echo "<div name='contenedor' style='border: 1px solid black; border-radius: 25px; height:max-content; padding: 50px;'>";
@@ -54,7 +76,7 @@
         echo "</div>";
         echo "<br><br>";
     }
-
+//--------------------------------------------------------------------------
     function visualizar($jugadores){
         echo "<div style='margin-bottom: 30px;'>";
         foreach ($jugadores as $jugador => $cartones) {
@@ -79,4 +101,5 @@
         }
         echo "</div>";
     }
+//--------------------------------------------------------------------------
 ?>
