@@ -2,11 +2,6 @@
 <html>
     <head>
         <title>Ej5_Arrays</title>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-            }
-        </style>
     </head>
     <body>
         <?php
