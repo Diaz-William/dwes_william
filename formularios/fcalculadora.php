@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Calculadora</h1>
-        <form action=<?php $_SERVER["PHP_SELF"]?> method="get">
+        <form action=<?php $_SERVER["PHP_SELF"]?> method="post">
             <label>Número 1</label>
             <input type="number" name="num1"><br><br>
             <label>Número 2</label>
@@ -29,7 +29,7 @@
             $resultado = 0;
             $operacion = "";
 
-            if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            if ($_SERVER["REQUEST_METHOD"] == "post") {
                 $operacion = $_REQUEST["operacion"];
                 switch ($operacion) {
                     case "suma":
