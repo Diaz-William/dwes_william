@@ -27,23 +27,24 @@
         </form>
         <?php
             $resultado = 0;
+            $operacion = $_REQUEST["operacion"];
 
-            if ($_REQUEST["operacion"] == "suma") {
+            if ($operacion == "suma") {
                 $resultado = $_REQUEST["num1"] + $_REQUEST["num2"];
                 echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " + " . $_REQUEST["num2"] . " = " . $resultado ."</p>";;
             }
 
-            if ($_REQUEST["operacion"] == "resta") {
+            if ($operacion == "resta") {
                 $resultado = $_REQUEST["num1"] - $_REQUEST["num2"];
                 echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " - " . $_REQUEST["num2"] . " = " . $resultado ."</p>";;
             }
 
-            if ($_REQUEST["operacion"] == "producto") {
+            if ($operacion == "producto") {
                 $resultado = $_REQUEST["num1"] * $_REQUEST["num2"];
                 echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " * " . $_REQUEST["num2"] . " = " . $resultado ."</p>";;
             }
 
-            if ($_REQUEST["operacion"] == "division") {
+            if ($operacion == "division") {
                 $resultado = $_REQUEST["num1"] / $_REQUEST["num2"];
                 echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " / " . $_REQUEST["num2"] . " = " . $resultado ."</p>";;
             }
