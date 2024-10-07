@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Calculadora</h1>
-        <form action="calculadora.php" method="get">
+        <form action=<?php $_SERVER["PHP_SELF"]?> method="get">
             <label>Número 1</label>
             <input type="number" name="num1"><br><br>
             <label>Número 2</label>
@@ -27,26 +27,27 @@
         </form>
         <?php
             $resultado = 0;
-            $operacion = $_GET["operacion"];
+            $operacion = $_REQUEST["operacion"];
 
-            if ($operacion == "suma") {
-                $resultado = $_GET["num1"] + $_GET["num2"];
-                echo "<p>Resultado de la operación: " . $_GET["num1"] . " + " . $_GET["num2"] . " = " . $resultado ."</p>";;
-            }
-
-            if ($operacion == "resta") {
-                $resultado = $_GET["num1"] - $_GET["num2"];
-                echo "<p>Resultado de la operación: " . $_GET["num1"] . " - " . $_GET["num2"] . " = " . $resultado ."</p>";;
-            }
-
-            if ($operacion == "producto") {
-                $resultado = $_GET["num1"] * $_GET["num2"];
-                echo "<p>Resultado de la operación: " . $_GET["num1"] . " * " . $_GET["num2"] . " = " . $resultado ."</p>";;
-            }
-
-            if ($operacion == "division") {
-                $resultado = $_GET["num1"] / $_GET["num2"];
-                echo "<p>Resultado de la operación: " . $_GET["num1"] . " / " . $_GET["num2"] . " = " . $resultado ."</p>";;
+            if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                switch ($operacion) {
+                    case "suma":
+                        $resultado = $_REQUEST["num1"] + $_REQUEST["num2"];
+                        echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " + " . $_REQUEST["num2"] . " = " . $resultado ."</p>";
+                        break;
+                    case "resta":
+                        $resultado = $_REQUEST["num1"] - $_REQUEST["num2"];
+                        echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " - " . $_REQUEST["num2"] . " = " . $resultado ."</p>";
+                        break;
+                    case "producto":
+                        $resultado = $_REQUEST["num1"] * $_REQUEST["num2"];
+                        echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " * " . $_REQUEST["num2"] . " = " . $resultado ."</p>";
+                        break;
+                    case "division":
+                        $resultado = $_REQUEST["num1"] / $_REQUEST["num2"];
+                        echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " / " . $_REQUEST["num2"] . " = " . $resultado ."</p>";
+                        break;
+                }
             }
         ?>
     </body>
