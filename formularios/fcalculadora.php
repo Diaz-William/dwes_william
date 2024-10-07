@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Calculadora</h1>
-        <form action=<?php $_SERVER["PHP_SELF"];?> method="post" name="formulario">
+        <form action="fcalculadora.php" method="post" name="formulario">
             <label>Número 1</label>
             <input type="number" name="num1"><br><br>
             <label>Número 2</label>
