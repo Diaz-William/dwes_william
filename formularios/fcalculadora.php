@@ -27,9 +27,10 @@
         </form>
         <?php
             $resultado = 0;
-            $operacion = $_REQUEST["operacion"];
+            $operacion = "";
 
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                $operacion = $_REQUEST["operacion"];
                 switch ($operacion) {
                     case "suma":
                         $resultado = $_REQUEST["num1"] + $_REQUEST["num2"];
