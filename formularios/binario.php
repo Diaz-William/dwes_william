@@ -10,9 +10,9 @@
             $num = $_REQUEST["num"];
             $binario = decbin($num);
 
-            echo "<label>Número Decimal</label>";
+            echo "<label>Número Decimal</label>&nbsp;";
             echo "<input type='text' value='$num' readonly><br><br>";
-            echo "<label>Número Binario</label>";
+            echo "<label>Número Binario</label>&nbsp;";
             echo "<input type='text' value='$binario' readonly><br><br>";
         ?>
     </body>
