@@ -6,7 +6,7 @@
         <title>FBinario</title>
     </head>
     <body>
-        <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label>Número Decimal</label>
             <input type="number" name="num"><br><br>
             <input type="submit" value="Enviar">

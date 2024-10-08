@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Calculadora</h1>
-        <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" name="formulario">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label>Número 1</label>
             <input type="number" name="num1"><br><br>
             <label>Número 2</label>
@@ -26,29 +26,60 @@
             <input type="reset" value="Borrar">
         </form>
         <?php
-            $resultado = 0;
+            $resultado = $num1 = $num2 = 0;
             $operacion = "";
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $operacion = $_REQUEST["operacion"];
+
+                $operacion = test_input($_POST["operacion"]);
+                $num1 = floatval(test_input($_POST["num1"]));
+                $num2 = floatval (test_input($_POST["num2"]));
+
                 switch ($operacion) {
                     case "suma":
-                        $resultado = $_REQUEST["num1"] + $_REQUEST["num2"];
-                        echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " + " . $_REQUEST["num2"] . " = " . $resultado ."</p>";
+                        $resultado = suma($num1, $num2);
+                        echo "<p>Resultado de la operación: $num1 + $num2 = $resultado</p>";
                         break;
                     case "resta":
-                        $resultado = $_REQUEST["num1"] - $_REQUEST["num2"];
-                        echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " - " . $_REQUEST["num2"] . " = " . $resultado ."</p>";
+                        $resultado = resta($num1, $num2);
+                        echo "<p>Resultado de la operación: $num1 - $num2 = $resultado</p>";
                         break;
                     case "producto":
-                        $resultado = $_REQUEST["num1"] * $_REQUEST["num2"];
-                        echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " * " . $_REQUEST["num2"] . " = " . $resultado ."</p>";
+                        $resultado = producto($num1, $num2);
+                        echo "<p>Resultado de la operación: $num1 * $num2 = $resultado</p>";
                         break;
                     case "division":
-                        $resultado = $_REQUEST["num1"] / $_REQUEST["num2"];
-                        echo "<p>Resultado de la operación: " . $_REQUEST["num1"] . " / " . $_REQUEST["num2"] . " = " . $resultado ."</p>";
+                        $resultado = division($num1, $num2);
+                        echo "<p>Resultado de la operación: $num1 / $num2 = $resultado</p>";
                         break;
                 }
+            }
+
+            function suma($num1, $num2) {
+                return $num1 + $num2;
+            }
+
+            function resta($num1, $num2) {
+                return $num1 - $num2;
+            }
+
+            function producto($num1, $num2) {
+                return $num1 * $num2;
+            }
+
+            function division($num1, $num2) {
+                if ($num2 == 0) {
+                    return "Error: división por cero";
+                }else {
+                    return $num1 / $num2;
+                }
+            }
+
+            function test_input($data) {
+                $data = trim($data);
+                $data = stripslashes($data);
+                $data = htmlspecialchars($data);
+                return $data;
             }
         ?>
     </body>
