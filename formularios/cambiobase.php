@@ -33,7 +33,7 @@
                     escribir($base, $convertido);
                     break;
                 case "hexadecimal":
-                    $convertido = convertir($num, 16);
+                    $convertido = strtoupper(convertir($num, 16));
                     escribir($base, $convertido);
                     break;
                 case "todas":
@@ -64,7 +64,7 @@
                 echo "<th>Octal</th><td>$convertido</td>";
                 echo "</tr>";
                 echo "<tr>";
-                $convertido = convertir($num, 16);
+                $convertido = strtoupper(convertir($num, 16));
                 echo "<th>Hexadecimal</th><td>$convertido</td>";
                 echo "</tr>";
                 echo "</table>";
