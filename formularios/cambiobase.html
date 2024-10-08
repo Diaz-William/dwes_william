@@ -6,6 +6,21 @@
         <title>cambiobase.html</title>
     </head>
     <body>
-        
+        <h1>Conversor Númerico</h1>
+        <form method="post" action="cambiobase.php">
+            <label>Número Decimal</label>
+            <input type="number" name="num"><br><br>
+            <label>Convertir a:</label><br><br>
+            <input type="radio" name="base" value="binario">
+            <label for="binario">Binario</label><br><br>
+            <input type="radio" name="base" value="octal">
+            <label for="octal">Octal</label><br><br>
+            <input type="radio" name="base" value="hexadecimal">
+            <label for="hexadecimal">Hexadecimal</label><br><br>
+            <input type="radio" name="base" value="todas">
+            <label for="todas">Todas las bases</label><br><br>
+            <input type="submit" value="Enviar">
+            <input type="reset" value="Borrar">
+        </form>
     </body>
 </html>
