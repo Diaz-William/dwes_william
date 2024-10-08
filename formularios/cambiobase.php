@@ -4,6 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <style>
+            table, th, td {
+                border:1px solid black;
+            }
+        </style>
     </head>
     <body>
         <h1>Conversor Númerico</h1>
@@ -15,7 +20,7 @@
             $base = test_input($_REQUEST["base"]);
             $num = intval(test_input($_REQUEST["num"]));
 
-            echo "<label>Número Decimal</label>";
+            echo "<label>Número Decimal</label>&nbsp;";
             echo "<input type='text' name='num' value='$num' readonly><br><br>";
 
             switch ($base) {
@@ -41,7 +46,8 @@
             }
 
             function escribir($base, $convertido) {
-                echo "<label>$base</label>";
+                $base = ucfirst($base);
+                echo "<label>$base</label>&nbsp;";
                 echo "<input type='text' name='num' value='$convertido' readonly><br><br>";
             }
 
