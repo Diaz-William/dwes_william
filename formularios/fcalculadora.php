@@ -9,9 +9,9 @@
         <h1>Calculadora</h1>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label>Número 1</label>
-            <input type="number" name="num1"><br><br>
+            <input type="text" name="num1"><br><br>
             <label>Número 2</label>
-            <input type="number" name="num2">
+            <input type="text" name="num2">
             <br><br>
             <label>Selecciona operación:</label><br><br>
             <input type="radio" id="suma" name="operacion" value="suma">
