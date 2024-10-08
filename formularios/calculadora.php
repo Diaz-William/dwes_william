@@ -8,10 +8,12 @@
     <body>
         <h1>Calculadora</h1>
         <?php
-            $resultado = 0;
-            $operacion = $_REQUEST["operacion"];
-            $num1 = $_REQUEST["num1"];
-            $num2 = $_REQUEST["num2"];
+            $resultado = $num1 = $num2 = 0;
+            $operacion = "";
+
+            $operacion = test_input($_POST["operacion"]);
+            $num1 = floatval(test_input($_POST["num1"]));
+            $num2 = floatval(test_input($_POST["num2"]));
 
             switch ($operacion) {
                 case "suma":
@@ -50,6 +52,13 @@
                 }else {
                     return $num1 / $num2;
                 }
+            }
+
+            function test_input($data) {
+                $data = trim($data);
+                $data = stripslashes($data);
+                $data = htmlspecialchars($data);
+                return $data;
             }
         ?>
     </body>

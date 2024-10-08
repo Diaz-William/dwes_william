@@ -30,10 +30,9 @@
             $operacion = "";
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
                 $operacion = test_input($_POST["operacion"]);
                 $num1 = floatval(test_input($_POST["num1"]));
-                $num2 = floatval (test_input($_POST["num2"]));
+                $num2 = floatval(test_input($_POST["num2"]));
 
                 switch ($operacion) {
                     case "suma":
