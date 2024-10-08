@@ -11,9 +11,9 @@
             $resultado = $num1 = $num2 = 0;
             $operacion = "";
 
-            $operacion = test_input($_POST["operacion"]);
-            $num1 = floatval(test_input($_POST["num1"]));
-            $num2 = floatval(test_input($_POST["num2"]));
+            $operacion = test_input($_REQUEST["operacion"]);
+            $num1 = floatval(test_input($_REQUEST["num1"]));
+            $num2 = floatval(test_input($_REQUEST["num2"]));
 
             switch ($operacion) {
                 case "suma":
