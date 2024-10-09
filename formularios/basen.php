@@ -8,13 +8,17 @@
     <body>
         <h1>Cambio de Base</h1>
         <?php
-            $num = $baseA = $baseB = 0;
+            $num = $baseA = $baseB = $convertido = 0;
             $datos = array();
 
             $datos = explode("/", $_REQUEST["convertir"]);
-            $num = test_input($datos[0]);
-            $baseA = test_input($datos[1]);
-            $baseB = test_input($_REQUEST["base"]);
+            $num = intval(test_input($datos[0]));
+            $baseA = intval(test_input($datos[1]));
+            $baseB = intval(test_input($_REQUEST["base"]));
+
+            $convertido = convertir($num, $baseA, $baseB);
+
+            echo "<p>Número $num en base $baseA = $convertido en base $baseB</p>";
 
             function convertir($num, $baseA, $baseB) {
                 return base_convert($num, $baseA, $baseB);
