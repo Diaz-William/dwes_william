@@ -27,7 +27,7 @@
 
                 $ipBinaria = "$octeto1.$octeto2.$octeto3.$octeto4";
                 echo "<label>IP Binario</label>&nbsp;";
-                echo "<input type='text' name='num' value='$ipBinaria' readonly><br><br>";
+                echo "<input type='text' name='num' value='$ipBinaria' size='50' readonly><br><br>";
             }else {
                 echo "<p>Introduce una IP valida</p>";
             }
