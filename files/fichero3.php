@@ -16,9 +16,9 @@
             
             $nombre = substr($datos[0], 0, 40);
             $apellido1 = substr($datos[0], 41, 81);
-            $apellido2 = substr($datos[0], 82, 123);
-            $nacimiento = substr($datos[0], 124, 133);
-            $localidad = substr($datos[0], 134, 160);
+            $apellido2 = substr($datos[0], 81, 123);
+            $nacimiento = substr($datos[0], 123, 133);
+            $localidad = substr($datos[0], 133, 160);
             
             fclose($fichero);
 
