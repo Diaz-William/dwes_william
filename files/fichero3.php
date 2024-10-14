@@ -8,6 +8,8 @@
     <body>
     <h1>Datos Alumnos</h1>
     <?php
+        imprimir();
+        
         function imprimir() {
             $fichero = fopen("alumnos1.txt", "r") or die("No se ha podido abrir el archivo");
             $datos = array();
