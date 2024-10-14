@@ -9,21 +9,23 @@
     <h1>Datos Alumnos</h1>
     <?php
         imprimir();
-        
+
         function imprimir() {
             $fichero = fopen("alumnos1.txt", "r") or die("No se ha podido abrir el archivo");
-            $datos = array();
-            $datos = explode(" ", $fichero);
             
-            /*while(!feof($fichero)) {
-                echo fgets($fichero);
-            }*/
-
-            echo "<pre>";
-            echo print_r( $datos );
-            echo "</pre>";
+            $nombre = trim(file_get_contents("alumnos1.txt", FALSE, NULL, 1, 40));
+            $apellido1 = trim(file_get_contents("alumnos1.txt", FALSE, NULL, 41, 81));
+            $apellido2 = trim(file_get_contents("alumnos1.txt", FALSE, NULL, 82, 123));
+            $nacimiento = trim(file_get_contents("alumnos1.txt", FALSE, NULL, 124, 133));
+            $localidad = trim(file_get_contents("alumnos1.txt", FALSE, NULL, 134, 160));
             
             fclose($fichero);
+
+            echo "$nombre <br>";
+            echo "$apellido1 <br>";
+            echo "$apellido2 <br>";
+            echo "$nacimiento <br>";
+            echo "$localidad <br>";
         }
 
         function test_input($data) {
