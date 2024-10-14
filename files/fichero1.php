@@ -44,7 +44,7 @@
             }
             function guardarArchivo($nombre, $apellido1, $apellido2, $nacimiento, $localidad) {
                 $file = fopen("alumnos1.txt", "a");
-                fwrite($file, "$nombre, $apellido1, $apellido2, $nacimiento, $localidad" . PHP_EOL);
+                fwrite($file, "$nombre$apellido1$apellido2$nacimiento$localidad" . PHP_EOL);
                 fclose($file);
             }
 
