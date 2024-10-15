@@ -16,12 +16,12 @@
         <br><br>
         <input type="radio" name="opcion" value="mostrarLinea">
         <label>Mostrar linea</label>
-        <input type="text" name="num" size="1">
+        <input type="text" name="num1" size="1">
         <label>fichero</label>
         <br><br>
         <input type="radio" name="opcion" value="mostrarNumLineas">
         <label>Mostrar</label>
-        <input type="text" name="num" size="1">
+        <input type="text" name="num2" size="1">
         <label>primeras lineas</label>
         <br><br>
         <input type="submit" value="Enviar">
@@ -44,11 +44,11 @@
                         mostrarFichero($datos);
                         break;
                     case "mostrarLinea":
-                        $num = test_input($_POST["num"]);
+                        $num = test_input($_POST["num1"]);
                         mostrarLinea($datos, $num);
                         break;
                     case "mostrarNumLineas":
-                        $num = test_input($_POST["num"]);
+                        $num = test_input($_POST["num2"]);
                         mostrarNumLineas($datos, $num);
                         break;
                 }
