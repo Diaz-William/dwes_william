@@ -16,28 +16,18 @@
     </form>
     <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $fichero = test_input($_POST["fichero"]);
+            $fichero = $_POST["fichero"];
 
             if (file_exists($fichero)) {
                 $datos = explode("/", $fichero);
                 $nombre = $datos[(count($datos) -1)];
-                $ruta = obtenerRuta($datos);
+                $ruta = dirname(realpath($fichero));
                 $tamanio = filesize($fichero);
                 $modificacion = date("F d Y H:i:s.", filectime($fichero));
                 imprimir($nombre, $ruta, $tamanio, $modificacion);
             }else {
                 echo "<p>El archivo no existe</p>";
             }
-        }
-
-        function obtenerRuta($datos) {
-            $ruta = "";
-
-            for ($i = 0; $i < (count($datos) - 1); $i++) {
-                $ruta += $datos[$i];
-            }
-
-            return $ruta;
         }
 
         function imprimir($nombre, $ruta, $tamanio, $modificacion) {
