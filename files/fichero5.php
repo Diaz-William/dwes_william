@@ -64,7 +64,8 @@
         }
 
         function mostrarLinea($datos, $num) {
-            echo $datos[($num - 1)];
+            $linea = $datos[($num - 1)];
+            echo "$linea";
         }
 
         function mostrarNumLineas($datos, $num) {
