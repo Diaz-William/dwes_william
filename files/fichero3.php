@@ -19,6 +19,7 @@
             $fichero = fopen("alumnos1.txt", "r") or die("No se ha podido abrir el archivo");
             $datos = file("alumnos1.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             fclose($fichero);
+            $lineas = count($datos);
 
             echo "<table>";
             echo "<tr>";
@@ -28,7 +29,7 @@
             echo "<th>Nacimiento</th>";
             echo "<th>Localidad</th>";
             echo "</tr>";
-            
+
             foreach ($datos as $x) {
                 $nombre = trim(substr($x, 0, (40 - 0)));
                 $apellido1 = trim(substr($x, 40, (81 - 40)));
@@ -43,6 +44,10 @@
                 echo "<td>$localidad</td>";
                 echo "</tr>";
             }
+
+            echo "</table>";
+
+            echo "<p>Se han leído $lineas</p>";
         }
 
         function test_input($data) {
