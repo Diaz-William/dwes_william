@@ -56,7 +56,9 @@
                 echo "<p>El archivo no existe</p>";
             }
         }
+    ?>
 
+    <?php
         function mostrarFichero($datos) {
             foreach ($datos as $x) {
                 echo "$x <br>";
