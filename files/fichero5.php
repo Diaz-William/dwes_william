@@ -11,15 +11,15 @@
         <label>Fichero Path/Nombre</label>
         <input type="text" name="fichero">
         <br><br>
-        <input type="radio" name="opcion" value="MostrarFichero">
+        <input type="radio" name="opcion" value="mostrarFichero">
         <label>Mostrar Fichero</label>
         <br><br>
-        <input type="radio" name="opcion" value="MostrarLinea">
+        <input type="radio" name="opcion" value="mostrarLinea">
         <label>Mostrar linea</label>
         <input type="text" name="num" size="1">
         <label>fichero</label>
         <br><br>
-        <input type="radio" name="opcion" value="MostrarNumLineas">
+        <input type="radio" name="opcion" value="mostrarNumLineas">
         <label>Mostrar</label>
         <input type="text" name="num" size="1">
         <label>primeras lineas</label>
@@ -29,13 +29,51 @@
     </form>
     <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $fichero = fopen("quijote.txt", "r") or die("No se ha podido abrir el archivo");
-            $datos = file("quijote.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            fclose($fichero);
+            $mostrar = test_input($_POST["opcion"]);
+            $nombre = test_input($_POST["fichero"]);
+            $num = 0;
 
-            echo "<pre>";
-            echo print_r( $datos );
-            echo "</pre>";
+            if (file_exists($nombre)) {
+                echo "<h2>Operaciones Ficheros</h2>";
+                $fichero = fopen($nombre, "r") or die("No se ha podido abrir el archivo");
+                $datos = file($nombre, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+                fclose($fichero);
+
+                switch ($mostrar) {
+                    case "mostrarFichero":
+                        mostrarFichero($datos);
+                        break;
+                    case "mostrarLinea":
+                        $num = test_input($_POST["num"]);
+                        mostrarLinea($datos, $num);
+                        break;
+                    case "mostrarNumLineas":
+                        $num = test_input($_POST["num"]);
+                        mostrarNumLineas($datos, $num);
+                        break;
+                }
+            }else {
+                echo "<p>El archivo no existe</p>";
+            }
+        }
+
+        function mostrarFichero($datos) {
+            foreach ($datos as $x) {
+                echo "$x <br>";
+            }
+        }
+
+        function mostrarLinea($datos, $num) {
+            echo $datos[($num - 1)];
+        }
+
+        function mostrarNumLineas($datos, $num) {
+            $cont = 0;
+
+            while ($cont < $num) {
+                echo $datos[$cont] . "<br>";
+                $cont += 1;
+            }
         }
 
         function test_input($data) {
