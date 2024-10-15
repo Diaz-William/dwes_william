@@ -19,11 +19,11 @@
             $fichero = $_POST["fichero"];
 
             if (file_exists($fichero)) {
-                $datos = explode("/", $fichero);
+                $datos = explode("\\", $fichero);
                 $nombre = $datos[(count($datos) -1)];
                 $ruta = dirname(realpath($fichero));
                 $tamanio = filesize($fichero);
-                $modificacion = date("F d Y H:i:s.", filectime($fichero));
+                $modificacion = date("d/M/Y H:i:s.", filectime($fichero));
                 imprimir($nombre, $ruta, $tamanio, $modificacion);
             }else {
                 echo "<p>El archivo no existe</p>";
