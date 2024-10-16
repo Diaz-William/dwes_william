@@ -12,7 +12,10 @@
         include 'funciones_bolsa.php';
         imprimirFormulario();
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            echo htmlspecialchars($_SERVER["PHP_SELF"]);
+            $aux1 = htmlspecialchars($_SERVER["PHP_SELF"]);
+            $aux2 = explode("/", $aux1);
+            $nombre = $aux2[(count($aux2) -1)];
+            datosCotizacion($datos, $valor, $nombre);
         }
     ?>
     </body>

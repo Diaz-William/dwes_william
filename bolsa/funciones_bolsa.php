@@ -14,7 +14,7 @@
         
     }
 
-    function datosCotizacion($datos, $valor) {
+    function datosCotizacion($datos, $valor, $nombre) {
         $indice = 0;
         $seguir = true;
         $datosValor = "";
@@ -28,7 +28,12 @@
             }
             $indice += 1;
         }
-        imprimirDatosCotizacion($datosValor,$datos[0], $valor);
+        
+        if ($nombre == "bingo2.php") {
+            imprimirDatosCotizacion($datosValor,$datos[0], $valor);
+        }else if ($nombre == "bingo3.php") {
+            imprimirCotizaciones($datosValor);
+        }
     }
     
     function imprimirDatosCotizacion($datosValor,$datos, $valor) {
@@ -59,23 +64,6 @@
         echo '<input type="submit" value="Visualizar">';
         echo '<input type="reset" value="borrar">';
         echo '</form>';
-    }
-
-    function cotizaciones($datos, $valor) {
-        $indice = 0;
-        $seguir = true;
-        $datosValor = "";
-        $linea = array();
-        
-        while ($seguir && $indice < count($datos)) {
-            $linea = obtenerLinea($datos[$indice]);
-            if (strtolower($linea[0]) == strtolower($valor)) {
-                $datosValor = $datos[$indice];
-                $seguir = false;
-            }
-            $indice += 1;
-        }
-        imprimirCotizaciones($datosValor);
     }
 
     function imprimirCotizaciones($linea) {
