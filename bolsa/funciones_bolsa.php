@@ -29,9 +29,9 @@
             $indice += 1;
         }
         
-        if ($nombre == "bingo2.php") {
+        if ($nombre == "bolsa2.php") {
             imprimirDatosCotizacion($datosValor,$datos[0], $valor);
-        }else if ($nombre == "bingo3.php") {
+        }else if ($nombre == "bolsa3.php") {
             imprimirCotizaciones($datosValor);
         }
     }
