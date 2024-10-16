@@ -10,7 +10,7 @@
         foreach ($datos as $x) {
             $linea = linea($x);
             foreach ($linea as $y) {
-                echo "$y                    ";
+                echo "$y";
             }
             echo "<br><br>";
         }
@@ -20,9 +20,11 @@
         $indice = 0;
         $seguir = true;
         $datosValor = "";
-        //simulo la función str_contains(), disponible en php 8
+        $linea = array();
+        
         while ($seguir && $indice < count($datos)) {
-            if (strpos(strtolower($datos[$indice]), strtolower($valor)) !== false) {
+            $linea = linea($datos[$indice]);
+            if (strtolower($linea[0]) == strtolower($valor)) {
                 $datosValor = $datos[$indice];
                 $seguir = false;
             }
