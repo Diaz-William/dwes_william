@@ -14,14 +14,16 @@
     function datosCotizacion($datos, $valor) {
         $indice = 0;
         $seguir = true;
+        $devolver = "";
         //simulo la función str_contains(), disponible en php 8
         while ($seguir && $indice < count($datos)) {
             if (strpos(strtolower($datos[$indice]), strtolower($valor)) !== false) {
-                echo $datos[$indice];
+                $devolver = $datos[$indice];
                 $seguir = false;
             }
-            $indice++; // No olvides incrementar el índice para evitar un bucle infinito
+            $indice++;
         }
+        return $devolver;
     }
     
 

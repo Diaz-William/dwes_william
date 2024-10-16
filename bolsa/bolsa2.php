@@ -20,8 +20,14 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $datos = obtenerDatos();
             $valor = test_input($_POST["valor"]);
-            echo $valor;
-            datosCotizacion($datos, $valor);
+            $datosValor = datosCotizacion($datos, $valor);
+
+            if ($datosValor != "") {
+                echo $datosValor;
+            }else {
+                echo "No se ha encontrado un valor con el nombre $valor";
+            }
+            
         }
     ?>
     </body>
