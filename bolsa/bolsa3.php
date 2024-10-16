@@ -7,6 +7,7 @@
     </head>
     <body>
     <h1>Ibex 35</h1>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <?php
         include 'funciones_bolsa.php';
         imprimirFormulario();
