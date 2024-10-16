@@ -6,16 +6,10 @@
         return $datos;
     }
     function mostrarDatos($datos) {
-        //$linea = array();
         foreach ($datos as $x) {
-            /*$linea = obtenerLinea($x);
-            foreach ($linea as $y) {
-                echo "$y";
-            }
-            echo "<br><br>";*/
             echo "<pre>";
-        echo $x;
-        echo "</pre>";
+            echo $x;
+            echo "</pre>";
         }
         
     }
@@ -65,6 +59,34 @@
         echo '<input type="submit" value="Visualizar">';
         echo '<input type="reset" value="borrar">';
         echo '</form>';
+    }
+
+    function cotizaciones($datos, $valor) {
+        $indice = 0;
+        $seguir = true;
+        $datosValor = "";
+        $linea = array();
+        
+        while ($seguir && $indice < count($datos)) {
+            $linea = obtenerLinea($datos[$indice]);
+            if (strtolower($linea[0]) == strtolower($valor)) {
+                $datosValor = $datos[$indice];
+                $seguir = false;
+            }
+            $indice += 1;
+        }
+        imprimirCotizaciones($datosValor);
+    }
+
+    function imprimirCotizaciones($linea) {
+        $valor = $linea[0];
+        $cotizacion = $linea[1];
+        $max = $linea[5];
+        $min = $linea[6];
+        echo "<br><br>";
+        echo "El valor cotización de $valor es $cotizacion";
+        echo "Cotización Máxima de $valor es $max";
+        echo "Cotización Mínima de $valor es $min";
     }
 
     function obtenerLinea($linea) {

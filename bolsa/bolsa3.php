@@ -12,7 +12,7 @@
         include 'funciones_bolsa.php';
         imprimirFormulario();
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            echo "dentro";
+            echo htmlspecialchars($_SERVER["PHP_SELF"]);
         }
     ?>
     </body>
