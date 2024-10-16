@@ -14,10 +14,12 @@
     function datosCotizacion($datos, $valor) {
         $indice = 0;
         $seguir = true;
+        $aux = "";
 
         while ($seguir && $indice < count($datos)) {
-            if (str_contains(strtolower($datos[$indice]), strtolower($valor))) {
-                echo $datos[$indice];
+            $aux = strtolower($datos[$indice]);
+            if (str_contains($aux, strtolower($valor))) {
+                echo $aux;
                 $seguir = false;
             }
         }
