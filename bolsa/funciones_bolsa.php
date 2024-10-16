@@ -67,6 +67,7 @@
     }
 
     function imprimirCotizaciones($linea) {
+        $linea = obtenerLinea( $linea );
         $valor = $linea[0];
         $cotizacion = $linea[1];
         $max = $linea[5];
