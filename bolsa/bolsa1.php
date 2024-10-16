@@ -14,7 +14,10 @@
         $datos = file("ibex35.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         fclose($fichero);
 
-        mostrarDatos($datos);
+        //mostrarDatos($datos);
+        echo "<pre>";
+        echo print_r($datos);
+        echo "</pre>";
     ?>
     </body>
 </html>
