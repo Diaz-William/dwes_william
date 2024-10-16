@@ -46,7 +46,6 @@
 
     function imprimirFormulario() {
         $datos = obtenerDatos();
-        $indice = 1;
         $linea = array();
 
         echo '<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">';
@@ -58,11 +57,10 @@
             echo '<option value="'.$linea[0].'">'.$linea[0].'</option>';
         }
 
-        print '</select>';
-        print '<input type="submit" value="Visualizar">';
-        print '<input type="reset" value="borrar">';
-        print '</form>';
         echo '</select>';
+        echo '<br><br>';
+        echo '<input type="submit" value="Visualizar">';
+        echo '<input type="reset" value="borrar">';
         echo '</form>';
     }
 
