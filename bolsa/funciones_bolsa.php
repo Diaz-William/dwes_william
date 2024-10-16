@@ -74,7 +74,9 @@
         $min = $linea[6];
         echo "<br><br>";
         echo "El valor cotización de $valor es $cotizacion";
+        echo "<br><br>";
         echo "Cotización Máxima de $valor es $max";
+        echo "<br><br>";
         echo "Cotización Mínima de $valor es $min";
     }
 
