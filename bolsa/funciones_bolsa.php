@@ -4,6 +4,9 @@
 
         foreach ($datos as $x) {
             $datosLinea = explode(" ", $x);
+            echo "<pre>";
+            echo print_r( $datosLinea );
+            echo "</pre>";
             foreach ($datosLinea as $y) {
                 echo str_pad($y, 10, " ", STR_PAD_RIGHT);
             }
