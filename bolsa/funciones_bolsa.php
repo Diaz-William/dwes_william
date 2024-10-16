@@ -6,14 +6,18 @@
         return $datos;
     }
     function mostrarDatos($datos) {
-        $linea = array();
+        //$linea = array();
         foreach ($datos as $x) {
-            $linea = obtenerLinea($x);
+            /*$linea = obtenerLinea($x);
             foreach ($linea as $y) {
                 echo "$y";
             }
-            echo "<br><br>";
+            echo "<br><br>";*/
+            echo "<pre>";
+        echo $x;
+        echo "</pre>";
         }
+        
     }
 
     function datosCotizacion($datos, $valor) {
