@@ -15,9 +15,6 @@
         fclose($fichero);
 
         mostrarDatos($datos);
-        echo "<pre>";
-        echo print_r($datos);
-        echo "</pre>";
     ?>
     </body>
 </html>
