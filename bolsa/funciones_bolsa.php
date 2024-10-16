@@ -8,7 +8,7 @@
     function mostrarDatos($datos) {
         $linea = array();
         foreach ($datos as $x) {
-            $linea = linea($x);
+            $linea = obtenerLinea($x);
             foreach ($linea as $y) {
                 echo "$y";
             }
@@ -23,12 +23,12 @@
         $linea = array();
         
         while ($seguir && $indice < count($datos)) {
-            $linea = linea($datos[$indice]);
+            $linea = obtenerLinea($datos[$indice]);
             if (strtolower($linea[0]) == strtolower($valor)) {
                 $datosValor = $datos[$indice];
                 $seguir = false;
             }
-            $indice++;
+            $indice += 1;
         }
         imprimirDatosCotizacion($datosValor,$datos[0], $valor);
     }
@@ -44,7 +44,29 @@
         }
     }
 
-    function linea($linea) {
+    function imprimirFormulario() {
+        $datos = obtenerDatos();
+        $indice = 1;
+        $linea = array();
+
+        echo '<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">';
+        echo '<label id="valores">Valores</label>';
+        echo '<select id="valores">';
+
+        for ($i = 1; $i < count($datos); $i++) { 
+            $linea = obtenerLinea($datos[$i]);
+            echo '<option value="'.$linea[0].'">'.$linea[0].'</option>';
+        }
+
+        print '</select>';
+        print '<input type="submit" value="Visualizar">';
+        print '<input type="reset" value="borrar">';
+        print '</form>';
+        echo '</select>';
+        echo '</form>';
+    }
+
+    function obtenerLinea($linea) {
         $data = array();
         if($linea != "") {
             $data[0] = test_input(substr($linea,0,23));
