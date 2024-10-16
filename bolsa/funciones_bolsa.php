@@ -14,18 +14,27 @@
     function datosCotizacion($datos, $valor) {
         $indice = 0;
         $seguir = true;
-        $devolver = "";
+        $datosValor = "";
         //simulo la función str_contains(), disponible en php 8
         while ($seguir && $indice < count($datos)) {
             if (strpos(strtolower($datos[$indice]), strtolower($valor)) !== false) {
-                $devolver = $datos[$indice];
+                $datosValor = $datos[$indice];
                 $seguir = false;
             }
             $indice++;
         }
-        return $devolver;
+        imprimirDatosCotizacion($datosValor,$datos[0], $valor);
     }
     
+    function imprimirDatosCotizacion($datosValor,$datos, $valor) {
+        if ($datosValor != "") {
+            echo "<br><br>";
+            echo $datos . "<br><br>";
+            echo $datosValor;
+        }else {
+            echo "No se ha encontrado un valor con el nombre $valor";
+        }
+    }
 
     function test_input($data) {
         $data = trim($data);
