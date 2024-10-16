@@ -10,7 +10,7 @@
             foreach ($datosLinea as $y) {
                 if ($y != " ") {
                     $aux = str_pad($y, 10, " ", STR_PAD_RIGHT);
-                    echo $aux;
+                    echo "$aux";
                 }
             }
             echo "<br>";
