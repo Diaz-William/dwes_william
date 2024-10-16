@@ -1,7 +1,13 @@
 <?php
     function mostrarDatos($datos) {
+        $datosLinea = array();
+
         foreach ($datos as $x) {
-            echo $x . "<br>";
+            $datosLinea = explode(" ", $x);
+            foreach ($datosLinea as $y) {
+                echo $y . " ";
+            }
+            echo "<br>";
         }
     }
 ?>
