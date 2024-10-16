@@ -23,6 +23,7 @@
             $datosValor = datosCotizacion($datos, $valor);
 
             if ($datosValor != "") {
+                echo $datos[0];
                 echo $datosValor;
             }else {
                 echo "No se ha encontrado un valor con el nombre $valor";
