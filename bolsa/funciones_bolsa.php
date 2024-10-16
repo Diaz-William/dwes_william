@@ -10,4 +10,22 @@
             echo "$x<br>";
         }
     }
-?>
+
+    function datosCotizacion($datos, $valor) {
+        $indice = 0;
+        $seguir = true;
+
+        while ($seguir && $indice < count($datos)) {
+            if (str_contains(strtolower($datos[$indice]), strtolower($valor))) {
+                echo $datos[$indice];
+                $seguir = false;
+            }
+        }
+    }
+
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
