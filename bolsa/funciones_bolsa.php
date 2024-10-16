@@ -12,6 +12,7 @@
             foreach ($linea as $y) {
                 echo str_pad($y, 10, " ", STR_PAD_RIGHT);
             }
+            echo "<br><br>";
         }
     }
 
