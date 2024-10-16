@@ -20,6 +20,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $datos = obtenerDatos();
             $valor = test_input($_POST["valor"]);
+            echo $valor;
             datosCotizacion($datos, $valor);
         }
     ?>
