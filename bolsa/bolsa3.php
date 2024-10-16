@@ -16,6 +16,7 @@
             $aux2 = explode("/", $aux1);
             $nombre = $aux2[(count($aux2) -1)];
             $valor = test_input($_POST["valores"]);
+            $datos = obtenerDatos();
             datosCotizacion($datos, $valor, $nombre);
         }
     ?>

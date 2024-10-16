@@ -52,7 +52,7 @@
         $linea = array();
 
         echo '<label id="valores">Valores</label>';
-        echo '<select id="valores">';
+        echo '<select id="valores" name="valores">';
 
         for ($i = 1; $i < count($datos); $i++) { 
             $linea = obtenerLinea($datos[$i]);
