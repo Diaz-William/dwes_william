@@ -51,7 +51,7 @@
         $datos = obtenerDatos();
         $linea = array();
 
-        echo '<label id="valores">Valores</label>';
+        echo '<label id="valores">Valores</label>&nbsp;';
         echo '<select id="valores" name="valores">';
 
         for ($i = 1; $i < count($datos); $i++) { 
@@ -66,18 +66,20 @@
         if ($nombre == "bolsa4.php") {
             $linea = obtenerLinea($datos[0]);
 
-            echo '<label id="mostrar">Mostrar</label>';
+            echo '<label id="mostrar">Mostrar</label>&nbsp;';
             echo '<select id="mostrar" name="mostrar">';
 
             foreach ($linea as $x) {
-                echo '<option value="'.$x.'">'.$x.'</option>';
+                if ($x == "Valor") {
+                    echo '<option value="'.$x.'">'.$x.'</option>';
+                }
             }
 
             echo '</select>';
         }
         
         echo '<br><br>';
-        echo '<input type="submit" value="Visualizar">';
+        echo '<input type="submit" value="Visualizar">&nbsp;';
         echo '<input type="reset" value="borrar">';
         echo '</form>';
     }
