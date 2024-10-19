@@ -47,7 +47,7 @@
         }
     }
 
-    function imprimirFormulario() {
+    function imprimirFormulario($nombre) {
         $datos = obtenerDatos();
         $linea = array();
 
@@ -59,7 +59,23 @@
             echo '<option value="'.$linea[0].'">'.$linea[0].'</option>';
         }
 
+
         echo '</select>';
+        echo '<br><br>';
+
+        if ($nombre == "bolsa4.php") {
+            $linea = obtenerLinea($datos[0]);
+
+            echo '<label id="mostrar">Mostrar</label>';
+            echo '<select id="mostrar" name="mostrar">';
+
+            foreach ($linea as $x) {
+                echo '<option value="'.$x.'">'.$x.'</option>';
+            }
+
+            echo '</select>';
+        }
+        
         echo '<br><br>';
         echo '<input type="submit" value="Visualizar">';
         echo '<input type="reset" value="borrar">';
@@ -94,6 +110,13 @@
             $data[8] = test_input(substr($linea,91,8));
         }
         return $data;
+    }
+
+    function obtenerNombre() {
+        $aux1 = htmlspecialchars($_SERVER["PHP_SELF"]);
+        $aux2 = explode("/", $aux1);
+        $nombre = $aux2[(count($aux2) -1)];
+        return $nombre;
     }
 
     function test_input($data) {
