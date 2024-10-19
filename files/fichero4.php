@@ -13,15 +13,17 @@
     <body>
     <h1>Datos Alumnos</h1>
     <?php
-        imprimir();
+        obtenerDatos();
 
-        function imprimir() {
+        function obtenerDatos() {
             $fichero = fopen("alumnos2.txt", "r") or die("No se ha podido abrir el archivo");
             $datos = file("alumnos2.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             fclose($fichero);
             $lineas = count($datos);
-            $datosLinea = array();
+            imprimirTabla($datos, $lineas);
+        }
 
+        function imprimirTabla($datos, $lineas) {
             echo "<table>";
             echo "<tr>";
             echo "<th>Nombre</th>";
@@ -30,7 +32,13 @@
             echo "<th>Nacimiento</th>";
             echo "<th>Localidad</th>";
             echo "</tr>";
+            imprimirCelda($datos);
+            echo "</table>";
+            echo "<p>Se han leído $lineas lineas</p>";
+        }
 
+        function imprimirCelda($datos) {
+            $datosLinea = array();
             foreach ($datos as $x) {
                 echo "<tr>";
                 $datosLinea = explode("##", $x);
@@ -39,10 +47,6 @@
                 }
                 echo "</tr>";
             }
-
-            echo "</table>";
-
-            echo "<p>Se han leído $lineas lineas</p>";
         }
 
         function test_input($data) {
