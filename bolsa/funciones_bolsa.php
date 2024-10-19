@@ -33,6 +33,8 @@
             imprimirDatosCotizacion($datosValor,$datos[0], $valor);
         }else if ($nombre == "bolsa3.php") {
             imprimirCotizaciones($datosValor);
+        }else if ($nombre == "bolsa4.php") {
+            mostrarValor($datosValor);
         }
     }
     
@@ -70,7 +72,7 @@
             echo '<select id="mostrar" name="mostrar">';
 
             foreach ($linea as $x) {
-                if ($x == "Valor") {
+                if ($x != "Valor") {
                     echo '<option value="'.$x.'">'.$x.'</option>';
                 }
             }
@@ -97,6 +99,8 @@
         echo "<br><br>";
         echo "Cotización Mínima de $valor es $min";
     }
+
+    function mostrarValor($datos) {}
 
     function obtenerLinea($linea) {
         $data = array();
