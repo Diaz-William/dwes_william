@@ -142,7 +142,7 @@
 
         for ($i = 1; $i < count($datos); $i++) {
             $linea = obtenerLinea($datos[$i]);
-            $suma += $linea[$posicion];
+            $suma += intval($linea[$posicion]);
         }
 
         if ($opcion == "volumen") {
