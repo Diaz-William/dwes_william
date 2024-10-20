@@ -10,6 +10,7 @@
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <?php
         include 'funciones_bolsa.php';
+        $nombre = obtenerNombre();
         imprimirFormulario($nombre);
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $valor = $_POST["valores"];
