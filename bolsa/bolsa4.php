@@ -10,12 +10,12 @@
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <?php
         include 'funciones_bolsa.php';
-        $nombre = obtenerNombre();
         imprimirFormulario($nombre);
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $valor = test_input($_POST["valores"]);
+            $mostrar = test_input($_POST["mostrar"]);
             $datos = obtenerDatos();
-            datosCotizacion($datos, $valor, $nombre);
+            mostrarValor($datos, $valor, $mostrar);
         }
     ?>
     </body>

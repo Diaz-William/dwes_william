@@ -33,8 +33,6 @@
             imprimirDatosCotizacion($datosValor,$datos[0], $valor);
         }else if ($nombre == "bolsa3.php") {
             imprimirCotizaciones($datosValor);
-        }else if ($nombre == "bolsa4.php") {
-            mostrarValor($datosValor);
         }
     }
     
@@ -100,7 +98,36 @@
         echo "Cotización Mínima de $valor es $min";
     }
 
-    function mostrarValor($datos) {}
+    function mostrarValor($datos, $valor, $mostrar) {
+        $indice = 1;
+        $seguir = true;
+        $linea = array();
+        $numMostrar = 0;
+        $aux = "";
+
+        $linea = obtenerLinea($datos[0]);
+
+        while ($seguir && $indice < count($linea)) {
+            if (strtolower($linea[$indice]) == strtolower($mostrar)) {
+                $numMostrar = $indice;
+                $seguir = false;
+            }
+            $indice += 1;
+        }
+
+        $indice = 1;
+        $seguir = true;
+
+        while ($seguir && $indice < count($datos)) {
+            $linea = obtenerLinea($datos[$indice]);
+            if (strtolower($linea[0]) == strtolower($valor)) {
+                $aux = $linea[$numMostrar];
+                echo "<p>El valor $mostrar de $valor es $aux</p>";
+                $seguir = false;
+            }
+            $indice += 1;
+        }
+    }
 
     function obtenerLinea($linea) {
         $data = array();
