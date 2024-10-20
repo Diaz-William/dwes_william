@@ -12,8 +12,8 @@
         include 'funciones_bolsa.php';
         imprimirFormulario($nombre);
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $valor = test_input($_POST["valores"]);
-            $mostrar = test_input($_POST["mostrar"]);
+            $valor = $_POST["valores"];
+            $mostrar = $_POST["mostrar"];
             $datos = obtenerDatos();
             mostrarValor($datos, $valor, $mostrar);
         }
