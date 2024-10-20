@@ -129,6 +129,29 @@
         }
     }
 
+    function sumaVolumenCapital($datos, $opcion) {
+        $suma = 0;
+        $posicion = 0;
+        $linea = array();
+
+        if ($opcion == "volumen") {
+            $posicion = 7;
+        }else if ($opcion == "capital") {
+            $posicion = 8;
+        }
+
+        for ($i = 1; $i < count($datos); $i++) {
+            $linea = obtenerLinea($datos[$i]);
+            $suma += $linea[$posicion];
+        }
+
+        if ($opcion == "volumen") {
+            echo "<p>Total Volumen: $suma</p>";
+        }else if ($opcion == "capital") {
+            echo "<p>Total Capitalización: $suma</p>";
+        }
+    }
+
     function obtenerLinea($linea) {
         $data = array();
         if($linea != "") {
