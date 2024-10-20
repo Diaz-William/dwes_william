@@ -152,6 +152,8 @@
         }
     }
 
+    function mostrarTodosLosValores($datos) {}
+
     function obtenerLinea($linea) {
         $data = array();
         if($linea != "") {
