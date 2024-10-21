@@ -156,7 +156,7 @@
         $maxCot = 0;
         $minCot = 999;
         $maxVol = 0;
-        $minVol = 999;
+        $minVol = 999999999;
         $maxCap = 0;
         $minCap = 999;
         $valorMaxCot = $valorMinCot = $valorMaxVol = $valorMinVol = $valorMaxCap = $valorMinCap = "";
