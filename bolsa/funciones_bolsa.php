@@ -153,39 +153,49 @@
     }
 
     function mostrarTodosLosValores($datos) {
-        $maxCot = $minCot = 0;
-        $maxVol = $minVol = 0;
-        $maxCap = $minCap = 0;
+        $maxCot = 0;
+        $minCot = 999;
+        $maxVol = 0;
+        $minVol = 999;
+        $maxCap = 0;
+        $minCap = 999;
+        $valorMaxCot = $valorMinCot = $valorMaxVol = $valorMinVol = $valorMaxCap = $valorMinCap = "";
         $linea = array();
 
         for ($i = 1; $i < count($datos); $i++) {
             $linea = obtenerLinea($datos[$i]);
             if ($linea[1] > $maxCot) {
                 $maxCot = $linea[1];
+                $valorMaxCot = $linea[0];
             }
             if ($linea[1] < $minCot) {
                 $minCot = $linea[1];
+                $valorMinCot = $linea[0];
             }
             if ($linea[7] > $maxVol) {
-                $maxVol = $linea[1];
+                $maxVol = $linea[7];
+                $valorMaxVol = $linea[0];
             }
             if ($linea[7] < $minVol) {
-                $minVol = $linea[1];
+                $minVol = $linea[7];
+                $valorMinVol = $linea[0];
             }
             if ($linea[8] > $maxCap) {
-                $maxCap = $linea[1];
+                $maxCap = $linea[8];
+                $valorMaxCap = $linea[0];
             }
             if ($linea[8] < $minCap) {
-                $minCap = $linea[1];
+                $minCap = $linea[8];
+                $valorMinCap = $linea[0];
             }
         }
 
-        echo "<p>El valor con la máxima cotización es $maxCot</p>";
-        echo "<p>El valor con la mínima cotización es $minCot</p>";
-        echo "<p>El valor con el máximo volumen es $maxVol</p>";
-        echo "<p>El valor con el mínimo volumen es $minVol</p>";
-        echo "<p>El valor con el máximo capital es $maxCap</p>";
-        echo "<p>El valor con el mínimo capital es $minCap</p>";
+        echo "<p>$valorMaxCot tiene la máxima cotización con $maxCot</p>";
+        echo "<p>$valorMinCot tiene la mínima cotización con $minCot</p>";
+        echo "<p>$valorMaxVol tiene el máximo volumen con $maxVol</p>";
+        echo "<p>$valorMinVol tiene el mínimo volumen con $minVol</p>";
+        echo "<p>$valorMaxCap tiene el máximo capital con $maxCap</p>";
+        echo "<p>$valorMinCap tiene el mínimo capital con $minCap</p>";
     }
 
     function obtenerLinea($linea) {
