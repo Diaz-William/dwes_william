@@ -12,7 +12,6 @@
 
         $datos = obtenerDatos();
 
-        mostrarDatos($datos);
     ?>
     </body>
 </html>

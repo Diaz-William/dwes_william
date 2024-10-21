@@ -152,7 +152,41 @@
         }
     }
 
-    function mostrarTodosLosValores($datos) {}
+    function mostrarTodosLosValores($datos) {
+        $maxCot = $minCot = 0;
+        $maxVol = $minVol = 0;
+        $maxCap = $minCap = 0;
+        $linea = array();
+
+        for ($i = 1; $i < count($datos); $i++) {
+            $linea = obtenerLinea($datos[$i]);
+            if ($linea[1] > $maxCot) {
+                $maxCot = $linea[1];
+            }
+            if ($linea[1] < $minCot) {
+                $minCot = $linea[1];
+            }
+            if ($linea[7] > $maxVol) {
+                $maxVol = $linea[1];
+            }
+            if ($linea[7] < $minVol) {
+                $minVol = $linea[1];
+            }
+            if ($linea[8] > $maxCap) {
+                $maxCap = $linea[1];
+            }
+            if ($linea[8] < $minCap) {
+                $minCap = $linea[1];
+            }
+        }
+
+        echo "<p>El valor con la máxima cotización es $maxCot</p>";
+        echo "<p>El valor con la mínima cotización es $minCot</p>";
+        echo "<p>El valor con el máximo volumen es $maxVol</p>";
+        echo "<p>El valor con el mínimo volumen es $minVol</p>";
+        echo "<p>El valor con el máximo capital es $maxCap</p>";
+        echo "<p>El valor con el mínimo capital es $minCap</p>";
+    }
 
     function obtenerLinea($linea) {
         $data = array();
