@@ -11,7 +11,7 @@
         include 'funciones_bolsa.php';
 
         $datos = obtenerDatos();
-
+        mostrarTodosLosValores($datos);
     ?>
     </body>
 </html>
