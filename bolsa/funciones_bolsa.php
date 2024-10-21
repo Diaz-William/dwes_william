@@ -39,8 +39,13 @@
     function imprimirDatosCotizacion($datosValor,$datos, $valor) {
         if ($datosValor != "") {
             echo "<br><br>";
-            echo $datos . "<br><br>";
+            echo "<pre>";
+            echo $datos;
+            echo "</pre>";
+            echo "<br><br>";
+            echo "<pre>";
             echo $datosValor;
+            echo "</pre>";
         }else {
             echo "<br><br>";
             echo "No se ha encontrado un valor con el nombre $valor";
