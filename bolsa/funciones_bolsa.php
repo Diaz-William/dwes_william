@@ -152,7 +152,10 @@
                 $suma += intval(str_replace('.', '', $linea[$posicion]));
             }
         }
+        imprimirSumaTotales($suma, $opcion);
+    }
 
+    function imprimirSumaTotales($suma, $opcion) {
         if ($opcion == "volumen") {
             echo "<p>Total Volumen: $suma</p>";
         }else if ($opcion == "capital") {
@@ -199,7 +202,10 @@
                 }
             }
         }
+        imprimirValoresMaxMin($maxCot, $minCot, $valorMaxCot, $valorMinCot, $maxVol, $minVol, $valorMaxVol, $valorMinVol, $maxCap, $minCap, $valorMaxCap, $valorMinCap);
+    }
 
+    function imprimirValoresMaxMin($maxCot, $minCot, $valorMaxCot, $valorMinCot, $maxVol, $minVol, $valorMaxVol, $valorMinVol, $maxCap, $minCap, $valorMaxCap, $valorMinCap) {
         echo "<p>$valorMaxCot tiene la máxima cotización con $maxCot</p>";
         echo "<p>$valorMinCot tiene la mínima cotización con $minCot</p>";
         echo "<p>$valorMaxVol tiene el máximo volumen con $maxVol</p>";
