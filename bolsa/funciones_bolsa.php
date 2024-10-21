@@ -165,28 +165,28 @@
         for ($i = 1; $i < count($datos); $i++) {
             $linea = obtenerLinea($datos[$i]);
             
-            if (intval(str_replace('.', '', $linea[1])) > $maxCot) {
-                $maxCot = intval(str_replace('.', '', $linea[1]));
+            if (intval(str_replace('.', '', $linea[1])) > intval(str_replace('.', '', $maxCot))) {
+                $maxCot = $linea[1];
                 $valorMaxCot = $linea[0];
             }
-            if (intval(str_replace('.', '', $linea[1])) < $minCot) {
-                $minCot = intval(str_replace('.', '', $linea[1]));
+            if (intval(str_replace('.', '', $linea[1])) < intval(str_replace('.', '', $minCot))) {
+                $minCot = $linea[1];
                 $valorMinCot = $linea[0];
             }
-            if (intval(str_replace('.', '', $linea[7])) > $maxVol) {
-                $maxVol = intval(str_replace('.', '', $linea[7]));
+            if (intval(str_replace('.', '', $linea[7])) > intval(str_replace('.', '', $maxVol))) {
+                $maxVol = $linea[7];
                 $valorMaxVol = $linea[0];
             }
-            if (intval(str_replace('.', '', $linea[7])) < $minVol) {
-                $minVol = intval(str_replace('.', '', $linea[7]));
+            if (intval(str_replace('.', '', $linea[7])) < intval(str_replace('.', '', $minVol))) {
+                $minVol = $linea[7];
                 $valorMinVol = $linea[0];
             }
-            if (intval(str_replace('.', '', $linea[8])) > $maxCap) {
-                $maxCap = intval(str_replace('.', '', $linea[8]));
+            if (intval(str_replace('.', '', $linea[8])) > intval(str_replace('.', '', $maxCap))) {
+                $maxCap = $linea[8];
                 $valorMaxCap = $linea[0];
             }
-            if (intval(str_replace('.', '', $linea[8])) < $minCap) {
-                $minCap = intval(str_replace('.', '', $linea[8]));
+            if (intval(str_replace('.', '', $linea[8])) < intval(str_replace('.', '', $minCap))) {
+                $minCap = $linea[8];
                 $valorMinCap = $linea[0];
             }
         }
