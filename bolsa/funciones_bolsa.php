@@ -61,12 +61,6 @@
             }
         }
 
-        /*for ($i = 1; $i < count($datos); $i++) { 
-            $linea = obtenerLinea($datos[$i]);
-            echo '<option value="'.$linea[0].'">'.$linea[0].'</option>';
-        }*/
-
-
         echo '</select>';
         echo '<br><br>';
 
@@ -147,9 +141,11 @@
             $posicion = 8;
         }
 
-        for ($i = 1; $i < count($datos); $i++) {
-            $linea = obtenerLinea($datos[$i]);
-            $suma += intval(str_replace('.', '', $linea[$posicion]));
+        foreach ($datos as $i => $x) {
+            if ($i != 0) {
+                $linea = obtenerLinea($x);
+                $suma += intval(str_replace('.', '', $linea[$posicion]));
+            }
         }
 
         if ($opcion == "volumen") {
@@ -169,32 +165,33 @@
         $valorMaxCot = $valorMinCot = $valorMaxVol = $valorMinVol = $valorMaxCap = $valorMinCap = "";
         $linea = array();
 
-        for ($i = 1; $i < count($datos); $i++) {
-            $linea = obtenerLinea($datos[$i]);
-            
-            if (intval(str_replace('.', '', $linea[1])) > intval(str_replace('.', '', $maxCot))) {
-                $maxCot = $linea[1];
-                $valorMaxCot = $linea[0];
-            }
-            if (intval(str_replace('.', '', $linea[1])) < intval(str_replace('.', '', $minCot))) {
-                $minCot = $linea[1];
-                $valorMinCot = $linea[0];
-            }
-            if (intval(str_replace('.', '', $linea[7])) > intval(str_replace('.', '', $maxVol))) {
-                $maxVol = $linea[7];
-                $valorMaxVol = $linea[0];
-            }
-            if (intval(str_replace('.', '', $linea[7])) < intval(str_replace('.', '', $minVol))) {
-                $minVol = $linea[7];
-                $valorMinVol = $linea[0];
-            }
-            if (intval(str_replace('.', '', $linea[8])) > intval(str_replace('.', '', $maxCap))) {
-                $maxCap = $linea[8];
-                $valorMaxCap = $linea[0];
-            }
-            if (intval(str_replace('.', '', $linea[8])) < intval(str_replace('.', '', $minCap))) {
-                $minCap = $linea[8];
-                $valorMinCap = $linea[0];
+        foreach ($datos as $i => $x) {
+            if ($i != 0) {
+                $linea = obtenerLinea($x);
+                if (intval(str_replace('.', '', $linea[1])) > intval(str_replace('.', '', $maxCot))) {
+                    $maxCot = $linea[1];
+                    $valorMaxCot = $linea[0];
+                }
+                if (intval(str_replace('.', '', $linea[1])) < intval(str_replace('.', '', $minCot))) {
+                    $minCot = $linea[1];
+                    $valorMinCot = $linea[0];
+                }
+                if (intval(str_replace('.', '', $linea[7])) > intval(str_replace('.', '', $maxVol))) {
+                    $maxVol = $linea[7];
+                    $valorMaxVol = $linea[0];
+                }
+                if (intval(str_replace('.', '', $linea[7])) < intval(str_replace('.', '', $minVol))) {
+                    $minVol = $linea[7];
+                    $valorMinVol = $linea[0];
+                }
+                if (intval(str_replace('.', '', $linea[8])) > intval(str_replace('.', '', $maxCap))) {
+                    $maxCap = $linea[8];
+                    $valorMaxCap = $linea[0];
+                }
+                if (intval(str_replace('.', '', $linea[8])) < intval(str_replace('.', '', $minCap))) {
+                    $minCap = $linea[8];
+                    $valorMinCap = $linea[0];
+                }
             }
         }
 
