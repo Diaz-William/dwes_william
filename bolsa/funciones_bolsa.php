@@ -166,27 +166,27 @@
             $linea = obtenerLinea($datos[$i]);
             
             if (intval(str_replace('.', '', $linea[1])) > $maxCot) {
-                $maxCot = $linea[1];
+                $maxCot = intval(str_replace('.', '', $linea[1]));
                 $valorMaxCot = $linea[0];
             }
             if (intval(str_replace('.', '', $linea[1])) < $minCot) {
-                $minCot = $linea[1];
+                $minCot = intval(str_replace('.', '', $linea[1]));
                 $valorMinCot = $linea[0];
             }
             if (intval(str_replace('.', '', $linea[7])) > $maxVol) {
-                $maxVol = $linea[7];
+                $maxVol = intval(str_replace('.', '', $linea[7]));
                 $valorMaxVol = $linea[0];
             }
             if (intval(str_replace('.', '', $linea[7])) < $minVol) {
-                $minVol = $linea[7];
+                $minVol = intval(str_replace('.', '', $linea[7]));
                 $valorMinVol = $linea[0];
             }
             if (intval(str_replace('.', '', $linea[8])) > $maxCap) {
-                $maxCap = $linea[8];
+                $maxCap = intval(str_replace('.', '', $linea[8]));
                 $valorMaxCap = $linea[0];
             }
             if (intval(str_replace('.', '', $linea[8])) < $minCap) {
-                $minCap = $linea[8];
+                $minCap = intval(str_replace('.', '', $linea[8]));
                 $valorMinCap = $linea[0];
             }
         }
