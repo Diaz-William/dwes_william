@@ -54,10 +54,17 @@
         echo '<label id="valores">Valores</label>&nbsp;';
         echo '<select id="valores" name="valores">';
 
-        for ($i = 1; $i < count($datos); $i++) { 
+        foreach ($datos as $i => $x) {
+            if ($i != 0) {
+                $linea = obtenerLinea($x);
+                echo '<option value="'.$linea[0].'">'.$linea[0].'</option>';
+            }
+        }
+
+        /*for ($i = 1; $i < count($datos); $i++) { 
             $linea = obtenerLinea($datos[$i]);
             echo '<option value="'.$linea[0].'">'.$linea[0].'</option>';
-        }
+        }*/
 
 
         echo '</select>';
