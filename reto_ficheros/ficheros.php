@@ -14,6 +14,7 @@
 
             echo $xml -> provincia;
             var_dump($xml -> prediccion -> dia[0]['fecha']);
+            echo ($xml -> prediccion -> dia[0]['fecha']);
         ?>
     </body>
 </html>
