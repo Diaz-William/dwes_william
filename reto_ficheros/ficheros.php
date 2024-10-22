@@ -13,8 +13,8 @@
     <body>
         <?php
             include 'funciones.php';
-            /*include 'errores_sistema.php';
-            set_error_handler("error_function");*/
+            include 'errores_sistema.php';
+            set_error_handler("error_function");
 
             $xml = obtenerXML("pronosticotiempoLasRozas");
 
