@@ -1,6 +1,6 @@
 <?php
     function obtenerXML($nombre) {
-        $nombre += ".xml";
+        $nombre .= ".xml";
         var_dump($nombre);
         $xml = simplexml_load_file($nombre) or die("Error: No se puede crear el objeto");
         return $xml;
