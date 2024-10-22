@@ -15,8 +15,8 @@
             $nombre = $xml -> nombre;
             $dia = $xml -> prediccion -> dia;
 
-            foreach ($dia as $x => $y) {
-                echo $y;
+            foreach ($dia['fecha'] as $f) {
+                echo $f;
             }
 
             var_dump($dia);
