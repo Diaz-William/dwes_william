@@ -13,16 +13,15 @@
             $xml = simplexml_load_file('pronosticotiempoLasRozas.xml') or die("Error: No se puede crear el objeto");
 
             $nombre = $xml -> nombre;
-            $prediccion = $xml -> prediccion;
+            $fechas = array();
 
-            echo $prediccion -> dia['fecha'];
 
-            foreach ($prediccion -> dia as $x) {
-                echo $x['fecha'] . "<br>";
+            foreach ($xml -> prediccion -> dia as $x) {
+                array_push($fechas, $x['fecha']);
             }
 
-            echo "<hr>";
-            var_dump($prediccion);
+            var_dump($fechas);
+
         ?>
     </body>
 </html>
