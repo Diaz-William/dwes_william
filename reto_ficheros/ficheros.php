@@ -19,6 +19,8 @@
                 echo $f;
             }
 
+            echo $dia['fecha'];
+
             var_dump($dia);
         ?>
     </body>
