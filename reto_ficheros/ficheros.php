@@ -18,7 +18,7 @@
             echo $prediccion -> dia['fecha'];
 
             foreach ($prediccion -> dia as $x) {
-                echo $x['fecha'];
+                echo $x['fecha'] . "<br>";
             }
 
             echo "<hr>";
