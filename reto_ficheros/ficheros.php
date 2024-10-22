@@ -17,7 +17,11 @@
 
             echo $prediccion -> dia['fecha'];
 
+            foreach ($prediccion -> dia as $x) {
+                echo $x;
+            }
 
+            echo "<hr>";
             var_dump($prediccion);
         ?>
     </body>
