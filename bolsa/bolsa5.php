@@ -19,6 +19,9 @@
     </form>
     <?php
         include 'funciones_bolsa.php';
+        include 'errores_sistema.php';
+        set_error_handler("error_function");
+        
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $opcion = test_input($_POST["mostrar"]);
             $datos = obtenerDatos();

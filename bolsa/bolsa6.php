@@ -12,8 +12,6 @@
         include 'errores_sistema.php';
         set_error_handler("error_function");
 
-        echo $error;
-
         $datos = obtenerDatos();
         mostrarTodosLosValores($datos);
     ?>
