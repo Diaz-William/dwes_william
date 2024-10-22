@@ -9,6 +9,10 @@
     <h1>Ibex 35</h1>
     <?php
         include 'funciones_bolsa.php';
+        include 'errores_sistema.php';
+        set_error_handler("error_function");
+
+        echo $error;
 
         $datos = obtenerDatos();
         mostrarTodosLosValores($datos);
