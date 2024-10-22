@@ -12,9 +12,10 @@
 
             $xml = simplexml_load_file('pronosticotiempoLasRozas.xml') or die("Error: No se puede crear el objeto");
 
-            echo $xml -> provincia;
-            var_dump($xml -> prediccion -> dia[0]['fecha']);
-            echo ($xml -> prediccion -> dia[0]['fecha']);
+            $nombre = $xml -> nombre;
+            $fecha = $xml -> prediccion -> dia['fecha'];
+
+            var_dump($fecha);
         ?>
     </body>
 </html>
