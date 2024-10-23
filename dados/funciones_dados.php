@@ -12,9 +12,11 @@
         for ($i = 0; $i < count($nombres); $i++) { 
             $jugadores[$nombres[$i]] = array();
             for ($j = 1; $j <= $cantDados; $j++) {
-                $jugadores[$nombres[$i]]["Dado" . $j] = array(1,2,3,4,5,6);
+                $jugadores[$nombres[$i]]["Dado" . $j] = array("numeros" => array(1,2,3,4,5,6), "resultado" => 0);
             }
         }
 
         return $jugadores;
     }
+
+    function tirarDados($jugadores) {}
