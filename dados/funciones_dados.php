@@ -67,7 +67,7 @@
                 var_dump("P " . $p);
                 var_dump("I " . $p);
                 if ($p == $cont) {
-                    var_dump($jugador);
+                    var_dump($jugador[$cont]);
                 }
             }
             $cont += 1;
