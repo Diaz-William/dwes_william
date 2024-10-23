@@ -56,8 +56,8 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST["jug1"] == "" && $_POST["jug1"] == "" && $_POST["jug1"] == "" && $_POST["jug1"] == "") {
       trigger_error("Debe introducir todos los nombres de los jugadores");
-    }else if ($_POST["numdados"] == "") {
-      trigger_error("Debe introducir el número de dados");
+    }else if (intval($_POST["numdados"]) < 1 || intval($_POST["numdados"]) > 10) {
+      trigger_error("Debe introducir un números de dados del 1 al 10");
     }else {
       $nomJ1 = test_input($_POST["jug1"]);
       $nomJ2 = test_input($_POST["jug2"]);
