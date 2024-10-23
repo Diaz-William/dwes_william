@@ -27,9 +27,7 @@
                 array_push($fechas, $x['fecha']);
             }
 
-            //imprimirTabla($nombre);
-            var_dump($fechas);
-            
+            imprimirTabla($nombre, $fechas);
         ?>
     </body>
 </html>
