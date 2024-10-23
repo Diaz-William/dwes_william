@@ -10,9 +10,11 @@
         $jugadores = array();
 
         for ($i = 0; $i < count($nombres); $i++) { 
-            $jugadores[$nombres[$i]] = array();
-            for ($j = 1; $j <= $cantDados; $j++) {
-                $jugadores[$nombres[$i]]["Dado" . $j] = array("numeros" => array(1,2,3,4,5,6), "resultado" => 0);
+            if ($nombres[$i] != "") {
+                $jugadores[$nombres[$i]] = array();
+                for ($j = 1; $j <= $cantDados; $j++) {
+                    $jugadores[$nombres[$i]]["Dado" . $j] = array("numeros" => array(1,2,3,4,5,6), "resultado" => 0);
+                }
             }
         }
 
@@ -23,10 +25,9 @@
         foreach ($jugadores as $jugador => $dados) {
             foreach ($dados as $dado => $tiradaDado) {
                 $aletorio = intval(rand(0,5));
-
-                var_dump($tiradaDado["numeros"][$aletorio]);
-
-                //$tiradaDado["resultado"] = $tiradaDado["numeros"][$aletorio];
+                $tiradaDado["resultado"] = $tiradaDado["numeros"][$aletorio];
             }
         }
+
+        return $jugadores;
     }

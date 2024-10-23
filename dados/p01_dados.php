@@ -54,8 +54,8 @@
 
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_POST["jug1"] == "" && $_POST["jug1"] == "" && $_POST["jug1"] == "" && $_POST["jug1"] == "") {
-      trigger_error("Debe introducir todos los nombres de los jugadores");
+    if ($_POST["jug1"] == "" && $_POST["jug2"] == "") {
+      trigger_error("Debe introducir mínimo dos nombres de los jugadores");
     }else if (intval($_POST["numdados"]) < 1 || intval($_POST["numdados"]) > 10) {
       trigger_error("Debe introducir un números de dados del 1 al 10");
     }else {
@@ -67,7 +67,7 @@
       array_push($nombres,$nomJ1,$nomJ2,$nomJ3,$nomJ4);
       $jugadores = rellenarJugadores($nombres, $cantDados);
       //var_dump($jugadores);
-      tirarDados($jugadores);
+      $jugadores = tirarDados($jugadores);
     }
   }
 ?>
