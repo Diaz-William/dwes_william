@@ -49,7 +49,11 @@
             $suma = 0;
         }
 
+        var_dump($resultados);
+
         $max = max($resultados);
+
+        var_dump($max);
 
         foreach ($resultados as $i => $x) {
             if ($x == $max) {
