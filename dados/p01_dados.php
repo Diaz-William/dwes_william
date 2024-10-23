@@ -69,6 +69,7 @@
       $jugadores = tirarDados($jugadores);
       var_dump($jugadores);
       echo "<hr>";
+      mostrarResultados($jugadores);
       comprobarGanadores($jugadores);
     }
   }
