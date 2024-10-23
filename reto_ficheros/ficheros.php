@@ -33,7 +33,7 @@
 
             echo "<table>";
             echo "<tr>";
-            echo "<td>$xml -> nombre</td>";
+            echo "<td>$nombre</td>";
             foreach ($xml -> prediccion -> dia as $x) {
                 $fecha = $x['fecha'];
                 foreach ($x as $y) {
