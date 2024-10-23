@@ -27,10 +27,6 @@
                 array_push($fechas, $x['fecha']);
             }
 
-            foreach ($xml1 -> prediccion -> dia -> prob_precipitacion as $x) {
-                array_push($periodos, $x['periodo']);
-            }
-
             foreach ($xml1 -> prediccion -> dia as $x) {
                 array_push($periodos, $x -> prob_precipitacion['periodo']);
             }
