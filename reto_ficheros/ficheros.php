@@ -12,27 +12,41 @@
     </head>
     <body>
         <?php
-            include 'funciones.php';
+            //include 'funciones.php';
             include 'errores_sistema.php';
             set_error_handler("error_function");
 
-            $xml1 = obtenerXML("pronosticotiempoLasRozas");
+            $xml = obtenerXML("pronosticotiempoLasRozas");
 
-            $nombre = $xml1 -> nombre;
+            $nombre = $xml -> nombre;
             $fechas = array();
             $periodos = array();
 
 
-            foreach ($xml1 -> prediccion -> dia as $x) {
+            /*foreach ($xml -> prediccion -> dia as $x) {
                 array_push($fechas, $x['fecha']);
             }
 
-            foreach ($xml1 -> prediccion -> dia as $x) {
+            foreach ($xml -> prediccion -> dia as $x) {
                 array_push($periodos, $x -> prob_precipitacion['periodo']);
-            }
+            }*/
 
-            imprimirTabla($nombre, $fechas);
-            var_dump($periodos);
+            echo "<table>";
+            echo "<tr>";
+            echo "<td>$xml -> nombre</td>";
+            foreach ($xml -> prediccion -> dia as $x) {
+                $fecha = $x['fecha'];
+                foreach ($x as $y) {
+                    array_push($periodos, $y -> prob_precipitacion['periodo']);
+                }
+                $num = count($periodos);
+                echo "<td colspan='$num'>$fecha</td>";
+            }
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>Periodo</td>";
+            echo "</tr>";
+            echo "</table>";
         ?>
     </body>
 </html>
