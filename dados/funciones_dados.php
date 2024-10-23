@@ -22,8 +22,8 @@
     }
 
     function tirarDados($jugadores) {
-        foreach ($jugadores as $jugador => $dados) {
-            foreach ($dados as $dado => $tiradaDado) {
+        foreach ($jugadores as $jugador => &$dados) {
+            foreach ($dados as $dado => &$tiradaDado) {
                 $aletorio = intval(rand(0,5));
                 $tiradaDado["resultado"] = $tiradaDado["numeros"][$aletorio];
             }
