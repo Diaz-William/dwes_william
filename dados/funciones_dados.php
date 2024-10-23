@@ -38,6 +38,7 @@
         $posiciones = array();
         $max = 0;
         $nombre = array();
+        $cont = 0;
 
         foreach ($jugadores as $jugador => $dados) {
             foreach ($dados as $dado => $tiradaDado) {
@@ -61,13 +62,14 @@
 
         var_dump($posiciones);
 
-        foreach ($jugadores as $i => $jugador) {
+        foreach ($jugadores as $jugador) {
             foreach ($posiciones as $p) {
                 var_dump("P " . $p);
                 var_dump("I " . $p);
-                if ($p == $i) {
+                if ($p == $cont) {
                     var_dump($jugador);
                 }
             }
+            $cont += 1;
         }
     }
