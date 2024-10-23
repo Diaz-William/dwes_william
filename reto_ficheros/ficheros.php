@@ -25,8 +25,8 @@
             echo "<td>$nombre</td>";
             foreach ($xml->prediccion->dia as $dia) {
                 $fecha = $dia['fecha'];
-                $num_periodos = count($dia->prob_precipitacion);
-                echo "<td colspan='$num_periodos'>$fecha</td>";
+                $numPeriodos = count($dia->prob_precipitacion);
+                echo "<td colspan='$numPeriodos'>$fecha</td>";
             }
             echo "</tr>";
             
@@ -74,10 +74,11 @@
             echo "<tr>";
             echo "<td>Temp. Max - Min (ºC)</td>";
             foreach ($xml->prediccion->dia as $dia) {
+                $numPeriodos = count($dia->prob_precipitacion);
                 foreach ($dia->temperatura as $t) {
                     $max = $t->maxima;
                     $min = $t->minima;
-                    echo "<td>$min/$max</td>";
+                    echo "<td colspan='$numPeriodos'>$min/$max</td>";
                 }
             }
             echo "</tr>";
