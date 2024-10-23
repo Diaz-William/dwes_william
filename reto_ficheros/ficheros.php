@@ -40,7 +40,9 @@
                     array_push($periodos, $y -> prob_precipitacion['periodo']);
                 }
                 $num = count($periodos);
+                var_dump($num);
                 echo "<td colspan='$num'>$fecha</td>";
+                $periodos = array();
             }
             echo "</tr>";
             echo "<tr>";
