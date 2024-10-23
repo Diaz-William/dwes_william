@@ -33,9 +33,18 @@
             echo "<tr>";
             echo "<td>Periodo</td>";
             foreach ($xml->prediccion->dia as $dia) {
-                foreach ($dia->prob_precipitacion as $prob) {
-                    $periodo = $prob['periodo'];
+                foreach ($dia->prob_precipitacion as $peri) {
+                    $periodo = $peri['periodo'];
                     echo "<td>$periodo</td>";
+                }
+            }
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<td>Prob. Precipitación</td>";
+            foreach ($xml->prediccion->dia as $dia) {
+                foreach ($dia->prob_precipitacion as $prob) {
+                    echo "<td>$prob</td>";
                 }
             }
             echo "</tr>";
