@@ -21,6 +21,9 @@
 
             imprimirTabla($xml1);
             imprimirTabla($xml2);
+
+            $censo = obtenerDatos("CensoProvinciaHombresMujeres");
+            var_dump($censo);
         ?>
     </body>
 </html>

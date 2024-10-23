@@ -7,7 +7,7 @@
 
     function imprimirTabla($xml) {
         $nombre = $xml->nombre;
-            
+            echo "<br><br>";
             echo "<table>";
 
             echo "<tr>";
@@ -73,4 +73,11 @@
             echo "</tr>";
             
             echo "</table>";
+    }
+
+    function obtenerDatos($nombre) {
+        $fichero = fopen($nombre, "r") or die("No se ha podido abrir el archivo");
+        $datos = file($nombre, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        fclose($fichero);
+        return $datos;
     }
