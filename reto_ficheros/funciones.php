@@ -75,10 +75,14 @@
             echo "</table>";
     }
 
-    function obtenerDatosCsv($nombre) {
-        $nombre .= ".csv";
+    function obtenerDatos($nombre) {
         $fichero = fopen($nombre, "r") or die("No se ha podido abrir el archivo");
         $datos = file($nombre, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         fclose($fichero);
         return $datos;
+    }
+
+    function obtenerLineaCsv($dato) {
+        $linea = explode(";", $dato);
+        return $linea;
     }

@@ -22,8 +22,20 @@
             imprimirTabla($xml1);
             imprimirTabla($xml2);
 
-            $censo = obtenerDatosCsv("CensoProvinciaHombresMujeres");
-            var_dump($censo);
+            $censo = obtenerDatos("CensoProvinciaHombresMujeres.csv");
+            
+            echo "<table>";
+
+            echo "<tr>";
+
+            $linea = obtenerLinea($censo[1]);
+            echo "<td></td>";
+            $anio = $linea[2];
+            echo "<td>$anio</td>";
+
+            echo "</tr>";
+
+            echo "</table>";
         ?>
     </body>
 </html>
