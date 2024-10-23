@@ -38,7 +38,7 @@
         foreach ($jugadores as $jugador => &$dados) {
             echo "<h1>$jugador</h1>";
             foreach ($dados as $dado => &$tiradaDado) {
-                $suma = $tiradaDado["resultado"];
+                $suma += $tiradaDado["resultado"];
             }
             echo "<p>$suma</p>";
         }
