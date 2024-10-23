@@ -62,9 +62,9 @@
         foreach ($jugadores as $jugador => $valor) {
             foreach ($posiciones as $p) {
                 if ($p == $cont) {
-                    //$nombre = $jugador;
-                    var_dump($jugador);
+                    $nombre = $jugador;
                     var_dump($nombre);
+                    var_dump($valor);
                 }
             }
             $cont += 1;
