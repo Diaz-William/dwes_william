@@ -55,15 +55,14 @@
 
         foreach ($resultados as $i => $x) {
             if ($x == $max) {
-                var_dump($x);
-                var_dump($max);
-                var_dump($i);
                 array_push($posiciones, $i);
             }
         }
 
         foreach ($jugadores as $i => $jugador) {
             foreach ($posiciones as $p) {
+                var_dump("P " . $p);
+                var_dump("I " . $p);
                 if ($p == $i) {
                     var_dump($jugador);
                 }
