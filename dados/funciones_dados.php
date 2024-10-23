@@ -24,7 +24,7 @@
             foreach ($dados as $dado => $tiradaDado) {
                 $aletorio = range(0,5);
 
-                var_dump($tiradaDado["numero"][$aletorio]);
+                var_dump($tiradaDado["numeros"][$aletorio]);
 
                 //$tiradaDado["resultado"] = $tiradaDado["numeros"[$aletorio]];
             }
