@@ -32,6 +32,18 @@
         return $jugadores;
     }
 
+    function mostrarResultados($jugadores) {
+        $suma = 0;
+
+        foreach ($jugadores as $jugador => &$dados) {
+            echo "<h1>$jugador</h1>";
+            foreach ($dados as $dado => &$tiradaDado) {
+                $suma = $tiradaDado["resultado"];
+            }
+            echo "<p>$suma</p>";
+        }
+    }
+
     function comprobarGanadores($jugadores) {
         $resultados = array();
         $suma = 0;
@@ -63,8 +75,7 @@
             foreach ($posiciones as $p) {
                 if ($p == $cont) {
                     $nombre = $jugador;
-                    var_dump($nombre);
-                    var_dump($valor);
+                    echo "<p>Ganador: $jugador</p>";
                 }
             }
             $cont += 1;
