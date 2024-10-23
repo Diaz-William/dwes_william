@@ -41,6 +41,7 @@
                 $suma += $tiradaDado["resultado"];
             }
             echo "<p>$suma</p>";
+            $suma = 0;
         }
     }
 
