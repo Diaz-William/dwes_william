@@ -20,14 +20,19 @@
 
             $nombre = $xml1 -> nombre;
             $fechas = array();
-            $probPrecipitacion = array();
+            $periodos = array();
 
 
             foreach ($xml1 -> prediccion -> dia as $x) {
                 array_push($fechas, $x['fecha']);
             }
 
+            foreach ($xml1 -> prediccion -> dia -> prob_precipitacion as $x) {
+                array_push($periodos, $x['periodo']);
+            }
+
             imprimirTabla($nombre, $fechas);
+            var_dump($periodos);
         ?>
     </body>
 </html>

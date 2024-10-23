@@ -1,7 +1,6 @@
 <?php
     function obtenerXML($nombre) {
         $nombre .= ".xml";
-        var_dump($nombre);
         $xml = simplexml_load_file($nombre) or die("Error: No se puede crear el objeto");
         return $xml;
     }
@@ -13,6 +12,9 @@
         foreach ($fechas as $fecha) {
             echo "<td colspan='3'>$fecha</td>";
         }
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td>Periodo</td>";
         echo "</tr>";
         echo "</table>";
     }
