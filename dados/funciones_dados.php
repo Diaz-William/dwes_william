@@ -44,8 +44,6 @@
                 $suma += $tiradaDado["resultado"];
             }
             array_push($resultados, $suma);
-            var_dump($jugador);
-            var_dump($suma);
             $suma = 0;
         }
 
@@ -57,6 +55,9 @@
 
         foreach ($resultados as $i => $x) {
             if ($x == $max) {
+                var_dump($x);
+                var_dump($max);
+                var_dump($i);
                 array_push($posiciones, $i);
             }
         }
