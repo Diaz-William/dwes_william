@@ -5,3 +5,16 @@
         $data = htmlspecialchars($data);
         return $data;
     }
+
+    function rellenarJugadores($nombres, $cantDados) {
+        $jugadores = array();
+
+        for ($i = 0; $i < count($nombres); $i++) { 
+            $jugadores[$nombres[$i]] = array();
+            for ($j = 1; $j <= $cantDados; $j++) {
+                $jugadores[$nombres[$i]]["Dado" . $j] = array(1,2,3,4,5,6);
+            }
+        }
+
+        return $jugadores;
+    }

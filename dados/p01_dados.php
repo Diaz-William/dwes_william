@@ -48,17 +48,25 @@
   set_error_handler("error_function");
 
   $nomJ1 = $nomJ2 = $nomJ3 = $nomJ4 = "";
+  $nombres = array();
+  $jugadores = array();
+  $cantDados = 0;
+
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST["jug1"] == "" && $_POST["jug1"] == "" && $_POST["jug1"] == "" && $_POST["jug1"] == "") {
-      trigger_error("Debe introducir todos los nombres de los jugadores", E_USER_ERROR);
+      trigger_error("Debe introducir todos los nombres de los jugadores");
+    }else if ($_POST["numdados"] == "") {
+      trigger_error("Debe introducir el número de dados");
     }else {
-      
       $nomJ1 = test_input($_POST["jug1"]);
       $nomJ2 = test_input($_POST["jug2"]);
       $nomJ3 = test_input($_POST["jug3"]);
       $nomJ4 = test_input($_POST["jug4"]);
-      var_dump($nomJ1);
+      $cantDados = intval(test_input($_POST["numdados"]));
+      array_push($nombres,$nomJ1,$nomJ2,$nomJ3,$nomJ4);
+      $jugadores = rellenarJugadores($nombres, $cantDados);
+      var_dump($jugadores);
     }
   }
 ?>
