@@ -66,8 +66,8 @@
       $cantDados = intval(test_input($_POST["numdados"]));
       array_push($nombres,$nomJ1,$nomJ2,$nomJ3,$nomJ4);
       $jugadores = rellenarJugadores($nombres, $cantDados);
-      //var_dump($jugadores);
       $jugadores = tirarDados($jugadores);
+      var_dump($jugadores);
     }
   }
 ?>
