@@ -48,6 +48,16 @@
                 }
             }
             echo "</tr>";
+
+            echo "<tr>";
+            echo "<td>Viento (km/h)</td>";
+            foreach ($xml->prediccion->dia as $dia) {
+                foreach ($dia->viento as $v) {
+                    $viento = $v['direccion'] . " " . $v['velocidad'];
+                    echo "<td>$viento</td>";
+                }
+            }
+            echo "</tr>";
             
             echo "</table>";
         ?>
