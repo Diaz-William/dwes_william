@@ -22,11 +22,11 @@
     function tirarDados($jugadores) {
         foreach ($jugadores as $jugador => $dados) {
             foreach ($dados as $dado => $tiradaDado) {
-                $aletorio = range(0,5);
+                $aletorio = intval(rand(0,5));
 
                 var_dump($tiradaDado["numeros"][$aletorio]);
 
-                //$tiradaDado["resultado"] = $tiradaDado["numeros"[$aletorio]];
+                //$tiradaDado["resultado"] = $tiradaDado["numeros"][$aletorio];
             }
         }
     }
