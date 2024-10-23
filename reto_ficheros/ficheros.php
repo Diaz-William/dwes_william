@@ -53,10 +53,9 @@
             echo "<td>Viento (km/h)</td>";
             foreach ($xml->prediccion->dia as $dia) {
                 foreach ($dia->viento as $v) {
-                    $direccion = $v->$direccion;
+                    $direccion = $v->direccion;
                     $velocidad = $v->velocidad;
-                    echo "<td>$velocidad</td>";
-                    var_dump($direccion);
+                    echo "<td>$direccion $velocidad</td>";
                 }
             }
             echo "</tr>";
