@@ -68,6 +68,7 @@
       $jugadores = rellenarJugadores($nombres, $cantDados);
       $jugadores = tirarDados($jugadores);
       var_dump($jugadores);
+      comprobarGanador($jugadores);
     }
   }
 ?>

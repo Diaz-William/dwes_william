@@ -31,3 +31,35 @@
 
         return $jugadores;
     }
+
+    function comprobarGanador($jugadores) {
+        $resultados = array();
+        $suma = 0;
+        $posiciones = array();
+        $max = 0;
+        $nombre = array();
+
+        foreach ($jugadores as $jugador => $dados) {
+            foreach ($dados as $dado => $tiradaDado) {
+                $suma += $tiradaDado["resultado"];
+            }
+            array_push($resultados, $suma);
+            $suma = 0;
+        }
+
+        $max = max($resultados);
+
+        foreach ($resultados as $i => $x) {
+            if ($x == $max) {
+                array_push($posiciones, $i);
+            }
+        }
+
+        foreach ($jugadores as $i => $jugador) {
+            foreach ($posiciones as $p) {
+                if ($p == $i) {
+                    var_dump($jugador);
+                }
+            }
+        }
+    }
