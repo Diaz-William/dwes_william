@@ -32,7 +32,7 @@
         return $jugadores;
     }
 
-    function comprobarGanador($jugadores) {
+    function comprobarGanadores($jugadores) {
         $resultados = array();
         $suma = 0;
         $posiciones = array();
@@ -44,6 +44,8 @@
                 $suma += $tiradaDado["resultado"];
             }
             array_push($resultados, $suma);
+            var_dump($jugador);
+            var_dump($suma);
             $suma = 0;
         }
 
