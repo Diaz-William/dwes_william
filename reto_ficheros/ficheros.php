@@ -59,6 +59,28 @@
                 }
             }
             echo "</tr>";
+
+            echo "<tr>";
+            echo "<td>Sensación Térmica (ºC)</td>";
+            /*foreach ($xml->prediccion->dia as $dia) {
+                foreach ($dia->sens_termica as $v) {
+                    $direccion = $v->direccion;
+                    $velocidad = $v->velocidad;
+                    echo "<td>$direccion $velocidad</td>";
+                }
+            }*/
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<td>Temp. Max - Min (ºC)</td>";
+            foreach ($xml->prediccion->dia as $dia) {
+                foreach ($dia->temperatura as $t) {
+                    $max = $t->maxima;
+                    $min = $t->minima;
+                    echo "<td>$min/$max</td>";
+                }
+            }
+            echo "</tr>";
             
             echo "</table>";
         ?>
