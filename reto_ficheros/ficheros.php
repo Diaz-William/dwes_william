@@ -22,7 +22,7 @@
             imprimirTabla($xml1);
             imprimirTabla($xml2);
 
-            $censo = obtenerDatos("CensoProvinciaHombresMujeres");
+            $censo = obtenerDatosCsv("CensoProvinciaHombresMujeres");
             var_dump($censo);
         ?>
     </body>

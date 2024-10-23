@@ -75,7 +75,8 @@
             echo "</table>";
     }
 
-    function obtenerDatos($nombre) {
+    function obtenerDatosCsv($nombre) {
+        $nombre .= ".csv";
         $fichero = fopen($nombre, "r") or die("No se ha podido abrir el archivo");
         $datos = file($nombre, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         fclose($fichero);
