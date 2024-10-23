@@ -59,6 +59,8 @@
             }
         }
 
+        var_dump($posiciones);
+
         foreach ($jugadores as $i => $jugador) {
             foreach ($posiciones as $p) {
                 var_dump("P " . $p);

@@ -67,7 +67,8 @@
       array_push($nombres,$nomJ1,$nomJ2,$nomJ3,$nomJ4);
       $jugadores = rellenarJugadores($nombres, $cantDados);
       $jugadores = tirarDados($jugadores);
-      //var_dump($jugadores);
+      var_dump($jugadores);
+      echo "<hr>";
       comprobarGanadores($jugadores);
     }
   }
