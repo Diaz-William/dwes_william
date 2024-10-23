@@ -55,7 +55,8 @@
                 foreach ($dia->viento as $v) {
                     $direccion = $v->$direccion;
                     $velocidad = $v->velocidad;
-                    echo "<td>$direccion $velocidad</td>";
+                    echo "<td>$velocidad</td>";
+                    var_dump($direccion);
                 }
             }
             echo "</tr>";
