@@ -24,7 +24,7 @@
             foreach ($dados as $dado => $tiradaDado) {
                 $aleatorio = range(0, 5);
                 foreach ($tiradaDado as $x) {
-                    var_dump($x);
+                    var_dump($x["numeros"]);
                 }
 
                 //$tiradaDado["numeros"] = array_slice($bolasCarton, 0, 15);
