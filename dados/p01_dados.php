@@ -51,7 +51,7 @@
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST["jug1"] == "" && $_POST["jug1"] == "" && $_POST["jug1"] == "" && $_POST["jug1"] == "") {
-      var_dump("error");
+      trigger_error("Debe introducir todos los nombres de los jugadores");
     }else {
       
       $nomJ1 = test_input($_POST["jug1"]);
