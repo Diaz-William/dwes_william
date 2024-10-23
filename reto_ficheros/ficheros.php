@@ -31,6 +31,10 @@
                 array_push($periodos, $x['periodo']);
             }
 
+            foreach ($xml1 -> prediccion -> dia as $x) {
+                array_push($periodos, $x -> prob_precipitacion['periodo']);
+            }
+
             imprimirTabla($nombre, $fechas);
             var_dump($periodos);
         ?>
