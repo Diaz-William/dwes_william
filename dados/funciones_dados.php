@@ -22,13 +22,11 @@
     function tirarDados($jugadores) {
         foreach ($jugadores as $jugador => $dados) {
             foreach ($dados as $dado => $tiradaDado) {
-                $aleatorio = range(0, 5);
-                for ($i = 0; $i < count($tiradaDado[0]); $i++) {
-                    var_dump($jugador);
-                    var_dump($$tiradaDado[0][$aleatorio]);
-                }
+                $aletorio = range(0,5);
 
-                //$tiradaDado["numeros"] = array_slice($bolasCarton, 0, 15);
+                var_dump($tiradaDado["numero"][$aletorio]);
+
+                //$tiradaDado["resultado"] = $tiradaDado["numeros"[$aletorio]];
             }
         }
     }
