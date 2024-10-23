@@ -10,8 +10,8 @@
         echo "<table>";
         echo "<tr>";
         echo "<td>$nombre</td>";
-        echo "<td>fecha</td>";
-        echo "<td>fecha</td>";
+        echo "<td colspan='3'>fecha</td>";
+        echo "<td colspan='3'>fecha</td>";
         echo "</tr>";
         echo "<tr>";
         echo "<td>Periodo</td>";
