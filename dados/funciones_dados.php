@@ -48,11 +48,9 @@
             $suma = 0;
         }
 
-        var_dump($resultados);
 
         $max = max($resultados);
 
-        var_dump($max);
 
         foreach ($resultados as $i => $x) {
             if ($x == $max) {
@@ -60,14 +58,15 @@
             }
         }
 
-        var_dump($posiciones);
 
         foreach ($jugadores as $jugador) {
             foreach ($posiciones as $p) {
                 var_dump("P " . $p);
                 var_dump("I " . $p);
                 if ($p == $cont) {
-                    var_dump($jugador[$cont]);
+                    $nombre = $jugador;
+                    var_dump($jugador);
+                    var_dump($nombre);
                 }
             }
             $cont += 1;
