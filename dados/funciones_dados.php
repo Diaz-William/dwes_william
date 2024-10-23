@@ -59,12 +59,10 @@
         }
 
 
-        foreach ($jugadores as $jugador) {
+        foreach ($jugadores as $jugador => $valor) {
             foreach ($posiciones as $p) {
-                var_dump("P " . $p);
-                var_dump("I " . $p);
                 if ($p == $cont) {
-                    $nombre = $jugador;
+                    //$nombre = $jugador;
                     var_dump($jugador);
                     var_dump($nombre);
                 }
