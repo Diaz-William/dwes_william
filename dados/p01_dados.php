@@ -51,16 +51,14 @@
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["jug1"]) && isset($_POST["jug2"]) && isset($_POST["jug3"]) && isset($_POST["jug4"])) {
-      
-    }else {
-      echo "error";
-    }
-    $nomJ1 = test_input($_POST["jug1"]);
+      $nomJ1 = test_input($_POST["jug1"]);
       $nomJ2 = test_input($_POST["jug2"]);
       $nomJ3 = test_input($_POST["jug3"]);
       $nomJ4 = test_input($_POST["jug4"]);
-
-      echo $nomJ1;
+      var_dump($nomJ1);
+    }else {
+      var_dump("error");
+    }
   }
 ?>
 
