@@ -12,48 +12,41 @@
     </head>
     <body>
         <?php
-            //include 'funciones.php';
             include 'errores_sistema.php';
             set_error_handler("error_function");
 
             $xml = obtenerXML("pronosticotiempoLasRozas");
 
-            $nombre = $xml -> nombre;
-            $fechas = array();
-            $periodos = array();
-
-
-            /*foreach ($xml -> prediccion -> dia as $x) {
-                array_push($fechas, $x['fecha']);
-            }
-
-            foreach ($xml -> prediccion -> dia as $x) {
-                array_push($periodos, $x -> prob_precipitacion['periodo']);
-            }*/
-
+            $nombre = $xml->nombre;
+            
             echo "<table>";
+
             echo "<tr>";
             echo "<td>$nombre</td>";
-            foreach ($xml -> prediccion -> dia as $x) {
-                $fecha = $x['fecha'];
-                foreach ($x as $y) {
-                    array_push($periodos, $y -> prob_precipitacion['periodo']);
-                }
-                $num = count($periodos);
-                var_dump($num);
-                echo "<td colspan='$num'>$fecha</td>";
-                $periodos = array();
+            foreach ($xml->prediccion->dia as $dia) {
+                $fecha = $dia['fecha'];
+                $num_periodos = count($dia->prob_precipitacion);
+                echo "<td colspan='$num_periodos'>$fecha</td>";
             }
             echo "</tr>";
+            
             echo "<tr>";
             echo "<td>Periodo</td>";
+            foreach ($xml->prediccion->dia as $dia) {
+                foreach ($dia->prob_precipitacion as $prob) {
+                    $periodo = $prob['periodo'];
+                    echo "<td>$periodo</td>";
+                }
+            }
             echo "</tr>";
+            
             echo "</table>";
         ?>
+        
         <?php
             function obtenerXML($nombre) {
                 $nombre .= ".xml";
-                $xml = simplexml_load_file($nombre) or die("Error: No se puede crear el objeto");
+                $xml = simplexml_load_file($nombre) or die("Error: No se puede cargar el archivo XML");
                 return $xml;
             }
         ?>
