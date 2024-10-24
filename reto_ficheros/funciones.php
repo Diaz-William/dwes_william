@@ -142,9 +142,8 @@
                         imprimirCeldasProvincia($datos);
                         unset($datos);
                         $datos = array();
+                        $cont = 0;
                     }
-                }else {
-                    $cont = 0;
                 }
             }
         }
