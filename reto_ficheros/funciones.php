@@ -222,6 +222,7 @@
         }
         echo "</tr>";
 
+        $mostrado = false;
         foreach ($censo as $i => $dato) {
             if ($i >= 7 && $i < count($censo) -2) {
                 echo "<tr>";
@@ -230,8 +231,11 @@
                 foreach ($linea as $i => $x) {
                     if (!empty($x)) {
                         if (count($linea) == 7) {
-                            $provincia = $linea[0] . $linea[1];
-                            echo "<td>$provincia</td>";
+                            if (!$mostrado) {
+                                $provincia = $linea[0] . "," . $linea[1];
+                                echo "<td>$provincia</td>";
+                                $mostrado = true;
+                            }
                             if ($i != 0 && $i != 1) {
                                 echo "<td>$x</td>";
                             }
@@ -241,6 +245,7 @@
                     }
                 }
                 echo "</tr>";
+                $mostrado = false;
             }
         }
 
