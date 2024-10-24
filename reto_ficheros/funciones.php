@@ -158,7 +158,7 @@
         }
 
         $array = explode(";", $cadena);
-        array_unique($array);
+        $array = array_unique($array);
         var_dump($array);
 
         
