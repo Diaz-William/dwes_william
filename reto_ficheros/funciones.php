@@ -112,5 +112,23 @@
         echo "<td>$mujer</td>";
         echo "</tr>";
 
+        echo "<tr>";
+        $linea = obtenerLineaCsv($censo[1]);
+        $total = $linea[0];
+        echo "<td>$total</td>";
+        $linea = obtenerLineaCsv($censo[1]);
+        $totalH23 = $linea[3];
+        echo "<td>$totalH23</td>";
+        $linea = obtenerLineaCsv($censo[3]);
+        $totalM23 = $linea[3];
+        echo "<td>$totalM23</td>";
+        $linea = obtenerLineaCsv($censo[2]);
+        $totalH22 = $linea[3];
+        echo "<td>$totalH22</td>";
+        $linea = obtenerLineaCsv($censo[4]);
+        $totalM22 = $linea[3];
+        echo "<td>$totalM22</td>";
+        echo "</tr>";
+
         echo "</table>";
     }
