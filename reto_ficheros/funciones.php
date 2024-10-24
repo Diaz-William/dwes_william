@@ -161,9 +161,17 @@
             }
         }
 
-        var_dump($cadena);
         $array = explode(";", $cadena);
         $array = array_unique($array);
+
+        $eliminar = array('Hombre', '2023', '2022', 'Mujer');
+
+        foreach ($eliminar as $x) {
+            if (($key = array_search($x, $array)) !== false) {
+                unset($array[$key]);
+            }
+        }
+
         var_dump($array);
 
         
