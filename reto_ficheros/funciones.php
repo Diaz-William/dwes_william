@@ -132,9 +132,7 @@
 
         $cont = 0;
         foreach ($censo as $i => $dato) {
-            if ($i >= 5) {
-                
-
+            if ($i >= 4) {
                 $linea = obtenerLineaCsv($dato);
                 if ($cont == 0) {
                     $provincia = $linea[0];
