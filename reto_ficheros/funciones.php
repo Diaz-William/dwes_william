@@ -133,23 +133,25 @@
         $cont = 0;
         foreach ($censo as $i => $dato) {
             if ($i >= 5) {
-                echo "<tr>";
+                
 
                 $linea = obtenerLineaCsv($dato);
                 if ($cont == 0) {
                     $provincia = $linea[0];
+                    echo "<tr>";
                     echo "<td>$provincia</td>";
                     $cont += 1;
                 }else {
                     $cont += 1;
                     if ($cont == 4) {
+                        echo "</tr>";
                         $cont = 0;
                     }
                 }
                 $num = $linea[3];
                 echo "<td>$num</td>";
                 
-                echo "</tr>";
+                
             }
         }
 
