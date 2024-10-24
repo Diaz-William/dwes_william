@@ -23,8 +23,7 @@
             imprimirTablaXml($xml2);
 
             $censo = obtenerDatos("CensoProvinciaHombresMujeres.csv");
-            
-            
+            imprimirTablaCsv($censo);
         ?>
     </body>
 </html>
