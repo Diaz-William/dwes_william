@@ -195,6 +195,13 @@
         echo "<td></td>";
 
         $linea = obtenerLinea($censo[4], ",");
+        var_dump($linea);
+        for ($i = 0; $i < count($linea); $i++) {
+            if (empty($linea[$i])) {
+                unset($linea[$i]);
+            }
+        }
+        var_dump($linea);
         for ($i = 0; $i < count($linea); $i++) {
             if (empty($linea[$i])) {
                 unset($linea[$i]);
