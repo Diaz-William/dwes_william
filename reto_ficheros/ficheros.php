@@ -22,8 +22,11 @@
             imprimirTablaXml($xml1);
             imprimirTablaXml($xml2);
 
-            $censo = obtenerDatos("CensoProvinciaHombresMujeres.csv");
-            imprimirTablaCsv($censo);
+            $censoCsv = obtenerDatos("CensoProvinciaHombresMujeres.csv");
+            imprimirTablaCsv($censoCsv);
+
+            $censoTxt = obtenerDatos("CensoProvinciaHombresMujeres.txt");
+            imprimirTablaTxt($censoTxt);
         ?>
     </body>
 </html>

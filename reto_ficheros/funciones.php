@@ -81,8 +81,8 @@
         return $datos;
     }
 
-    function obtenerLineaCsv($dato) {
-        $linea = explode(";", $dato);
+    function obtenerLinea($dato, $separador) {
+        $linea = explode($separador, $dato);
         return $linea;
     }
 
@@ -91,20 +91,20 @@
         echo "<table>";
 
         echo "<tr>";
-        $linea = obtenerLineaCsv($censo[1]);
+        $linea = obtenerLinea($censo[1], ";");
         echo "<td></td>";
         $anio = $linea[2];
         echo "<td colspan='2'>$anio</td>";
-        $linea = obtenerLineaCsv($censo[2]);
+        $linea = obtenerLinea($censo[2], ";");
         $anio = $linea[2];
         echo "<td colspan='2'>$anio</td>";
         echo "</tr>";
         
         echo "<tr>";
         echo "<td></td>";
-        $linea = obtenerLineaCsv($censo[1]);
+        $linea = obtenerLinea($censo[1], ";");
         $hombre = $linea[1];
-        $linea = obtenerLineaCsv($censo[3]);
+        $linea = obtenerLinea($censo[3], ";");
         $mujer = $linea[1];
         echo "<td>$hombre</td>";
         echo "<td>$mujer</td>";
@@ -113,19 +113,19 @@
         echo "</tr>";
 
         echo "<tr>";
-        $linea = obtenerLineaCsv($censo[1]);
+        $linea = obtenerLinea($censo[1], ";");
         $total = $linea[0];
         echo "<td>$total</td>";
-        $linea = obtenerLineaCsv($censo[1]);
+        $linea = obtenerLinea($censo[1], ";");
         $totalH23 = $linea[3];
         echo "<td>$totalH23</td>";
-        $linea = obtenerLineaCsv($censo[3]);
+        $linea = obtenerLinea($censo[3], ";");
         $totalM23 = $linea[3];
         echo "<td>$totalM23</td>";
-        $linea = obtenerLineaCsv($censo[2]);
+        $linea = obtenerLinea($censo[2], ";");
         $totalH22 = $linea[3];
         echo "<td>$totalH22</td>";
-        $linea = obtenerLineaCsv($censo[4]);
+        $linea = obtenerLinea($censo[4], ";");
         $totalM22 = $linea[3];
         echo "<td>$totalM22</td>";
         echo "</tr>";
@@ -187,4 +187,15 @@
         echo "<td>$numH22</td>";
         echo "<td>$numM22</td>";
         echo "</tr>";
+    }
+
+    function imprimirTablaTxt($censo) {
+        echo "<br><br>";
+        echo "<table>";
+        echo "<td></td>";
+
+        $linea = obtenerLinea($censo[4], ",");
+        var_dump($linea);
+
+        echo "</table>";
     }
