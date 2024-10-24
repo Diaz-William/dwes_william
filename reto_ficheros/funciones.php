@@ -196,17 +196,13 @@
 
         $linea = obtenerLinea($censo[4], ",");
         var_dump($linea);
-        for ($i = 0; $i < count($linea); $i++) {
-            if (empty($linea[$i])) {
-                unset($linea[$i]);
+        $aux = count($linea);
+        for ($i = 0; $i < $aux; $i++) {
+            if (($key = array_search("", $linea)) !== false) {
+                unset($array[$key]);
             }
         }
-        var_dump($linea);
-        for ($i = 0; $i < count($linea); $i++) {
-            if (empty($linea[$i])) {
-                unset($linea[$i]);
-            }
-        }
+        
         var_dump($linea);
 
         echo "</table>";
