@@ -209,6 +209,8 @@
         $mujer = $linea[2];
         echo "<td>$hombre</td>";
         echo "<td>$mujer</td>";
+        echo "<td>$hombre</td>";
+        echo "<td>$mujer</td>";
         echo "</tr>";
 
         echo "<tr>";
@@ -221,7 +223,7 @@
         echo "</tr>";
 
         foreach ($censo as $i => $dato) {
-            if ($i >= 7) {
+            if ($i >= 7 && $i < count($censo) -2) {
                 echo "<tr>";
                 $linea = obtenerLinea($dato, ",");
                 foreach ($linea as $x) {
@@ -234,4 +236,9 @@
         }
 
         echo "</table>";
+
+        $linea = obtenerLinea($censo[7], ",");
+        var_dump(count($linea));
+        $linea = obtenerLinea($censo[21], ",");
+        var_dump(count($linea));
     }
