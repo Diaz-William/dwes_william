@@ -161,6 +161,8 @@
             }
         }
 
+        var_dump($datos);
+
         $array = explode(";", $cadena);
         $array = array_unique($array);
 
