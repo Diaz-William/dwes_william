@@ -192,18 +192,31 @@
     function imprimirTablaTxt($censo) {
         echo "<br><br>";
         echo "<table>";
-        echo "<td></td>";
 
+        echo "<tr>";
+        echo "<td></td>";
         $linea = obtenerLinea($censo[4], ",");
-        var_dump($linea);
-        $aux = count($linea);
-        for ($i = 0; $i < $aux; $i++) {
-            if (($key = array_search("", $linea)) !== false) {
-                unset($linea[$key]);
-            }
+        $anio = $linea[1];
+        echo "<td>$anio</td>";
+        $anio = $linea[3];
+        echo "<td>$anio</td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td></td>";
+        $linea = obtenerLinea($censo[5], ",");
+        $hombre = $linea[1];
+        $mujer = $linea[2];
+        echo "<td>$hombre</td>";
+        echo "<td>$mujer</td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        $linea = obtenerLinea($censo[6], ",");
+        foreach ($linea as $x) {
+            echo "<td>$x</td>";
         }
-        
-        var_dump($linea);
+        echo "</tr>";
 
         echo "</table>";
     }
