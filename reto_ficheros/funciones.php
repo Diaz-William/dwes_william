@@ -160,8 +160,6 @@
             }
         }
 
-        var_dump($datos);
-
         $array = explode(";", $cadena);
         $array = array_unique($array);
 
@@ -174,27 +172,18 @@
         }
 
         $array = array_values($array);
-        var_dump($array);
 
-        
-        /*$cont = 0;
-        foreach ($datos as $i => $dato) {
-            $linea = obtenerLineaCsv($dato);
-            if ($cont == 0) {
-                $provincia = $linea[0];
-                echo "<tr>";
-                echo "<td>$provincia</td>";
-                $numH23 = $linea[3];
-                echo "<td>$num</td>";
-                $cont += 1;
-            }else {
-                $cont += 1;
-                $num = $linea[3];
-                echo "<td>$num</td>";
-                if ($cont == 4) {
-                    echo "</tr>";
-                    $cont = 0;
-                }
-            }
-        }*/
+        $provincia = $array[0];
+        $numH23 = $array[1];
+        $numH22 = $array[2];
+        $numM23 = $array[3];
+        $numM22 = $array[4];
+
+        echo "<tr>";
+        echo "<td>$provincia</td>";
+        echo "<td>$numH23</td>";
+        echo "<td>$numM23</td>";
+        echo "<td>$numH22</td>";
+        echo "<td>$numM22</td>";
+        echo "</tr>";
     }
