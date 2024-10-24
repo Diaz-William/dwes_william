@@ -143,15 +143,13 @@
                     $cont += 1;
                 }else {
                     $cont += 1;
+                    $num = $linea[3];
+                    echo "<td>$num</td>";
                     if ($cont == 4) {
                         echo "</tr>";
                         $cont = 0;
                     }
                 }
-                $num = $linea[3];
-                echo "<td>$num</td>";
-                
-                
             }
         }
 
