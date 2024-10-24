@@ -130,28 +130,56 @@
         echo "<td>$totalM22</td>";
         echo "</tr>";
 
+        $datos = array();
         $cont = 0;
+
         foreach ($censo as $i => $dato) {
             if ($i >= 5) {
-                $linea = obtenerLineaCsv($dato);
-                if ($cont == 0) {
-                    $provincia = $linea[0];
-                    echo "<tr>";
-                    echo "<td>$provincia</td>";
-                    $num = $linea[3];
-                    echo "<td>$num</td>";
+                if ($cont != 4) {
+                    array_push($datos, $dato);
                     $cont += 1;
-                }else {
-                    $cont += 1;
-                    $num = $linea[3];
-                    echo "<td>$num</td>";
                     if ($cont == 4) {
-                        echo "</tr>";
-                        $cont = 0;
+                        imprimirCeldasProvincia($datos);
+                        unset($datos);
+                        $datos = array();
                     }
+                }else {
+                    $cont = 0;
                 }
             }
         }
 
         echo "</table>";
+    }
+
+    function imprimirCeldasProvincia($datos) {
+        foreach ($datos as $dato) {
+            $cadena .= $dato . ";";
+        }
+
+        $array = explode(";", $cadena);
+        array_unique($array);
+        var_dump($array);
+
+        
+        /*$cont = 0;
+        foreach ($datos as $i => $dato) {
+            $linea = obtenerLineaCsv($dato);
+            if ($cont == 0) {
+                $provincia = $linea[0];
+                echo "<tr>";
+                echo "<td>$provincia</td>";
+                $numH23 = $linea[3];
+                echo "<td>$num</td>";
+                $cont += 1;
+            }else {
+                $cont += 1;
+                $num = $linea[3];
+                echo "<td>$num</td>";
+                if ($cont == 4) {
+                    echo "</tr>";
+                    $cont = 0;
+                }
+            }
+        }*/
     }
