@@ -130,10 +130,11 @@
         echo "<td>$totalM22</td>";
         echo "</tr>";
 
-        echo "<tr>";
         $cont = 0;
         foreach ($censo as $i => $dato) {
             if ($i >= 5) {
+                echo "<tr>";
+
                 $linea = obtenerLineaCsv($dato);
                 if ($cont == 0) {
                     $provincia = $linea[0];
@@ -147,9 +148,10 @@
                 }
                 $num = $linea[3];
                 echo "<td>$num</td>";
+                
+                echo "</tr>";
             }
         }
-        echo "</tr>";
 
         echo "</table>";
     }
