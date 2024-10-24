@@ -226,9 +226,18 @@
             if ($i >= 7 && $i < count($censo) -2) {
                 echo "<tr>";
                 $linea = obtenerLinea($dato, ",");
-                foreach ($linea as $x) {
+                
+                foreach ($linea as $i => $x) {
                     if (!empty($x)) {
-                        echo "<td>$x</td>";
+                        if (count($linea) == 7) {
+                            $provincia = $linea[0] . $linea[1];
+                            echo "<td>$provincia</td>";
+                            if ($i != 0 && $i != 1) {
+                                echo "<td>$x</td>";
+                            }
+                        }else {
+                            echo "<td>$x</td>";
+                        }
                     }
                 }
                 echo "</tr>";
@@ -236,9 +245,4 @@
         }
 
         echo "</table>";
-
-        $linea = obtenerLinea($censo[7], ",");
-        var_dump(count($linea));
-        $linea = obtenerLinea($censo[21], ",");
-        var_dump(count($linea));
     }
