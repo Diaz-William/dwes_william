@@ -197,9 +197,9 @@
         echo "<td></td>";
         $linea = obtenerLinea($censo[4], ",");
         $anio = $linea[1];
-        echo "<td>$anio</td>";
+        echo "<td colspan='2'>$anio</td>";
         $anio = $linea[3];
-        echo "<td>$anio</td>";
+        echo "<td colspan='2'>$anio</td>";
         echo "</tr>";
 
         echo "<tr>";
@@ -214,9 +214,24 @@
         echo "<tr>";
         $linea = obtenerLinea($censo[6], ",");
         foreach ($linea as $x) {
-            echo "<td>$x</td>";
+            if (!empty($x)) {
+                echo "<td>$x</td>";
+            }
         }
         echo "</tr>";
+
+        foreach ($censo as $i => $dato) {
+            if ($i >= 7) {
+                echo "<tr>";
+                $linea = obtenerLinea($dato, ",");
+                foreach ($linea as $x) {
+                    if (!empty($x)) {
+                        echo "<td>$x</td>";
+                    }
+                }
+                echo "</tr>";
+            }
+        }
 
         echo "</table>";
     }
