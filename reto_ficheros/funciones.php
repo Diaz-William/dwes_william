@@ -101,6 +101,7 @@
         echo "</tr>";
         
         echo "<tr>";
+        echo "<td></td>";
         $linea = obtenerLineaCsv($censo[1]);
         $hombre = $linea[1];
         $linea = obtenerLineaCsv($censo[3]);
