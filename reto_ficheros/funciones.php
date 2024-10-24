@@ -195,6 +195,11 @@
         echo "<td></td>";
 
         $linea = obtenerLinea($censo[4], ",");
+        for ($i = 0; $i < count($linea); $i++) {
+            if (empty($linea[$i])) {
+                unset($linea[$i]);
+            }
+        }
         var_dump($linea);
 
         echo "</table>";
