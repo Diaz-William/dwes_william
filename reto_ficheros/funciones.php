@@ -199,7 +199,7 @@
         $aux = count($linea);
         for ($i = 0; $i < $aux; $i++) {
             if (($key = array_search("", $linea)) !== false) {
-                unset($array[$key]);
+                unset($linea[$key]);
             }
         }
         
