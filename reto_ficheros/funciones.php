@@ -173,6 +173,7 @@
             }
         }
 
+        $array = array_values($array);
         var_dump($array);
 
         
