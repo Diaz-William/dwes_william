@@ -152,6 +152,7 @@
     }
 
     function imprimirCeldasProvincia($datos) {
+        $cadena = "";
         foreach ($datos as $i => $dato) {
             if ($i < (count($datos) - 1)) {
                 $cadena .= $dato . ";";
