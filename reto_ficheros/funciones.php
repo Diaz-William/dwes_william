@@ -1,11 +1,10 @@
 <?php
     function obtenerXML($nombre) {
-        $nombre .= ".xml";
         $xml = simplexml_load_file($nombre) or die("Error: No se puede crear el objeto");
         return $xml;
     }
 
-    function imprimirTabla($xml) {
+    function imprimirTablaXml($xml) {
         $nombre = $xml->nombre;
             echo "<br><br>";
             echo "<table>";
@@ -82,7 +81,25 @@
         return $datos;
     }
 
-    function obtenerLinea($dato) {
+    function obtenerLineaCsv($dato) {
         $linea = explode(";", $dato);
         return $linea;
+    }
+
+    function imprimirTablaCsv($censo) {
+        echo "<table>";
+
+        echo "<tr>";
+
+        $linea = obtenerLineaCsv($censo[1]);
+        echo "<td></td>";
+        $anio = $linea[2];
+        echo "<td>$anio</td>";
+        $linea = obtenerLineaCsv($censo[2]);
+        $anio = $linea[2];
+        echo "<td>$anio</td>";
+
+        echo "</tr>";
+
+        echo "</table>";
     }

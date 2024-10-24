@@ -16,26 +16,15 @@
             include 'errores_sistema.php';
             set_error_handler("error_function");
 
-            $xml1 = obtenerXML("pronosticotiempoLasRozas");
-            $xml2 = obtenerXML("pronosticotiempoMadrid");
+            $xml1 = obtenerXML("pronosticotiempoLasRozas.xml");
+            $xml2 = obtenerXML("pronosticotiempoMadrid.xml");
 
-            imprimirTabla($xml1);
-            imprimirTabla($xml2);
+            imprimirTablaXml($xml1);
+            imprimirTablaXml($xml2);
 
             $censo = obtenerDatos("CensoProvinciaHombresMujeres.csv");
             
-            echo "<table>";
-
-            echo "<tr>";
-
-            $linea = obtenerLinea($censo[1]);
-            echo "<td></td>";
-            $anio = $linea[2];
-            echo "<td>$anio</td>";
-
-            echo "</tr>";
-
-            echo "</table>";
+            
         ?>
     </body>
 </html>
