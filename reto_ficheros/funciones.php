@@ -82,7 +82,7 @@
         return $datos;
     }
 
-    function obtenerLineaCsv($dato) {
+    function obtenerLinea($dato) {
         $linea = explode(";", $dato);
         return $linea;
     }
