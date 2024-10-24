@@ -87,18 +87,28 @@
     }
 
     function imprimirTablaCsv($censo) {
+        echo "<br><br>";
         echo "<table>";
 
         echo "<tr>";
-
         $linea = obtenerLineaCsv($censo[1]);
         echo "<td></td>";
         $anio = $linea[2];
-        echo "<td>$anio</td>";
+        echo "<td colspan='2'>$anio</td>";
         $linea = obtenerLineaCsv($censo[2]);
         $anio = $linea[2];
-        echo "<td>$anio</td>";
-
+        echo "<td colspan='2'>$anio</td>";
+        echo "</tr>";
+        
+        echo "<tr>";
+        $linea = obtenerLineaCsv($censo[1]);
+        $hombre = $linea[1];
+        $linea = obtenerLineaCsv($censo[3]);
+        $mujer = $linea[1];
+        echo "<td>$hombre</td>";
+        echo "<td>$mujer</td>";
+        echo "<td>$hombre</td>";
+        echo "<td>$mujer</td>";
         echo "</tr>";
 
         echo "</table>";
