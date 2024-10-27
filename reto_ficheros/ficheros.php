@@ -15,8 +15,8 @@
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label for="opcion">Elije una opción:</label>
             <select id="opcion" name="opcion">
-            <option value="tiempo">Tiempo</option>
-            <option value="censo">Censo</option>
+                <option value="tiempo">Tiempo</option>
+                <option value="censo">Censo</option>
             </select>
             <br><br>
             <input type="submit" value="Visualizar">
@@ -27,7 +27,7 @@
             set_error_handler("error_function");
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (test_input($_POST['tiempo']) == "tiempo") {
+                if (test_input($_POST["opcion"]) == "tiempo") {
                     $xml1 = obtenerXML("pronosticotiempoLasRozas.xml");
                     $xml2 = obtenerXML("pronosticotiempoMadrid.xml");
 
