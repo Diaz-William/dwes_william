@@ -62,12 +62,18 @@
                         echo "<td>$d</td>";
                         $cont += 1;
                     }
+                    while ($cont < ($numPeriodos - 3)) {
+                        echo "<td></td>";
+                        $cont += 1;
+                    }
+                }else {
+                    while ($cont < $numPeriodos) {
+                        echo "<td></td>";
+                        $cont += 1;
+                    }
                 }
                 
-                while ($cont < ($numPeriodos - 3)) {
-                    echo "<td></td>";
-                    $cont += 1;
-                }
+                
             }
             echo "</tr>";
 
