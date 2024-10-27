@@ -64,7 +64,7 @@
                     }
                 }
                 
-                while ($cont < $numPeriodos) {
+                while ($cont < ($numPeriodos - 3)) {
                     echo "<td></td>";
                     $cont += 1;
                 }
