@@ -64,7 +64,7 @@
                             $cont += 1;
                         }else {
                             echo "<td></td>";
-                            $seguir = false;
+                            //$seguir = false;
                             $cont += 1;
                         }
                     }
