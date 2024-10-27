@@ -57,7 +57,7 @@
                 foreach ($dia->sens_termica->dato as $d) {
                     foreach ($precipitacion as $p) {
                         $periodo = explode("-", $p['periodo']);
-                        if ($d['hora'] == $periodo[0]) {
+                        if ($d['hora'] == $periodo[0] || $d['hora'] == $periodo[1]) {
                             echo "<td>$d</td>";
                         }else {
                             echo "<td></td>";
