@@ -27,7 +27,7 @@
             set_error_handler("error_function");
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (test_input($_POST['tiempo'])) {
+                if (test_input($_POST['tiempo']) == "tiempo") {
                     $xml1 = obtenerXML("pronosticotiempoLasRozas.xml");
                     $xml2 = obtenerXML("pronosticotiempoMadrid.xml");
 
