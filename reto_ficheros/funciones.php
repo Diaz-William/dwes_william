@@ -53,16 +53,23 @@
             foreach ($xml->prediccion->dia as $dia) {
                 $cont = 0;
                 $numPeriodos = count($dia->prob_precipitacion);
-                $precipitacion = $dia->prob_precipitacion['periodo'];
-                var_dump($precipitacion);
+                $precipitacion = $dia->prob_precipitacion;
                 foreach ($dia->sens_termica->dato as $d) {
-                    echo "<td>$d</td>";
-                    $cont += 1;
+                    foreach ($precipitacion as $p) {
+                        $periodo = explode("-", $p['periodo']);
+                        if ($d['hora'] == $periodo[0]) {
+                            echo "<td>$d</td>";
+                        }else {
+                            echo "<td></td>";
+                        }
+                    }
+                    //echo "<td>$d</td>";
+                    //$cont += 1;
                 }
-                while ($cont < $numPeriodos) {
+                /*while ($cont < $numPeriodos) {
                     echo "<td></td>";
                     $cont += 1;
-                }
+                }*/
             }
             echo "</tr>";
 
