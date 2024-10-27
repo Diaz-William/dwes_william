@@ -6,7 +6,7 @@
 
     function imprimirTablaXml($xml) {
         $nombre = $xml->nombre;
-            echo "<br><br>";
+            echo "<h2>Tabla XML $nombre</h2>";
             echo "<table>";
 
             echo "<tr>";
@@ -92,7 +92,7 @@
     }
 
     function imprimirTablaCsv($censo) {
-        echo "<br><br>";
+        echo "<h2>Tabla CSV</h2>";
         echo "<table>";
 
         echo "<tr>";
@@ -195,7 +195,7 @@
     }
 
     function imprimirTablaTxt($censo) {
-        echo "<br><br>";
+        echo "<h2>Tabla TXT</h2>";
         echo "<table>";
 
         echo "<tr>";
@@ -255,4 +255,11 @@
         }
 
         echo "</table>";
+    }
+
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
