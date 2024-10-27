@@ -53,10 +53,17 @@
             foreach ($xml->prediccion->dia as $dia) {
                 $cont = 0;
                 $numPeriodos = count($dia->prob_precipitacion);
-                foreach ($dia->sens_termica->dato as $d) {
-                    echo "<td>$d</td>";
-                    $cont += 1;
+                $numDatosSen = count($dia->sens_termica->dato);
+                if ($numDatosSen == 4) {
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    foreach ($dia->sens_termica->dato as $d) {
+                        echo "<td>$d</td>";
+                        $cont += 1;
+                    }
                 }
+                
                 while ($cont < $numPeriodos) {
                     echo "<td></td>";
                     $cont += 1;
