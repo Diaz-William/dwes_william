@@ -61,8 +61,11 @@
                         if ($d['hora'] == $periodo[0] || $d['hora'] == $periodo[1]) {
                             echo "<td>$d</td>";
                             $seguir = false;
+                            $cont += 1;
                         }else {
                             echo "<td></td>";
+                            $seguir = false;
+                            $cont += 1;
                         }
                     }
                     //echo "<td>$d</td>";
