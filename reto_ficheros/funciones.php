@@ -55,19 +55,24 @@
                 $numPeriodos = count($dia->prob_precipitacion);
                 $precipitacion = $dia->prob_precipitacion;
                 foreach ($dia->sens_termica->dato as $d) {
-                    $seguir = true;
-                    $cont = 0;
-                    while ($seguir && $cont < count($precipitacion)) {
-                        $periodo = explode("-", $precipitacion['periodo']);
-                        if ($d['hora'] == $periodo[0] || $d['hora'] == $periodo[1]) {
-                            echo "<td>$d</td>";
-                            $seguir = false;
-                            $cont += 1;
-                        }else {
-                            echo "<td></td>";
-                            //$seguir = false;
-                            $cont += 1;
+                    
+                    if (!is_null($precipitacion)) {
+                        $seguir = true;
+                        $cont = 0;
+                        while ($seguir && $cont < count($precipitacion)) {
+                            $periodo = explode("-", $precipitacion['periodo']);
+                            if ($d['hora'] == $periodo[0] || $d['hora'] == $periodo[1]) {
+                                echo "<td>$d</td>";
+                                $seguir = false;
+                                $cont += 1;
+                            }else {
+                                echo "<td></td>";
+                                //$seguir = false;
+                                $cont += 1;
+                            }
                         }
+                    }else {
+                        echo "<td>$d</td>";
                     }
                     //echo "<td>$d</td>";
                     //$cont += 1;
