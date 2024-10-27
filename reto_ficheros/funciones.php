@@ -53,6 +53,7 @@
             foreach ($xml->prediccion->dia as $dia) {
                 $cont = 0;
                 $numPeriodos = count($dia->prob_precipitacion);
+                $precipitacion = $dia->prob_precipitacion['periodo'];
                 foreach ($dia->sens_termica->dato as $d) {
                     echo "<td>$d</td>";
                     $cont += 1;
