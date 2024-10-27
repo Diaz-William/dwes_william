@@ -56,6 +56,7 @@
                 $precipitacion = $dia->prob_precipitacion;
                 foreach ($dia->sens_termica->dato as $d) {
                     $seguir = true;
+                    $cont = 0;
                     while ($seguir && $cont < count($precipitacion)) {
                         $periodo = explode("-", $precipitacion['periodo']);
                         if ($d['hora'] == $periodo[0] || $d['hora'] == $periodo[1]) {
