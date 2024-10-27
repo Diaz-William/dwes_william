@@ -50,13 +50,11 @@
 
             echo "<tr>";
             echo "<td>Sensación Térmica (ºC)</td>";
-            /*foreach ($xml->prediccion->dia as $dia) {
-                foreach ($dia->sens_termica as $v) {
-                    $direccion = $v->direccion;
-                    $velocidad = $v->velocidad;
-                    echo "<td>$direccion $velocidad</td>";
+            foreach ($xml->prediccion->dia as $dia) {
+                foreach ($dia->sens_termica->dato as $d) {
+                    echo "<td>$d</td>";
                 }
-            }*/
+            }
             echo "</tr>";
 
             echo "<tr>";
