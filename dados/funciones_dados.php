@@ -39,13 +39,7 @@
 //--------------------------------------------------------------------------
 	// Función para comprobar si todos los dados de un jugador son iguales.
 	function comprobarDadosIguales($dados) {
-		$devolver = false;
-		
-		if (count(array_unique($dados)) == 1) {
-			$devolver = true;
-		}
-		
-		return $devolver;
+		return count(array_unique($dados)) == 1;
 	}
 //--------------------------------------------------------------------------
 	// Función para obtener todos los ganadores.
