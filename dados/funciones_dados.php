@@ -46,7 +46,7 @@
 	function obtenerGanadores($jugadores) {
 		$ganadores = array();
 		$mayor = 0;
-		var_dump(max($jugadores));
+		var_dump(max($jugadores["suma"]));
 		foreach ($jugadores as $jugador => $datos) {
             if ($datos["suma"] > $mayor) {
                 $mayor = $datos["suma"];
