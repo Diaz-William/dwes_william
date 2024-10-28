@@ -26,7 +26,6 @@
         foreach ($jugadores as $jugador => &$datos) {
             for ($i = 0; $i < $cantDados; $i++) {
                 array_push($datos["resultados"], rand(1,6));
-                //array_push($datos["resultados"], 1);
             }
             if (($cantDados > 2) && (comprobarDadosIguales($datos["resultados"]))) {
                 $datos["suma"] = 100;
@@ -47,7 +46,7 @@
 	function obtenerGanadores($jugadores) {
 		$ganadores = array();
 		$mayor = 0;
-		
+		var_dump(max($jugadores));
 		foreach ($jugadores as $jugador => $datos) {
             if ($datos["suma"] > $mayor) {
                 $mayor = $datos["suma"];
