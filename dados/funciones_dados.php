@@ -45,13 +45,14 @@
 	// Función para obtener todos los ganadores.
 	function obtenerGanadores($jugadores) {
 		$ganadores = array();
-		$mayor = 0;
-		var_dump(max($jugadores["suma"]));
-		foreach ($jugadores as $jugador => $datos) {
+		$mayor = max($jugadores);
+        $mayor = $mayor["suma"];
+		var_dump($mayor);
+		/*foreach ($jugadores as $jugador => $datos) {
             if ($datos["suma"] > $mayor) {
                 $mayor = $datos["suma"];
             }
-        }
+        }*/
 		
 		foreach ($jugadores as $jugador => $datos) {
             if ($datos["suma"] == $mayor) {
