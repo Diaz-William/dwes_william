@@ -25,8 +25,8 @@
 	function tirarDados($jugadores, $cantDados) {
         foreach ($jugadores as $jugador => &$datos) {
             for ($i = 0; $i < $cantDados; $i++) {
-                //array_push($datos["resultados"], rand(1,6));
-                array_push($datos["resultados"], 1);
+                array_push($datos["resultados"], rand(1,6));
+                //array_push($datos["resultados"], 1);
             }
             if (($cantDados > 2) && (comprobarDadosIguales($datos["resultados"]))) {
                 $datos["suma"] = 100;
