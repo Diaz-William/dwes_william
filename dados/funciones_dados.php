@@ -49,7 +49,7 @@
 		$mayor = max($jugadores);
         $mayor = $mayor["suma"];
 
-        $mayor = max($jugadores[0]);
+        $mayor = max($jugadores[2]);
         var_dump($mayor);
 		/*foreach ($jugadores as $jugador => $datos) {
             if ($datos["suma"] > $mayor) {
