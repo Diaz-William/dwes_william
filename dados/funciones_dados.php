@@ -51,11 +51,12 @@
 
         $mayor = max($jugadores[2]);
         var_dump($mayor);
-		/*foreach ($jugadores as $jugador => $datos) {
+        $mayor = 0;
+		foreach ($jugadores as $jugador => $datos) {
             if ($datos["suma"] > $mayor) {
                 $mayor = $datos["suma"];
             }
-        }*/
+        }
 		
 		foreach ($jugadores as $jugador => $datos) {
             if ($datos["suma"] == $mayor) {
