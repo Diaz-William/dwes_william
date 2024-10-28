@@ -14,8 +14,7 @@
 
         for ($i = 0; $i < count($nombres); $i++) { 
             if (!empty($nombres[$i])) {
-                $jugadores[$nombres[$i]] = array();
-                $jugadores[$nombres[$i]]["Datos"] = array("resultados" => array(), "suma" => 0);
+                $jugadores[$nombres[$i]] = array("resultados" => array(), "suma" => 0);
             }
         }
 
@@ -25,15 +24,13 @@
     // Función para tirar los dados de cada jugador.
 	function tirarDados($jugadores, $cantDados) {
         foreach ($jugadores as $jugador => &$datos) {
-            foreach ($datos as $dados => &$dado) {
-				for ($i = 0; $i < $cantDados; $i++) {
-					array_push($dado["resultados"], rand(1,6));
-				}
-				if (($cantDados > 2) && (comprobarDadosIguales($dado["resultados"]))) {
-					$dado["suma"] = 100;
-				}else {
-					$dado["suma"] = array_sum($dado["resultados"]);
-				}
+            for ($i = 0; $i < $cantDados; $i++) {
+                array_push($datos["resultados"], rand(1,6));
+            }
+            if (($cantDados > 2) && (comprobarDadosIguales($datos["resultados"]))) {
+                $datos["suma"] = 100;
+            }else {
+                $datos["suma"] = array_sum($datos["resultados"]);
             }
         }
 
@@ -57,18 +54,14 @@
 		$mayor = 0;
 		
 		foreach ($jugadores as $jugador => $datos) {
-            foreach ($datos as $dados => $dado) {
-				if ($dado["suma"] > $mayor) {
-					$mayor = $dado["suma"];
-				}
+            if ($datos["suma"] > $mayor) {
+                $mayor = $datos["suma"];
             }
         }
 		
 		foreach ($jugadores as $jugador => $datos) {
-            foreach ($datos as $dados => $dado) {
-				if ($dado["suma"] == $mayor) {
-					$ganadores[$jugador] = $jugadores[$jugador];
-				}
+            if ($datos["suma"] == $mayor) {
+                $ganadores[$jugador] = $jugadores[$jugador];
             }
         }
 		
@@ -83,10 +76,8 @@
         foreach ($jugadores as $jugador => $datos) {
 			echo "<tr>";
 			echo "<td>$jugador</td>";
-            foreach ($datos as $dados => $dado) {
-				foreach ($dado["resultados"] as $num) {
-					echo "<td><img src='images/$num.png' style='width: 50px; height: 50px; margin: 5px;'></td>";
-				}
+            foreach ($datos["resultados"] as $num) {
+                echo "<td><img src='images/$num.png' style='width: 50px; height: 50px; margin: 5px;'></td>";
             }
 			echo "</tr>";
         }
@@ -95,9 +86,7 @@
 		echo "<hr>";
 		
 		foreach ($jugadores as $jugador => $datos) {
-            foreach ($datos as $dados => $dado) {
-				echo "<p>$jugador --> " . $dado["suma"] . "</p>";
-            }
+            echo "<p>$jugador --> " . $datos["suma"] . "</p>";
         }
     }
 //--------------------------------------------------------------------------
@@ -105,9 +94,7 @@
 	function mostrarGanadores($ganadores) {
 		echo "<hr>";
 		foreach ($ganadores as $jugador => $datos) {
-            foreach ($datos as $dados => $dado) {
-				echo "<p>Ganador --> $jugador</p>";
-            }
+            echo "<p>Ganador --> $jugador</p>";
         }
 				
 		echo "<p>Total de ganadores --> " . count($ganadores) . "</p>";
