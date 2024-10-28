@@ -44,6 +44,7 @@
 //--------------------------------------------------------------------------
 	// Función para obtener todos los ganadores.
 	function obtenerGanadores($jugadores) {
+        var_dump($jugadores);
 		$ganadores = array();
 		$mayor = max($jugadores);
         $mayor = $mayor["suma"];
