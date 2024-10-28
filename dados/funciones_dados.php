@@ -51,7 +51,7 @@
         var_dump(max($jugadores));
 		var_dump($mayor);
 
-        $mayor = max($jugadores[1]);
+        $mayor = min($jugadores[1]);
         var_dump($mayor);
 		/*foreach ($jugadores as $jugador => $datos) {
             if ($datos["suma"] > $mayor) {
