@@ -1,84 +1,115 @@
 <?php
-    function test_input($data) {
+//--------------------------------------------------------------------------
+    // Función para limpiar la entrada de datos del usuario.
+	function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
-
-    function rellenarJugadores($nombres, $cantDados) {
+//--------------------------------------------------------------------------
+    // Función para rellenar los jugadores con sus nombres y sus datos.
+	function rellenarJugadores($nombres) {
         $jugadores = array();
 
         for ($i = 0; $i < count($nombres); $i++) { 
-            if ($nombres[$i] != "") {
+            if (!empty($nombres[$i])) {
                 $jugadores[$nombres[$i]] = array();
-                for ($j = 1; $j <= $cantDados; $j++) {
-                    $jugadores[$nombres[$i]]["Dado" . $j] = array("numeros" => array(1,2,3,4,5,6), "resultado" => 0);
-                }
+                $jugadores[$nombres[$i]]["Datos"] = array("resultados" => array(), "suma" => 0);
             }
         }
 
         return $jugadores;
     }
-
-    function tirarDados($jugadores) {
-        foreach ($jugadores as $jugador => &$dados) {
-            foreach ($dados as $dado => &$tiradaDado) {
-                $aletorio = intval(rand(0,5));
-                $tiradaDado["resultado"] = $tiradaDado["numeros"][$aletorio];
+//--------------------------------------------------------------------------
+    // Función para tirar los dados de cada jugador.
+	function tirarDados($jugadores, $cantDados) {
+        foreach ($jugadores as $jugador => &$datos) {
+            foreach ($datos as $dados => &$dado) {
+				for ($i = 0; $i < $cantDados; $i++) {
+					array_push($dado["resultados"], rand(1,6));
+				}
+				if (($cantDados > 2) && (comprobarDadosIguales($dado["resultados"]))) {
+					$dado["suma"] = 100;
+				}else {
+					$dado["suma"] = array_sum($dado["resultados"]);
+				}
             }
         }
 
         return $jugadores;
     }
-
-    function mostrarResultados($jugadores) {
-        $suma = 0;
-
-        foreach ($jugadores as $jugador => &$dados) {
-            echo "<h1>$jugador</h1>";
-            foreach ($dados as $dado => &$tiradaDado) {
-                $suma += $tiradaDado["resultado"];
+//--------------------------------------------------------------------------
+	// Función para comprobar si todos los dados de un jugador son iguales.
+	function comprobarDadosIguales($dados) {
+		$devolver = false;
+		
+		if (count(array_unique($dados)) == 1) {
+			$devolver = true;
+		}
+		
+		return $devolver;
+	}
+//--------------------------------------------------------------------------
+	// Función para obtener todos los ganadores.
+	function obtenerGanadores($jugadores) {
+		$ganadores = array();
+		$mayor = 0;
+		
+		foreach ($jugadores as $jugador => $datos) {
+            foreach ($datos as $dados => $dado) {
+				if ($dado["suma"] > $mayor) {
+					$mayor = $dado["suma"];
+				}
             }
-            echo "<p>$suma</p>";
-            $suma = 0;
+        }
+		
+		foreach ($jugadores as $jugador => $datos) {
+            foreach ($datos as $dados => $dado) {
+				if ($dado["suma"] == $mayor) {
+					$ganadores[$jugador] = $jugadores[$jugador];
+				}
+            }
+        }
+		
+		return $ganadores;
+	}
+//--------------------------------------------------------------------------
+    // Función para mostrar los resultados de los jugadores.
+	function mostrarResultados($jugadores) {
+		echo "<hr>";
+		echo "<table>";
+		
+        foreach ($jugadores as $jugador => $datos) {
+			echo "<tr>";
+			echo "<td>$jugador</td>";
+            foreach ($datos as $dados => $dado) {
+				foreach ($dado["resultados"] as $num) {
+					echo "<td><img src='images/$num.png' style='width: 50px; height: 50px; margin: 5px;'></td>";
+				}
+            }
+			echo "</tr>";
+        }
+		
+		echo "</table>";
+		echo "<hr>";
+		
+		foreach ($jugadores as $jugador => $datos) {
+            foreach ($datos as $dados => $dado) {
+				echo "<p>$jugador --> " . $dado["suma"] . "</p>";
+            }
         }
     }
-
-    function comprobarGanadores($jugadores) {
-        $resultados = array();
-        $suma = 0;
-        $posiciones = array();
-        $max = 0;
-        $nombre = array();
-        $cont = 0;
-
-        foreach ($jugadores as $jugador => $dados) {
-            foreach ($dados as $dado => $tiradaDado) {
-                $suma += $tiradaDado["resultado"];
-            }
-            array_push($resultados, $suma);
-            $suma = 0;
-        }
-
-
-        $max = max($resultados);
-
-
-        foreach ($resultados as $i => $x) {
-            if ($x == $max) {
-                array_push($posiciones, $i);
+//--------------------------------------------------------------------------
+    // Función para mostrar los ganadores.
+	function mostrarGanadores($ganadores) {
+		echo "<hr>";
+		foreach ($ganadores as $jugador => $datos) {
+            foreach ($datos as $dados => $dado) {
+				echo "<p>Ganador --> $jugador</p>";
             }
         }
-
-
-        foreach ($jugadores as $jugador => $valor) {
-            foreach ($posiciones as $p) {
-                if ($p == $cont) {
-                    $nombre = $jugador;
-                    echo "<p>Ganador: $jugador</p>";
-                }
-            }
-            $cont += 1;
-        }
-    }
+				
+		echo "<p>Total de ganadores --> " . count($ganadores) . "</p>";
+	}
+//--------------------------------------------------------------------------

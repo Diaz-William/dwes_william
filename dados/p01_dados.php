@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
      <title>JUEGO DADOS - PRÁCTICA OBLIGATORIA</title>
     <link rel="stylesheet" href="./bootstrap.min.css">
-  </head>
+    <style>
+      table, th, td {
+        border:1px solid black;
+      }
+    </style>
 </HEAD>
 
 <BODY>
@@ -43,34 +47,46 @@
 </FORM>
 
 <?php
+  // Incluir el archivo "funciones_dados.php".
   include "funciones_dados.php";
+  // Incluir el archivo "errores_sistema.php".
   include "errores_sistema.php";
+  // Establecer la función "error_function" para el manejo de errores.
   set_error_handler("error_function");
 
-  $nomJ1 = $nomJ2 = $nomJ3 = $nomJ4 = "";
-  $nombres = array();
-  $jugadores = array();
-  $cantDados = 0;
-
-
+  // Comprobar si se han enviado los datos del formulario por el método POST.
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_POST["jug1"] == "" || $_POST["jug2"] == "") {
-      trigger_error("Debe introducir mínimo dos nombres de los jugadores");
-    }else if (intval($_POST["numdados"]) < 1 || intval($_POST["numdados"]) > 10) {
-      trigger_error("Debe introducir un números de dados del 1 al 10");
-    }else {
-      $nomJ1 = test_input($_POST["jug1"]);
-      $nomJ2 = test_input($_POST["jug2"]);
-      $nomJ3 = test_input($_POST["jug3"]);
-      $nomJ4 = test_input($_POST["jug4"]);
-      $cantDados = intval(test_input($_POST["numdados"]));
-      array_push($nombres,$nomJ1,$nomJ2,$nomJ3,$nomJ4);
-      $jugadores = rellenarJugadores($nombres, $cantDados);
-      $jugadores = tirarDados($jugadores);
-      var_dump($jugadores);
-      echo "<hr>";
+    // Obtener los datos del formulario y declaración de variables.
+    $nomJ1 = test_input($_POST["jug1"]);
+    $nomJ2 = test_input($_POST["jug2"]);
+    $nomJ3 = test_input($_POST["jug3"]);
+    $nomJ4 = test_input($_POST["jug4"]);
+    $cantDados = intval(test_input($_POST["numdados"]));
+    $nombres = array();
+    $jugadores = array();
+    $ganadores = array();
+
+    if (empty($nomJ1) || empty($nomJ2)) {
+      // Mostrar un error si no se ha introducido los dos primeros nombres de los jugadores.
+      trigger_error("Debe introducir los dos primeros nombres de los jugadores");
+    } else if ($cantDados < 1 || $cantDados > 10) {
+      // Mostrar un error si la cantidad de dados no está en el rango permitido (1 - 10).
+      trigger_error("Debe introducir un número de dados del 1 al 10");
+    } else {
+      // Guardar todos nombres introducidos en el array $nombres.
+      array_push($nombres, $nomJ1, $nomJ2, $nomJ3, $nomJ4);
+
+      // Rellenar el array $jugadores con los nombres y sus datos.
+      $jugadores = rellenarJugadores($nombres);
+      // Realizar las tiradas de todos los dados de los jugadores.
+      $jugadores = tirarDados($jugadores, $cantDados);
+
+      // Obtener los ganadores.
+      $ganadores = obtenerGanadores($jugadores);
+      // Mostrar los resultados de las tiradas y su puntuación.
       mostrarResultados($jugadores);
-      comprobarGanadores($jugadores);
+      // Mostrar los ganadores y el total de ganadores.
+      mostrarGanadores($ganadores);
     }
   }
 ?>
