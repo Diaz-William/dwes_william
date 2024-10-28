@@ -49,7 +49,7 @@
 		$mayor = max($jugadores);
         $mayor = $mayor["suma"];
 
-        $mayor = max($jugadores[2]);
+        $mayor = max($jugadores[1][1]);
         var_dump($mayor);
         $mayor = 0;
 		foreach ($jugadores as $jugador => $datos) {
