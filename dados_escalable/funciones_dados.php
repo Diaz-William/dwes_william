@@ -12,12 +12,14 @@
     function guardarNombresFichero($nomFichero, $nombre, $apellido) {
         if (file_exists($nomFichero)) {
             $fichero = fopen($nomFichero, "w") or die("No se ha podido abrir el archivo $nombre");
-            fwrite($nomFichero, $nombre . "," . $apellido . "\n", FILE_APPEND | LOCK_EX);
+            $todo = $nombre . "," . $apellido . "\n";
+            fwrite($nomFichero, $todo);
             fclose($fichero);
         }else {
             $fichero = fopen($nomFichero, "w") or die("No se ha podido abrir el archivo $nombre");
-            fwrite($nomFichero, "Nombre,Apellido\n", FILE_APPEND | LOCK_EX);
-            fwrite($nomFichero, $nombre . "," . $apellido . "\n", FILE_APPEND | LOCK_EX);
+            fwrite($nomFichero, "Nombre,Apellido\n");
+            $todo = $nombre . "," . $apellido . "\n";
+            fwrite($nomFichero, $todo);
             fclose($fichero);
         }
     }
