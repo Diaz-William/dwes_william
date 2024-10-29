@@ -13,13 +13,13 @@
         if (file_exists($nomFichero)) {
             $fichero = fopen($nomFichero, "w") or die("No se ha podido abrir el archivo $nombre");
             $todo = $nombre . "," . $apellido . "\n";
-            fwrite($nomFichero, $todo);
+            fwrite($fichero, $todo);
             fclose($fichero);
         }else {
             $fichero = fopen($nomFichero, "w") or die("No se ha podido abrir el archivo $nombre");
-            fwrite($nomFichero, "Nombre,Apellido\n");
+            fwrite($fichero, "Nombre,Apellido\n");
             $todo = $nombre . "," . $apellido . "\n";
-            fwrite($nomFichero, $todo);
+            fwrite($fichero, $todo);
             fclose($fichero);
         }
     }
