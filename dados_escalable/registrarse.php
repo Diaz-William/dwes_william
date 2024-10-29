@@ -10,6 +10,9 @@
             p {
                 padding-left: 20px;
             }
+            form {
+                margin-top: 20px;
+            }
         </style>
     </head>
     <body>
