@@ -29,7 +29,7 @@
         foreach ($nombres as $indice => $linea) {
             if ($indice > 1) {
                 $nombre = obtenerNombreLinea($linea);
-                $jugadores[$nombres] = array("resultados" => array(), "suma" => 0);
+                $jugadores[$nombre] = array("resultados" => array(), "suma" => 0);
             }
         }
 
