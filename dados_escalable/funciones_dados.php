@@ -11,12 +11,12 @@
     // Función para guardar los nombres en el archivo.
     function guardarNombresFichero($nomFichero, $nombre, $apellido) {
         if (file_exists($nomFichero)) {
-            $fichero = fopen($nomFichero, "w+") or die("No se ha podido abrir el archivo $nombre");
+            $fichero = fopen($nomFichero, "a+") or die("No se ha podido abrir el archivo $nombre");
             $todo = $nombre . "," . $apellido . "\n";
             fwrite($fichero, $todo);
             fclose($fichero);
         }else {
-            $fichero = fopen($nomFichero, "w+") or die("No se ha podido abrir el archivo $nombre");
+            $fichero = fopen($nomFichero, "a+") or die("No se ha podido abrir el archivo $nombre");
             fwrite($fichero, "Nombre,Apellido\n");
             $todo = $nombre . "," . $apellido . "\n";
             fwrite($fichero, $todo);
