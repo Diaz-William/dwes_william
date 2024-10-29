@@ -10,6 +10,9 @@
       table, th, td {
         border:1px solid black;
       }
+      p, table {
+        padding-left: 20px;
+      }
     </style>
   </head>
   <body>

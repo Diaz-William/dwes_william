@@ -6,6 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>JUEGO DADOS - PRÁCTICA OBLIGATORIA</title>
         <link href="./bootstrap.min.css" rel="stylesheet" type="text/css">
+        <style>
+            p {
+                padding-left: 20px;
+            }
+        </style>
     </head>
     <body>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -41,6 +46,8 @@
                 $apellido = test_input($_POST["apellido"]);
 
                 guardarNombresFichero($nomFichero, $nombre, $apellido);
+
+                echo "<p>Te has registrado correctamente: $nombre $apellido</p>";
             }
         ?>
     </body>
