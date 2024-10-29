@@ -10,8 +10,11 @@
       table, th, td {
         border:1px solid black;
       }
-      p, table {
+      p {
         padding-left: 20px;
+      }
+      table {
+        margin-left: 20px;
       }
     </style>
   </head>

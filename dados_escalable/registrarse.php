@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-body">
                         <b>Nombre:  </b><input type='text' name='nombre' value='' size=25><br><br> 
-                        <b>Primer Apelliado:  </b><input type='text' name='apellido' value='' size=25><br><br> 
+                        <b>Primer Apellido:  </b><input type='text' name='apellido' value='' size=25><br><br> 
                         <b>Pulsa registrarte:</b>
                         <div>
                             <input type="submit" value="Registrarse" name="registrar" class="btn btn-warning disabled">
