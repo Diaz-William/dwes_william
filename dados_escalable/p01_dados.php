@@ -17,16 +17,10 @@
       <div class="container ">
         <!--Aplicacion-->
         <div class="card border-success mb-3" style="max-width: 30rem;">
-          <div class="card-header"><B>JUEGO DADOS</B> </div>
           <div class="card-body">
-            <B>Jugador 1: </B><input type='text' name='jug1' value='' size=25><br><br> 
-            <B>Jugador 2: </B><input type='text' name='jug2' value='' size=25><br><br> 
-            <B>Jugador 3: </B><input type='text' name='jug3' value='' size=25><br><br> 
-            <B>Jugador 4: </B><input type='text' name='jug4' value='' size=25><br><br><br> 
-            <B>Numero Dados: </B><input type='text' name='numdados' value='' size=5><br><br>
-            <B>Pulsa para Tirar Dados:</B>
+            <B>Pulsa para jugar:</B>
             <div>
-              <input type="submit" value="Tirar Dados" name="tirar" class="btn btn-warning disabled">
+              <input type="submit" value="Jugar" name="jugar" class="btn btn-warning disabled">
             </div>
           </div>
         </div>

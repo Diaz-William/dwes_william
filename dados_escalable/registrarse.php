@@ -13,11 +13,11 @@
                 <!--Aplicacion-->
                 <div class="card border-success mb-3" style="max-width: 30rem;">
                     <div class="card-header">
-                        <B>JUEGO DADOS</B>
+                        <B>REGISTRO JUEGO DADOS</B>
                     </div>
                     <div class="card-body">
-                        <b>Nombre:</b><input type='text' name='nombre' value='' size=25><br><br> 
-                        <b>Primer Apelliado:</b><input type='text' name='apellido' value='' size=25><br><br> 
+                        <b>Nombre:  </b><input type='text' name='nombre' value='' size=25><br><br> 
+                        <b>Primer Apelliado:  </b><input type='text' name='apellido' value='' size=25><br><br> 
                         <b>Pulsa registrarte:</b>
                         <div>
                             <input type="submit" value="Registrarse" name="registrar" class="btn btn-warning disabled">
