@@ -8,7 +8,21 @@
         return $data;
     }
 //--------------------------------------------------------------------------
-    //Función para obtener los datos de los jugadores de un archivo de texto plano.
+    // Función para guardar los nombres en el archivo.
+    function guardarNombresFichero($nomFichero, $nombre, $apellido) {
+        if (file_exists($nomFichero)) {
+            $fichero = fopen($nomFichero, "w") or die("No se ha podido abrir el archivo $nombre");
+            file_put_contents($fichero, $nombre . "," . $apellido, FILE_APPEND | LOCK_EX);
+            fclose($fichero);
+        }else {
+            $fichero = fopen($nomFichero, "w") or die("No se ha podido abrir el archivo $nombre");
+            file_put_contents($fichero, "Nombre,Apellido", FILE_APPEND | LOCK_EX);
+            file_put_contents($fichero, $nombre . "," . $apellido, FILE_APPEND | LOCK_EX);
+            fclose($fichero);
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para obtener los datos de los jugadores de un archivo de texto plano.
     function obtenerDatos($nombre) {
         $fichero = fopen($nombre, "r") or die("No se ha podido abrir el archivo $nombre");
         $datos = file($nombre, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -16,7 +30,7 @@
         return $datos;
     }
 //--------------------------------------------------------------------------
-    //Función para obtener el nombre completo por línea.
+    // Función para obtener el nombre completo por línea.
     function obtenerNombreLinea($linea) {
         $linea = explode(",", $linea);
         return $linea[0] . " " . $linea[1];

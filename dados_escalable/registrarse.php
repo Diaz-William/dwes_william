@@ -26,5 +26,22 @@
                 </div>
             </div>
         </form>
+
+        <?php
+            // Incluir el archivo "funciones_dados.php".
+            include "funciones_dados.php";
+            // Incluir el archivo "errores_sistema.php".
+            include "errores_sistema.php";
+            // Establecer la función "error_function" para el manejo de errores.
+            set_error_handler("error_function");
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $nomFichero = "jugadores.txt";
+                $nombre = test_input($_POST["nombre"]);
+                $apellido = test_input($_POST["apellido"]);
+
+                guardarNombresFichero($nomFichero, $nombre, $apellido);
+            }
+        ?>
     </body>
 </html>
