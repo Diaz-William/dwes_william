@@ -27,7 +27,7 @@
         $jugadores = array();
 
         foreach ($nombres as $indice => $linea) {
-            if ($indice > 1) {
+            if ($indice > 0) {
                 $nombre = obtenerNombreLinea($linea);
                 $jugadores[$nombre] = array("resultados" => array(), "suma" => 0);
             }
