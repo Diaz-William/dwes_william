@@ -8,28 +8,13 @@
         return $data;
     }
 //--------------------------------------------------------------------------
-    //Función para obtener los datos de los jugadores de un archivo de texto plano.
-    function obtenerDatos($nombre) {
-        $fichero = fopen($nombre, "r") or die("No se ha podido abrir el archivo $nombre");
-        $datos = file($nombre, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        fclose($fichero);
-        return $datos;
-    }
-//--------------------------------------------------------------------------
-    //Función para obtener el nombre completo por línea.
-    function obtenerNombreLinea($linea) {
-        $linea = explode(",", $linea);
-        return $linea[0] . " " . $linea[1];
-    }
-//--------------------------------------------------------------------------
     // Función para rellenar los jugadores con sus nombres y sus datos.
 	function rellenarJugadores($nombres) {
         $jugadores = array();
 
-        foreach ($nombres as $indice => $linea) {
-            if ($indice > 1) {
-                $nombre = obtenerNombreLinea($linea);
-                $jugadores[$nombres] = array("resultados" => array(), "suma" => 0);
+        for ($i = 0; $i < count($nombres); $i++) { 
+            if (!empty($nombres[$i])) {
+                $jugadores[$nombres[$i]] = array("resultados" => array(), "suma" => 0);
             }
         }
 
