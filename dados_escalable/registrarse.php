@@ -43,13 +43,17 @@
             // Establecer la función "error_function" para el manejo de errores.
             set_error_handler("error_function");
 
+            // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Obtener los datos del formulario y declaración de variables.
                 $nomFichero = "jugadores.txt";
                 $nombre = test_input($_POST["nombre"]);
                 $apellido = test_input($_POST["apellido"]);
 
+                // Guardar el nombre y el apelliado en el archivo.
                 guardarNombresFichero($nomFichero, $nombre, $apellido);
 
+                // Mostrar mensaje de registro correcto.
                 echo "<p>Te has registrado correctamente: $nombre $apellido</p>";
             }
         ?>
