@@ -18,7 +18,8 @@
         <!--Aplicacion-->
         <div class="card border-success mb-3" style="max-width: 30rem;">
           <div class="card-body">
-            <B>Pulsa para jugar:</B>
+            <b>Numero Dados: </b><input type='text' name='numdados' value='' size=5><br><br>
+            <b>Pulsa para jugar:</b>
             <div>
               <input type="submit" value="Jugar" name="jugar" class="btn btn-warning disabled">
             </div>
@@ -38,25 +39,21 @@
       // Comprobar si se han enviado los datos del formulario por el método POST.
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Obtener los datos del formulario y declaración de variables.
-        $nomJ1 = test_input($_POST["jug1"]);
-        $nomJ2 = test_input($_POST["jug2"]);
-        $nomJ3 = test_input($_POST["jug3"]);
-        $nomJ4 = test_input($_POST["jug4"]);
         $cantDados = intval(test_input($_POST["numdados"]));
         $nombres = array();
         $jugadores = array();
         $ganadores = array();
 
-        if (empty($nomJ1) || empty($nomJ2)) {
-          // Mostrar un error si no se ha introducido los dos primeros nombres de los jugadores.
-          trigger_error("Debe introducir los dos primeros nombres de los jugadores");
-        } else if ($cantDados < 1 || $cantDados > 10) {
+        // Guardar todos nombres del archivo en el array $nombres.
+        $nombres = obtenerDatos("jugadores.txt");
+
+        if (count($nombres) <= 1) {
+          // Mostrar un error si no  hay jugadores en el archivo.
+          trigger_error("No hay jugadores en el archivo");
+        }else if ($cantDados < 1 || $cantDados > 10) {
           // Mostrar un error si la cantidad de dados no está en el rango permitido (1 - 10).
           trigger_error("Debe introducir un número de dados del 1 al 10");
         } else {
-          // Guardar todos nombres introducidos en el array $nombres.
-          array_push($nombres, $nomJ1, $nomJ2, $nomJ3, $nomJ4);
-
           // Rellenar el array $jugadores con los nombres y sus datos.
           $jugadores = rellenarJugadores($nombres);
           // Realizar las tiradas de todos los dados de los jugadores.
