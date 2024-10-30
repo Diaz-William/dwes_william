@@ -11,23 +11,30 @@
     // Función para guardar los nombres en el archivo.
     function guardarNombresFichero($nomFichero, $nombre, $apellido) {
         $fichero = fopen($nomFichero, "a+");
+
         if (!$fichero) {
             trigger_error("No se ha podido abrir el archivo $nomFichero");
+        }else {
+            if (filesize($nomFichero) == 0) {
+                fwrite($fichero, "Nombre,Apellido\n");
+            }
+        
+            fwrite($fichero, $nombre . "," . $apellido . "\n");
+            fclose($fichero);
         }
-    
-        if (filesize($nomFichero) == 0) {
-            fwrite($fichero, "Nombre,Apellido\n");
-        }
-    
-        fwrite($fichero, $nombre . "," . $apellido . "\n");
-        fclose($fichero);
     }    
 //--------------------------------------------------------------------------
     // Función para obtener los datos de los jugadores de un archivo de texto plano.
     function obtenerDatos($nombre) {
-        $fichero = fopen($nombre, "r") or die("No se ha podido abrir el archivo $nombre");
-        $datos = file($nombre, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        fclose($fichero);
+        $fichero = fopen($nombre, "r");
+
+        if (!$fichero) {
+            trigger_error("No se ha podido abrir el archivo $nombre");
+        }else {
+            $datos = file($nombre, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            fclose($fichero);
+        }
+        
         return $datos;
     }
 //--------------------------------------------------------------------------
