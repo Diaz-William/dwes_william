@@ -31,10 +31,11 @@
             // set the resulting array to associative
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
-            $siguiente = $resultado->fetchColumn() + 1;
+            $num = $resultado->fetchColumn();
+            $siguiente = $num + 1;
             $pk = "D";
-            $num = strlen($siguiente);
-            $pk = str_pad($pk, (3 - $num), "0" , STR_PAD_RIGHT) . $siguiente;
+            $cantidad = strlen($siguiente);
+            $pk = str_pad($pk, (3 - $cantidad), "0" , STR_PAD_RIGHT) . $siguiente;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
