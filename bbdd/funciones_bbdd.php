@@ -15,7 +15,7 @@
     function insertarDepartamneto($conn, $nombre) {
         try {
             $cod_dpto = obtenerPKDpto($conn);
-            $insert = $conn->prepare("INSERT INTO dpto (cod_dpto,nombre) VALUES ($cod_dpto,$nombre)");
+            $insert = $conn->prepare("INSERT INTO dpto (cod_dpto,nombre) VALUES ('$cod_dpto','$nombre')");
             // insert a row
             $insert->execute();
             echo "<p>Se ha insertado correctamente el nuevo departamento $nombre</p>";
