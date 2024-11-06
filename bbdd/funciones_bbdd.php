@@ -38,7 +38,9 @@
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-
+        var_dump($cantidad);
+        var_dump($siguiente);
+        var_dump($pk);
         return $pk;
     }
 //--------------------------------------------------------------------------
