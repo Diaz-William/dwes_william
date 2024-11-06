@@ -1,4 +1,5 @@
 <?php
+//--------------------------------------------------------------------------
     function realizarConexion($dbname,$servername,$username,$password) {
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);
@@ -10,24 +11,26 @@
 
         return $conn;
     }
+//--------------------------------------------------------------------------
     function insertarDepartamneto($conn, $nombre) {
         try {
             $cod_dpto = obtenerPKDpto($conn);
-            $stmt = $conn->prepare("INSERT INTO dpto (cod_dpto,nombre) VALUES ($cod_dpto,$nombre)");
+            $insert = $conn->prepare("INSERT INTO dpto (cod_dpto,nombre) VALUES ($cod_dpto,$nombre)");
             // insert a row
-            $stmt->execute();
+            $insert->execute();
+            echo "<p>Se ha insertado correctamente el nuevo departamento $nombre</p>";
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
     }
-
+//--------------------------------------------------------------------------
     function obtenerPKDpto($conn) {
         try {
-            $stmt = $conn->prepare("SELECT count(cod_dpto) AS 'total' FROM dpto");
-            $stmt->execute();
+            $select = $conn->prepare("SELECT count(cod_dpto) AS 'total' FROM dpto");
+            $select->execute();
             // set the resulting array to associative
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $resultado = $stmt->fetchAll();
+            $select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchAll();
             $siguiente = $resultado["total"] + 1;
             $pk = "D";
             $num = strlen($siguiente);
@@ -38,3 +41,26 @@
 
         return $pk;
     }
+//--------------------------------------------------------------------------
+    function comprobarExistenciaDepartamento($conn, $nombre) {
+        $repetido = false;
+        $select = $conn->prepare("SELECT nombre FROM dpto");
+        $select->execute();
+        $select->setFetchMode(PDO::FETCH_ASSOC);
+        $resultado = $select->fetchAll();
+        foreach ($resultado as $dpto) {
+            if ($dpto == $nombre) {
+                $repetido = true;
+            }
+        }
+        return $repetido;
+    }
+//--------------------------------------------------------------------------
+    // Función para limpiar la entrada de datos del usuario.
+	function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+//--------------------------------------------------------------------------

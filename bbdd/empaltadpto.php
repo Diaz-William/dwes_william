@@ -10,6 +10,8 @@
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label for="nomDpto">Nombre Departamento:</label>
             <input name="nomDpto" type="text">
+            <br><br>
+            <input type="submit" value="Insetar">
         </form>
     </body>
     <?php
@@ -25,9 +27,14 @@
             if (empty($_POST["nomDpto"])) {
                 trigger_error("Tiene que introducir un nombre de departamento");
             }else {
-                $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
-                insertarDepartamneto($conn, $nombre);
-                $conn = null;
+                $nombre = strtoupper(test_input($_POST["nomDpto"]));
+                if (comprobarExistenciaDepartamento($conn, $nombre)) {
+                    trigger_error("Ya existe un departamento $nombre");
+                }else {
+                    $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
+                    insertarDepartamneto($conn, $nombre);
+                    $conn = null;
+                }
             }
         }
     ?>
