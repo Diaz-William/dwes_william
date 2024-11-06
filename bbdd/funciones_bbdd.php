@@ -31,7 +31,7 @@
             // set the resulting array to associative
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
-            $siguiente = $resultado["total"] + 1;
+            $siguiente = $resultado->fetchColumn() + 1;
             $pk = "D";
             $num = strlen($siguiente);
             $pk = str_pad($pk, (3 - $num), "0" , STR_PAD_RIGHT) . $siguiente;
