@@ -51,6 +51,8 @@
         $select->setFetchMode(PDO::FETCH_ASSOC);
         $resultado = $select->fetchAll();
         foreach ($resultado as $dpto) {
+            var_dump($dpto);
+            var_dump($nombre);
             if ($dpto == $nombre) {
                 $repetido = true;
             }
