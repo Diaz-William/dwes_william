@@ -29,10 +29,9 @@
             $select = $conn->prepare("SELECT count(cod_dpto) AS 'total' FROM dpto");
             $select->execute();
             // set the resulting array to associative
-            $select->setFetchMode(PDO::FETCH_ASSOC);
-            $resultado = $select->fetchAll();
-            $num = $resultado->fetchColumn();
-            $siguiente = $num + 1;
+            //$select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchColumn();
+            $siguiente = $resultado + 1;
             $pk = "D";
             $cantidad = strlen($siguiente);
             $pk = str_pad($pk, (3 - $cantidad), "0" , STR_PAD_RIGHT) . $siguiente;
