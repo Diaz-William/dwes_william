@@ -34,7 +34,7 @@
             $siguiente = $resultado + 1;
             $pk = "D";
             $cantidad = strlen($siguiente);
-            $pk = str_pad($pk, (3 - $cantidad), "0" , STR_PAD_RIGHT) . $siguiente;
+            $pk = str_pad($pk, (4 - $cantidad), "0" , STR_PAD_RIGHT) . $siguiente;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
