@@ -53,7 +53,7 @@
         foreach ($resultado as $dpto) {
             var_dump($dpto);
             var_dump($nombre);
-            if (strcmp(strtoupper($dpto), strtoupper($nombre)) !== 0) {
+            if (strcmp(strtoupper($dpto["nombre"]), strtoupper($nombre)) !== 0) {
                 $repetido = true;
             }
         }
