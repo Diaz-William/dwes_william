@@ -6,5 +6,4 @@
         echo "Archivo: $error_file <br>";
         echo "Línea: $error_line <br>";
         echo "<hr>";
-        die();
     }
