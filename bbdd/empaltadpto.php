@@ -27,6 +27,7 @@
             }else {
                 $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
                 insertarDepartamneto($conn, $nombre);
+                $conn = null;
             }
         }
     ?>
