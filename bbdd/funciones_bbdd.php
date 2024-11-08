@@ -144,8 +144,7 @@
     }
 //--------------------------------------------------------------------------
     function actualizarEmple_Dpto($conn, $dni, $dpto) {
-        $update = $conn->prepare("UPDATE emple_dpto SET cod_dpto = :cod_dpto, fecha_fin = :fecha_fin WHERE dni = :dni AND fecha_fin IS NULL");
-        $update->bindParam(':cod_dpto', $dpto);
+        $update = $conn->prepare("UPDATE emple_dpto SET fecha_fin = :fecha_fin WHERE dni = :dni AND fecha_fin IS NULL");
         $fecha_fin = date("Y-m-d");
         $update->bindParam(':fecha_fin', $fecha_fin);
         $update->bindParam(':dni', $dni);
