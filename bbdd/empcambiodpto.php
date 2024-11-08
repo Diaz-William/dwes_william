@@ -32,7 +32,7 @@
                 $dni = test_input($_POST["dni"]);
                 $dpto = test_input($_POST["dpto"]);
                 $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
-                if (comprobarCambioDpto($conn, $dni, $dpto)) {
+                if (comprobarCambioDpto($conn, $dni)) {
                     trigger_error("El empleado con el dni $dni no se puede volver a cambiar de departamento hoy.");
                     cerrarConexion($conn);
                 }else {

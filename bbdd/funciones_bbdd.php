@@ -153,10 +153,9 @@
         insertarEmple_Dpto($conn, $dni, $dpto);
     }
 //--------------------------------------------------------------------------
-    function comprobarCambioDpto($conn, $dni, $dpto) {
-        $select = $conn->prepare("SELECT dni, cod_dpto, fecha_in FROM emple_dpto WHERE dni = :dni AND cod_dpto = :cod_dpto AND fecha_in = :fecha_in");
+    function comprobarCambioDpto($conn, $dni) {
+        $select = $conn->prepare("SELECT dni, fecha_in FROM emple_dpto WHERE dni = :dni AND fecha_in = :fecha_in AND fecha_fin IS NULL");
         $select->bindParam(':dni', $dni);
-        $select->bindParam(':cod_dpto', $dpto);
         $fecha_in = date("Y-m-d");
         $select->bindParam(':fecha_in', $fecha_in);
         $select->execute();
