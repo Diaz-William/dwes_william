@@ -71,6 +71,8 @@
     }
 //--------------------------------------------------------------------------
     function imprimirSeleccionDepartamento($conn) {
+        echo "<br><br>";
+        echo "<label for='dpto'>Departamento: </label>";
         echo "<select name='dpto' id='dpto'>";
         echo "<option value=''>--Seleccionar Departamento--</option>";
         $select = $conn->prepare("SELECT cod_dpto, nombre FROM dpto");
@@ -103,7 +105,6 @@
     }
 //--------------------------------------------------------------------------
     function insertarEmpleado($conn, $dni, $nombre, $apellidos, $salario, $fecha, $dpto) {
-        // prepare sql and bind parameters
         $insert = $conn->prepare("INSERT INTO emple (dni,nombre,apellidos,salario,fecha_nac) VALUES (:dni,:nombre,:apellidos,:salario,:fecha)");
         $insert->bindParam(':dni', $dni);
         $insert->bindParam(':nombre', $nombre);
@@ -124,6 +125,8 @@
     }
 //--------------------------------------------------------------------------
     function imprimirSeleccionDni($conn) {
+        echo "<br><br>";
+        echo "<label for='dni'>DNI: </label>";
         echo "<select name='dni' id='dni'>";
         echo "<option value=''>--Seleccionar DNI--</option>";
         $select = $conn->prepare("SELECT dni, nombre FROM emple");
