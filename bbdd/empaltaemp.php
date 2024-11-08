@@ -32,8 +32,8 @@
         // Establecer la función "error_function" para el manejo de errores.
         set_error_handler("error_function");
 
-        imprimirSeleccionDepartamento($conn);
         $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
+        imprimirSeleccionDepartamento($conn);
 
         // Comprobar si se han enviado los datos del formulario por el método POST.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
