@@ -34,6 +34,7 @@
 
         $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
         imprimirSeleccionDepartamento($conn);
+        cerrarFormulario();
         cerrarConexion($conn);
 
         // Comprobar si se han enviado los datos del formulario por el método POST.

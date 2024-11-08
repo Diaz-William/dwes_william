@@ -31,10 +31,10 @@
                 $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
                 if (comprobarExistenciaDepartamento($conn, $nombre)) {
                     trigger_error("Ya existe un departamento $nombre");
-                    $conn = null;
+                    cerrarConexion($conn);
                 }else {
                     insertarDepartamneto($conn, $nombre);
-                    $conn = null;
+                    cerrarConexion($conn);
                 }
             }
         }

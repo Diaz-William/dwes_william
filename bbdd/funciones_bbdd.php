@@ -82,9 +82,6 @@
             echo "<option value='{$row['cod_dpto']}'>{$row['cod_dpto']} - {$row['nombre']}</option>";
         }
         echo "</select>";
-        echo "<br><br>";
-        echo "<input type='submit' value='Insetar'>";
-        echo "</form>";
     }
 //--------------------------------------------------------------------------
     function comprobarDniRepetido($conn, $dni) {
@@ -124,5 +121,47 @@
         $fecha_in = date("Y-m-d");
         $insert->bindParam(':fecha_in', $fecha_in);
         $insert->execute();
+    }
+//--------------------------------------------------------------------------
+    function imprimirSeleccionDni($conn) {
+        echo "<select name='dni' id='dni'>";
+        echo "<option value=''>--Seleccionar DNI--</option>";
+        $select = $conn->prepare("SELECT dni, nombre FROM emple");
+        $select->execute();
+
+        $select->setFetchMode(PDO::FETCH_ASSOC);
+        $resultado = $select->fetchAll();
+        foreach($resultado as $row) {
+            echo "<option value='{$row['dni']}'>{$row['dni']} - {$row['nombre']}</option>";
+        }
+        echo "</select>";        
+    }
+//--------------------------------------------------------------------------
+    function cerrarFormulario() {
+        echo "<br><br>";
+        echo "<input type='submit' value='Enviar'>";
+        echo "</form>";
+    }
+//--------------------------------------------------------------------------
+    function actualizarEmple_Dpto($conn, $dni, $dpto) {
+        $update = $conn->prepare("UPDATE emple_dpto SET cod_dpto = :cod_dpto, fecha_fin = :fecha_fin WHERE dni = :dni AND fecha_fin IS NULL");
+        $update->bindParam(':cod_dpto', $dpto);
+        $fecha_fin = date("Y-m-d");
+        $update->bindParam(':fecha_fin', $fecha_fin);
+        $update->bindParam(':dni', $dni);
+        $update->execute();
+        insertarEmple_Dpto($conn, $dni, $dpto);
+    }
+//--------------------------------------------------------------------------
+    function comprobarCambioDpto($conn, $dni, $dpto) {
+        $select = $conn->prepare("SELECT dni, cod_dpto, fecha_in FROM emple_dpto WHERE dni = :dni AND cod_dpto = :cod_dpto AND fecha_in = :fecha_in");
+        $select->bindParam(':dni', $dni);
+        $select->bindParam(':cod_dpto', $dpto);
+        $fecha_in = date("Y-m-d");
+        $select->bindParam(':fecha_in', $fecha_in);
+        $select->execute();
+        $select->setFetchMode(PDO::FETCH_ASSOC);
+        $resultado = $select->fetchAll();
+        return count($resultado) > 0;
     }
 //--------------------------------------------------------------------------
