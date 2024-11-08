@@ -186,3 +186,25 @@
         }
     }
 //--------------------------------------------------------------------------
+    function listarEmpleadosAntiguosDepartamento($conn, $dpto) {
+        $select = $conn->prepare("SELECT e.dni, e.nombre, d.nombre AS 'dpto' FROM emple e, dpto d, emple_dpto ed WHERE e.dni = ed.dni AND d.cod_dpto = ed.cod_dpto AND ed.cod_dpto = :dpto AND fecha_fin IS NOT NULL");
+        $select->bindParam(':dpto', $dpto);
+        $select->execute();
+        $select->setFetchMode(PDO::FETCH_ASSOC);
+        $resultado = $select->fetchAll();
+        if (count($resultado) > 0) {
+            echo "<h2>Empleados Antiguos del departamento $dpto - {$resultado[0]['dpto']}</h2>";
+            echo "<ul>";
+            foreach ($resultado as $row) {
+                echo "<li>{$row['dni']} - {$row['nombre']}</li>";
+            }
+            echo "</ul>";
+        } else {
+            $select = $conn->prepare("SELECT nombre FROM dpto WHERE cod_dpto = :dpto");
+            $select->bindParam(':dpto', $dpto);
+            $select->execute();
+            $resultado = $select->fetchColumn();
+            echo "<p>No ha habido bajas de empleados en el departamento $dpto - $resultado.</p>";
+        }
+    }
+//--------------------------------------------------------------------------
