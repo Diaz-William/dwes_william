@@ -162,6 +162,6 @@
         $select->execute();
         $select->setFetchMode(PDO::FETCH_ASSOC);
         $resultado = $select->fetchAll();
-        return count($resultado) > 0;
+        return count($resultado) !== 0;
     }
 //--------------------------------------------------------------------------
