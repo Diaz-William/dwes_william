@@ -32,6 +32,7 @@
         // Establecer la función "error_function" para el manejo de errores.
         set_error_handler("error_function");
 
+        imprimirSeleccionDepartamento($conn);
         $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
 
         // Comprobar si se han enviado los datos del formulario por el método POST.
@@ -47,10 +48,10 @@
                 
                 if (comprobarDniRepetido($conn, $dni)) {
                     trigger_error("Ya existe un empleado con el dni $dni");
-                    $conn = null;
+                    cerrarConexion($conn);
                 }else {
                     insertarDepartamneto($conn, $nombre);
-                    $conn = null;
+                    cerrarConexion($conn);
                 }
             }
         }

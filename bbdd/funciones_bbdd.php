@@ -83,7 +83,7 @@
         $select->setFetchMode(PDO::FETCH_ASSOC);
         $resultado = $select->fetchAll();
         foreach($resultado as $row) {
-            echo "<option value='{$row["cod_dpto"]}'>{$row["cod_dpto"]} - {$row["nombre"]}</option>";
+            echo "<option value='{$row['cod_dpto']}'>{$row['cod_dpto']} - {$row['nombre']}</option>";
         }
         echo "</select>";
         echo "<br><br>";
