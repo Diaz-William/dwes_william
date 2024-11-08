@@ -34,23 +34,27 @@
 
         $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
         imprimirSeleccionDepartamento($conn);
+        cerrarConexion($conn);
 
         // Comprobar si se han enviado los datos del formulario por el método POST.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["dni"]) || empty($_POST["nombre"])) {
-                trigger_error("Tiene que introducir el dni y el nombre del empleado");
+            if (empty($_POST["dni"]) || empty($_POST["nombre"]) || empty($_POST["dpto"])) {
+                trigger_error("Tiene que introducir el dni del empleado, el nombre del empleado y el departamento.");
+                cerrarConexion($conn);
             }else {
                 $dni = strtoupper(test_input($_POST["dni"]));
                 $nombre = strtoupper(test_input($_POST["nombre"]));
                 $apellidos = empty($_POST["apellidos"]) ? null : strtoupper(test_input($_POST["apellidos"]));
                 $salario = empty($_POST["salario"]) ? null : intval(test_input($_POST["salario"]));
                 $fecha = empty($_POST["fecha"]) ? null : date("Y-m-d", strtotime(test_input($_POST["fecha"])));
+                $dpto = test_input($_POST["dpto"]);
                 
+                $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
                 if (comprobarDniRepetido($conn, $dni)) {
                     trigger_error("Ya existe un empleado con el dni $dni");
                     cerrarConexion($conn);
                 }else {
-                    insertarDepartamneto($conn, $nombre);
+                    insertarEmpleado($conn, $dni, $nombre, $apellidos, $salario, $fecha, $dpto);
                     cerrarConexion($conn);
                 }
             }

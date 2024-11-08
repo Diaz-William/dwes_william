@@ -11,7 +11,6 @@
     function realizarConexion($dbname,$servername,$username,$password) {
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);
-            // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
             echo "Conexión fallida: " . $e->getMessage();
@@ -28,7 +27,6 @@
         try {
             $cod_dpto = obtenerPKDpto($conn);
             $insert = $conn->prepare("INSERT INTO dpto (cod_dpto,nombre) VALUES ('$cod_dpto','$nombre')");
-            // insert a row
             $insert->execute();
             echo "<p>Se ha insertado correctamente el nuevo departamento $nombre</p>";
         } catch (PDOException $e) {
@@ -40,8 +38,6 @@
         try {
             $select = $conn->prepare("SELECT count(cod_dpto) AS 'total' FROM dpto");
             $select->execute();
-            // set the resulting array to associative
-            //$select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchColumn();
             $siguiente = $resultado + 1;
             $pk = "D";
@@ -75,11 +71,11 @@
     }
 //--------------------------------------------------------------------------
     function imprimirSeleccionDepartamento($conn) {
-        echo "<select>";
+        echo "<select name='dpto' id='dpto'>";
+        echo "<option value=''>--Seleccionar Departamento--</option>";
         $select = $conn->prepare("SELECT cod_dpto, nombre FROM dpto");
         $select->execute();
 
-        // set the resulting array to associative
         $select->setFetchMode(PDO::FETCH_ASSOC);
         $resultado = $select->fetchAll();
         foreach($resultado as $row) {
@@ -117,16 +113,16 @@
         $insert->bindParam(':apellidos', $apellidos);
         $insert->bindParam(':salario', $salario);
         $insert->bindParam(':fecha', $fecha);
-    
-        // insert a row
         $insert->execute();
+        insertarEmple_Dpto($conn, $dni, $dpto);
     }
 //--------------------------------------------------------------------------
     function insertarEmple_Dpto($conn, $dni, $dpto) {
-        $insert = $conn->prepare("INSERT INTO emple_dpto (dni,cod_dpto,fecha_in) VALUES (:dni,:dpto,:fecha_in)");
+        $insert = $conn->prepare("INSERT INTO emple_dpto (dni, cod_dpto, fecha_in) VALUES (:dni, :dpto, :fecha_in)");
         $insert->bindParam(':dni', $dni);
         $insert->bindParam(':dpto', $dpto);
-        $insert->bindParam(':fehca_in', date("Y-m-d"));
+        $fecha_in = date("Y-m-d");
+        $insert->bindParam(':fecha_in', $fecha_in);
         $insert->execute();
     }
 //--------------------------------------------------------------------------
