@@ -31,6 +31,7 @@
             }else {
                 $dpto = test_input($_POST["dpto"]);
                 $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
+                listarEmpleadosDepartamento($conn, $dpto);
                 cerrarConexion($conn);
             }
         }
