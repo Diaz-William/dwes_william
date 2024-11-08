@@ -3,11 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="author" content="William Diaz">
-        <title>P.3.5</title>
+        <title>P.3.6</title>
     </head>
     <body>
-        <h1>Listar Empleados Antiguos Departamento</h1>
+        <h1>Actualizar Salario Empleados</h1>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <label for="porcentaje">Número del porcentaje (+/-)</label>
+            <input type="text" name="porcentaje" id="porcentaje">
+            <br><br>
     </body>
     <?php
         // Incluir el archivo "funciones_dados.php".
@@ -18,20 +21,20 @@
         set_error_handler("error_function");
 
         $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
-        imprimirSeleccionDepartamento($conn);
-        echo "<br><br>";
+        imprimirSeleccionDni($conn);
         cerrarFormulario();
         cerrarConexion($conn);
 
         // Comprobar si se han enviado los datos del formulario por el método POST.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["dpto"])) {
-                trigger_error("Tiene que seleccionar un departamento.");
+            if (empty($_POST["dni"]) || empty($_POST["porcentaje"])) {
+                trigger_error("Tiene que seleccionar un dni.");
                 cerrarConexion($conn);
             }else {
-                $dpto = test_input($_POST["dpto"]);
+                $dni = test_input($_POST["dni"]);
+                $porcentaje = floatval(test_input($_POST["porcentaje"])) / 100;
                 $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
-                listarEmpleadosAntiguosDepartamento($conn, $dpto);
+                actualizarSalarioEmpleado($conn, $dni, $porcentaje);
                 cerrarConexion($conn);
             }
         }

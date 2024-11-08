@@ -208,3 +208,21 @@
         }
     }
 //--------------------------------------------------------------------------
+    function actualizarSalarioEmpleado($conn, $dni, $porcentaje) {
+        $update = $conn->prepare("UPDATE emple SET salario = :salario WHERE dni = :dni");
+        $salarioAntiguo = obtenerSalarioEmpleado($conn, $dni);
+        $salarioNuevo = $salarioAntiguo + ($salarioAntiguo * $porcentaje);
+        $update->bindParam(':dni', $dni);
+        $update->bindParam(':salario', $salarioNuevo);
+        $update->execute();
+        echo "<p>Se ha actualizado el salario del empleado con el dni $dni de $salarioAntiguo a $salarioNuevo</p>";
+    }
+//--------------------------------------------------------------------------
+    function obtenerSalarioEmpleado($conn, $dni) {
+        $select = $conn->prepare("SELECT salario FROM emlpe WHERE dni = :dni");
+        $select->bindParam(':dni', $dni);
+        $select->execute();
+        $resultado = $select->fetchColumn();
+        return floatval($resultado);
+    }
+//--------------------------------------------------------------------------
