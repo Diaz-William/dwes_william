@@ -19,6 +19,7 @@
 
         $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
         imprimirSeleccionDepartamento($conn);
+        echo "<br><br>";
         imprimirSeleccionDni($conn);
         cerrarFormulario();
         cerrarConexion($conn);

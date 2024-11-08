@@ -71,7 +71,6 @@
     }
 //--------------------------------------------------------------------------
     function imprimirSeleccionDepartamento($conn) {
-        echo "<br><br>";
         echo "<label for='dpto'>Departamento: </label>";
         echo "<select name='dpto' id='dpto'>";
         echo "<option value=''>--Seleccionar Departamento--</option>";
@@ -125,7 +124,6 @@
     }
 //--------------------------------------------------------------------------
     function imprimirSeleccionDni($conn) {
-        echo "<br><br>";
         echo "<label for='dni'>DNI: </label>";
         echo "<select name='dni' id='dni'>";
         echo "<option value=''>--Seleccionar DNI--</option>";
