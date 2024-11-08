@@ -38,7 +38,7 @@
                 }else {
                     actualizarEmple_Dpto($conn, $dni, $dpto);
                     cerrarConexion($conn);
-                    echo "<p>Se ha cambiado al empledo $nombre con el dni $dni al departamento $dpto</p>";
+                    echo "<p>Se ha cambiado al empleado con el dni $dni al departamento $dpto.</p>";
                 }
             }
         }
