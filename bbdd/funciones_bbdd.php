@@ -46,9 +46,6 @@
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-        var_dump($cantidad);
-        var_dump($siguiente);
-        var_dump($pk);
         return $pk;
     }
 //--------------------------------------------------------------------------
@@ -232,7 +229,7 @@
 //--------------------------------------------------------------------------
     function empleadosFecha($conn, $fecha) {
         $select = $conn->prepare("SELECT e.dni, e.nombre, d.cod_dpto, d.nombre AS 'dpto' FROM emple e, dpto d, emple_dpto ed WHERE e.dni = ed.dni AND d.cod_dpto = ed.cod_dpto AND :fecha BETWEEN ed.fecha_in AND IFNULL(ed.fecha_fin, :fecha)");
-        $select->bindParam(':fehca', $fecha);
+        $select->bindParam(':fecha', $fecha);
         $select->execute();
         $select->setFetchMode(PDO::FETCH_ASSOC);
         $resultado = $select->fetchAll();
