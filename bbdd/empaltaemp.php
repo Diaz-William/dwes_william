@@ -35,7 +35,6 @@
         $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
         echo "<br><br>";
         imprimirSeleccionDepartamento($conn);
-        echo "<br><br>";
         cerrarFormulario();
         cerrarConexion($conn);
 

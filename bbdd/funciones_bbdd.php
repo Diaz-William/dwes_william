@@ -211,7 +211,7 @@
             echo "<p>No se puede actualizar el salario del empleado con el dni $dni porque es 0.</p>";
         }else {
             $update = $conn->prepare("UPDATE emple SET salario = :salario WHERE dni = :dni");
-            $salarioNuevo = $salarioAntiguo + ($salarioAntiguo * $porcentaje);
+            $salarioNuevo = max(0, ($salarioAntiguo + ($salarioAntiguo * $porcentaje)));
             $update->bindParam(':dni', $dni);
             $update->bindParam(':salario', $salarioNuevo);
             $update->execute();
