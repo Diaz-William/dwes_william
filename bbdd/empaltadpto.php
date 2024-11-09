@@ -25,11 +25,13 @@
         // Comprobar si se han enviado los datos del formulario por el método POST.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["nomDpto"])) {
+                // Mostrar un error si no se introduce el nombre del departamento.
                 trigger_error("Tiene que introducir un nombre de departamento");
             }else {
                 $nombre = strtoupper(test_input($_POST["nomDpto"]));
                 $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
                 if (comprobarExistenciaDepartamento($conn, $nombre)) {
+                    // Mostrar un error si ya existe un departamento con el nombre introducido.
                     trigger_error("Ya existe un departamento $nombre");
                     cerrarConexion($conn);
                 }else {

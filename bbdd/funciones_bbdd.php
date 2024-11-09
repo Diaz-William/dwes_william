@@ -8,6 +8,7 @@
         return $data;
     }
 //--------------------------------------------------------------------------
+    // Función para realizar la conexión con la base de datos.
     function realizarConexion($dbname,$servername,$username,$password) {
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);
@@ -19,10 +20,12 @@
         return $conn;
     }
 //--------------------------------------------------------------------------
+    // Función para cerrar la conexión con la base de datos.
     function cerrarConexion(&$conn) {
         $conn = null;
     }
 //--------------------------------------------------------------------------
+    // Función para insertar un nuevo departamento.
     function insertarDepartamneto($conn, $nombre) {
         try {
             $cod_dpto = obtenerPKDpto($conn);
@@ -34,6 +37,7 @@
         }
     }
 //--------------------------------------------------------------------------
+    // Función para obtener la siguiente clave primaria para un nuevo departamento.
     function obtenerPKDpto($conn) {
         try {
             $select = $conn->prepare("SELECT count(cod_dpto) AS 'total' FROM dpto");
@@ -49,6 +53,7 @@
         return $pk;
     }
 //--------------------------------------------------------------------------
+    // Función para comprobar que existe un departamento mediante el nombre.
     function comprobarExistenciaDepartamento($conn, $nombre) {
         $repetido = false;
         $cont = 0;
@@ -67,6 +72,7 @@
         return $repetido;
     }
 //--------------------------------------------------------------------------
+    // Función para visualizar los departamentos en un desplegable.
     function imprimirSeleccionDepartamento($conn) {
         echo "<label for='dpto'>Departamento: </label>";
         echo "<select name='dpto' id='dpto'>";
@@ -82,6 +88,7 @@
         echo "</select>";
     }
 //--------------------------------------------------------------------------
+    // Función para comprobar que existe un dni.
     function comprobarDniRepetido($conn, $dni) {
         $repetido = false;
         $cont = 0;
@@ -100,6 +107,7 @@
         return $repetido;
     }
 //--------------------------------------------------------------------------
+    // Función para insertar un nuevo empleado.
     function insertarEmpleado($conn, $dni, $nombre, $apellidos, $salario, $fecha, $dpto) {
         $insert = $conn->prepare("INSERT INTO emple (dni,nombre,apellidos,salario,fecha_nac) VALUES (:dni,:nombre,:apellidos,:salario,:fecha)");
         $insert->bindParam(':dni', $dni);
@@ -111,6 +119,7 @@
         insertarEmple_Dpto($conn, $dni, $dpto);
     }
 //--------------------------------------------------------------------------
+    // Función para asignar un departamento a un empleado.
     function insertarEmple_Dpto($conn, $dni, $dpto) {
         $insert = $conn->prepare("INSERT INTO emple_dpto (dni, cod_dpto, fecha_in) VALUES (:dni, :dpto, :fecha_in)");
         $insert->bindParam(':dni', $dni);
@@ -120,6 +129,7 @@
         $insert->execute();
     }
 //--------------------------------------------------------------------------
+    // Función para visualizar los dni en un desplegable.
     function imprimirSeleccionDni($conn) {
         echo "<label for='dni'>DNI: </label>";
         echo "<select name='dni' id='dni'>";
@@ -135,12 +145,14 @@
         echo "</select>";        
     }
 //--------------------------------------------------------------------------
+    // Función para visualizar un botón de envío y cerrar el formulario.
     function cerrarFormulario() {
         echo "<br><br>";
         echo "<input type='submit' value='Enviar'>";
         echo "</form>";
     }
 //--------------------------------------------------------------------------
+    // Función para cambiar de departamento a un empleado.
     function actualizarEmple_Dpto($conn, $dni, $dpto) {
         $update = $conn->prepare("UPDATE emple_dpto SET fecha_fin = :fecha_fin WHERE dni = :dni AND fecha_fin IS NULL");
         $fecha_fin = date("Y-m-d");
@@ -150,6 +162,7 @@
         insertarEmple_Dpto($conn, $dni, $dpto);
     }
 //--------------------------------------------------------------------------
+    // Función para evitar que un empleado se cambie de departamento más de una vez al día.
     function comprobarCambioDpto($conn, $dni) {
         $select = $conn->prepare("SELECT dni, fecha_in FROM emple_dpto WHERE dni = :dni AND fecha_in = :fecha_in AND fecha_fin IS NULL");
         $select->bindParam(':dni', $dni);
@@ -161,6 +174,7 @@
         return count($resultado) > 0;
     }
 //--------------------------------------------------------------------------
+    // Función visualizar una lista de empleados por departamento.
     function listarEmpleadosDepartamento($conn, $dpto) {
         $select = $conn->prepare("SELECT e.dni, e.nombre, d.nombre AS 'dpto' FROM emple e, dpto d, emple_dpto ed WHERE e.dni = ed.dni AND d.cod_dpto = ed.cod_dpto AND ed.cod_dpto = :dpto AND fecha_fin IS NULL");
         $select->bindParam(':dpto', $dpto);
@@ -183,6 +197,7 @@
         }
     }
 //--------------------------------------------------------------------------
+    // Función para listar los empleados antiguos por departamento.
     function listarEmpleadosAntiguosDepartamento($conn, $dpto) {
         $select = $conn->prepare("SELECT e.dni, e.nombre, d.nombre AS 'dpto' FROM emple e, dpto d, emple_dpto ed WHERE e.dni = ed.dni AND d.cod_dpto = ed.cod_dpto AND ed.cod_dpto = :dpto AND fecha_fin IS NOT NULL");
         $select->bindParam(':dpto', $dpto);
@@ -205,6 +220,7 @@
         }
     }
 //--------------------------------------------------------------------------
+    // Función para actualizar el salario de un empleado.
     function actualizarSalarioEmpleado($conn, $dni, $porcentaje) {
         $salarioAntiguo = obtenerSalarioEmpleado($conn, $dni);
         if ($salarioAntiguo == 0) {
@@ -219,6 +235,7 @@
         }
     }
 //--------------------------------------------------------------------------
+    // Función para obtener el salario actual de un empleado.
     function obtenerSalarioEmpleado($conn, $dni) {
         $select = $conn->prepare("SELECT IFNULL(salario, 0) AS 'salario' FROM emple WHERE dni = :dni");
         $select->bindParam(':dni', $dni);
@@ -227,6 +244,7 @@
         return floatval($resultado);
     }
 //--------------------------------------------------------------------------
+    // Función para mostrar los empleados y sus departamento por fecha.
     function empleadosFecha($conn, $fecha) {
         $select = $conn->prepare("SELECT e.dni, e.nombre, d.cod_dpto, d.nombre AS 'dpto' FROM emple e, dpto d, emple_dpto ed WHERE e.dni = ed.dni AND d.cod_dpto = ed.cod_dpto AND :fecha BETWEEN ed.fecha_in AND IFNULL(ed.fecha_fin, :fecha)");
         $select->bindParam(':fecha', $fecha);
