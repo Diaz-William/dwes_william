@@ -209,20 +209,38 @@
     }
 //--------------------------------------------------------------------------
     function actualizarSalarioEmpleado($conn, $dni, $porcentaje) {
-        $update = $conn->prepare("UPDATE emple SET salario = :salario WHERE dni = :dni");
         $salarioAntiguo = obtenerSalarioEmpleado($conn, $dni);
-        $salarioNuevo = $salarioAntiguo + ($salarioAntiguo * $porcentaje);
-        $update->bindParam(':dni', $dni);
-        $update->bindParam(':salario', $salarioNuevo);
-        $update->execute();
-        echo "<p>Se ha actualizado el salario del empleado con el dni $dni de $salarioAntiguo a $salarioNuevo</p>";
+        if ($salarioAntiguo == 0) {
+            echo "<p>No se puede actualizar el salario del empleado con el dni $dni porque es 0.</p>";
+        }else {
+            $update = $conn->prepare("UPDATE emple SET salario = :salario WHERE dni = :dni");
+            $salarioNuevo = $salarioAntiguo + ($salarioAntiguo * $porcentaje);
+            $update->bindParam(':dni', $dni);
+            $update->bindParam(':salario', $salarioNuevo);
+            $update->execute();
+            echo "<p>Se ha actualizado el salario del empleado con el dni $dni de $salarioAntiguo a $salarioNuevo</p>";
+        }
     }
 //--------------------------------------------------------------------------
     function obtenerSalarioEmpleado($conn, $dni) {
-        $select = $conn->prepare("SELECT salario FROM emlpe WHERE dni = :dni");
+        $select = $conn->prepare("SELECT IFNULL(salario, 0) AS 'salario' FROM emple WHERE dni = :dni");
         $select->bindParam(':dni', $dni);
         $select->execute();
         $resultado = $select->fetchColumn();
         return floatval($resultado);
+    }
+//--------------------------------------------------------------------------
+    function empleadosFecha($conn, $fecha) {
+        $select = $conn->prepare("SELECT e.dni, e.nombre, d.cod_dpto, d.nombre AS 'dpto' FROM emple e, dpto d, emple_dpto ed WHERE e.dni = ed.dni AND d.cod_dpto = ed.cod_dpto AND :fecha BETWEEN ed.fecha_in AND IFNULL(ed.fecha_fin, :fecha)");
+        $select->bindParam(':fehca', $fecha);
+        $select->execute();
+        $select->setFetchMode(PDO::FETCH_ASSOC);
+        $resultado = $select->fetchAll();
+        echo "<h2>Empleados del $fecha</h2>";
+        echo "<ul>";
+        foreach ($resultado as $row) {
+            echo "<li>{$row['dni']} - {$row['nombre']} - {$row['cod_dpto']} - {$row['dpto']}</li>";
+        }
+        echo "</ul>";
     }
 //--------------------------------------------------------------------------

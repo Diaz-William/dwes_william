@@ -3,14 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <meta name="author" content="William Diaz">
-        <title>P.3.6</title>
+        <title>P.3.7</title>
     </head>
     <body>
-        <h1>Actualizar Salario Empleados</h1>
+        <h1>Lista Empleados por Fecha</h1>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <label for="porcentaje">Número del porcentaje (+/-):</label>
-            <input type="text" name="porcentaje" id="porcentaje">
+            <label for="fecha">Fecha:</label>
+            <input type="text" name="fecha" id="fecha">
             <br><br>
+            <input type="submit" value="Enviar">
+        </form>
     </body>
     <?php
         // Incluir el archivo "funciones_dados.php".
@@ -20,21 +22,14 @@
         // Establecer la función "error_function" para el manejo de errores.
         set_error_handler("error_function");
 
-        $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
-        imprimirSeleccionDni($conn);
-        cerrarFormulario();
-        cerrarConexion($conn);
-
         // Comprobar si se han enviado los datos del formulario por el método POST.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["dni"]) || empty($_POST["porcentaje"])) {
-                trigger_error("Tiene que seleccionar un dni.");
-                cerrarConexion($conn);
+            if (empty($_POST["fecha"])) {
+                trigger_error("Tiene que introducir una fecha.");
             }else {
-                $dni = test_input($_POST["dni"]);
-                $porcentaje = floatval(test_input($_POST["porcentaje"])) / 100;
+                $fecha = date("Y-m-d", strtotime(test_input($_POST["fecha"])));
                 $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
-                actualizarSalarioEmpleado($conn, $dni, $porcentaje);
+                empleadosFecha($conn, $fecha);
                 cerrarConexion($conn);
             }
         }
