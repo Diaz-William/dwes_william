@@ -293,7 +293,7 @@
             }else {
                 empezarTransaccion($conn);
                 $update = $conn->prepare("UPDATE emple SET salario = :salario WHERE dni = :dni");
-                $salarioNuevo = max(0, ($salarioAntiguo + ($salarioAntiguo * $porcentaje)));
+                $salarioNuevo = max(0, round(($salarioAntiguo + ($salarioAntiguo * $porcentaje)), 2));
                 $update->bindParam(':dni', $dni);
                 $update->bindParam(':salario', $salarioNuevo);
                 $update->execute();
