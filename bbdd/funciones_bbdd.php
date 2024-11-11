@@ -55,17 +55,14 @@
     // Función para obtener la siguiente clave primaria para un nuevo departamento.
     function obtenerPKDpto($conn) {
         try {
-            $select = $conn->prepare("SELECT count(cod_dpto) AS 'total' FROM dpto");
+            $select = $conn->prepare("SELECT max(cod_dpto) AS 'total' FROM dpto");
             $select->execute();
-            $resultado = $select->fetchColumn();
-            $siguiente = $resultado + 1;
-            $pk = "D";
-            $cantidad = strlen($siguiente);
-            $pk = str_pad($pk, (4 - $cantidad), "0" , STR_PAD_RIGHT) . $siguiente;
+            $resultado = $select->fetchColumn();            
+            $resultado = substr($resultado, 0, 1) . str_pad((intval(substr($resultado, 1)) + 1), 3, '0', STR_PAD_LEFT);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-        return $pk;
+        return $resultado;
     }
 //--------------------------------------------------------------------------
     // Función para comprobar que existe un departamento mediante el nombre.
@@ -111,29 +108,6 @@
         }
     }
 //--------------------------------------------------------------------------
-    // Función para comprobar que existe un dni.
-    function comprobarDniRepetido($conn, $dni) {
-        try {
-            $repetido = false;
-            $cont = 0;
-            $select = $conn->prepare("SELECT dni FROM emple");
-            $select->execute();
-            $select->setFetchMode(PDO::FETCH_ASSOC);
-            $resultado = $select->fetchAll();
-
-            while (!$repetido && $cont < count($resultado)) {
-                if (strcmp(strtoupper($resultado[$cont]["dni"]), strtoupper($dni)) === 0) {
-                    $repetido = true;
-                }
-                $cont += 1;
-            }
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-
-        return $repetido;
-    }
-//--------------------------------------------------------------------------
     // Función para insertar un nuevo empleado.
     function insertarEmpleado(&$conn, $dni, $nombre, $apellidos, $salario, $fecha, $dpto) {
         try {
@@ -145,7 +119,6 @@
             $insert->bindParam(':salario', $salario);
             $insert->bindParam(':fecha', $fecha);
             $insert->execute();
-            validar($conn);
             insertarEmple_Dpto($conn, $dni, $dpto);
         } catch (PDOException $e) {
             deshacer($conn);
@@ -156,7 +129,6 @@
     // Función para asignar un departamento a un empleado.
     function insertarEmple_Dpto(&$conn, $dni, $dpto) {
         try {
-            empezarTransaccion($conn);
             $insert = $conn->prepare("INSERT INTO emple_dpto (dni, cod_dpto, fecha_in) VALUES (:dni, :dpto, :fecha_in)");
             $insert->bindParam(':dni', $dni);
             $insert->bindParam(':dpto', $dpto);
@@ -206,7 +178,6 @@
             $update->bindParam(':fecha_fin', $fecha_fin);
             $update->bindParam(':dni', $dni);
             $update->execute();
-            validar($conn);
             insertarEmple_Dpto($conn, $dni, $dpto);
         } catch (PDOException $e) {
             deshacer($conn);

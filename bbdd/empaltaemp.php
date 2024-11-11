@@ -52,14 +52,9 @@
                 $dpto = test_input($_POST["dpto"]);
                 
                 $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
-                if (comprobarDniRepetido($conn, $dni)) {
-                    trigger_error("Ya existe un empleado con el dni $dni");
-                    cerrarConexion($conn);
-                }else {
-                    insertarEmpleado($conn, $dni, $nombre, $apellidos, $salario, $fecha, $dpto);
-                    cerrarConexion($conn);
-                    echo "<p>Se ha inserado al empledo $nombre con el dni $dni en el departamento $dpto</p>";
-                }
+                insertarEmpleado($conn, $dni, $nombre, $apellidos, $salario, $fecha, $dpto);
+                cerrarConexion($conn);
+                echo "<p>Se ha inserado al empledo $nombre con el dni $dni en el departamento $dpto</p>";
             }
         }
     ?>
