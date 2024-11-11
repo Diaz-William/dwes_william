@@ -42,7 +42,9 @@
         try {
             empezarTransaccion($conn);
             $cod_dpto = obtenerPKDpto($conn);
-            $insert = $conn->prepare("INSERT INTO dpto (cod_dpto,nombre) VALUES ('$cod_dpto','$nombre')");
+            $insert = $conn->prepare("INSERT INTO dpto (cod_dpto,nombre) VALUES (:cod_dpto, :nombre)");
+            $insert->bindParam(':cod_dpto', $cod_dpto);
+            $insert->bindParam(':nombre', $nombre);
             $insert->execute();
             validar($conn);
             echo "<p>Se ha insertado correctamente el nuevo departamento $nombre</p>";
