@@ -122,9 +122,12 @@
             $insert->bindParam(':fecha', $fecha);
             $insert->execute();
             insertarEmple_Dpto($conn, $dni, $dpto);
+            echo "<p>Se ha inserado al empledo $nombre con el dni $dni en el departamento $dpto</p>";
         } catch (PDOException $e) {
             deshacer($conn);
             echo "Error: " . $e->getMessage();
+            echo "\nPDO::errorInfo():\n";
+            print_r($conn->errorInfo());
         }
     }
 //--------------------------------------------------------------------------

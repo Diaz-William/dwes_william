@@ -54,7 +54,6 @@
                 $conn = realizarConexion("empleadosmn","localhost","root","rootroot");
                 insertarEmpleado($conn, $dni, $nombre, $apellidos, $salario, $fecha, $dpto);
                 cerrarConexion($conn);
-                echo "<p>Se ha inserado al empledo $nombre con el dni $dni en el departamento $dpto</p>";
             }
         }
     ?>
