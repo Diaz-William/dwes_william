@@ -35,7 +35,7 @@
                     trigger_error("Ya existe un departamento $nombre");
                     cerrarConexion($conn);
                 }else {
-                    insertarDepartamneto($conn, $nombre);
+                    insertarDepartamento($conn, $nombre);
                     cerrarConexion($conn);
                 }
             }

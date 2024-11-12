@@ -38,7 +38,7 @@
     }
 //--------------------------------------------------------------------------
     // Función para insertar un nuevo departamento.
-    function insertarDepartamneto(&$conn, $nombre) {
+    function insertarDepartamento(&$conn, $nombre) {
         try {
             empezarTransaccion($conn);
             $cod_dpto = obtenerPKDpto($conn);
@@ -126,8 +126,7 @@
         } catch (PDOException $e) {
             deshacer($conn);
             echo "Error: " . $e->getMessage();
-            echo "\nPDO::errorInfo():\n";
-            print_r($conn->errorInfo());
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
