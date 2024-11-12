@@ -125,6 +125,8 @@
             echo "<p>Se ha inserado al empledo $nombre con el dni $dni en el departamento $dpto</p>";
         } catch (PDOException $e) {
             deshacer($conn);
+
+            echo $e->getMessage();
             
             if ($e->getCode() == '23000' && strpos($e->getMessage(), '1062 Duplicate entry') !== false) {
                 error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), "Error: El DNI '$dni' ya existe en la base de datos. Por favor, use un DNI diferente.");
