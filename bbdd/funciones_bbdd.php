@@ -125,9 +125,13 @@
             echo "<p>Se ha inserado al empledo $nombre con el dni $dni en el departamento $dpto</p>";
         } catch (PDOException $e) {
             deshacer($conn);
-            echo "Error: " . $e->getMessage();
-            var_dump($conn->errorInfo());
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            
+            // Verifica si el error es un duplicado de clave primaria (DNI repetido)
+            if ($e->getCode() == '23000' && strpos($e->getMessage(), '1062 Duplicate entry') !== false) {
+                echo "<p>Error: El DNI '$dni' ya existe en la base de datos. Por favor, use un DNI diferente.</p>";
+            } else {
+                error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            }
         }
     }
 //--------------------------------------------------------------------------
