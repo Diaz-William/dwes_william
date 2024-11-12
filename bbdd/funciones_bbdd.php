@@ -126,6 +126,7 @@
         } catch (PDOException $e) {
             deshacer($conn);
             echo "Error: " . $e->getMessage();
+            var_dump($conn->errorInfo());
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
