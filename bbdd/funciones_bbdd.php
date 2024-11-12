@@ -50,7 +50,7 @@
             echo "<p>Se ha insertado correctamente el nuevo departamento $nombre</p>";
         } catch (PDOException $e) {
             deshacer($conn);
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -62,7 +62,7 @@
             $resultado = $select->fetchColumn();            
             $resultado = substr($resultado, 0, 1) . str_pad((intval(substr($resultado, 1)) + 1), 3, '0', STR_PAD_LEFT);
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
         return $resultado;
     }
@@ -78,13 +78,13 @@
             $resultado = $select->fetchAll();
 
             while (!$repetido && $cont < count($resultado)) {
-                if (strcmp(strtoupper($resultado[$cont]["nombre"]), strtoupper($nombre)) === 0) {
+                if (strcasecmp($resultado[$cont]["nombre"], $nombre) == 0) {
                     $repetido = true;
                 }
                 $cont += 1;
             }
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
 
         return $repetido;
@@ -106,7 +106,7 @@
             }
             echo "</select>";
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -126,9 +126,8 @@
         } catch (PDOException $e) {
             deshacer($conn);
             
-            // Verifica si el error es un duplicado de clave primaria (DNI repetido)
             if ($e->getCode() == '23000' && strpos($e->getMessage(), '1062 Duplicate entry') !== false) {
-                echo "<p>Error: El DNI '$dni' ya existe en la base de datos. Por favor, use un DNI diferente.</p>";
+                error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), "Error: El DNI '$dni' ya existe en la base de datos. Por favor, use un DNI diferente.");
             } else {
                 error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
             }
@@ -147,7 +146,7 @@
             validar($conn);
         } catch (PDOException $e) {
             deshacer($conn);
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -167,7 +166,7 @@
             }
             echo "</select>";
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }        
     }
 //--------------------------------------------------------------------------
@@ -190,7 +189,7 @@
             insertarEmple_Dpto($conn, $dni, $dpto);
         } catch (PDOException $e) {
             deshacer($conn);
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -205,7 +204,7 @@
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
         return count($resultado) > 0;
     }
@@ -233,7 +232,7 @@
                 echo "<p>No hay empleados en el departamento $dpto - $resultado actualmente.</p>";
             }
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -260,7 +259,7 @@
                 echo "<p>No ha habido bajas de empleados en el departamento $dpto - $resultado.</p>";
             }
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -282,7 +281,7 @@
             }
         } catch (PDOException $e) {
             deshacer($conn);
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -294,7 +293,7 @@
             $select->execute();
             $resultado = $select->fetchColumn();
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
         return floatval($resultado);
     }
@@ -314,7 +313,7 @@
             }
             echo "</ul>";
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
