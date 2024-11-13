@@ -70,13 +70,11 @@
             $select = $conn->prepare("SELECT IFNULL(MAX(id_categoria),0) AS 'max' FROM categoria");
             $select->execute();
             $resultado = $select->fetchColumn();
-            var_dump($resultado);
+            
             if ($resultado === 0) {
                 $resultado = "C001";
             }else {
-                var_dump($resultado);
                 $resultado = substr($resultado, 0, 1) . str_pad((intval(substr($resultado, 1)) + 1), 3, '0', STR_PAD_LEFT);
-                var_dump($resultado);
             }
         } catch (PDOException $e) {
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
