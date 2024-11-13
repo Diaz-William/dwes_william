@@ -112,7 +112,7 @@
         try {
             empezarTransaccion($conn);
             $id_producto = obtenerPKProducto($conn);
-            $insert = $conn->prepare("INSERT INTO producto (id_producto,nombre,precio,id_categoria) VALUES (:id_producto, :nombre)");
+            $insert = $conn->prepare("INSERT INTO producto (id_producto,nombre,precio,id_categoria) VALUES (:id_producto, :nombre, :precio, :id_categoria)");
             $insert->bindParam(':id_producto', $id_producto);
             $insert->bindParam(':nombre', $nombre);
             $insert->bindParam(':precio', $precio);
