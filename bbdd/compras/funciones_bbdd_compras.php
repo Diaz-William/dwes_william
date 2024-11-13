@@ -132,7 +132,7 @@
             $select = $conn->prepare("SELECT IFNULL(MAX(id_producto),0) AS 'max' FROM producto");
             $select->execute();
             $resultado = $select->fetchColumn();
-            if ($resultado == 0) {
+            if ($resultado === 0) {
                 $resultado = "P0001";
             }else {
                 $resultado = substr($resultado, 0, 1) . str_pad((intval(substr($resultado, 1)) + 1), 4, '0', STR_PAD_LEFT);
