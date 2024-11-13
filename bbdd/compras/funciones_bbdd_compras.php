@@ -180,20 +180,17 @@
     // Función para aprovisionar almacenes con productos.
     function aprovisionarAlmacena(&$conn, $num_almacen, $id_producto, $cantidad) {
         try {
-            //empezarTransaccion($conn);
+            empezarTransaccion($conn);
             $select = $conn->prepare("SELECT cantidad FROM almacena WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
             $select->bindParam(':num_almacen', $num_almacen);
             $select->bindParam(':id_producto', $id_producto);
             $select->execute();
             $resultado = $select->fetchColumn();
-            var_dump($resultado);
-            var_dump(intval($resultado) + $cantidad);
-            var_dump(($resultado !== false));
             
-            /*if ($resultado !== false) {
-                $nuevaCantidad = intval($resultado['cantidad']) + $cantidad;
+            if ($resultado !== false) {
+                $cantidad += intval($resultado);
                 $update = $conn->prepare("UPDATE almacena SET cantidad = :cantidad WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
-                $update->bindParam(':cantidad', $nuevaCantidad);
+                $update->bindParam(':cantidad', $cantidad);
                 $update->bindParam(':num_almacen', $num_almacen);
                 $update->bindParam(':id_producto', $id_producto);
                 $update->execute();
@@ -205,8 +202,8 @@
                 $insert->bindParam(':cantidad', $cantidad);
                 $insert->execute();
                 echo "<p>Se ha aprovisionado correctamente el almacén $num_almacen con $cantidad productos con el id $id_producto.</p>";
-            }*/
-            //validar($conn);
+            }
+            validar($conn);
         } catch (PDOException $e) {
             deshacer($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
