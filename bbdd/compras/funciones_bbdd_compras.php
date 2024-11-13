@@ -70,7 +70,7 @@
             $select = $conn->prepare("SELECT IFNULL(MAX(id_categoria),0) AS 'max' FROM categoria");
             $select->execute();
             $resultado = $select->fetchColumn();
-            
+
             if ($resultado === 0) {
                 $resultado = "C001";
             }else {
@@ -249,7 +249,7 @@
     // Función para visualizar la cantidad de un producto en todos los almacenes.
     function visualizarStockProducto($conn, $id_producto) {
         try {
-            $select = $conn->prepare("SELECT p.id_producto, p.nombre, a.num_almacen, a.localidad, al.cantidad FROM producto p, almacen a, almacena al WHERE p.id_producto = al.id_producto AND a.num_almacen = al.num_almacen AND p.id_producto = :id_producto (+) ORDER BY a.num_almacen");
+            $select = $conn->prepare("SELECT p.id_producto, p.nombre, a.num_almacen, a.localidad, IFNULL(al.cantidad, 0) AS cantidad FROM almacen a LEFT JOIN almacena al ON a.num_almacen = al.num_almacen AND al.id_producto = :id_producto LEFT JOIN producto p ON p.id_producto = :id_producto ORDER BY a.num_almacen;");
             $select->bindParam(':id_producto', $id_producto);
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
