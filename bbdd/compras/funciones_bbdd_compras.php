@@ -187,6 +187,8 @@
             $select->execute();
             $resultado = $select->fetchColumn();
             var_dump($resultado);
+            var_dump($resultado !== false);
+            var_dump(intval($resultado['cantidad']) + $cantidad);
             
             /*if ($resultado !== false) {
                 $nuevaCantidad = intval($resultado['cantidad']) + $cantidad;
