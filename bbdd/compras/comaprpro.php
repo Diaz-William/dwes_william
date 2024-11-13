@@ -22,6 +22,7 @@
 
         $conn = realizarConexion("comprasweb","localhost","root","rootroot");
         imprimirSeleccionProductos($conn);
+        echo "<br><br>";
         imprimirSeleccionAlmacenes($conn);
         cerrarFormulario();
         cerrarConexion($conn);
