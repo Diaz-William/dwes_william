@@ -35,7 +35,7 @@
                 cerrarConexion($conn);
             }else {
                 $nombre = strtoupper(test_input($_POST["nombre"]));
-                $precio = strtoupper(test_input($_POST["precio"]));
+                $precio = floatval(test_input($_POST["precio"]));
                 $categoria = test_input($_POST["apellidos"]);
                 
                 $conn = realizarConexion("comprasweb","localhost","root","rootroot");
