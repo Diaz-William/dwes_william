@@ -178,21 +178,38 @@
     }
 //--------------------------------------------------------------------------
     // Función para aprovisionar almacenes con productos.
-    function insertarAlmacena(&$conn, $num_almacen, $id_producto, $cantidad) {
+    function aprovisionarAlmacena(&$conn, $num_almacen, $id_producto, $cantidad) {
         try {
             empezarTransaccion($conn);
-            $insert = $conn->prepare("INSERT INTO almacena (num_almacen,id_producto,cantidad) VALUES (:num_almacen,:id_producto,:cantidad)");
-            $insert->bindParam(':num_almacen', $num_almacen);
-            $insert->bindParam(':id_producto', $id_producto);
-            $insert->bindParam(':cantidad', $cantidad);
-            $insert->execute();
+            $select = $conn->prepare("SELECT cantidad FROM almacena WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
+            $select->bindParam(':num_almacen', $num_almacen);
+            $select->bindParam(':id_producto', $id_producto);
+            $select->execute();
+            $select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchAll();
+            
+            if (count($resultado) > 0) {
+                $nuevaCantidad = $resultado['cantidad'] + $cantidad;
+                $update = $conn->prepare("UPDATE almacena SET cantidad = :cantidad WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
+                $update->bindParam(':cantidad', $nuevaCantidad);
+                $update->bindParam(':num_almacen', $num_almacen);
+                $update->bindParam(':id_producto', $id_producto);
+                $update->execute();
+                echo "<p>Se ha aprovisionado correctamente el almacén $num_almacen con $cantidad productos más del id $id_producto.</p>";
+            }else {
+                $insert = $conn->prepare("INSERT INTO almacena (num_almacen, id_producto, cantidad) VALUES (:num_almacen, :id_producto, :cantidad)");
+                $insert->bindParam(':num_almacen', $num_almacen);
+                $insert->bindParam(':id_producto', $id_producto);
+                $insert->bindParam(':cantidad', $cantidad);
+                $insert->execute();
+                echo "<p>Se ha aprovisionado correctamente el almacén $num_almacen con $cantidad productos del id $id_producto.</p>";
+            }
             validar($conn);
-            echo "<p>Se ha aprovisionado correctamente el almacen $num_almacen con $cantidad productos con id $id_producto.</p>";
         } catch (PDOException $e) {
             deshacer($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
-    }
+    }    
 //--------------------------------------------------------------------------
     // Función para visualizar los productos en un desplegable.
     function imprimirSeleccionProductos($conn) {

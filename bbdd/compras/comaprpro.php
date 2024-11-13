@@ -38,7 +38,7 @@
                 $num_almacen = test_input($_POST["almacen"]);
                 
                 $conn = realizarConexion("comprasweb","localhost","root","rootroot");
-                insertarAlmacena($conn, $num_almacen, $id_producto, $cantidad);
+                aprovisionarAlmacena($conn, $num_almacen, $id_producto, $cantidad);
                 cerrarConexion($conn);
             }
         }
