@@ -257,7 +257,7 @@
             echo "<h2>Cantidad del producto {$resultado[0]['id_producto']} - {$resultado[0]['nombre']}</h2>";
             echo "<ul>";
             foreach ($resultado as $row) {
-                echo "<li>{$row['num_almacen']} - {$row['localidad']} --> {$row['cantidad']}</li>";
+                echo "<li>Almacen {$row['num_almacen']} - {$row['localidad']} => {$row['cantidad']}</li>";
             }
             echo "</ul>";
         } catch (PDOException $e) {
