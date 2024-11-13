@@ -195,14 +195,14 @@
                 $update->bindParam(':num_almacen', $num_almacen);
                 $update->bindParam(':id_producto', $id_producto);
                 $update->execute();
-                echo "<p>Se ha aprovisionado correctamente el almacén $num_almacen con $cantidad productos más del id $id_producto.</p>";
+                echo "<p>Se ha aprovisionado correctamente el almacén $num_almacen con $cantidad productos más con el id $id_producto.</p>";
             }else {
                 $insert = $conn->prepare("INSERT INTO almacena (num_almacen, id_producto, cantidad) VALUES (:num_almacen, :id_producto, :cantidad)");
                 $insert->bindParam(':num_almacen', $num_almacen);
                 $insert->bindParam(':id_producto', $id_producto);
                 $insert->bindParam(':cantidad', $cantidad);
                 $insert->execute();
-                echo "<p>Se ha aprovisionado correctamente el almacén $num_almacen con $cantidad productos del id $id_producto.</p>";
+                echo "<p>Se ha aprovisionado correctamente el almacén $num_almacen con $cantidad productos con el id $id_producto.</p>";
             }
             validar($conn);
         } catch (PDOException $e) {
