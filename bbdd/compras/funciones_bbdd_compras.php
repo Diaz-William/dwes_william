@@ -60,7 +60,7 @@
             echo "<p>Se ha insertado correctamente la nueva categoría $nombre.</p>";
         } catch (PDOException $e) {
             deshacer($conn);
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -79,7 +79,7 @@
                 var_dump($resultado);
             }
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
         return $resultado;
     }
@@ -101,7 +101,7 @@
                 $cont += 1;
             }
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
 
         return $repetido;
@@ -122,7 +122,7 @@
             echo "<p>Se ha insertado correctamente el nuevo producto $nombre.</p>";
         } catch (PDOException $e) {
             deshacer($conn);
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -138,7 +138,7 @@
                 $resultado = substr($resultado, 0, 1) . str_pad((intval(substr($resultado, 1)) + 1), 4, '0', STR_PAD_LEFT);
             }
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
         return $resultado;
     }
@@ -158,7 +158,7 @@
             }
             echo "</select>";
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -173,7 +173,7 @@
             echo "<p>Se ha insertado correctamente un nuevo almacen en la localidad de $localidad.</p>";
         } catch (PDOException $e) {
             deshacer($conn);
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -206,7 +206,7 @@
             validar($conn);
         } catch (PDOException $e) {
             deshacer($conn);
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }    
 //--------------------------------------------------------------------------
@@ -225,7 +225,7 @@
             }
             echo "</select>";
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -244,7 +244,7 @@
             }
             echo "</select>";
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -263,7 +263,7 @@
             }
             echo "</ul>";
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -282,7 +282,7 @@
             }
             echo "</ul>";
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -300,7 +300,7 @@
                 # code...
             }
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
@@ -319,7 +319,7 @@
             }
             echo "</select>";
         } catch (PDOException $e) {
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
