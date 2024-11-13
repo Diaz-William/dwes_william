@@ -182,13 +182,10 @@
         try {
             empezarTransaccion($conn);
             $select = $conn->prepare("SELECT cantidad FROM almacena WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
-            $num_almacen = 2;
-            $id_producto = "P0002";
             $select->bindParam(':num_almacen', $num_almacen);
             $select->bindParam(':id_producto', $id_producto);
             $select->execute();
             $resultado = $select->fetchColumn();
-            var_dump($resultado);
             
             if ($resultado !== false) {
                 $nuevaCantidad = intval($resultado['cantidad']) + $cantidad;
