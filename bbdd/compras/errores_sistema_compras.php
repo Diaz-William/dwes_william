@@ -5,7 +5,6 @@
             var_dump("dentro por tabla");
             var_dump($table);
             var_dump(!empty($table));
-            var_dump();
             if ($error_level == '23000' && strpos($error_message, '1062 Duplicate entry') !== false) {
                 var_dump("dentro por clave");
                 switch ($table) {
