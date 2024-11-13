@@ -2,7 +2,9 @@
     function error_function($error_level, $error_message, $error_file, $error_line, $table = null){
         echo "<hr>";
         if (!empty($table)) {
+            var_dump("dentro por tabla");
             if ($error_level == '23000' && strpos($error_message, '1062 Duplicate entry') !== false) {
+                var_dump("dentro por clave");
                 switch ($table) {
                     case 'emple':
                         echo "Error: Ya existe un empleado con el dni introducido en la tabla $table.";
