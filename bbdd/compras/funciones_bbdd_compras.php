@@ -40,6 +40,13 @@
         $conn->rollBack();
     }
 //--------------------------------------------------------------------------
+    // Función para visualizar un botón de envío y cerrar el formulario.
+    function cerrarFormulario() {
+        echo "<br><br>";
+        echo "<input type='submit' value='Enviar'>";
+        echo "</form>";
+    }
+//--------------------------------------------------------------------------
     // Función para insertar una nueva categoría.
     function insertarCategoria(&$conn, $nombre) {
         try {
@@ -64,7 +71,7 @@
             $select->execute();
             $resultado = $select->fetchColumn();
             var_dump($resultado);
-            if ($resultado == "0") {
+            if ($resultado === 0) {
                 $resultado = "C001";
             }else {
                 var_dump($resultado);
