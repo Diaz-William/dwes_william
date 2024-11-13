@@ -36,7 +36,7 @@
             }else {
                 $nombre = strtoupper(test_input($_POST["nombre"]));
                 $precio = floatval(test_input($_POST["precio"]));
-                $categoria = test_input($_POST["apellidos"]);
+                $categoria = test_input($_POST["categoria"]);
                 
                 $conn = realizarConexion("comprasweb","localhost","root","rootroot");
                 insertarProducto($conn, $nombre, $precio, $categoria);
