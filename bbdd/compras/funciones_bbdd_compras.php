@@ -64,7 +64,7 @@
             $select->execute();
             $resultado = $select->fetchColumn();
             var_dump($resultado);
-            if ($resultado === 0) {
+            if ($resultado == "0") {
                 $resultado = "C001";
             }else {
                 var_dump($resultado);
