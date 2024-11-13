@@ -11,6 +11,7 @@
             <label for="localidad">Localidad:</label>
             <input name="localidad" type="text">
             <br><br>
+            <input type="submit" value="Enviar">
     </body>
     <?php
         // Incluir el archivo "funciones_dados_compras.php".
