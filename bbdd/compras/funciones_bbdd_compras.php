@@ -63,6 +63,7 @@
             $select = $conn->prepare("SELECT IFNULL(MAX(id_categoria),0) AS 'max' FROM categoria");
             $select->execute();
             $resultado = $select->fetchColumn();
+            var_dump($resultado);
             if ($resultado == 0) {
                 $resultado = "C001";
             }else {
