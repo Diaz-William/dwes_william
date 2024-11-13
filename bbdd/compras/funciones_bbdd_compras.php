@@ -189,7 +189,7 @@
             var_dump($resultado);
             
             if (!empty($resultado)) {
-                $nuevaCantidad = $resultado[0]['cantidad'] + $cantidad;
+                $nuevaCantidad = $resultado['cantidad'] + $cantidad;
                 $update = $conn->prepare("UPDATE almacena SET cantidad = :cantidad WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
                 $update->bindParam(':cantidad', $nuevaCantidad);
                 $update->bindParam(':num_almacen', $num_almacen);
