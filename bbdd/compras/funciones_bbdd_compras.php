@@ -185,11 +185,11 @@
             $select->bindParam(':num_almacen', $num_almacen);
             $select->bindParam(':id_producto', $id_producto);
             $select->execute();
-            $select->setFetchMode(PDO::FETCH_ASSOC);
-            $resultado = $select->fetchAll();
+            $resultado = $select->fetchColumn();
+            var_dump($resultado);
             
-            if (count($resultado) > 0) {
-                $nuevaCantidad = $resultado['cantidad'] + $cantidad;
+            if (!empty($resultado)) {
+                $nuevaCantidad = $resultado[0]['cantidad'] + $cantidad;
                 $update = $conn->prepare("UPDATE almacena SET cantidad = :cantidad WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
                 $update->bindParam(':cantidad', $nuevaCantidad);
                 $update->bindParam(':num_almacen', $num_almacen);
