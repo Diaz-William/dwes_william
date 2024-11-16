@@ -287,7 +287,7 @@
     // Función para visualizar las compras de un cliente entre dos fechas.
     function visualizarComprasCliente($conn, $nif, $fecha_in, $fecha_fin) {
         try {
-            $select = $conn->prepare("SELECT cli.nif, cli.nombre, cli.apellido, p.id_producto, p.nombre AS 'producto', c.unidades, (c.unidades * p.precio) AS 'precio compra' FROM cliente cli, producto p, compra c WHERE cli.nif = c.nif AND p.id_producto = c.id_producto AND cli.nif = :nif AND fecha_compra BETWEEN :fecha_in AND :fecha_fin ORDER BY fecha_compra");
+            $select = $conn->prepare("SELECT cli.nif, p.id_producto, p.nombre AS 'producto', c.unidades, (c.unidades * p.precio) AS 'precio compra' FROM cliente cli, producto p, compra c WHERE cli.nif = c.nif AND p.id_producto = c.id_producto AND cli.nif = :nif AND fecha_compra BETWEEN :fecha_in AND :fecha_fin ORDER BY fecha_compra");
             $select->bindParam(':nif', $nif);
             $select->bindParam(':fecha_in', $fecha_in);
             $select->bindParam(':fecha_fin', $fecha_fin);
@@ -295,9 +295,9 @@
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
             if (empty($resultado)) { 
-                echo "No se encontraron compras para el cliente {$nif} entre las fechas {$fecha_in} y {$fecha_fin}.";
+                echo "No se encontraron compras para el cliente $nif entre las fechas $fecha_in y $fecha_fin.";
             }else {
-                echo "<h2>Compras del cliente {$resultado[0]['nif']} - {$resultado[0]['nombre']} {$resultado[0]['apellido']} entre $fecha_in y $fecha_fin</h2>";
+                echo "<h2>Compras del cliente {$resultado[0]['nif']} entre $fecha_in y $fecha_fin</h2>";
                 echo "<ul>";
                 $total = 0;
                 foreach ($resultado as $row) {

@@ -34,7 +34,7 @@
                 trigger_error("Tiene que introducir la fecha de inicio, la fecha de fin y el nif.");
                 cerrarConexion($conn);
             }else {
-                $nif = intval(test_input($_POST["nif"]));
+                $nif = test_input($_POST["nif"]);
                 $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
                 $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
                 
