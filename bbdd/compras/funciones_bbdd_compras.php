@@ -294,9 +294,8 @@
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
-            var_dump($resultado);
             foreach ($resultado as $row) {
-                # code...
+                var_dump($row);
             }
         } catch (PDOException $e) {
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
