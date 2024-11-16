@@ -302,7 +302,7 @@
                 $total += $row['precio compra'];
             }
             echo "</ul>";
-            echo "<p>El monto total de las {count($resultado)} compras es $total</p>";
+            echo "<p>El monto total de las " . count($resultado) . " compras es $total</p>";
         } catch (PDOException $e) {
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
