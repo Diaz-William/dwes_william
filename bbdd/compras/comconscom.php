@@ -24,23 +24,22 @@
         set_error_handler("error_function");
 
         $conn = realizarConexion("comprasweb","localhost","root","rootroot");
-        imprimirSeleccionProductos($conn);
-        imprimirSeleccionAlmacenes($conn);
+        imprimirSeleccionNif($conn);
         cerrarFormulario();
         cerrarConexion($conn);
 
         // Comprobar si se han enviado los datos del formulario por el método POST.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["cantidad"]) || empty($_POST["producto"]) || empty($_POST["almacen"])) {
-                trigger_error("Tiene que introducir la cantidad, el producto y el almacen.");
+            if (empty($_POST["fecha_in"]) || empty($_POST["fecha_fin"]) || empty($_POST["nif"])) {
+                trigger_error("Tiene que introducir la fecha de inicio, la fecha de fin y el nif.");
                 cerrarConexion($conn);
             }else {
-                $cantidad = intval(test_input($_POST["cantidad"]));
-                $id_producto = test_input($_POST["producto"]);
-                $num_almacen = test_input($_POST["almacen"]);
+                $nif = intval(test_input($_POST["nif"]));
+                $fecha_in = test_input($_POST["fecha_in"]);
+                $fecha_fin = test_input($_POST["fecha_fin"]);
                 
                 $conn = realizarConexion("comprasweb","localhost","root","rootroot");
-                insertarAlmacena($conn, $num_almacen, $id_producto, $cantidad);
+                visualizarComprasCliente($conn, $nif, $fecha_in, $fecha_fin);
                 cerrarConexion($conn);
             }
         }
