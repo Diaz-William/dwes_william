@@ -284,19 +284,24 @@
         }
     }
 //--------------------------------------------------------------------------
-    // Funcción para visualizar las compras de un cliente entre dos fechas.
+    // Función para visualizar las compras de un cliente entre dos fechas.
     function visualizarComprasCliente($conn, $nif, $fecha_in, $fecha_fin) {
         try {
-            $select = $conn->prepare("SELECT cli.nif, cli.nombre, cli.apellido, p.id_producto, p.nombre, (c.unidades * p.precio) AS 'precio compra' FROM cliente cli, producto p, compra c WHERE cli.nif = c.nif AND p.id_producto = c.id_producto AND cli.nif = :nif AND fecha_compra BETWEEN :fecha_in AND :fecha_fin ORDER BY fecha_compra");
+            $select = $conn->prepare("SELECT cli.nif, cli.nombre, cli.apellido, p.id_producto, p.nombre AS 'producto', c.unidades, (c.unidades * p.precio) AS 'precio compra' FROM cliente cli, producto p, compra c WHERE cli.nif = c.nif AND p.id_producto = c.id_producto AND cli.nif = :nif AND fecha_compra BETWEEN :fecha_in AND :fecha_fin ORDER BY fecha_compra");
             $select->bindParam(':nif', $nif);
             $select->bindParam(':fecha_in', $fecha_in);
             $select->bindParam(':fecha_fin', $fecha_fin);
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
+            echo "<h2>Compras del cliente {$resultado[0]['nif']} - {$resultado[0]['nombre']} {$resultado[0]['apellido']} entre {$resultado[0]['fecha_in']} y {$resultado[0]['fecha_fin']}</h2>";
+            echo "<ul>";
             foreach ($resultado as $row) {
-                var_dump($row);
+                echo "<li>{$row['id_producto']} - {$row['producto']}, {$row['unidades']} unidades, precio compra {$row['precio compra']}</li>";
+                $total += $row['precio compra'];
             }
+            echo "</ul>";
+            echo "<p>El monto total de las {count($resultado)} compras es $total</p>";
         } catch (PDOException $e) {
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
