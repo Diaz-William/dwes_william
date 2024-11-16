@@ -268,7 +268,7 @@
     // Función para visualizar la cantidad de productos en un almacen.
     function visualizarStockAlmacen($conn, $num_almacen) {
         try {
-            $select = $conn->prepare("SELECT p.id_producto, p.nombre, a.num_almacen, a.localidad, al.cantidad FROM producto p, almacen a, almacena al WHERE p.id_producto = al.id_producto AND a.num_almacen = al.num_almacen AND a.num_almacen = :num_almacen (+) ORDER BY a.num_almacen");
+            $select = $conn->prepare("SELECT p.id_producto, p.nombre, a.num_almacen, a.localidad, al.cantidad FROM producto p, almacen a, almacena al WHERE p.id_producto = al.id_producto AND a.num_almacen = al.num_almacen AND a.num_almacen = :num_almacen");
             $select->bindParam(':num_almacen', $num_almacen);
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
