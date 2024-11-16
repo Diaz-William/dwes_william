@@ -294,8 +294,9 @@
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
-            echo "<h2>Compras del cliente {$resultado[0]['nif']} - {$resultado[0]['nombre']} {$resultado[0]['apellido']} entre {$resultado[0]['fecha_in']} y {$resultado[0]['fecha_fin']}</h2>";
+            echo "<h2>Compras del cliente {$resultado[0]['nif']} - {$resultado[0]['nombre']} {$resultado[0]['apellido']} entre $fecha_in y $fecha_fin</h2>";
             echo "<ul>";
+            $total = 0;
             foreach ($resultado as $row) {
                 echo "<li>{$row['id_producto']} - {$row['producto']}, {$row['unidades']} unidades, precio compra {$row['precio compra']}</li>";
                 $total += $row['precio compra'];
