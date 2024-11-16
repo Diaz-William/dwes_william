@@ -294,6 +294,7 @@
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
+            var_dump($resultado);
             foreach ($resultado as $row) {
                 # code...
             }
