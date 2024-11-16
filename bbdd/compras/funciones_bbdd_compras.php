@@ -295,7 +295,7 @@
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
             if (empty($resultado)) { 
-                echo "No se encontraron compras para el cliente $nif entre las fechas $fecha_in y $fecha_fin.";
+                echo "<p>No se encontraron compras para el cliente $nif entre las fechas $fecha_in y $fecha_fin.</p>";
             }else {
                 echo "<h2>Compras del cliente {$resultado[0]['nif']} entre $fecha_in y $fecha_fin</h2>";
                 echo "<ul>";
