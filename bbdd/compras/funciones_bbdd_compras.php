@@ -331,3 +331,23 @@
         }
     }
 //--------------------------------------------------------------------------
+    // Función para insertar un cliente.
+    function insertarCliente(&$conn, $nif, $nombre, $apellidos, $cp, $direccion, $ciudad) {
+        try {
+            empezarTransaccion($conn);
+            $insert = $conn->prepare("INSERT INTO cliente (nif, nombre, apellido, cp, direccion, ciudad) VALUES (:nif, :nombre, :apellido, :cp, :direccion, :ciudad)");
+            $insert->bindParam(':nif', $nif);
+            $insert->bindParam(':nombre', $nombre);
+            $insert->bindParam(':apellido', $apellidos);
+            $insert->bindParam(':cp', $cp);
+            $insert->bindParam(':direccion', $direccion);
+            $insert->bindParam(':ciudad', $ciudad);
+            $insert->execute();
+            validar($conn);
+            echo "<p>Se ha introducido al cliente con el nif $nif</p>";
+        } catch (PDOException $e) {
+            deshacer($conn);
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
