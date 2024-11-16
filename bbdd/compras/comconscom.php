@@ -35,8 +35,8 @@
                 cerrarConexion($conn);
             }else {
                 $nif = intval(test_input($_POST["nif"]));
-                $fecha_in = date( "Y-m-d", test_input($_POST["fecha_in"]));
-                $fecha_fin = date("Y-m-d", test_input($_POST["fecha_fin"]));
+                $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
+                $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
                 
                 $conn = realizarConexion("comprasweb","localhost","root","rootroot");
                 visualizarComprasCliente($conn, $nif, $fecha_in, $fecha_fin);

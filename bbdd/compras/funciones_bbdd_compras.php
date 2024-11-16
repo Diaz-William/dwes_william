@@ -294,15 +294,19 @@
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
-            echo "<h2>Compras del cliente {$resultado[0]['nif']} - {$resultado[0]['nombre']} {$resultado[0]['apellido']} entre $fecha_in y $fecha_fin</h2>";
-            echo "<ul>";
-            $total = 0;
-            foreach ($resultado as $row) {
-                echo "<li>{$row['id_producto']} - {$row['producto']}, {$row['unidades']} unidades, precio compra {$row['precio compra']}</li>";
-                $total += $row['precio compra'];
+            if (empty($resultado)) { 
+                echo "No se encontraron compras para el cliente {$nif} entre las fechas {$fecha_in} y {$fecha_fin}.";
+            }else {
+                echo "<h2>Compras del cliente {$resultado[0]['nif']} - {$resultado[0]['nombre']} {$resultado[0]['apellido']} entre $fecha_in y $fecha_fin</h2>";
+                echo "<ul>";
+                $total = 0;
+                foreach ($resultado as $row) {
+                    echo "<li>{$row['id_producto']} - {$row['producto']}, {$row['unidades']} unidades, precio compra {$row['precio compra']}</li>";
+                    $total += $row['precio compra'];
+                }
+                echo "</ul>";
+                echo "<p>El monto total de las " . count($resultado) . " compras es $total</p>";
             }
-            echo "</ul>";
-            echo "<p>El monto total de las " . count($resultado) . " compras es $total</p>";
         } catch (PDOException $e) {
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
@@ -319,7 +323,7 @@
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
             foreach($resultado as $row) {
-                echo "<option value='{$row['nif']}'>{$row['nif']} - {$row['nombre']} - {$row['apellido']}</option>";
+                echo "<option value='{$row['nif']}'>{$row['nif']} - {$row['nombre']} {$row['apellido']}</option>";
             }
             echo "</select>";
         } catch (PDOException $e) {
