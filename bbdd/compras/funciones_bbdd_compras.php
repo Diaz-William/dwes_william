@@ -347,7 +347,7 @@
             echo "<p>Se ha introducido al cliente con el nif $nif</p>";
         } catch (PDOException $e) {
             deshacer($conn);
-            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), "cliente");
         }
     }
 //--------------------------------------------------------------------------

@@ -47,9 +47,9 @@
                 $nif = strtoupper(test_input($_POST["nif"]));
                 $nombre = empty($_POST["apellidos"]) ? null : strtoupper(test_input($_POST["nombre"]));
                 $apellidos = empty($_POST["apellidos"]) ? null : strtoupper(test_input($_POST["apellidos"]));
-                $cp = empty($_POST["cp"]) ? null : intval(test_input($_POST["cp"]));
-                $direccion = empty($_POST["direccion"]) ? null : intval(test_input($_POST["direccion"]));
-                $ciudad = empty($_POST["ciudad"]) ? null : intval(test_input($_POST["ciudad"]));
+                $cp = empty($_POST["cp"]) ? null : test_input($_POST["cp"]);
+                $direccion = empty($_POST["direccion"]) ? null : strtoupper(test_input($_POST["direccion"]));
+                $ciudad = empty($_POST["ciudad"]) ? null : strtoupper(test_input($_POST["ciudad"]));
                 
                 $conn = realizarConexion("comprasweb","localhost","root","rootroot");
                 insertarCliente($conn, $nif, $nombre, $apellidos, $cp, $direccion, $ciudad);
