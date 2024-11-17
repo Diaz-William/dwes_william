@@ -35,8 +35,8 @@
                 $nif = strtoupper(test_input($_POST["nif"]));
                 $datos = explode("-", test_input($_POST["producto"]));
                 $id_producto = $datos[0];
-                $num_almacen = $datos[1];
-                $unidades = test_input($_POST["unidades"]);
+                $num_almacen = intval($datos[1]);
+                $unidades = intval(test_input($_POST["unidades"]));
 
                 var_dump($nif);
                 var_dump($id_producto);
