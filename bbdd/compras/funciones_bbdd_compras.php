@@ -184,7 +184,9 @@
             $select->bindParam(':id_producto', $id_producto);
             $select->execute();
             $resultado = $select->fetchColumn();
-            
+            var_dump($resultado);
+            var_dump(empty($resultado));
+            var_dump($resultado !== false);
             if ($resultado !== false) {
                 $cantidad += intval($resultado);
                 $update = $conn->prepare("UPDATE almacena SET cantidad = :cantidad WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
