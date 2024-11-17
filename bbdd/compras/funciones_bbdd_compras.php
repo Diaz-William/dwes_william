@@ -72,9 +72,9 @@
             $resultado = $select->fetchColumn();
 
             if ($resultado === 0) {
-                $resultado = "C001";
+                $resultado = "C-001";
             }else {
-                $resultado = substr($resultado, 0, 1) . str_pad((intval(substr($resultado, 1)) + 1), 3, '0', STR_PAD_LEFT);
+                $resultado = substr($resultado, 0, 2) . str_pad((intval(substr($resultado, 2)) + 1), 3, '0', STR_PAD_LEFT);
             }
         } catch (PDOException $e) {
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
@@ -184,10 +184,8 @@
             $select->bindParam(':id_producto', $id_producto);
             $select->execute();
             $resultado = $select->fetchColumn();
-            var_dump($resultado);
-            var_dump(empty($resultado));
-            var_dump($resultado !== false);
-            if ($resultado !== false) {
+
+            if (!empty($resultado)) {
                 $cantidad += intval($resultado);
                 $update = $conn->prepare("UPDATE almacena SET cantidad = :cantidad WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
                 $update->bindParam(':cantidad', $cantidad);
@@ -314,7 +312,7 @@
         }
     }
 //--------------------------------------------------------------------------
-    // Función para visualizar los nif de los clientes.
+    // Función para visualizar los nif de los clientes en un desplegable.
     function imprimirSeleccionNif($conn) {
         try {
             echo "<label for='nif'>NIF: </label>";
@@ -350,6 +348,56 @@
         } catch (PDOException $e) {
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), "cliente");
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para visualizar los producto disponibles en un desplegable
+    function imprimirSeleccionProductosDisponibles($conn) {
+        try {
+            echo "<label for='producto'>Producto: </label>";
+            echo "<select name='producto' id='producto'>";
+            echo "<option value=''>--Seleccionar Producto--</option>";
+            $select = $conn->prepare("SELECT al.num_almacen, al.id_producto, p.nombre FROM almacena al, producto p WHERE al.id_producto = p.id_producto GROUP BY id_producto");
+            $select->execute();
+            $select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchAll();
+            foreach($resultado as $row) {
+                echo "<option value='{$row['id_producto']}-{$row['num_almacen']}'>{$row['id_producto']} - {$row['nombre']}</option>";
+            }
+            echo "</select>";
+        } catch (PDOException $e) {
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para comprar un producto
+    function comprarProducto(&$conn, $id_producto, $num_almacen, $nif, $unidades) {
+        try {
+            empezarTransaccion($conn);
+            $update = $conn->prepare("UPDATE almacena SET cantidad = cantidad - :unidades WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
+            $update->bindParam(':unidades', $unidades);
+            $update->bindParam(':id_producto', $id_producto);
+            $update->bindParam(':num_almacen', $num_almacen);
+            insertarCompra($conn, $nif, $id_producto, $unidades);
+        } catch (PDOException $e) {
+            deshacer($conn);
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para insertar en la tabla compra.
+    function insertarCompra(&$conn, $nif, $id_producto, $unidades) {
+        try {
+            $insert = $conn->prepare("INSERT INTO compra VALUES (:nif, :id_producto, :fecha_compra, :unidades)");
+            $insert->bindParam(':nif', $nif);
+            $insert->bindParam(':id_producto', $id_producto);
+            $fecha_compra = date("Y-m-d");
+            $insert->bindParam(':fecha_compra', $fecha_compra);
+            $insert->bindParam(':unidades', $unidades);
+            validar($conn);
+        } catch (PDOException $e) {
+            deshacer($conn);
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
