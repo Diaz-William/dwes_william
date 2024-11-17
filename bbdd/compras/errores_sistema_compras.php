@@ -12,7 +12,6 @@
         echo "<hr>";
         if (!empty($table)) {
             if ($error_level == '23000' && strpos($error_message, '1062 Duplicate entry') !== false) {
-                var_dump("dentro por clave");
                 switch ($table) {
                     case 'cliente':
                         echo "Error: Ya existe un cliente con el nif introducido.";
