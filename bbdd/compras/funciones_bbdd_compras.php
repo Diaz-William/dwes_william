@@ -16,7 +16,6 @@
         } catch(PDOException $e) {
             echo "Conexión fallida: " . $e->getMessage();
         }
-
         return $conn;
     }
 //--------------------------------------------------------------------------
@@ -71,7 +70,7 @@
             $select->execute();
             $resultado = $select->fetchColumn();
 
-            if ($resultado === 0) {
+            if (empty($resultado)) {
                 $resultado = "C-001";
             }else {
                 $resultado = substr($resultado, 0, 2) . str_pad((intval(substr($resultado, 2)) + 1), 3, '0', STR_PAD_LEFT);
@@ -130,7 +129,7 @@
             $select = $conn->prepare("SELECT IFNULL(MAX(id_producto),0) AS 'max' FROM producto");
             $select->execute();
             $resultado = $select->fetchColumn();
-            if ($resultado === 0) {
+            if (empty($resultado)) {
                 $resultado = "P0001";
             }else {
                 $resultado = substr($resultado, 0, 1) . str_pad((intval(substr($resultado, 1)) + 1), 4, '0', STR_PAD_LEFT);
