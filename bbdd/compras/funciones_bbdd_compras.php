@@ -379,6 +379,7 @@
             $update->bindParam(':id_producto', $id_producto);
             $update->bindParam(':num_almacen', $num_almacen);
             insertarCompra($conn, $nif, $id_producto, $unidades);
+            echo "<p>Su compra se ha realizado correctamente</p>";
         } catch (PDOException $e) {
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
