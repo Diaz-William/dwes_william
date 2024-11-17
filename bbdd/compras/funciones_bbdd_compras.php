@@ -378,6 +378,7 @@
             $update->bindParam(':unidades', $unidades);
             $update->bindParam(':id_producto', $id_producto);
             $update->bindParam(':num_almacen', $num_almacen);
+            $update->execute();
             insertarCompra($conn, $nif, $id_producto, $unidades);
             validar($conn);
             echo "<p>Su compra se ha realizado correctamente</p>";
@@ -396,6 +397,7 @@
             $fecha_compra = date("Y-m-d");
             $insert->bindParam(':fecha_compra', $fecha_compra);
             $insert->bindParam(':unidades', $unidades);
+            $insert->execute();
         } catch (PDOException $e) {
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
