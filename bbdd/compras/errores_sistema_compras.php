@@ -17,9 +17,6 @@
                     case 'cliente':
                         echo "Error: Ya existe un cliente con el nif introducido.";
                         break;
-                    default:
-                        # code...
-                        break;
                 }
             }
         } else {
