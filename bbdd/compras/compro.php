@@ -37,6 +37,11 @@
                 $id_producto = $datos[0];
                 $num_almacen = $datos[1];
                 $unidades = test_input($_POST["unidades"]);
+
+                var_dump($nif);
+                var_dump($id_producto);
+                var_dump($num_almacen);
+                var_dump($unidades);
                 
                 $conn = realizarConexion("comprasweb","localhost","root","rootroot");
                 comprarProducto($conn, $id_producto, $num_almacen, $nif, $unidades);

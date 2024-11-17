@@ -379,6 +379,7 @@
             $update->bindParam(':id_producto', $id_producto);
             $update->bindParam(':num_almacen', $num_almacen);
             insertarCompra($conn, $nif, $id_producto, $unidades);
+            validar($conn);
             echo "<p>Su compra se ha realizado correctamente</p>";
         } catch (PDOException $e) {
             deshacer($conn);
@@ -389,13 +390,12 @@
     // Función para insertar en la tabla compra.
     function insertarCompra(&$conn, $nif, $id_producto, $unidades) {
         try {
-            $insert = $conn->prepare("INSERT INTO compra VALUES (:nif, :id_producto, :fecha_compra, :unidades)");
+            $insert = $conn->prepare("INSERT INTO compra (nif, id_producto, fecha_compra, unidades) VALUES (:nif, :id_producto, :fecha_compra, :unidades)");
             $insert->bindParam(':nif', $nif);
             $insert->bindParam(':id_producto', $id_producto);
             $fecha_compra = date("Y-m-d");
             $insert->bindParam(':fecha_compra', $fecha_compra);
             $insert->bindParam(':unidades', $unidades);
-            validar($conn);
         } catch (PDOException $e) {
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
