@@ -31,8 +31,6 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["nif"]) || empty($_POST["producto"]) || empty($_POST["unidades"])) {
                 trigger_error("Tiene que seleccionar las unidades del producto, el producto y el nif.");
-            }else if (!preg_match('/^\d{8}[a-z]$/i', $nif)) {
-                trigger_error("El nif tiene un formato incorrecto (Ej: 12345678Z).");
             }else {
                 $nif = strtoupper(test_input($_POST["nif"]));
                 $datos = explode("-", test_input($_POST["producto"]));
