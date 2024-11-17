@@ -41,7 +41,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["nif"])) {
                 trigger_error("Tiene que introducir el nif del cliente.");
-            }else if (!preg_match('/^\d{8}[a-z]$/i', $nif)) {
+            }else if (!preg_match('/^\d{8}[a-z]$/i', empty($_POST["nif"]))) {
                 trigger_error("El nif tiene un formato incorrecto (Ej: 12345678Z).");
             }else {
                 $nif = strtoupper(test_input($_POST["nif"]));
