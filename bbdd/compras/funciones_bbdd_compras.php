@@ -387,7 +387,7 @@
         }
     }
 //--------------------------------------------------------------------------
-    // Función para insertar en la tabla compra.
+    // Función para insertar en la tabla compra. Prueba máquina virtual
     function insertarCompra(&$conn, $nif, $id_producto, $unidades) {
         try {
             $insert = $conn->prepare("INSERT INTO compra (nif, id_producto, fecha_compra, unidades) VALUES (:nif, :id_producto, :fecha_compra, :unidades)");
