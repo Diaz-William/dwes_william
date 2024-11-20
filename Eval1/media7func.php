@@ -21,32 +21,51 @@
         return $jugadores;
     }
 //--------------------------------------------------------------------------
-    // Función para tirar los dados de cada jugador.
+    // Función para repartir las cartas de los jugadores y realizar la suma.
 	function repartirCartas($jugadores, $numcartas) {
-        
+        $cartas = obtenerCartas();
+        var_dump($cartas);
         foreach ($jugadores as $jugador => &$datos) {
             for ($i = 0; $i < $numcartas; $i++) {
-                array_push($datos["resultados"], rand(1,6));
+                $aleatorio = rand(0, (count($cartas) - 1));
+                array_push($datos["resultados"], $cartas[$aleatorio]);
             }
-            $datos["suma"] = array_sum($datos["resultados"]);
+
+            $valor = substr($cartas[$aleatorio],0, 1);
+
+            if ($valor != "S" && $valor != "C" && $valor != "R") {
+                $valor = intval($valor);
+            }else {
+                $valor = 0.5;
+            }
+
+            $datos["suma"] += $valor;
         }
 
         return $jugadores;
     }
 //--------------------------------------------------------------------------
+    function obtenerCartas() {
+        $cartas = array();
+        $valores = array("B", "C", "E", "O");
+        $valoresNum = array("1", "2", "3", "4", "5", "6", "7", "C", "R", "S");
+
+        foreach ($valores as $x) {
+            foreach ($valoresNum as $y) {
+                $carta = $y . $x;
+                array_push( $cartas, $carta);
+            }
+        }
+
+        return $cartas;
+    }
+//--------------------------------------------------------------------------
 	// Función para obtener todos los ganadores.
 	function obtenerGanadores($jugadores) {
 		$ganadores = array();
-        $mayor = 0;
-        
-		foreach ($jugadores as $jugador => $datos) {
-            if ($datos["suma"] > $mayor) {
-                $mayor = $datos["suma"];
-            }
-        }
 		
 		foreach ($jugadores as $jugador => $datos) {
-            if ($datos["suma"] == $mayor) {
+            if ($datos["suma"] === 7.5) {
                 $ganadores[$jugador] = $jugadores[$jugador];
             }
         }
@@ -62,8 +81,8 @@
         foreach ($jugadores as $jugador => $datos) {
 			echo "<tr>";
 			echo "<td>$jugador</td>";
-            foreach ($datos["resultados"] as $num) {
-                echo "<td><img src='images/$num.png' style='width: 50px; height: 50px; margin: 5px;'></td>";
+            foreach ($datos["resultados"] as $carta) {
+                echo "<td><img src='images/$carta.PNG' style='width: 50px; height: 50px; margin: 5px;'></td>";
             }
 			echo "</tr>";
         }
