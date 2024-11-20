@@ -51,7 +51,7 @@
           // Mostrar los resultados.
           mostrarResultados($jugadores);
           // Mostrar los ganadores y el total de ganadores.
-          mostrarGanadores($jugadores);
+          mostrarGanadores($jugadores, $apuesta);
           // Guardar la apuesta en el archivo apuestas.txt.
           guardarApuestas($jugadores);
         }

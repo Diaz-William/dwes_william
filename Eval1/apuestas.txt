@@ -1,1 +1,4 @@
-Jugador2***7***5000
+Jugador1***12.5***0
+Jugador2***5.5***5000
+Jugador3***12.5***0
+Jugador4***12.5***0

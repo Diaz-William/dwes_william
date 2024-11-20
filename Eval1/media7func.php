@@ -31,16 +31,17 @@
                 array_push($datos["resultados"], $cartas[$aleatorio]);
             }
 
-            $valor = substr($cartas[$aleatorio],0, 1);
+            foreach ($datos["resultados"] as $carta) {
+                $valor = substr($carta,0, 1);
 
-            if ($valor != "S" && $valor != "C" && $valor != "R") {
-                $valor = intval($valor);
-            }else {
-                $valor = 0.5;
+                if ($valor != "S" && $valor != "C" && $valor != "R") {
+                    $valor = intval($valor);
+                }else {
+                    $valor = 0.5;
+                }
+                
+                $datos["suma"] += $valor;
             }
-
-            $datos["suma"] += $valor;
-            //$datos["suma"] = 8;
         }
 
         return $jugadores;
@@ -72,6 +73,8 @@
                 $seguir = false;
             }
         }
+
+        
         
         if ($seguir) {
             $aproximaciones = array();
@@ -101,6 +104,22 @@
                     }
                 }
             }
+        }else {
+            $contador = 0;
+
+            foreach ($jugadores as $jugador => $datos) {
+                if ($datos["ganador"]) {
+                    $contador += 1;
+                }
+            }
+
+            $premio = floatval($apuesta / $contador);
+            
+            foreach ($jugadores as $jugador => &$datos) {
+                if ($datos["ganador"]) {
+                    $datos["premio"] = $premio;
+                }
+            }
         }
 	}
 //--------------------------------------------------------------------------
@@ -127,29 +146,33 @@
     }
 //--------------------------------------------------------------------------
     // Función para mostrar los ganadores.
-	function mostrarGanadores($ganadores) {
+	function mostrarGanadores($jugadores, $apuesta) {
+        $noGanadores = true;
 		echo "<hr>";
-        if (count($ganadores) > 0) {
-            foreach ($ganadores as $jugador => $datos) {
+        foreach ($jugadores as $jugador => $datos) {
+            if ($datos["ganador"]) {
                 echo "<p>Ganador: $jugador</p>";
                 $premio = $datos["premio"];
                 echo "<p>Premio: $jugador => $premio</p>";
+                $noGanadores = false;
             }
-        }else {
+        }
+        if ($noGanadores) {
             echo "<p>No hay ganadores</p>";
+            echo "<p>Bote: $apuesta</p>";
         }
         echo "<hr>";
 	}
 //--------------------------------------------------------------------------
     // Función para guardar las apuestas en el archivo apuestas.txt.
-    function guardarApuestas($ganadores) {
+    function guardarApuestas($jugadores) {
         $fichero = fopen("apuestas.txt", "w+");
 
         if (!$fichero) {
             trigger_error("No se ha podido abrir el archivo apuestas.txt");
         }else {
-            foreach ($ganadores as $ganador => $datos) {
-                fwrite($fichero, $ganador . "***" . $datos["suma"] . "***" . $datos["premio"] . "\n");
+            foreach ($jugadores as $jugador => $datos) {
+                fwrite($fichero, $jugador . "***" . $datos["suma"] . "***" . $datos["premio"] . "\n");
             }
             fclose($fichero);
         }
