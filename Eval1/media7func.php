@@ -39,7 +39,7 @@
                 }else {
                     $valor = 0.5;
                 }
-                
+
                 $datos["suma"] += $valor;
             }
         }
@@ -145,7 +145,7 @@
         }
     }
 //--------------------------------------------------------------------------
-    // Función para mostrar los ganadores.
+    // Función para mostrar los ganadores o el bote.
 	function mostrarGanadores($jugadores, $apuesta) {
         $noGanadores = true;
 		echo "<hr>";

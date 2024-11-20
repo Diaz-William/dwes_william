@@ -21,7 +21,7 @@
 
       // Comprobar si se han enviado los datos del formulario por el método POST.
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Obtener los datos del formulario y declaración de variables.
+        // Obtener los datos del formulario y declaración de arrays.
         $nombre1 = test_input($_POST["nombre1"]);
         $nombre2 = test_input($_POST["nombre2"]);
         $nombre3 = test_input($_POST["nombre3"]);
@@ -50,7 +50,7 @@
           obtenerGanadores($jugadores, $apuesta);
           // Mostrar los resultados.
           mostrarResultados($jugadores);
-          // Mostrar los ganadores y el total de ganadores.
+          // Mostrar los ganadores o el bote.
           mostrarGanadores($jugadores, $apuesta);
           // Guardar la apuesta en el archivo apuestas.txt.
           guardarApuestas($jugadores);
