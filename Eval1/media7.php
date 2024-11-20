@@ -30,13 +30,12 @@
         $apuesta = floatval(test_input($_POST["apuesta"]));
         $nombres = array();
         $jugadores = array();
-        $ganadores = array();
 
         if (empty($nombre1) || empty($nombre2)) {
           // Mostrar un error si no se ha introducido los dos primeros nombres de los jugadores.
           trigger_error("Debe introducir los dos primeros nombres de los jugadores");
-        } else if ($numcartas < 2 || $numcartas > 10) {
-          // Mostrar un error si la cantidad de cartas no está en el rango permitido (2 - 10).
+        } else if (empty($numcartas) || $numcartas < 2 || $numcartas > 10) {
+          // Mostrar un error si la cantidad de cartas no está en el rango permitido (2 - 10) o no se ha introducido un número.
           trigger_error("Debe introducir un número de cartas del 2 al 10");
         } else {
           // Guardar todos nombres introducidos en el array $nombres.
@@ -48,11 +47,13 @@
           $jugadores = repartirCartas($jugadores, $numcartas);
     
           // Obtener los ganadores y repartir el premio.
-          $ganadores = obtenerGanadores($jugadores, $apuesta);
+          obtenerGanadores($jugadores, $apuesta);
           // Mostrar los resultados.
           mostrarResultados($jugadores);
           // Mostrar los ganadores y el total de ganadores.
-          mostrarGanadores($ganadores);
+          mostrarGanadores($jugadores);
+          // Guardar la apuesta en el archivo apuestas.txt.
+          guardarApuestas($jugadores);
         }
       }
     ?>
