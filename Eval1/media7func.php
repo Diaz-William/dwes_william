@@ -14,7 +14,7 @@
 
         for ($i = 0; $i < count($nombres); $i++) { 
             if (!empty($nombres[$i])) {
-                $jugadores[$nombres[$i]] = array("resultados" => array(), "suma" => 0);
+                $jugadores[$nombres[$i]] = array("resultados" => array(), "suma" => 0, "premio" => 0);
             }
         }
 
@@ -24,7 +24,7 @@
     // Función para repartir las cartas de los jugadores y realizar la suma.
 	function repartirCartas($jugadores, $numcartas) {
         $cartas = obtenerCartas();
-        var_dump($cartas);
+        
         foreach ($jugadores as $jugador => &$datos) {
             for ($i = 0; $i < $numcartas; $i++) {
                 $aleatorio = rand(0, (count($cartas) - 1));
@@ -40,11 +40,13 @@
             }
 
             $datos["suma"] += $valor;
+            //$datos["suma"] = 7.5;
         }
 
         return $jugadores;
     }
 //--------------------------------------------------------------------------
+    // Función para obtener las cartas de la baraja española.
     function obtenerCartas() {
         $cartas = array();
         $valores = array("B", "C", "E", "O");
@@ -60,14 +62,20 @@
         return $cartas;
     }
 //--------------------------------------------------------------------------
-	// Función para obtener todos los ganadores.
-	function obtenerGanadores($jugadores) {
+	// Función para obtener todos los ganadores y repartir el premio.
+	function obtenerGanadores($jugadores, $apuesta) {
 		$ganadores = array();
 		
 		foreach ($jugadores as $jugador => $datos) {
             if ($datos["suma"] === 7.5) {
                 $ganadores[$jugador] = $jugadores[$jugador];
             }
+        }
+
+        $premio = $apuesta / count($ganadores);
+
+        foreach ($ganadores as $ganador => $datos) {
+            $datos["premio"] = $premio;
         }
 		
 		return $ganadores;
@@ -91,7 +99,7 @@
 		echo "<hr>";
 		
 		foreach ($jugadores as $jugador => $datos) {
-            echo "<p>$jugador --> " . $datos["suma"] . "</p>";
+            echo "<p>$jugador: " . $datos["suma"] . "</p>";
         }
     }
 //--------------------------------------------------------------------------
@@ -99,9 +107,10 @@
 	function mostrarGanadores($ganadores) {
 		echo "<hr>";
 		foreach ($ganadores as $jugador => $datos) {
-            echo "<p>Ganador --> $jugador</p>";
+            echo "<p>Ganador: $jugador</p>";
+            echo "<p>Premio: $jugador => {$datos['premio']}</p>";
         }
 				
-		echo "<p>Total de ganadores --> " . count($ganadores) . "</p>";
+		echo "<p>Total de ganadores: " . count($ganadores) . "</p>";
 	}
 //--------------------------------------------------------------------------

@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="author" content="William Diaz">
     <title>media7.php</title>
+    <style>
+      table, th, td {
+        border:1px solid black;
+      }
+    </style>
   </head>
   <body>
     <?php
@@ -22,6 +27,7 @@
         $nombre3 = test_input($_POST["nombre3"]);
         $nombre4 = test_input($_POST["nombre4"]);
         $numcartas = intval(test_input($_POST["numcartas"]));
+        $apuesta = floatval(test_input($_POST["apuesta"]));
         $nombres = array();
         $jugadores = array();
         $ganadores = array();
@@ -29,7 +35,7 @@
         if (empty($nombre1) || empty($nombre2)) {
           // Mostrar un error si no se ha introducido los dos primeros nombres de los jugadores.
           trigger_error("Debe introducir los dos primeros nombres de los jugadores");
-        } else if ($cantDados < 2 || $cantDados > 10) {
+        } else if ($numcartas < 2 || $numcartas > 10) {
           // Mostrar un error si la cantidad de cartas no está en el rango permitido (2 - 10).
           trigger_error("Debe introducir un número de cartas del 2 al 10");
         } else {
@@ -41,8 +47,8 @@
           // Repartir las cartas de los jugadores y realizar la suma.
           $jugadores = repartirCartas($jugadores, $numcartas);
     
-          // Obtener los ganadores.
-          $ganadores = obtenerGanadores($jugadores);
+          // Obtener los ganadores y repartir el premio.
+          $ganadores = obtenerGanadores($jugadores, $apuesta);
           // Mostrar los resultados.
           mostrarResultados($jugadores);
           // Mostrar los ganadores y el total de ganadores.
