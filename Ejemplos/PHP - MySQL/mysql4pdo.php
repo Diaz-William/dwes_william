@@ -4,13 +4,12 @@
 $servername = "localhost";
 $username = "root";
 $password = "rootroot";
-$dbname = "empleadosmn";
-$dpto = "'D001'";
+$dbname = "empleados1n";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT cod_dpto, nombre FROM dpto WHERE cod_dpto = $dpto");
+    $stmt = $conn->prepare("SELECT cod_dpto, nombre FROM departamento");
     $stmt->execute();
 
     // set the resulting array to associative

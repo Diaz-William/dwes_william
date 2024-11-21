@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "rootroot";
-$dbname="empleadosmn";
+$username = "username";
+$password = "dbname";
+$dbname="mybd";
 
 
 try {
