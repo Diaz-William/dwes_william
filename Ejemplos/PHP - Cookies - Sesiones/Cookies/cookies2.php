@@ -3,7 +3,7 @@
 
 // MODIFICAR UNA COOKIE -> establecer el nuevo valor con función setcookie
 $cookie_name = "usuario";
-$cookie_value = "Rebolleda Sanchez, Alfonso";
+$cookie_value = "William Elias Diaz Santana";
 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 ?>
 <html>
