@@ -86,6 +86,6 @@
     function eliminarCookies() {
         setcookie("usuario", "", time() - 3600, "/");
         setcookie("contrasena", "", time() - 3600, "/");
-        header("Location: ./inicio_cookies.php");
+        header("Location: ./inicio_cookie.php");
     }
 //--------------------------------------------------------------------------
