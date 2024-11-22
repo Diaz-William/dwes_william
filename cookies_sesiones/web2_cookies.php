@@ -6,7 +6,7 @@
         <title>Web1</title>
     </head>
     <body>
-        <?php var_dump(strtoupper($_POST["usuario"])); ?>
+        <?php var_dump($_POST["usuario"]); ?>
         <h1>Web1 <?php echo $_SESSION["usuario"]; ?></h1>
         <h3><a href="./web2_cookies.php">Web2</a></h3>
         <h3><a href="./web3_cookies.php">Web3</a></h3>
