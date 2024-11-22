@@ -23,6 +23,7 @@
             include 'errores.php';
             // Establecer la función "error_function" para el manejo de errores.
             set_error_handler("error_function");
+            var_dump($_SESSION);
 
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
