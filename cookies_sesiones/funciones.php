@@ -27,7 +27,7 @@
     // Función para comprobar la existencia del usuario.
     function comprobarUsuario($usuario) {
         try {
-            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $conn = realizarConexion("cookies","localhost","root","rootroot");
             $select = $conn->prepare("SELECT usuario FROM usuarios WHERE usuario = :usuario");
             $select->bindParam(':usuario', $usuario);
             $select->execute();
@@ -44,7 +44,7 @@
     // Función para comprobar la contraseña del usuario.
     function comprobarContrasena($usuario, $contrasena) {
         try {
-            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $conn = realizarConexion("cookies","localhost","root","rootroot");
             $select = $conn->prepare("SELECT contrasena FROM usuarios WHERE usuario = :usuario AND contrasena = :contrasena");
             $select->bindParam(':usuario', $usuario);
             $select->bindParam(':contrasena', $contrasena);
