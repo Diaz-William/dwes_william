@@ -24,10 +24,7 @@
 
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                session_unset();
-                session_destroy();
-                setcookie("PHPSESSID", "", time() - 3600);
-                header("Location: ./inicio_sesion.php");
+                cerrarSesion();
             }
         ?>
     </body>

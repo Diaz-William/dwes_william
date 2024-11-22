@@ -59,3 +59,11 @@
         return $devolver;
     }
 //--------------------------------------------------------------------------
+    // Función para cerrar sesión.
+    function cerrarSesion() {
+        session_unset();
+        session_destroy();
+        setcookie("PHPSESSID", "", time() - 3600);
+        header("Location: ./inicio_sesion.php");
+    }
+//--------------------------------------------------------------------------
