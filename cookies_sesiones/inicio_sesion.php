@@ -36,7 +36,7 @@
                             session_start();
                             $_SESSION["usuario"] = $usuario;
                             $_SESSION["contrsena"] = $contrasena;
-                            header("Location: ./web1.php");
+                            header("Location: ./web1_sesion.php");
                         }else {
                             trigger_error("La contraseña es incorrecta");
                         }
