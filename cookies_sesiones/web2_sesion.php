@@ -16,7 +16,7 @@
         </form>
         <?php
             // Incluir el archivo de funciones.
-            include 'funciones_sesion.php';
+            include 'funciones.php';
             // Incluir el archivo de manejo de errores.
             include 'errores.php';
             // Establecer la función "error_function" para el manejo de errores.
