@@ -33,9 +33,8 @@
                 }else {
                     if (comprobarUsuario( $usuario)) {
                         if (comprobarContrasena( $usuario, $contrasena)) {
-                            $cookie_name = $usuario;
-                            $cookie_value = $contrasena;
-                            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 segundos = 1 día
+                            setcookie("usuario", $usuario, time() + 86400, "/");
+                            setcookie("contrasena", $contrasena, time() + 86400, "/");
                             header("Location: ./web1_cookies.php");
                         }else {
                             trigger_error("La contraseña es incorrecta");

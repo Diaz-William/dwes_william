@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="author" content="William Diaz">
-        <title>Web1</title>
+        <title>Web3</title>
     </head>
     <body>
-        <h1>Web1 <?php echo $_COOKIE["usuario"]; ?></h1>
+        <h1>Web3 <?php echo $_COOKIE["usuario"]; ?></h1>
+        <h3><a href="./web1_cookies.php">Web1</a></h3>
         <h3><a href="./web2_cookies.php">Web2</a></h3>
-        <h3><a href="./web3_cookies.php">Web3</a></h3>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <input type="submit" name="cerrarSesion" id="cerrarSesion" value="Cerrar Sesión">
         </form>
