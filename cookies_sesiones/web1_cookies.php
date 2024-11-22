@@ -21,9 +21,7 @@
             set_error_handler("error_function");
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                setcookie("usuario", "", time() - 3600, "/");
-                setcookie("contrasena", "", time() - 3600, "/");
-                header("Location: ./inicio_sesion.php");
+                eliminarCookies();
             }
         ?>
     </body>

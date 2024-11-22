@@ -33,10 +33,7 @@
                 }else {
                     if (comprobarUsuario( $usuario)) {
                         if (comprobarContrasena( $usuario, $contrasena)) {
-                            session_start();
-                            $_SESSION["usuario"] = $usuario;
-                            $_SESSION["contrsena"] = $contrasena;
-                            header("Location: ./web1_sesion.php");
+                            crearSesion($usuario, $contrasena);
                         }else {
                             trigger_error("La contraseña es incorrecta");
                         }

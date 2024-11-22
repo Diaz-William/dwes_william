@@ -59,11 +59,33 @@
         return $devolver;
     }
 //--------------------------------------------------------------------------
+    // Función para crear la sesión.
+    function crearSesion($usuario, $contrasena) {
+        session_start();
+        $_SESSION["usuario"] = $usuario;
+        $_SESSION["contrsena"] = $contrasena;
+        header("Location: ./web1_sesion.php");
+    }
+//--------------------------------------------------------------------------
     // Función para cerrar sesión.
     function cerrarSesion() {
         session_unset();
         session_destroy();
         //setcookie("PHPSESSID", "", time() - 3600, "/");
         header("Location: ./inicio_sesion.php");
+    }
+//--------------------------------------------------------------------------
+    // Función para crear la sesión con cookies.
+    function crearCookies($usuario, $contrasena) {
+        setcookie("usuario", $usuario, time() + 86400, "/");
+        setcookie("contrasena", $contrasena, time() + 86400, "/");
+        header("Location: ./web1_cookies.php");
+    }
+//--------------------------------------------------------------------------
+    // Función para cerrar sesión eliminando cookies.
+    function eliminarCookies() {
+        setcookie("usuario", "", time() - 3600, "/");
+        setcookie("contrasena", "", time() - 3600, "/");
+        header("Location: ./inicio_cookies.php");
     }
 //--------------------------------------------------------------------------
