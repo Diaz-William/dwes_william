@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="author" content="William Diaz">
-        <title>Inicio de Sesión</title>
+        <title>Inicio de Cookie</title>
     </head>
     <body>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -33,10 +33,10 @@
                 }else {
                     if (comprobarUsuario( $usuario)) {
                         if (comprobarContrasena( $usuario, $contrasena)) {
-                            session_start();
-                            $_SESSION["usuario"] = $usuario;
-                            $_SESSION["contrsena"] = $contrasena;
-                            header("Location: ./web1_sesion.php");
+                            $cookie_name = $usuario;
+                            $cookie_value = $contrasena;
+                            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 segundos = 1 día
+                            header("Location: ./web1_cookies.php");
                         }else {
                             trigger_error("La contraseña es incorrecta");
                         }
