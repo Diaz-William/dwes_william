@@ -33,18 +33,11 @@
                 trigger_error("Tiene que seleccionar las unidades del producto, el producto y el nif.");
             }else {
                 $nif = strtoupper(test_input($_POST["nif"]));
-                $datos = explode("-", test_input($_POST["producto"]));
-                $id_producto = $datos[0];
-                $num_almacen = intval($datos[1]);
+                $id_producto = test_input($_POST["producto"]);
                 $unidades = intval(test_input($_POST["unidades"]));
 
-                var_dump($nif);
-                var_dump($id_producto);
-                var_dump($num_almacen);
-                var_dump($unidades);
-                
                 $conn = realizarConexion("comprasweb","localhost","root","rootroot");
-                comprarProducto($conn, $id_producto, $num_almacen, $nif, $unidades);
+                comprarProducto($conn, $id_producto, $nif, $unidades);
                 cerrarConexion($conn);
             }
         }

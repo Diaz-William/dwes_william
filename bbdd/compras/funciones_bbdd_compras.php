@@ -356,12 +356,12 @@
             echo "<label for='producto'>Producto: </label>";
             echo "<select name='producto' id='producto'>";
             echo "<option value=''>--Seleccionar Producto--</option>";
-            $select = $conn->prepare("SELECT al.num_almacen, al.id_producto, p.nombre FROM almacena al, producto p WHERE al.id_producto = p.id_producto GROUP BY id_producto");
+            $select = $conn->prepare("SELECT al.id_producto, p.nombre FROM almacena al, producto p WHERE al.id_producto = p.id_producto GROUP BY id_producto");
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
             foreach($resultado as $row) {
-                echo "<option value='{$row['id_producto']}-{$row['num_almacen']}'>{$row['id_producto']} - {$row['nombre']}</option>";
+                echo "<option value='{$row['id_producto']}'>{$row['id_producto']} - {$row['nombre']}</option>";
             }
             echo "</select>";
         } catch (PDOException $e) {
@@ -370,17 +370,40 @@
     }
 //--------------------------------------------------------------------------
     // Función para comprar un producto
-    function comprarProducto(&$conn, $id_producto, $num_almacen, $nif, $unidades) {
+    function comprarProducto(&$conn, $id_producto, $nif, $unidades) {
         try {
-            empezarTransaccion($conn);
-            $update = $conn->prepare("UPDATE almacena SET cantidad = cantidad - :unidades WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
-            $update->bindParam(':unidades', $unidades);
-            $update->bindParam(':id_producto', $id_producto);
-            $update->bindParam(':num_almacen', $num_almacen);
-            $update->execute();
-            insertarCompra($conn, $nif, $id_producto, $unidades);
-            validar($conn);
-            echo "<p>Su compra se ha realizado correctamente</p>";
+            $select = $conn->prepare("SELECT al.num_almacen, al.id_producto, al.cantidad FROM almacena al, producto p WHERE al.id_producto = p.id_producto AND al.id_producto = :id_producto ORDER BY al.num_almacen");
+            $select->bindParam(':id_producto', $id_producto);
+            $select->execute();
+            $select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchAll();
+            $total = 0;
+
+            foreach ($resultado as $row) {
+                $total += $row["cantidad"];
+            }
+
+            if ($unidades > $total) {
+                echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
+            }else {
+                $resto = $unidades;
+                empezarTransaccion($conn);
+                $update = $conn->prepare("UPDATE almacena SET cantidad = :nueva_cantidad WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
+
+                foreach ($resultado as $row) {
+                    $resto -= $row["cantidad"];
+                    $nueva_cantidad = ($resto > 0) ? 0 : abs($resto);
+                    $update->bindParam(':nueva_cantidad', $nueva_cantidad);
+                    $num_almacen = $row["num_almacen"];
+                    $update->bindParam(':num_almacen', $num_almacen);
+                    $update->bindParam(':id_producto', $id_producto);
+                    $update->execute();
+                }
+
+                insertarCompra($conn, $nif, $id_producto, $unidades);
+                validar($conn);
+                echo "<p>Su compra se ha realizado correctamente</p>";
+            }
         } catch (PDOException $e) {
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());

@@ -2,13 +2,13 @@
 //--------------------------------------------------------------------------
     // Función para limpiar la entrada de datos del usuario.
 	function test_input($data) {
-        // Elimina espacios en blanco al inicio y final del string.
+        // Elimina espacios en blanco al inicio y final de la cadena.
         $data = trim($data);
-        // Elimina barras invertidas escapadas (\).
+        // Elimina barras invertidas escapadas.
         $data = stripslashes($data);
-        // Convierte caracteres especiales en entidades HTML (evita inyección XSS).
+        // Convierte caracteres especiales en entidades HTML.
         $data = htmlspecialchars($data);
-        // Devuelve el string limpio.
+        // Devuelve la cadena limpia.
         return $data;
     }
 //--------------------------------------------------------------------------
