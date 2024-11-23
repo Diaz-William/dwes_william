@@ -377,32 +377,33 @@
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
-            $total = 0;
 
-            foreach ($resultado as $row) {
-                $total += $row["cantidad"];
-            }
+            $stockTotal = array_sum(array_column($resultado, 'cantidad'));
 
-            if ($unidades > $total) {
+            if ($unidades > $stockTotal) {
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
             }else {
-                $resto = $unidades;
                 empezarTransaccion($conn);
+                $resto = $unidades;
+                $indice = 0;
+                $salir = false;
                 $update = $conn->prepare("UPDATE almacena SET cantidad = :nueva_cantidad WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
 
-                foreach ($resultado as $row) {
-                    $resto -= $row["cantidad"];
+                while (!$salir && $indice < count($resultado)) {
+                    $resto -= $resultado[$indice]["cantidad"];
                     $nueva_cantidad = ($resto > 0) ? 0 : abs($resto);
                     $update->bindParam(':nueva_cantidad', $nueva_cantidad);
-                    $num_almacen = $row["num_almacen"];
+                    $num_almacen = $resultado[$indice]["num_almacen"];
                     $update->bindParam(':num_almacen', $num_almacen);
                     $update->bindParam(':id_producto', $id_producto);
                     $update->execute();
+                    $salir = ($resto <= 0) ? true : false;
+                    $indice += 1;
                 }
-
+                
                 insertarCompra($conn, $nif, $id_producto, $unidades);
                 validar($conn);
-                echo "<p>Su compra se ha realizado correctamente</p>";
+                echo "<p>Su compra de $unidades unidades del producto $id_producto se realizó correctamente.</p>";
             }
         } catch (PDOException $e) {
             deshacer($conn);
