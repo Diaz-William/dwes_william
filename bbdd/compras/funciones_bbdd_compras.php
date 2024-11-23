@@ -356,7 +356,7 @@
             echo "<label for='producto'>Producto: </label>";
             echo "<select name='producto' id='producto'>";
             echo "<option value=''>--Seleccionar Producto--</option>";
-            $select = $conn->prepare("SELECT al.id_producto, p.nombre FROM almacena al, producto p WHERE al.id_producto = p.id_producto GROUP BY id_producto");
+            $select = $conn->prepare("SELECT al.num_almacen, al.id_producto, p.nombre, al.cantidad FROM almacena al, producto p WHERE al.id_producto = p.id_producto AND al.cantidad > 0 ORDER BY al.num_almacen");
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
