@@ -177,13 +177,13 @@
     // Función para aprovisionar almacenes con productos.
     function aprovisionarAlmacena(&$conn, $num_almacen, $id_producto, $cantidad) {
         try {
-            empezarTransaccion($conn);
             $select = $conn->prepare("SELECT cantidad FROM almacena WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
             $select->bindParam(':num_almacen', $num_almacen);
             $select->bindParam(':id_producto', $id_producto);
             $select->execute();
             $resultado = $select->fetchColumn();
 
+            empezarTransaccion($conn);
             if (!empty($resultado)) {
                 $cantidad += intval($resultado);
                 $update = $conn->prepare("UPDATE almacena SET cantidad = :cantidad WHERE num_almacen = :num_almacen AND id_producto = :id_producto");
@@ -354,13 +354,30 @@
     // Función para insertar un usuario del cliente.
     function insertarUsuario($conn, $nif, $nombre, $apellido) {
         try {
-            $insert = $conn->prepare("INSERT INTO usuarios (nif, nombre, clave) VALUES (:nif, :nombre, :clave)");
-            $insert->bindParam(':nif', $nif);
-            $insert->bindParam(':nombre', $nombre);
-            $clave = strrev($apellido);
-            $insert->bindParam(':clave', $clave);
-            $insert->execute();
-            echo "<p>Su usuario es $nombre y su clave es $clave</p>";
+            $select = $conn->prepare("SELECT usuario FROM usuarios WHERE usuario = :nombre");
+            $select->bindParam(':nombre', $nombre);
+            $select->execute();
+            $resultado = $select->fetchColumn();
+
+            empezarTransaccion($conn);
+            if (!empty($resultado)) {
+                $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
+                $insert->bindParam(':nif', $nif);
+                $insert->bindParam(':usuario', $nombre);
+                $clave = strrev($apellido);
+                $insert->bindParam(':clave', $clave);
+                $insert->execute();
+                echo "<p>Su usuario es $nombre y su clave es $clave</p>";
+            }else {
+                $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
+                $insert->bindParam(':nif', $nif);
+                $insert->bindParam(':usuario', $nombre);
+                $clave = strrev($apellido);
+                $insert->bindParam(':clave', $clave);
+                $insert->execute();
+                echo "<p>Su usuario es $nombre y su clave es $clave</p>";
+            }
+            validar($conn);
         } catch (PDOException $e) {
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
@@ -442,5 +459,53 @@
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
+    }
+//--------------------------------------------------------------------------
+    // Función para comprobar la existencia del usuario.
+    function comprobarUsuario($usuario) {
+        try {
+            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $select = $conn->prepare("SELECT usuario FROM usuarios WHERE usuario = :usuario");
+            $select->bindParam(':usuario', $usuario);
+            $select->execute();
+            $resultado = $select->fetchColumn();
+            $devolver = ($resultado !== false) ? true : false;
+            cerrarConexion($conn);
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+        return $devolver;
+    }
+//--------------------------------------------------------------------------
+    // Función para comprobar la contraseña del usuario.
+    function comprobarClave($usuario, $clave) {
+        try {
+            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $select = $conn->prepare("SELECT clave FROM usuarios WHERE usuario = :usuario AND clave = :clave");
+            $select->bindParam(':usuario', $usuario);
+            $select->bindParam(':clave', $clave);
+            $select->execute();
+            $resultado = $select->fetchColumn();
+            $devolver = ($resultado !== false) ? true : false;
+            cerrarConexion($conn);
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+        return $devolver;
+    }
+//--------------------------------------------------------------------------
+    // Función para crear la sesión.
+    function crearSesion($usuario, $clave) {
+        session_start();
+        $_SESSION["usuario"] = $usuario;
+        $_SESSION["clave"] = $clave;
+        header("Location: ./web1_sesion.php");
+    }
+//--------------------------------------------------------------------------
+    // Función para guardar producto.
+    function guardarProducto($id_producto, $unidades) {
+        $_SESSION["cesta"] += $id_producto . "," . $unidades;
     }
 //--------------------------------------------------------------------------
