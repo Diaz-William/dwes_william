@@ -331,22 +331,39 @@
     }
 //--------------------------------------------------------------------------
     // Función para insertar un cliente.
-    function insertarCliente(&$conn, $nif, $nombre, $apellidos, $cp, $direccion, $ciudad) {
+    function insertarCliente(&$conn, $nif, $nombre, $apellido, $cp, $direccion, $ciudad) {
         try {
             empezarTransaccion($conn);
             $insert = $conn->prepare("INSERT INTO cliente (nif, nombre, apellido, cp, direccion, ciudad) VALUES (:nif, :nombre, :apellido, :cp, :direccion, :ciudad)");
             $insert->bindParam(':nif', $nif);
             $insert->bindParam(':nombre', $nombre);
-            $insert->bindParam(':apellido', $apellidos);
+            $insert->bindParam(':apellido', $apellido);
             $insert->bindParam(':cp', $cp);
             $insert->bindParam(':direccion', $direccion);
             $insert->bindParam(':ciudad', $ciudad);
             $insert->execute();
+            insertarUsuario($conn, $nif, $nombre, $apellido);
             validar($conn);
             echo "<p>Se ha introducido al cliente con el nif $nif</p>";
         } catch (PDOException $e) {
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), "cliente");
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para insertar un usuario del cliente.
+    function insertarUsuario($conn, $nif, $nombre, $apellido) {
+        try {
+            $insert = $conn->prepare("INSERT INTO usuarios (nif, nombre, clave) VALUES (:nif, :nombre, :clave)");
+            $insert->bindParam(':nif', $nif);
+            $insert->bindParam(':nombre', $nombre);
+            $clave = strrev($apellido);
+            $insert->bindParam(':clave', $clave);
+            $insert->execute();
+            echo "<p>Su usuario es $nombre y su clave es $clave</p>";
+        } catch (PDOException $e) {
+            deshacer($conn);
+            error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
