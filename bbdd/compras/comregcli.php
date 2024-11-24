@@ -39,7 +39,7 @@
 
         // Comprobar si se han enviado los datos del formulario por el método POST.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["nif"]) || empty($_POST["nombre"]) || empty($_POST["apallido"])) {
+            if (empty($_POST["nif"]) || empty($_POST["nombre"]) || empty($_POST["apellido"])) {
                 trigger_error("Tiene que introducir el nif, el nombre y el primer apellido del cliente.");
             }else if (preg_match('/^\d{8}[a-z]$/i', test_input($_POST["nif"])) === 0) {
                 trigger_error("El nif tiene un formato incorrecto (Ej: 12345678Z).");
