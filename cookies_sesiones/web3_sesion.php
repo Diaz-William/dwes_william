@@ -2,6 +2,7 @@
     session_start();
 
     if (!isset($_SESSION["usuario"])) {
+        cerrarSesion();
         header("Location: ./inicio_sesion.php");
     }
 ?>
