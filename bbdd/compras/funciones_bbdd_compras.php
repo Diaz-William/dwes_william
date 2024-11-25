@@ -354,8 +354,8 @@
     // Función para insertar un usuario del cliente.
     function insertarUsuario($conn, $nif, $nombre, $apellido) {
         try {
-            $select = $conn->prepare("SELECT MAX(usuario) FROM usuarios WHERE usuario = :nombre");
-            $select->bindParam(':nombre', $nombre);
+            $select = $conn->prepare("SELECT MAX(usuario) FROM usuarios WHERE usuario LIKE :nombre");
+            $select->bindParam(':nombre', $nombre . "%");
             $select->execute();
             $resultado = $select->fetchColumn();
 
