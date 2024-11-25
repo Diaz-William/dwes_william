@@ -30,13 +30,12 @@
 
         $conn = realizarConexion("comprasweb","localhost","root","rootroot");
         imprimirSeleccionProductosDisponibles($conn);
-        echo "<br><br>";
         cerrarFormulario();
         cerrarConexion($conn);
 
         // Comprobar si se han enviado los datos del formulario por el método POST.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["nif"]) || empty($_POST["producto"]) || empty($_POST["unidades"])) {
+            if (empty($_POST["producto"]) || empty($_POST["unidades"])) {
                 trigger_error("Tiene que seleccionar las unidades del producto, el producto y el nif.");
             }else {
                 $id_producto = test_input($_POST["producto"]);
