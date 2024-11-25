@@ -549,10 +549,10 @@
     }
 //--------------------------------------------------------------------------
     // Función para comprar producto por sesión.
-    function comprarProductoSesion() {
+    function comprarProductoSesion($usuario) {
         try {
             $conn = realizarConexion("comprasweb","localhost","root","rootroot");
-            $nif = obtenerNifUsuario($_SESSION["usuarios"]);
+            $nif = obtenerNifUsuario($usuario);
 
             foreach ($_SESSION["cesta"] as $compra) {
                 var_dump($compra);

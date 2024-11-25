@@ -40,9 +40,10 @@
             }else {
                 $id_producto = test_input($_POST["producto"]);
                 $unidades = intval(test_input($_POST["unidades"]));
+                $usuario = $_SESSION["usuarios"];
                 guardarProducto($id_producto, $unidades);
 
-                comprarProductoSesion();
+                comprarProductoSesion($usuario);
             }
         }
     ?>
