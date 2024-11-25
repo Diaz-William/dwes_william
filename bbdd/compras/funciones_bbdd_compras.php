@@ -384,8 +384,9 @@
     }
 //--------------------------------------------------------------------------
     // Función para visualizar los producto disponibles en un desplegable
-    function imprimirSeleccionProductosDisponibles($conn) {
+    function imprimirSeleccionProductosDisponibles() {
         try {
+            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
             echo "<label for='producto'>Producto: </label>";
             echo "<select name='producto' id='producto'>";
             echo "<option value=''>--Seleccionar Producto--</option>";
@@ -397,7 +398,9 @@
                 echo "<option value='{$row['id_producto']}'>{$row['id_producto']} - {$row['nombre']}</option>";
             }
             echo "</select>";
+            cerrarConexion($conn);
         } catch (PDOException $e) {
+            cerrarConexion($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
@@ -557,6 +560,8 @@
             $compras = explode(";", $_SESSION["cesta"]);
             foreach ($compras as $compra) {
                 var_dump($compra);
+                //list($id_producto, $unidades) = explode(",", $compra);
+                //comprarProducto($conn, $id_producto, $nif, $unidades);
             }
         } catch (PDOException $e) {
             deshacer($conn);
