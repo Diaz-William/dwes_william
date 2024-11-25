@@ -505,8 +505,58 @@
 //--------------------------------------------------------------------------
     // Función para guardar producto.
     function guardarProducto($id_producto, $unidades) {
-        $_SESSION["cesta"] += $id_producto . "," . $unidades;
+        try {
+            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $select = $conn->prepare("SELECT al.num_almacen, al.id_producto, al.cantidad FROM almacena al, producto p WHERE al.id_producto = p.id_producto AND al.id_producto = :id_producto ORDER BY al.num_almacen");
+            $select->bindParam(':id_producto', $id_producto);
+            $select->execute();
+            $select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchAll();
+
+            $stockTotal = array_sum(array_column($resultado, 'cantidad'));
+
+            if ($unidades > $stockTotal) {
+                echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
+            }else {
+                $_SESSION["cesta"] += $id_producto . "," . $unidades;
+            }
+
+            cerrarConexion($conn);
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
     }
 //--------------------------------------------------------------------------
-    // Función para obtener el nif
+    // Función para obtener el nif del usuario
+    function obtenerNifUsuario($usuario) {
+        try {
+            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $select = $conn->prepare("SELECT nif FROM usuarios WHERE usuario = :usuario");
+            $select->bindParam(':usuario', $usuario);
+            $select->execute();
+            $resultado = $select->fetchColumn();
+            cerrarConexion($conn);
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+        return $resultado;
+    }
+//--------------------------------------------------------------------------
+    // Función para comprar producto por sesión.
+    function comprarProductoSesion() {
+        try {
+            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $nif = obtenerNifUsuario($_SESSION["usuarios"]);
+
+            foreach ($_SESSION["cesta"] as $compra) {
+                var_dump($compra);
+            }
+        } catch (PDOException $e) {
+            deshacer($conn);
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
 //--------------------------------------------------------------------------

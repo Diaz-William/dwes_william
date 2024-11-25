@@ -39,13 +39,11 @@
             if (empty($_POST["nif"]) || empty($_POST["producto"]) || empty($_POST["unidades"])) {
                 trigger_error("Tiene que seleccionar las unidades del producto, el producto y el nif.");
             }else {
-                $nif = strtoupper(test_input($_POST["nif"]));
                 $id_producto = test_input($_POST["producto"]);
                 $unidades = intval(test_input($_POST["unidades"]));
+                guardarProducto($id_producto, $unidades);
 
-                $conn = realizarConexion("comprasweb","localhost","root","rootroot");
-                comprarProducto($conn, $id_producto, $nif, $unidades);
-                cerrarConexion($conn);
+                comprarProductoSesion();
             }
         }
     ?>
