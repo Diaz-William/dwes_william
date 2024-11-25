@@ -361,7 +361,13 @@
             $resultado = $select->fetchColumn();
 
             if (!empty($resultado)) {
-                $nombre = (preg_match('/\d+/', $resultado, $coincidencias, PREG_OFFSET_CAPTURE)) ? substr($resultado, 0, $coincidencias[0][1]) . intval(substr($resultado, $coincidencias[0][1])) + 1 : $nombre .= "0";
+                if (preg_match('/\d+/', $resultado, $coincidencias, PREG_OFFSET_CAPTURE)) {
+                    $nombreBase = substr($resultado, 0, $coincidencias[0][1]);
+                    $numero = intval(substr($resultado, $coincidencias[0][1])) + 1;
+                    $nombre = $nombreBase . $numero;
+                } else {
+                    $nombre .= "0";
+                }
             }
 
             $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
