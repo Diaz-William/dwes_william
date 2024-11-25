@@ -33,7 +33,9 @@
                 }else {
                     if (comprobarUsuario( $usuario)) {
                         if (comprobarContrasena( $usuario, $contrasena)) {
+							 var_dump($_SESSION);
                             crearSesion($usuario, $contrasena);
+							 var_dump($_SESSION);
                         }else {
                             trigger_error("La contraseña es incorrecta");
                         }
