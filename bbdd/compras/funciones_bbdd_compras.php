@@ -419,7 +419,7 @@
             if ($unidades > $stockTotal) {
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
             }else {
-                empezarTransaccion($conn);
+                //empezarTransaccion($conn);
                 $resto = $unidades;
                 $indice = 0;
                 $salir = false;
@@ -438,8 +438,8 @@
                 }
                 
                 insertarCompra($conn, $nif, $id_producto, $unidades);
-                validar($conn);
-                echo "<p>Su compra de $unidades unidades del producto $id_producto se realizó correctamente.</p>";
+                //validar($conn);
+                //echo "<p>Su compra de $unidades unidades del producto $id_producto se realizó correctamente.</p>";
             }
         } catch (PDOException $e) {
             deshacer($conn);
@@ -510,11 +510,12 @@
     function guardarProducto($id_producto, $unidades) {
         try {
             $conn = realizarConexion("comprasweb","localhost","root","rootroot");
-            $select = $conn->prepare("SELECT al.num_almacen, al.id_producto, al.cantidad FROM almacena al, producto p WHERE al.id_producto = p.id_producto AND al.id_producto = :id_producto ORDER BY al.num_almacen");
+            $select = $conn->prepare("SELECT al.cantidad FROM almacena al, producto p WHERE al.id_producto = p.id_producto AND al.id_producto = :id_producto ORDER BY al.num_almacen");
             $select->bindParam(':id_producto', $id_producto);
             $select->execute();
             $select->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $select->fetchAll();
+            cerrarConexion($conn);
 
             $stockTotal = array_sum(array_column($resultado, 'cantidad'));
 
@@ -523,12 +524,28 @@
             }else {
                 if (!isset($_SESSION["cesta"])) {
                     $_SESSION["cesta"] = $id_producto . "," . $unidades;
-                }else {
-                    $_SESSION["cesta"] .= ";" . $id_producto . "," . $unidades;
+                } else {
+                    $productos = explode(";", $_SESSION["cesta"]);
+                    $productoEncontrado = false;
+                    $indice = 0;
+                
+                    while (!$productoEncontrado && $indice < count($productos)) {
+                        $datos = explode(",", $productos[$indice]);
+                        if ($datos[0] === $id_producto) {
+                            $datos[1] += $unidades;
+                            $productos[$indice] = implode(",", $datos);
+                            $productoEncontrado = true;
+                        }
+                        $indice += 1;
+                    }
+                
+                    if (!$productoEncontrado) {
+                        $productos[] = $id_producto . "," . $unidades;
+                    }
+                
+                    $_SESSION["cesta"] = implode(";", $productos);
                 }
             }
-
-            cerrarConexion($conn);
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
@@ -558,11 +575,14 @@
             $nif = obtenerNifUsuario($_SESSION["usuario"]);
 
             $compras = explode(";", $_SESSION["cesta"]);
+            empezarTransaccion($conn);
             foreach ($compras as $compra) {
                 var_dump($compra);
-                //list($id_producto, $unidades) = explode(",", $compra);
-                //comprarProducto($conn, $id_producto, $nif, $unidades);
+                list($id_producto, $unidades) = explode(",", $compra);
+                comprarProducto($conn, $id_producto, $nif, $unidades);
             }
+            validar($conn);
+            echo "<p>Ha realizado sus compras corrctamente.</p>";
         } catch (PDOException $e) {
             deshacer($conn);
             cerrarConexion($conn);

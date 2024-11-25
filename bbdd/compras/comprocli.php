@@ -14,13 +14,15 @@
 
     // Comprobar si se han enviado los datos del formulario por el método POST.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["producto"]) || empty($_POST["unidades"])) {
-            trigger_error("Tiene que seleccionar las unidades del producto, el producto y el nif.");
-        }else {
-            $id_producto = test_input($_POST["producto"]);
-            $unidades = intval(test_input($_POST["unidades"]));
-            guardarProducto($id_producto, $unidades);
-
+        if (isset($_POST["enviar"])) {
+            if (empty($_POST["producto"]) || empty($_POST["unidades"])) {
+                trigger_error("Tiene que seleccionar las unidades del producto y el producto.");
+            } else {
+                $id_producto = test_input($_POST["producto"]);
+                $unidades = intval(test_input($_POST["unidades"]));
+                guardarProducto($id_producto, $unidades);
+            }
+        } elseif (isset($_POST["comprar"])) {
             comprarProductoSesion();
         }
     }
@@ -41,7 +43,8 @@
             <br><br>
             <?php imprimirSeleccionProductosDisponibles(); ?>
             <br><br>
-            <input type="submit" name="enviar" id="enviar" value="Enviar">
+            <input type="submit" name="enviar" id="enviar" value="Añadir">
+            <input type="button" name="comprar" id="comprar" value="Comprar">
         </form>
     </body>
 </html>
