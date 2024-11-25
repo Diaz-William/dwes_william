@@ -1,5 +1,5 @@
 <?php
-    if (isset($_COOKIE["usuario"])) {
+    if (!isset($_COOKIE["usuario"])) {
         header("Location: ./inicio_cookie.php");
     }
 ?>
