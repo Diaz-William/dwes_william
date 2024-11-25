@@ -2,6 +2,7 @@
     
   var_dump($_SESSION);
     if (!isset($_SESSION["usuario"])) {
+        cerrarSesion();
         header("Location: ./inicio_sesion.php");
     }
 	else
