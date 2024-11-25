@@ -362,6 +362,9 @@
             if (!empty($resultado)) {
                 $posicion = 0;
                 $nombre = (preg_match('/\d+/', $resultado, $posicion)) ? substr($resultado, 0, $posicion) . intval(substr($resultado, $posicion)) + 1 : $resultado . "0";
+                var_dump($resultado);
+                var_dump($posicion);
+                var_dump($nombre);
             }
 
             $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
