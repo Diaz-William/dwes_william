@@ -355,7 +355,8 @@
     function insertarUsuario($conn, $nif, $nombre, $apellido) {
         try {
             $select = $conn->prepare("SELECT MAX(usuario) FROM usuarios WHERE usuario LIKE :nombre");
-            $select->bindParam(':nombre', $nombre . "%");
+            $aux = $nombre . "%";
+            $select->bindParam(':nombre', $aux);
             $select->execute();
             $resultado = $select->fetchColumn();
 
