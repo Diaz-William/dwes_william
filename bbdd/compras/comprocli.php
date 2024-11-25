@@ -8,7 +8,21 @@
     session_start();
 
     if (!isset($_SESSION["usuario"])) {
+        cerrarSesion();
         header("Location: ./comlogincli.php");
+    }
+
+    // Comprobar si se han enviado los datos del formulario por el método POST.
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["producto"]) || empty($_POST["unidades"])) {
+            trigger_error("Tiene que seleccionar las unidades del producto, el producto y el nif.");
+        }else {
+            $id_producto = test_input($_POST["producto"]);
+            $unidades = intval(test_input($_POST["unidades"]));
+            guardarProducto($id_producto, $unidades);
+
+            comprarProductoSesion();
+        }
     }
 ?>
 
@@ -30,18 +44,4 @@
             <input type="submit" name="enviar" id="enviar" value="Enviar">
         </form>
     </body>
-    <?php
-        // Comprobar si se han enviado los datos del formulario por el método POST.
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["producto"]) || empty($_POST["unidades"])) {
-                trigger_error("Tiene que seleccionar las unidades del producto, el producto y el nif.");
-            }else {
-                $id_producto = test_input($_POST["producto"]);
-                $unidades = intval(test_input($_POST["unidades"]));
-                guardarProducto($id_producto, $unidades);
-
-                comprarProductoSesion();
-            }
-        }
-    ?>
 </html>
