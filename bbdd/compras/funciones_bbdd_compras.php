@@ -346,14 +346,13 @@
             validar($conn);
             echo "<p>Se ha introducido al cliente con el nif $nif</p>";
         } catch (PDOException $e) {
-            //deshacer($conn);
-            $conn->rollBack();
+            deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), "cliente");
         }
     }
 //--------------------------------------------------------------------------
     // Función para insertar un usuario del cliente.
-    function insertarUsuario($conn, $nif, $nombre, $apellido) {
+    function insertarUsuario(&$conn, $nif, $nombre, $apellido) {
         try {
             $select = $conn->prepare("SELECT usuario FROM usuarios WHERE usuario = :nombre");
             $select->bindParam(':nombre', $nombre);
@@ -361,11 +360,12 @@
             $resultado = $select->fetchColumn();
 
             if (!empty($resultado)) {
-                $posicion = 0;
-                $nombre = (preg_match('/\d+/', $resultado, $posicion)) ? substr($resultado, 0, $posicion) . intval(substr($resultado, $posicion)) + 1 : $resultado . "0";
-                var_dump($resultado);
-                var_dump($posicion);
-                var_dump($nombre);
+                if (preg_match('/(\d+)$/', $resultado, $coincidencias)) {
+                    $numero = intval($coincidencias[1]) + 1;
+                    $nombre = preg_replace('/\d+$/', '', $resultado) . $numero;
+                } else {
+                    $nombre .= "0";
+                }
             }
 
             $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
@@ -376,7 +376,7 @@
             $insert->execute();
             echo "<p>Su usuario es $nombre y su clave es $clave</p>";
         } catch (PDOException $e) {
-            $conn->rollBack();
+            deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
