@@ -500,11 +500,13 @@
         session_start();
         $_SESSION["usuario"] = $usuario;
         $_SESSION["clave"] = $clave;
-        header("Location: ./web1_sesion.php");
+        header("Location: ./menu.php");
     }
 //--------------------------------------------------------------------------
     // Función para guardar producto.
     function guardarProducto($id_producto, $unidades) {
         $_SESSION["cesta"] += $id_producto . "," . $unidades;
     }
+//--------------------------------------------------------------------------
+    // Función para obtener el nif
 //--------------------------------------------------------------------------

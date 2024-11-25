@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php
+    session_start();
+
+    if (!isset($_SESSION["usuario"])) {
+        header("Location: ./comlogincli.php");
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -25,7 +31,6 @@
         $conn = realizarConexion("comprasweb","localhost","root","rootroot");
         imprimirSeleccionProductosDisponibles($conn);
         echo "<br><br>";
-        imprimirSeleccionNif($conn);
         cerrarFormulario();
         cerrarConexion($conn);
 
