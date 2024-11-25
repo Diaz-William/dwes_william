@@ -1,4 +1,10 @@
 <?php
+    // Incluir el archivo de funciones.
+    include 'funciones.php';
+    // Incluir el archivo de manejo de errores.
+    include 'errores.php';
+    // Establecer la función "error_function" para el manejo de errores.
+    set_error_handler("error_function");
     session_start();
 
     if (!isset($_SESSION["usuario"])) {
@@ -22,13 +28,6 @@
             <input type="submit" name="cerrarSesion" id="cerrarSesion" value="Cerrar Sesión">
         </form>
         <?php
-            // Incluir el archivo de funciones.
-            include 'funciones.php';
-            // Incluir el archivo de manejo de errores.
-            include 'errores.php';
-            // Establecer la función "error_function" para el manejo de errores.
-            set_error_handler("error_function");
-
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 cerrarSesion();

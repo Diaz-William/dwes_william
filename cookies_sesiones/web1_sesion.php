@@ -28,8 +28,6 @@
             <input type="submit" name="cerrarSesion" id="cerrarSesion" value="Cerrar Sesión">
         </form>
         <?php
-            
-
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 cerrarSesion();
