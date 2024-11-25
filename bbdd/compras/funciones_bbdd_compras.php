@@ -346,7 +346,8 @@
             validar($conn);
             echo "<p>Se ha introducido al cliente con el nif $nif</p>";
         } catch (PDOException $e) {
-            deshacer($conn);
+            //deshacer($conn);
+            $conn->rollBack();
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), "cliente");
         }
     }
@@ -375,7 +376,7 @@
             $insert->execute();
             echo "<p>Su usuario es $nombre y su clave es $clave</p>";
         } catch (PDOException $e) {
-            deshacer($conn);
+            $conn->rollBack();
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
