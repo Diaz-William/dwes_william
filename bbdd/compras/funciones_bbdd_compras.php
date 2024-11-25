@@ -519,9 +519,9 @@
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
             }else {
                 if (!isset($_SESSION["cesta"])) {
-                    $_SESSION["cesta"] = $id_producto . "," . $unidades . ";";
+                    $_SESSION["cesta"] = $id_producto . "," . $unidades;
                 }else {
-                    $_SESSION["cesta"] .= $id_producto . "," . $unidades . ";";
+                    $_SESSION["cesta"] .= ";" . $id_producto . "," . $unidades;
                 }
             }
 
