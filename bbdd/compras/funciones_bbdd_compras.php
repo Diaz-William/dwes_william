@@ -518,7 +518,11 @@
             if ($unidades > $stockTotal) {
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
             }else {
-                $_SESSION["cesta"] += $id_producto . "," . $unidades;
+                if (!isset($_SESSION["cesta"])) {
+                    $_SESSION["cesta"] = $id_producto . "," . $unidades . ";";
+                }else {
+                    $_SESSION["cesta"] += $id_producto . "," . $unidades . ";";
+                }
             }
 
             cerrarConexion($conn);
