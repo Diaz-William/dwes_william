@@ -521,7 +521,7 @@
                 if (!isset($_SESSION["cesta"])) {
                     $_SESSION["cesta"] = $id_producto . "," . $unidades . ";";
                 }else {
-                    $_SESSION["cesta"] += $id_producto . "," . $unidades . ";";
+                    $_SESSION["cesta"] .= $id_producto . "," . $unidades . ";";
                 }
             }
 
@@ -554,7 +554,8 @@
             $conn = realizarConexion("comprasweb","localhost","root","rootroot");
             $nif = obtenerNifUsuario($_SESSION["usuario"]);
 
-            foreach ($_SESSION["cesta"] as $compra) {
+            $compras = explode(";", $_SESSION["cesta"]);
+            foreach ($compras as $compra) {
                 var_dump($compra);
             }
         } catch (PDOException $e) {
