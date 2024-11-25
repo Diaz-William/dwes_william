@@ -1,12 +1,10 @@
 <?php
-    
-  var_dump($_SESSION);
+    session_start();
+
     if (!isset($_SESSION["usuario"])) {
         cerrarSesion();
         header("Location: ./inicio_sesion.php");
     }
-	else
-	{session_start();}	
 ?>
 
 <!DOCTYPE html>
