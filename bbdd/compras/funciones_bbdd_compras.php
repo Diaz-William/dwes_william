@@ -352,12 +352,20 @@
     }
 //--------------------------------------------------------------------------
     // Función para insertar un usuario del cliente.
-    function insertarUsuario(&$conn, $nif, $nombre, $apellido) {
+    function insertarUsuario($conn, $nif, $nombre, $apellido) {
         try {
             $select = $conn->prepare("SELECT usuario FROM usuarios WHERE usuario = :nombre");
             $select->bindParam(':nombre', $nombre);
             $select->execute();
             $resultado = $select->fetchColumn();
+
+            /*if (!empty($resultado)) {
+                $posicion = 0;
+                $nombre = (preg_match('/(\d+)$/', $resultado, $posicion)) ? substr($resultado, 0, $posicion[0]) . intval(substr($resultado, $posicion)) + 1 : $resultado . "0";
+                var_dump($resultado);
+                var_dump($posicion);
+                var_dump($nombre);
+            }*/
 
             if (!empty($resultado)) {
                 if (preg_match('/(\d+)$/', $resultado, $coincidencias)) {
@@ -366,6 +374,9 @@
                 } else {
                     $nombre .= "0";
                 }
+                var_dump($resultado);
+                var_dump($coincidencias);
+                var_dump($nombre);
             }
 
             $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
