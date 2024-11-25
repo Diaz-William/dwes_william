@@ -359,25 +359,18 @@
             $select->execute();
             $resultado = $select->fetchColumn();
 
-            empezarTransaccion($conn);
             if (!empty($resultado)) {
-                $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
-                $insert->bindParam(':nif', $nif);
-                $insert->bindParam(':usuario', $nombre);
-                $clave = strrev($apellido);
-                $insert->bindParam(':clave', $clave);
-                $insert->execute();
-                echo "<p>Su usuario es $nombre y su clave es $clave</p>";
-            }else {
-                $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
-                $insert->bindParam(':nif', $nif);
-                $insert->bindParam(':usuario', $nombre);
-                $clave = strrev($apellido);
-                $insert->bindParam(':clave', $clave);
-                $insert->execute();
-                echo "<p>Su usuario es $nombre y su clave es $clave</p>";
+                $posicion = 0;
+                $nombre = (preg_match('/\d+/', $resultado, $posicion)) ? substr($resultado, 0, $posicion) . intval(substr($resultado, $posicion)) + 1 : $resultado . "0";
             }
-            validar($conn);
+
+            $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
+            $insert->bindParam(':nif', $nif);
+            $insert->bindParam(':usuario', $nombre);
+            $clave = strrev($apellido);
+            $insert->bindParam(':clave', $clave);
+            $insert->execute();
+            echo "<p>Su usuario es $nombre y su clave es $clave</p>";
         } catch (PDOException $e) {
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
