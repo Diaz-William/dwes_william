@@ -360,24 +360,8 @@
             $select->execute();
             $resultado = $select->fetchColumn();
 
-            /*if (!empty($resultado)) {
-                $posicion = 0;
-                $nombre = (preg_match('/(\d+)$/', $resultado, $posicion)) ? substr($resultado, 0, $posicion[0]) . intval(substr($resultado, $posicion)) + 1 : $resultado . "0";
-                var_dump($resultado);
-                var_dump($posicion);
-                var_dump($nombre);
-            }*/
-
             if (!empty($resultado)) {
-                if (preg_match('/(\d+)$/', $resultado, $coincidencias)) {
-                    $numero = intval($coincidencias[1]) + 1;
-                    $nombre = preg_replace('/\d+$/', '', $resultado) . $numero;
-                } else {
-                    $nombre .= "0";
-                }
-                var_dump($resultado);
-                var_dump($coincidencias);
-                var_dump($nombre);
+                $nombre = (preg_match('/\d+/', $resultado, $coincidencias, PREG_OFFSET_CAPTURE)) ? substr($resultado, 0, $coincidencias[0][1]) . intval(substr($resultado, $coincidencias[0][1])) + 1 : $nombre .= "0";
             }
 
             $insert = $conn->prepare("INSERT INTO usuarios (nif, usuario, clave) VALUES (:nif, :usuario, :clave)");
