@@ -1,8 +1,9 @@
 <?php
     if (isset($_SESSION["usuario"])) {
         header("Location: ./inicio_sesion.php");
+    }else {
+        session_start();
     }
-    session_start();
 ?>
 
 <!DOCTYPE html>
