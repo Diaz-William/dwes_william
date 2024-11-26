@@ -516,7 +516,7 @@
             }else {
                 if (!isset($_SESSION["cesta"])) {
                     $_SESSION["cesta"] = "$id_producto,$unidades";
-                }else if (strpos($_SESSION["cesta"], $id_producto)) {
+                }else if (strpos($_SESSION["cesta"], $id_producto) !== false) {
                     $productos = explode(";", $_SESSION["cesta"]);
                     $productoEncontrado = false;
                     $indice = 0;
