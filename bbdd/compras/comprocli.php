@@ -43,6 +43,7 @@
                         $id_producto = test_input($_POST["producto"]);
                         $unidades = intval(test_input($_POST["unidades"]));
                         guardarProducto($id_producto, $unidades);
+                        var_dump($_SESSION["cesta"]);
                         imprimirCesta();
                     }
                 } elseif (isset($_POST["comprar"])) {
