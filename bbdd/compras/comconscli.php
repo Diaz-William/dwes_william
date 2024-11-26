@@ -11,18 +11,6 @@
         cerrarSesion();
         header("Location: ./comlogincli.php");
     }
-
-    // Comprobar si se han enviado los datos del formulario por el método POST.
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["fecha_in"]) || empty($_POST["fecha_fin"]) || empty($_POST["nif"])) {
-            trigger_error("Tiene que introducir la fecha de inicio y la fecha de fin.");
-        }else {
-            $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
-            $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
-
-            visualizarComprasClienteSesion($fecha_in, $fecha_fin, $_SESSION["usuario"]);
-        }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +18,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="author" content="William Diaz">
-        <title>P.3.2.7</title>
+        <title>P.3.2.13</title>
     </head>
     <body>
-        <h1>Aprovisionar Productos</h1>
+        <h1>Usuario: <?php echo $_SESSION["usuario"] ?></h1>
+        <h2>Consultar Compras</h2>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label for="fecha_in">Fecha Inicio:</label>
             <input name="fecha_in" type="text">
@@ -41,5 +30,20 @@
             <label for="fecha_fin">Fecha Fin:</label>
             <input name="fecha_fin" type="text">
             <br><br>
+            <input type="submit" name="enviar" id="enviar" value="Enviar">
+        </form>
+
+        <?php
+            // Comprobar si se han enviado los datos del formulario por el método POST.
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (empty($_POST["fecha_in"]) || empty($_POST["fecha_fin"]) || empty($_POST["nif"])) {
+                    trigger_error("Tiene que introducir la fecha de inicio y la fecha de fin.");
+                }else {
+                    $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
+                    $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
+                    visualizarComprasClienteSesion($fecha_in, $fecha_fin, $_SESSION["usuario"]);
+                }
+            }
+        ?>
     </body>
 </html>

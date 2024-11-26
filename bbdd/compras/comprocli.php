@@ -11,22 +11,6 @@
         cerrarSesion();
         header("Location: ./comlogincli.php");
     }
-
-    // Comprobar si se han enviado los datos del formulario por el método POST.
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["enviar"])) {
-            if (empty($_POST["producto"]) || empty($_POST["unidades"])) {
-                trigger_error("Tiene que seleccionar las unidades del producto y el producto.");
-            } else {
-                $id_producto = test_input($_POST["producto"]);
-                $unidades = intval(test_input($_POST["unidades"]));
-                guardarProducto($id_producto, $unidades);
-                imprimirCesta();
-            }
-        } elseif (isset($_POST["comprar"])) {
-            comprarProductoSesion();
-        }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -34,10 +18,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="author" content="William Diaz">
-        <title>P.3.2.11</title>
+        <title>P.3.2.12</title>
     </head>
     <body>
-        <h1>Comprar Productos</h1>
+        <h1>Usuario: <?php echo $_SESSION["usuario"] ?></h1>
+        <h2>Comprar Productos</h2>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label for="unidades">Unidades:</label>
             <input name="unidades" type="text">
@@ -47,5 +32,23 @@
             <input type="submit" name="enviar" id="enviar" value="Añadir">
             <input type="button" name="comprar" id="comprar" value="Comprar">
         </form>
+
+        <?php
+            // Comprobar si se han enviado los datos del formulario por el método POST.
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST["enviar"])) {
+                    if (empty($_POST["producto"]) || empty($_POST["unidades"])) {
+                        trigger_error("Tiene que seleccionar las unidades del producto y el producto.");
+                    } else {
+                        $id_producto = test_input($_POST["producto"]);
+                        $unidades = intval(test_input($_POST["unidades"]));
+                        guardarProducto($id_producto, $unidades);
+                        imprimirCesta();
+                    }
+                } elseif (isset($_POST["comprar"])) {
+                    comprarProductoSesion();
+                }
+            }
+        ?>
     </body>
 </html>
