@@ -515,7 +515,7 @@
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
             }else {
                 if (!isset($_SESSION["cesta"])) {
-                    $_SESSION["cesta"] = $id_producto . "," . $unidades;
+                    $_SESSION["cesta"] = "$id_producto,$unidades";
                 }else if (strpos($_SESSION["cesta"], $id_producto)) {
                     $productos = explode(";", $_SESSION["cesta"]);
                     $productoEncontrado = false;
@@ -532,8 +532,11 @@
                     }
                 
                     $_SESSION["cesta"] = implode(";", $productos);
+                    var_dump($productos);
+                    var_dump(implode(";", $productos));
+                    var_dump($_SESSION["cesta"]);
                 }else {
-                    $_SESSION["cesta"] .= $id_producto . "," . $unidades;
+                    $_SESSION["cesta"] .= ";$id_producto,$unidades";
                 }
             }
         } catch (PDOException $e) {
