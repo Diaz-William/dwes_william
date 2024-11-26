@@ -510,7 +510,7 @@
     function guardarProducto($id_producto, $unidades) {
         try {
             $stockTotal = comprobarStockProducto($id_producto);            
-
+            var_dump(strpos($_SESSION["cesta"], $id_producto));
             if ($unidades > $stockTotal) {
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
             }else {
@@ -524,7 +524,7 @@
                     while (!$productoEncontrado && $indice < count($productos)) {
                         $datos = explode(",", $productos[$indice]);
                         if ($datos[0] === $id_producto) {
-                            $datos[1] += $unidades;
+                            $datos[1] = $unidades;
                             $productos[$indice] = implode(",", $datos);
                             $productoEncontrado = true;
                         }
