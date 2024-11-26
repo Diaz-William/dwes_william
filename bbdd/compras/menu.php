@@ -1,4 +1,17 @@
-<?php session_start() ?>
+<?php
+    // Incluir el archivo "funciones_dados_compras.php".
+    include "funciones_bbdd_compras.php";
+    // Incluir el archivo "errores_sistema_compras.php".
+    include "errores_sistema_compras.php";
+    // Establecer la función "error_function" para el manejo de errores.
+    set_error_handler("error_function");
+    session_start();
+
+    if (!isset($_SESSION["usuario"])) {
+        cerrarSesion();
+        header("Location: ./comlogincli.php");
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="es">
