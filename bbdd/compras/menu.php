@@ -17,7 +17,9 @@
         </form>
         <?php
             // Comprobar si se han enviado los datos del formulario por el método POST.
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {}
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                cerrarSesion();
+            }
         ?>
     </body>
 </html>
