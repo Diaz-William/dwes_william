@@ -506,6 +506,14 @@
         header("Location: ./menu.php");
     }
 //--------------------------------------------------------------------------
+    // Función para cerrar sesión.
+    function cerrarSesion() {
+        session_unset();
+        session_destroy();
+        setcookie("PHPSESSID", "", time() - 3600, "/");
+        header("Location: ./inicio_sesion.php");
+    }
+//--------------------------------------------------------------------------
     // Función para guardar producto.
     function guardarProducto($id_producto, $unidades) {
         try {

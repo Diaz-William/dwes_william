@@ -30,7 +30,9 @@
             <?php imprimirSeleccionProductosDisponibles(); ?>
             <br><br>
             <input type="submit" name="enviar" id="enviar" value="Añadir">
-            <input type="button" name="comprar" id="comprar" value="Comprar">
+            <input type="submit" name="comprar" id="comprar" value="Comprar">
+            <br><br>
+            <input type="submit" name="cerrar" id="cerrar" value="Cerrar Sesión">
         </form>
 
         <?php
@@ -46,8 +48,10 @@
                         var_dump($_SESSION["cesta"]);
                         imprimirCesta();
                     }
-                } elseif (isset($_POST["comprar"])) {
+                } else if (isset($_POST["comprar"])) {
                     comprarProductoSesion();
+                }else if (isset($_POST["cerrar"])) {
+                    cerrarSesion();
                 }
             }
         ?>
