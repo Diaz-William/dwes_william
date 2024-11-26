@@ -509,22 +509,14 @@
     // Función para guardar producto.
     function guardarProducto($id_producto, $unidades) {
         try {
-            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
-            $select = $conn->prepare("SELECT al.cantidad FROM almacena al, producto p WHERE al.id_producto = p.id_producto AND al.id_producto = :id_producto ORDER BY al.num_almacen");
-            $select->bindParam(':id_producto', $id_producto);
-            $select->execute();
-            $select->setFetchMode(PDO::FETCH_ASSOC);
-            $resultado = $select->fetchAll();
-            cerrarConexion($conn);
-
-            $stockTotal = array_sum(array_column($resultado, 'cantidad'));
+            $stockTotal = comprobarStockProducto($id_producto);            
 
             if ($unidades > $stockTotal) {
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
             }else {
                 if (!isset($_SESSION["cesta"])) {
                     $_SESSION["cesta"] = $id_producto . "," . $unidades;
-                } else {
+                }else if (strpos($_SESSION["cesta"], $id_producto)) {
                     $productos = explode(";", $_SESSION["cesta"]);
                     $productoEncontrado = false;
                     $indice = 0;
@@ -539,17 +531,44 @@
                         $indice += 1;
                     }
                 
-                    if (!$productoEncontrado) {
-                        $productos[] = $id_producto . "," . $unidades;
-                    }
-                
                     $_SESSION["cesta"] = implode(";", $productos);
+                }else {
+                    $_SESSION["cesta"] += $id_producto . "," . $unidades;
                 }
             }
+        } catch (PDOException $e) {
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para imprimir la cesta en una lista.
+    function imprimirCesta() {
+        echo "<ul>";
+        $productos = explode(";", $_SESSION["cesta"]);
+        foreach ($productos as $producto) {
+            list($id_producto, $unidades) = explode(",", $producto);
+            echo "<li>$id_producto - $unidades</li>";
+        }
+        echo "</ul>";
+    }
+//--------------------------------------------------------------------------
+    // Función para comprobar stock por producto.
+    function comprobarStockProducto($id_producto) {
+        try {
+            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $select = $conn->prepare("SELECT al.cantidad FROM almacena al, producto p WHERE al.id_producto = p.id_producto AND al.id_producto = :id_producto ORDER BY al.num_almacen");
+            $select->bindParam(':id_producto', $id_producto);
+            $select->execute();
+            $select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchAll();
+            cerrarConexion($conn);
+
+            $stockTotal = array_sum(array_column($resultado, 'cantidad'));
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
+        return $stockTotal;
     }
 //--------------------------------------------------------------------------
     // Función para obtener el nif del usuario
@@ -579,12 +598,52 @@
             foreach ($compras as $compra) {
                 var_dump($compra);
                 list($id_producto, $unidades) = explode(",", $compra);
+                $stockTotal = comprobarStockProducto($id_producto);
+                if ($unidades > $stockTotal) {
+                    throw new Exception("No hay suficiente stock del producto $id_producto actualmente.");
+                }
                 comprarProducto($conn, $id_producto, $nif, $unidades);
             }
             validar($conn);
             echo "<p>Ha realizado sus compras corrctamente.</p>";
         } catch (PDOException $e) {
             deshacer($conn);
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        } catch (Exception $e) {
+            deshacer($conn);
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para visualizar las compras de un cliente entre dos fechas por sesión.
+    function visualizarComprasClienteSesion($fecha_in, $fecha_fin, $usuario) {
+        try {
+            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $nif = obtenerNifUsuario($usuario);
+            $select = $conn->prepare("SELECT cli.nif, p.id_producto, p.nombre AS 'producto', c.unidades, (c.unidades * p.precio) AS 'precio compra' FROM cliente cli, producto p, compra c WHERE cli.nif = c.nif AND p.id_producto = c.id_producto AND cli.nif = :nif AND fecha_compra BETWEEN :fecha_in AND :fecha_fin ORDER BY fecha_compra");
+            $select->bindParam(':nif', $nif);
+            $select->bindParam(':fecha_in', $fecha_in);
+            $select->bindParam(':fecha_fin', $fecha_fin);
+            $select->execute();
+            $select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchAll();
+            cerrarConexion($conn);
+            if (empty($resultado)) { 
+                echo "<p>No se encontraron compras para el cliente $nif entre las fechas $fecha_in y $fecha_fin.</p>";
+            }else {
+                echo "<h2>Compras del cliente {$resultado[0]['nif']} entre $fecha_in y $fecha_fin</h2>";
+                echo "<ul>";
+                $total = 0;
+                foreach ($resultado as $row) {
+                    echo "<li>{$row['id_producto']} - {$row['producto']}, {$row['unidades']} unidades, precio compra {$row['precio compra']}</li>";
+                    $total += $row['precio compra'];
+                }
+                echo "</ul>";
+                echo "<p>El monto total de las " . count($resultado) . " compras es $total</p>";
+            }
+        } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }

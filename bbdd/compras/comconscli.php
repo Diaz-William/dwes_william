@@ -1,0 +1,45 @@
+<?php
+    // Incluir el archivo "funciones_dados_compras.php".
+    include "funciones_bbdd_compras.php";
+    // Incluir el archivo "errores_sistema_compras.php".
+    include "errores_sistema_compras.php";
+    // Establecer la función "error_function" para el manejo de errores.
+    set_error_handler("error_function");
+    session_start();
+
+    if (!isset($_SESSION["usuario"])) {
+        cerrarSesion();
+        header("Location: ./comlogincli.php");
+    }
+
+    // Comprobar si se han enviado los datos del formulario por el método POST.
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["fecha_in"]) || empty($_POST["fecha_fin"]) || empty($_POST["nif"])) {
+            trigger_error("Tiene que introducir la fecha de inicio y la fecha de fin.");
+        }else {
+            $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
+            $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
+
+            visualizarComprasClienteSesion($fecha_in, $fecha_fin, $_SESSION["usuario"]);
+        }
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="William Diaz">
+        <title>P.3.2.7</title>
+    </head>
+    <body>
+        <h1>Aprovisionar Productos</h1>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <label for="fecha_in">Fecha Inicio:</label>
+            <input name="fecha_in" type="text">
+            <br><br>
+            <label for="fecha_fin">Fecha Fin:</label>
+            <input name="fecha_fin" type="text">
+            <br><br>
+    </body>
+</html>
