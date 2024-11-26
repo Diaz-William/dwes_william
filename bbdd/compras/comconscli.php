@@ -39,7 +39,7 @@
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST["enviar"])) {
-                    if (empty($_POST["fecha_in"]) || empty($_POST["fecha_fin"]) || empty($_POST["nif"])) {
+                    if (empty($_POST["fecha_in"]) || empty($_POST["fecha_fin"])) {
                         trigger_error("Tiene que introducir la fecha de inicio y la fecha de fin.");
                     }else {
                         $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
