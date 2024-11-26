@@ -613,6 +613,7 @@
             }
             validar($conn);
             echo "<p>Ha realizado sus compras corrctamente.</p>";
+            $_SESSION["cesta"] = null;
         } catch (PDOException $e) {
             deshacer($conn);
             cerrarConexion($conn);
