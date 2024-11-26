@@ -517,8 +517,8 @@
     // Función para guardar producto.
     function guardarProducto($id_producto, $unidades) {
         try {
-            $stockTotal = comprobarStockProducto($id_producto);            
-            var_dump(strpos($_SESSION["cesta"], $id_producto));
+            $stockTotal = comprobarStockProducto($id_producto);
+
             if ($unidades > $stockTotal) {
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
             }else {
@@ -540,9 +540,6 @@
                     }
                 
                     $_SESSION["cesta"] = implode(";", $productos);
-                    var_dump($productos);
-                    var_dump(implode(";", $productos));
-                    var_dump($_SESSION["cesta"]);
                 }else {
                     $_SESSION["cesta"] .= ";$id_producto,$unidades";
                 }
@@ -607,7 +604,6 @@
             $compras = explode(";", $_SESSION["cesta"]);
             empezarTransaccion($conn);
             foreach ($compras as $compra) {
-                var_dump($compra);
                 list($id_producto, $unidades) = explode(",", $compra);
                 $stockTotal = comprobarStockProducto($id_producto);
                 if ($unidades > $stockTotal) {
