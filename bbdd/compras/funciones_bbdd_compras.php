@@ -533,7 +533,7 @@
                 
                     $_SESSION["cesta"] = implode(";", $productos);
                 }else {
-                    $_SESSION["cesta"] += $id_producto . "," . $unidades;
+                    $_SESSION["cesta"] .= $id_producto . "," . $unidades;
                 }
             }
         } catch (PDOException $e) {
