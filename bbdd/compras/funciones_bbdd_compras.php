@@ -450,13 +450,31 @@
     // Función para insertar en la tabla compra. Prueba máquina virtual
     function insertarCompra(&$conn, $nif, $id_producto, $unidades) {
         try {
-            $insert = $conn->prepare("INSERT INTO compra (nif, id_producto, fecha_compra, unidades) VALUES (:nif, :id_producto, :fecha_compra, :unidades)");
-            $insert->bindParam(':nif', $nif);
-            $insert->bindParam(':id_producto', $id_producto);
+            $select = $conn->prepare("SELECT unidades FROM compra WHERE nif = :nif AND id_producto = :id_producto AND fecha_compra = :fecha_compra");
+            $select->bindParam(':nif', $nif);
+            $select->bindParam(':id_producto', $id_producto);
             $fecha_compra = date("Y-m-d");
-            $insert->bindParam(':fecha_compra', $fecha_compra);
-            $insert->bindParam(':unidades', $unidades);
-            $insert->execute();
+            $select->bindParam(':fecha_compra', $fecha_compra);
+            $select->execute();
+            $select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchAll();
+
+            if (!empty($resultado)) {
+                $update = $conn->prepare("UPDATE compra SET unidades = unidades + :unidades WHERE nif = :nif AND id_producto = :id_producto AND fecha_compra = :fecha_compra");
+                $update->bindParam(':unidades', $unidades);
+                $update->bindParam(':nif', $nif);
+                $update->bindParam(':id_producto', $id_producto);
+                $fecha_compra = date("Y-m-d");
+                $update->bindParam(':fecha_compra', $fecha_compra);
+                $update->execute();
+            }else {
+                $insert = $conn->prepare("INSERT INTO compra (nif, id_producto, fecha_compra, unidades) VALUES (:nif, :id_producto, :fecha_compra, :unidades)");
+                $insert->bindParam(':nif', $nif);
+                $insert->bindParam(':id_producto', $id_producto);
+                $insert->bindParam(':fecha_compra', $fecha_compra);
+                $insert->bindParam(':unidades', $unidades);
+                $insert->execute();
+            }
         } catch (PDOException $e) {
             deshacer($conn);
             error_function_bbdd($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
