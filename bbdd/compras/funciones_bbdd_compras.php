@@ -687,6 +687,7 @@
     function cerrarSesionCookies() {
         setcookie("usuario", "", time() - 3600, "/");
         setcookie("clave", "", time() - 3600, "/");
+        setcookie("cesta", "", time() - 3600, "/");
         header("Location: ./comlogincli_cookies.php");
     }
 //--------------------------------------------------------------------------
