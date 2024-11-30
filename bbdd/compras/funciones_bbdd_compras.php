@@ -694,18 +694,19 @@
     function guardarProductoCookies($id_producto, $unidades) {
         try {
             $stockTotal = comprobarStockProducto($id_producto);
-
+    
             if ($unidades > $stockTotal) {
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
-            }else {
+            } else {
+                $nueva_cesta = "";
+                
                 if (!isset($_COOKIE["cesta"])) {
-                    setcookie("cesta", "", time() - 3600, "/");
-                    $_COOKIE["cesta"] = "$id_producto,$unidades";
-                }else if (strpos($_COOKIE["cesta"], $id_producto) !== false) {
+                    $nueva_cesta = "$id_producto,$unidades";
+                } else {
                     $productos = explode(";", $_COOKIE["cesta"]);
                     $productoEncontrado = false;
                     $indice = 0;
-                
+    
                     while (!$productoEncontrado && $indice < count($productos)) {
                         $datos = explode(",", $productos[$indice]);
                         if ($datos[0] === $id_producto) {
@@ -713,18 +714,23 @@
                             $productos[$indice] = implode(",", $datos);
                             $productoEncontrado = true;
                         }
-                        $indice += 1;
+                        $indice++;
                     }
-                
-                    $_COOKIE["cesta"] = implode(";", $productos);
-                }else {
-                    $_COOKIE["cesta"] .= ";$id_producto,$unidades";
+    
+                    if (!$productoEncontrado) {
+                        $productos[] = "$id_producto,$unidades";
+                    }
+    
+                    $nueva_cesta = implode(";", $productos);
                 }
+    
+                setcookie("cesta", $nueva_cesta, time() + 86400, "/");
+                //$_COOKIE["cesta"] = $nueva_cesta;
             }
         } catch (PDOException $e) {
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
-    }
+    }    
 //--------------------------------------------------------------------------
     // Función para imprimir la cesta en una lista.
     function imprimirCestaCookies() {
