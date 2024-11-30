@@ -763,7 +763,8 @@ function comprarProductoSesionCookies() {
         }
         validar($conn);
         echo "<p>Ha realizado sus compras corrctamente.</p>";
-        $_COOKIE["cesta"] = null;
+        setcookie("cesta", "", time() + 86400, "/");
+        $_COOKIE["cesta"] = "";
     } catch (PDOException $e) {
         deshacer($conn);
         cerrarConexion($conn);
