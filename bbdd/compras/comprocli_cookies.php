@@ -47,7 +47,7 @@
                         imprimirCestaCookies();
                     }
                 } else if (isset($_POST["comprar"])) {
-                    comprarProductoSesion();
+                    comprarProductoSesionCookies();
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();
                 }
