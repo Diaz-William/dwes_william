@@ -675,3 +675,126 @@
         }
     }
 //--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+    // Función para crear una sesión con cookies.
+    function crearSesionCookies($usuario, $clave) {
+        setcookie("usuario", $usuario, time() + 86400, "/");
+        setcookie("clave", $clave, time() + 86400, "/");
+        header("Location: ./comlogincli.php");
+    }
+//--------------------------------------------------------------------------
+    // Función para cerrar sesión eliminando cookies.
+    function cerrarSesionCookies() {
+        setcookie("usuario", "", time() - 3600, "/");
+        setcookie("clave", "", time() - 3600, "/");
+        header("Location: ./comlogincli.php");
+    }
+//--------------------------------------------------------------------------
+    // Función para guardar producto.
+    function guardarProductoCookies($id_producto, $unidades) {
+        try {
+            $stockTotal = comprobarStockProducto($id_producto);
+
+            if ($unidades > $stockTotal) {
+                echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
+            }else {
+                if (!isset($_COOKIE["cesta"])) {
+                    $_COOKIE["cesta"] = "$id_producto,$unidades";
+                }else if (strpos($_COOKIE["cesta"], $id_producto) !== false) {
+                    $productos = explode(";", $_COOKIE["cesta"]);
+                    $productoEncontrado = false;
+                    $indice = 0;
+                
+                    while (!$productoEncontrado && $indice < count($productos)) {
+                        $datos = explode(",", $productos[$indice]);
+                        if ($datos[0] === $id_producto) {
+                            $datos[1] = $unidades;
+                            $productos[$indice] = implode(",", $datos);
+                            $productoEncontrado = true;
+                        }
+                        $indice += 1;
+                    }
+                
+                    $_COOKIE["cesta"] = implode(";", $productos);
+                }else {
+                    $_COOKIE["cesta"] .= ";$id_producto,$unidades";
+                }
+            }
+        } catch (PDOException $e) {
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para imprimir la cesta en una lista.
+    function imprimirCestaCookies() {
+        echo "<ul>";
+        $productos = explode(";", $_COOKIE["cesta"]);
+        foreach ($productos as $producto) {
+            list($id_producto, $unidades) = explode(",", $producto);
+            echo "<li>$id_producto - $unidades</li>";
+        }
+        echo "</ul>";
+    }
+//--------------------------------------------------------------------------
+// Función para comprar producto por sesión.
+function comprarProductoSesionCookies() {
+    try {
+        $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+        $nif = obtenerNifUsuario($_COOKIE["usuario"]);
+
+        $compras = explode(";", $_COOKIE["cesta"]);
+        empezarTransaccion($conn);
+        foreach ($compras as $compra) {
+            list($id_producto, $unidades) = explode(",", $compra);
+            $stockTotal = comprobarStockProducto($id_producto);
+            if ($unidades > $stockTotal) {
+                throw new Exception("No hay suficiente stock del producto $id_producto actualmente.");
+            }
+            comprarProducto($conn, $id_producto, $nif, $unidades);
+        }
+        validar($conn);
+        echo "<p>Ha realizado sus compras corrctamente.</p>";
+        $_COOKIE["cesta"] = null;
+    } catch (PDOException $e) {
+        deshacer($conn);
+        cerrarConexion($conn);
+        error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+    } catch (Exception $e) {
+        deshacer($conn);
+        cerrarConexion($conn);
+        error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+    }
+}
+//--------------------------------------------------------------------------
+    // Función para visualizar las compras de un cliente entre dos fechas por sesión.
+    function visualizarComprasClienteSesionCookies($fecha_in, $fecha_fin, $usuario) {
+        try {
+            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
+            $nif = obtenerNifUsuario($usuario);
+            $select = $conn->prepare("SELECT cli.nif, p.id_producto, p.nombre AS 'producto', c.unidades, (c.unidades * p.precio) AS 'precio compra' FROM cliente cli, producto p, compra c WHERE cli.nif = c.nif AND p.id_producto = c.id_producto AND cli.nif = :nif AND fecha_compra BETWEEN :fecha_in AND :fecha_fin ORDER BY fecha_compra");
+            $select->bindParam(':nif', $nif);
+            $select->bindParam(':fecha_in', $fecha_in);
+            $select->bindParam(':fecha_fin', $fecha_fin);
+            $select->execute();
+            $select->setFetchMode(PDO::FETCH_ASSOC);
+            $resultado = $select->fetchAll();
+            cerrarConexion($conn);
+            if (empty($resultado)) { 
+                echo "<p>No se encontraron compras para el cliente $nif entre las fechas $fecha_in y $fecha_fin.</p>";
+            }else {
+                echo "<h2>Compras del cliente {$resultado[0]['nif']} entre $fecha_in y $fecha_fin</h2>";
+                echo "<ul>";
+                $total = 0;
+                foreach ($resultado as $row) {
+                    echo "<li>{$row['id_producto']} - {$row['producto']}, {$row['unidades']} unidades, precio compra {$row['precio compra']}</li>";
+                    $total += $row['precio compra'];
+                }
+                echo "</ul>";
+                echo "<p>El monto total de las " . count($resultado) . " compras es $total</p>";
+            }
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
