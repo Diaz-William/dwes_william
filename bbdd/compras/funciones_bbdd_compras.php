@@ -699,6 +699,7 @@
                 echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
             }else {
                 if (!isset($_COOKIE["cesta"])) {
+                    setcookie("cesta", "", time() - 3600, "/");
                     $_COOKIE["cesta"] = "$id_producto,$unidades";
                 }else if (strpos($_COOKIE["cesta"], $id_producto) !== false) {
                     $productos = explode(";", $_COOKIE["cesta"]);
