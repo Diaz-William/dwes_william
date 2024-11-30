@@ -680,14 +680,14 @@
     function crearSesionCookies($usuario, $clave) {
         setcookie("usuario", $usuario, time() + 86400, "/");
         setcookie("clave", $clave, time() + 86400, "/");
-        header("Location: ./comlogincli.php");
+        header("Location: ./menu_cookies.php");
     }
 //--------------------------------------------------------------------------
     // Función para cerrar sesión eliminando cookies.
     function cerrarSesionCookies() {
         setcookie("usuario", "", time() - 3600, "/");
         setcookie("clave", "", time() - 3600, "/");
-        header("Location: ./comlogincli.php");
+        header("Location: ./comlogincli_cookies.php");
     }
 //--------------------------------------------------------------------------
     // Función para guardar producto.
