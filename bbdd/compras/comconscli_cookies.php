@@ -6,7 +6,7 @@
     // Establecer la función "error_function" para el manejo de errores.
     set_error_handler("error_function");
 
-    if (!isset($_COOKIE["usuario"]) || !isset($_COOKIE["clave"])) {
+    if (!isset($_COOKIE["usuario"])) {
         cerrarSesionCookies();
         header("Location: ./comlogincli_cookies.php");
     }
@@ -43,7 +43,7 @@
                     }else {
                         $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
                         $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
-                        visualizarComprasClienteSesionCookies($fecha_in, $fecha_fin, $_COOKIE["usuario"]);
+                        visualizarComprasClienteSesion($fecha_in, $fecha_fin, $_COOKIE["usuario"]);
                     }
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();

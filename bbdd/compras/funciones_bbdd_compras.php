@@ -677,16 +677,14 @@
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
     // Función para crear una sesión con cookies.
-    function crearSesionCookies($usuario, $clave) {
+    function crearSesionCookies($usuario) {
         setcookie("usuario", $usuario, time() + 86400, "/");
-        setcookie("clave", $clave, time() + 86400, "/");
         header("Location: ./menu_cookies.php");
     }
 //--------------------------------------------------------------------------
     // Función para cerrar sesión eliminando cookies.
     function cerrarSesionCookies() {
         setcookie("usuario", "", time() - 3600, "/");
-        setcookie("clave", "", time() - 3600, "/");
         setcookie("cesta", "", time() - 3600, "/");
         header("Location: ./comlogincli_cookies.php");
     }
@@ -749,36 +747,4 @@ function comprarProductoSesionCookies() {
         error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
     }
 }
-//--------------------------------------------------------------------------
-    // Función para visualizar las compras de un cliente entre dos fechas por sesión.
-    function visualizarComprasClienteSesionCookies($fecha_in, $fecha_fin, $usuario) {
-        try {
-            $conn = realizarConexion("comprasweb","localhost","root","rootroot");
-            $nif = obtenerNifUsuario($usuario);
-            $select = $conn->prepare("SELECT cli.nif, p.id_producto, p.nombre AS 'producto', c.unidades, (c.unidades * p.precio) AS 'precio compra' FROM cliente cli, producto p, compra c WHERE cli.nif = c.nif AND p.id_producto = c.id_producto AND cli.nif = :nif AND fecha_compra BETWEEN :fecha_in AND :fecha_fin ORDER BY fecha_compra");
-            $select->bindParam(':nif', $nif);
-            $select->bindParam(':fecha_in', $fecha_in);
-            $select->bindParam(':fecha_fin', $fecha_fin);
-            $select->execute();
-            $select->setFetchMode(PDO::FETCH_ASSOC);
-            $resultado = $select->fetchAll();
-            cerrarConexion($conn);
-            if (empty($resultado)) { 
-                echo "<p>No se encontraron compras para el cliente $nif entre las fechas $fecha_in y $fecha_fin.</p>";
-            }else {
-                echo "<h2>Compras del cliente {$resultado[0]['nif']} entre $fecha_in y $fecha_fin</h2>";
-                echo "<ul>";
-                $total = 0;
-                foreach ($resultado as $row) {
-                    echo "<li>{$row['id_producto']} - {$row['producto']}, {$row['unidades']} unidades, precio compra {$row['precio compra']}</li>";
-                    $total += $row['precio compra'];
-                }
-                echo "</ul>";
-                echo "<p>El monto total de las " . count($resultado) . " compras es $total</p>";
-            }
-        } catch (PDOException $e) {
-            cerrarConexion($conn);
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
-        }
-    }
 //--------------------------------------------------------------------------

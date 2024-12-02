@@ -33,7 +33,7 @@
                 }else {
                     if (comprobarUsuario($usuario)) {
                         if (comprobarClave($usuario, $clave)) {
-                            crearSesionCookies($usuario, $clave);
+                            crearSesionCookies($usuario);
                         }else {
                             trigger_error("La clave es incorrecta");
                         }

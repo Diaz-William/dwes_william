@@ -6,7 +6,7 @@
     // Establecer la función "error_function" para el manejo de errores.
     set_error_handler("error_function");
 
-    if (!isset($_COOKIE["usuario"]) || !isset($_COOKIE["clave"])) {
+    if (!isset($_COOKIE["usuario"])) {
         cerrarSesionCookies();
         header("Location: ./comlogincli_cookies.php");
     }
