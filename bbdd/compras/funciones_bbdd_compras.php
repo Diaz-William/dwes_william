@@ -550,7 +550,7 @@
                     while (!$productoEncontrado && $indice < count($productos)) {
                         $datos = explode(",", $productos[$indice]);
                         if ($datos[0] === $id_producto) {
-                            $datos[1] = $unidades;
+                            $datos[1] += $unidades;
                             $productos[$indice] = implode(",", $datos);
                             $productoEncontrado = true;
                         }
