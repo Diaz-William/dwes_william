@@ -726,7 +726,7 @@
                 }
     
                 setcookie("cesta", $nueva_cesta, time() + 86400, "/");
-                $_COOKIE["cesta"] = $nueva_cesta;
+                //$_COOKIE["cesta"] = $nueva_cesta;
             }
         } catch (PDOException $e) {
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
