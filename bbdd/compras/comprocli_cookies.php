@@ -45,13 +45,13 @@
                         $id_producto = test_input($_POST["producto"]);
                         $unidades = intval(test_input($_POST["unidades"]));
                         guardarProductoCookies($id_producto, $unidades);
-                        header("Refresh:0");
                     }
                 } else if (isset($_POST["comprar"])) {
                     comprarProductoSesionCookies();
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();
                 }
+                header("Refresh:0");
             }
         ?>
     </body>

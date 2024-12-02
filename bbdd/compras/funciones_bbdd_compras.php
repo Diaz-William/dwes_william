@@ -699,47 +699,21 @@
             if ($unidades > $stockTotal) {
                 trigger_error("No hay suficiente stock del producto para $unidades unidades solicitadas");
             } else {
-                $nuevaCesta = "";
-                
-                if (!isset($_COOKIE["cesta"])) {
-                    $nuevaCesta = "$id_producto,$unidades";
-                } else {
-                    $productos = explode(";", $_COOKIE["cesta"]);
-                    $productoEncontrado = false;
-                    $indice = 0;
-    
-                    while (!$productoEncontrado && $indice < count($productos)) {
-                        $datos = explode(",", $productos[$indice]);
-                        if ($datos[0] === $id_producto) {
-                            $datos[1] = $unidades;
-                            $productos[$indice] = implode(",", $datos);
-                            $productoEncontrado = true;
-                        }
-                        $indice++;
-                    }
-    
-                    if (!$productoEncontrado) {
-                        $productos[] = "$id_producto,$unidades";
-                    }
-    
-                    $nuevaCesta = implode(";", $productos);
-                }
-    
-                setcookie("cesta", $nuevaCesta, time() + 86400, "/");
-                //$_COOKIE["cesta"] = $nuevaCesta;
+                $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
+                $cesta[$id_producto] = isset($cesta[$id_producto]) ? $cesta[$id_producto] + $unidades : $unidades;
+                setcookie("cesta", serialize($cesta), time() + 86400, "/");
             }
         } catch (PDOException $e) {
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
-    }    
+    }
 //--------------------------------------------------------------------------
     // Función para imprimir la cesta en una lista.
     function imprimirCestaCookies() {
         if (isset($_COOKIE["cesta"])) {
             echo "<ul>";
-            $productos = explode(";", $_COOKIE["cesta"]);
-            foreach ($productos as $producto) {
-                list($id_producto, $unidades) = explode(",", $producto);
+            $cesta = unserialize($_COOKIE["cesta"]);
+            foreach ($cesta as $id_producto => $unidades) {
                 echo "<li>$id_producto - $unidades</li>";
             }
             echo "</ul>";
@@ -752,20 +726,19 @@ function comprarProductoSesionCookies() {
         $conn = realizarConexion("comprasweb","localhost","root","rootroot");
         $nif = obtenerNifUsuario($_COOKIE["usuario"]);
 
-        $compras = explode(";", $_COOKIE["cesta"]);
+        $cesta = unserialize($_COOKIE["cesta"]);
         empezarTransaccion($conn);
-        foreach ($compras as $compra) {
-            list($id_producto, $unidades) = explode(",", $compra);
+        foreach ($cesta as $id_producto => $unidades) {
             $stockTotal = comprobarStockProducto($id_producto);
             if ($unidades > $stockTotal) {
                 throw new Exception("No hay suficiente stock del producto $id_producto actualmente.");
+            }else {
+                comprarProducto($conn, $id_producto, $nif, $unidades);
             }
-            comprarProducto($conn, $id_producto, $nif, $unidades);
         }
         validar($conn);
         echo "<p>Ha realizado sus compras corrctamente.</p>";
         setcookie("cesta", "", time() + 86400, "/");
-        $_COOKIE["cesta"] = "";
     } catch (PDOException $e) {
         deshacer($conn);
         cerrarConexion($conn);
