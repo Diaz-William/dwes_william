@@ -735,7 +735,7 @@
 //--------------------------------------------------------------------------
     // Función para imprimir la cesta en una lista.
     function imprimirCestaCookies() {
-        if (!isset($_COOKIE["cesta"])) {
+        if (isset($_COOKIE["cesta"])) {
             echo "<ul>";
             $productos = explode(";", $_COOKIE["cesta"]);
             foreach ($productos as $producto) {
