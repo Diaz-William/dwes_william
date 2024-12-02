@@ -735,14 +735,15 @@
 //--------------------------------------------------------------------------
     // Función para imprimir la cesta en una lista.
     function imprimirCestaCookies() {
-        var_dump($_COOKIE["cesta"]);
-        echo "<ul>";
-        $productos = explode(";", $_COOKIE["cesta"]);
-        foreach ($productos as $producto) {
-            list($id_producto, $unidades) = explode(",", $producto);
-            echo "<li>$id_producto - $unidades</li>";
+        if (!isset($_COOKIE["cesta"])) {
+            echo "<ul>";
+            $productos = explode(";", $_COOKIE["cesta"]);
+            foreach ($productos as $producto) {
+                list($id_producto, $unidades) = explode(",", $producto);
+                echo "<li>$id_producto - $unidades</li>";
+            }
+            echo "</ul>";
         }
-        echo "</ul>";
     }
 //--------------------------------------------------------------------------
 // Función para comprar producto por sesión.
