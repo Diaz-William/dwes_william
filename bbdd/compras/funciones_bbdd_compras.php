@@ -697,12 +697,12 @@
             $stockTotal = comprobarStockProducto($id_producto);
     
             if ($unidades > $stockTotal) {
-                echo "<p>No hay suficiente stock del producto para $unidades unidades solicitadas</p>";
+                trigger_error("No hay suficiente stock del producto para $unidades unidades solicitadas");
             } else {
-                $nueva_cesta = "";
+                $nuevaCesta = "";
                 
                 if (!isset($_COOKIE["cesta"])) {
-                    $nueva_cesta = "$id_producto,$unidades";
+                    $nuevaCesta = "$id_producto,$unidades";
                 } else {
                     $productos = explode(";", $_COOKIE["cesta"]);
                     $productoEncontrado = false;
@@ -722,11 +722,11 @@
                         $productos[] = "$id_producto,$unidades";
                     }
     
-                    $nueva_cesta = implode(";", $productos);
+                    $nuevaCesta = implode(";", $productos);
                 }
     
-                setcookie("cesta", $nueva_cesta, time() + 86400, "/");
-                //$_COOKIE["cesta"] = $nueva_cesta;
+                setcookie("cesta", $nuevaCesta, time() + 86400, "/");
+                //$_COOKIE["cesta"] = $nuevaCesta;
             }
         } catch (PDOException $e) {
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());

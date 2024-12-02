@@ -32,7 +32,7 @@
             <input type="submit" name="comprar" id="comprar" value="Comprar">
             <br><br>
             <input type="submit" name="cerrar" id="cerrar" value="Cerrar Sesión">
-			<?php imprimirCestaCookies() ?>
+			<?php imprimirCestaCookies(); ?>
         </form>
 
         <?php
@@ -46,7 +46,6 @@
                         $unidades = intval(test_input($_POST["unidades"]));
                         guardarProductoCookies($id_producto, $unidades);
                         header("Refresh:0");
-						
                     }
                 } else if (isset($_POST["comprar"])) {
                     comprarProductoSesionCookies();
