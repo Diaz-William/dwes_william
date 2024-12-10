@@ -44,6 +44,7 @@
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
             cerrarConexion($conn);
+            var_dump($resultado);
             return $resultado >= 3;
         } catch (PDOException $e) {
             cerrarConexion($conn);
