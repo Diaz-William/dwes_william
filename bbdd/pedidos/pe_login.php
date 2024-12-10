@@ -39,6 +39,10 @@
                                 crearSesionCookies($customerNumber);
                             }else {
                                 aumentarErroresSesión($customerNumber);
+                                //☻
+                                if (comprobarUsusarioBloqueado($customerNumber)) {
+                                    trigger_error("El usuario con el número $customerNumber está bloqueado");
+                                }
                             }
                         }else {
                             trigger_error("El usuario con el número $customerNumber está bloqueado");
