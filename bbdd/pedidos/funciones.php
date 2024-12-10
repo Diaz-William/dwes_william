@@ -25,7 +25,9 @@
     // Función para empezar la transacción.
     function empezarTransaccion($conn) {
         try {
-            $conn->beginTransaction();
+            if ($conn) {
+                $conn->beginTransaction();
+            }
         } catch (PDOException $e) {
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
@@ -34,7 +36,9 @@
     // Función para realizar un commit o validar los cambios de la base de datos.
     function validar($conn) {
         try {
-            $conn->commit();
+            if ($conn) {
+                $conn->commit();
+            }
         } catch (PDOException $e) {
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
@@ -43,7 +47,9 @@
     // Función para realizar un rollback o revirtir los cambios realizados en la base de datos.
     function deshacer($conn) {
         try {
-            $conn->rollBack();
+            if ($conn) {
+                $conn->rollBack();
+            }
         } catch (PDOException $e) {
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
