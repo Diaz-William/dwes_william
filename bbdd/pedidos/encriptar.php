@@ -44,8 +44,8 @@
                         cerrarConexion($conn);
                         error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
                     }
-                    encriptar();
                 }
+                encriptar();
             }
         ?>
     </body>
