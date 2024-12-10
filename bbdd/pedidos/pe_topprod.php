@@ -43,7 +43,7 @@
                     }else {
                         $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
                         $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
-                        obtenerOrdenes($fecha_in, $fecha_fin);
+                        obtenerProductosVendidos($fecha_in, $fecha_fin);
                     }
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();
