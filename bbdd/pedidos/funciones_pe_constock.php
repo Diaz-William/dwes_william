@@ -37,10 +37,9 @@
             cerrarConexion($conn);
             echo "<ul>";
             foreach ($resultado as $row) {
-                echo "<li>{$row['productName']}-{$row['quantityInStock']}</li>";
+                echo "<li>{$row['productName']} - {$row['quantityInStock']}</li>";
             }
             echo "</ul>";
-            echo "<p>Hay $resultado unidades.</p>";
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
