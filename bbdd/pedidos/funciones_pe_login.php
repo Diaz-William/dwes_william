@@ -67,7 +67,7 @@
             $resultado = $stmt->fetchColumn();
             cerrarConexion($conn);
             if ((3 - $resultado) != 0) {
-                trigger_error("El contactLastName es incorrecto, " . (3 - $resultado) . " intentos");
+                trigger_error("La clave es incorrecta, " . (3 - $resultado) . " intentos");
             }
         } catch (PDOException $e) {
             deshacer($conn);

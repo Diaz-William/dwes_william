@@ -14,6 +14,7 @@
             <input type="password" name="contactLastName" id="contactLastName">
             <br><br>
             <input type="submit" name="iniciar" id="iniciar" value="Iniciar Sesión">
+            <input type="submit" name="registrar" id="registrar" value="Registrarse">
         </form>
 
         <?php
@@ -26,30 +27,33 @@
 
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $customerNumber = test_input($_POST["customerNumber"]);
-                $contactLastName = test_input($_POST["contactLastName"]);
-                
-                if (empty($customerNumber) || empty($contactLastName)) {
-                    trigger_error("Tiene que introducir el customerNumber y el contactLastName");
-                }else {
-                    if (comprobarUsuario($customerNumber)) {
-                        if (!comprobarUsuarioBloqueado($customerNumber)) {
-                            if (comprobarClave($customerNumber, $contactLastName)) {
-                                reiniciarErroresSesion($customerNumber);
-                                crearSesionCookies($customerNumber);
-                            }else {
-                                aumentarErroresSesion($customerNumber);
-                                //☻
-                                if (comprobarUsuarioBloqueado($customerNumber)) {
-                                    trigger_error("El usuario con el número $customerNumber está bloqueado");
+                if (isset($_POST["iniciar"])) {
+                    $customerNumber = test_input($_POST["customerNumber"]);
+                    $contactLastName = test_input($_POST["contactLastName"]);
+
+                    if (empty($customerNumber) || empty($contactLastName)) {
+                        trigger_error("Tiene que introducir el customerNumber y el contactLastName");
+                    }else {
+                        if (comprobarUsuario($customerNumber)) {
+                            if (!comprobarUsuarioBloqueado($customerNumber)) {
+                                if (comprobarClave($customerNumber, $contactLastName)) {
+                                    reiniciarErroresSesion($customerNumber);
+                                    crearSesionCookies($customerNumber);
+                                }else {
+                                    aumentarErroresSesion($customerNumber);//☻
+                                    if (comprobarUsuarioBloqueado($customerNumber)) {
+                                        trigger_error("El usuario con el número $customerNumber está bloqueado");
+                                    }
                                 }
+                            }else {
+                                trigger_error("El usuario con el número $customerNumber está bloqueado");
                             }
                         }else {
-                            trigger_error("El usuario con el número $customerNumber está bloqueado");
+                            trigger_error("Usuario incorrecto");
                         }
-                    }else {
-                        trigger_error("El customerNumber $customerNumber no existe");
                     }
+                }else if ($_POST["registrar"]) {
+                    header("Location: ./pe_sigin.php");
                 }
             }
         ?>
