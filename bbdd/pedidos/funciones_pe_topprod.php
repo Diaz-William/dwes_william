@@ -14,8 +14,31 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $ordenes = $stmt->fetchAll();
             cerrarConexion($conn);
-            foreach ($ordenes as $row => $orden) {
-                var_dump($orden);
+            calcularProductosVendidos($ordenes);
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para calcular las unidades totales de cada uno de los productos vendidos entre dos fechas.
+    function calcularProductosVendidos($ordenes) {
+        try {
+            $productos = array();
+            $conn = realizarConexion("pedidos","localhost","root","rootroot");
+            foreach ($ordenes as $row => $orderNumber) {
+                $stmt = $conn->prepare("SELECT p.productCode, od.quantityOrdered from products p, orderdetails od WHERE p.productCode = od.productCode AND od.orderNumber = :orderNumber");
+                $stmt->bindParam(':orderNumber', $orderNumber);
+                $stmt->execute();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                $resultado = $stmt->fetchAll();
+                foreach ($resultado as $row) {
+                    $productos[$row["productCode"]] = isset($productos[$row["productCode"]]) ? $productos[$row["productCode"]] + $row["quantityOrdered"] : $row["quantityOrdered"];
+                }
+            }
+            cerrarConexion($conn);
+            foreach ($productos as $productCode => $quantityOrdered) {
+                var_dump("$productCode -- $quantityOrdered");
             }
         } catch (PDOException $e) {
             cerrarConexion($conn);
