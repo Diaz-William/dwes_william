@@ -25,6 +25,9 @@
             <label for="clave">Clave:</label>
             <input type="password" name="clave" id="clave" required>
             <br><br>
+            <label for="telefono">Teléfono:</label>
+            <input type="text" name="telefono" id="telefono" required>
+            <br><br>
             <input type="submit" name="registrarse" id="registrarse" value="Registrarse">
         </form>
         <?php
@@ -43,7 +46,8 @@
                 $city = test_input($_POST["ciudad"]);
                 $country = test_input($_POST["pais"]);
                 $hashPassword = password_hash(test_input($_POST["clave"]), PASSWORD_DEFAULT);
-                insertarCliente($contactFirstName, $contactLastName, $addressLine1, $city, $country, $hashPassword);
+                $phone = test_input($_POST["telefono"]);
+                insertarCliente($contactFirstName, $contactLastName, $addressLine1, $city, $country, $hashPassword, $phone);
             }
         ?>
     </body>

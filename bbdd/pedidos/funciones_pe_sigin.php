@@ -4,18 +4,19 @@
     include "funciones.php";
 //--------------------------------------------------------------------------
     // Función para insertar un cliente.
-    function insertarCliente($contactFirstName, $contactLastName, $addressLine1, $city, $country, $hashPassword) {
+    function insertarCliente($contactFirstName, $contactLastName, $addressLine1, $city, $country, $hashPassword, $phone) {
         try {
             $customerNumber = siguienteNumeroCliente();
             $customerName = "Atelier graphique";
 
             $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
             empezarTransaccion($conn);
-            $stmt = $conn->prepare("INSERT INTO customers (customerNumber, customerName, contactLastName, contactFirstName, addressLine1, city, country, hashPassword) VALUES (:customerNumber, :customerName, :contactLastName, :contactFirstName, :addressLine1, :city, :country, :hashPassword)");
+            $stmt = $conn->prepare("INSERT INTO customers (customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, city, country, hashPassword) VALUES (:customerNumber, :customerName, :contactLastName, :contactFirstName, :phone, :addressLine1, :city, :country, :hashPassword)");
             $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->bindParam(':customerName', $customerName);
             $stmt->bindParam(':contactLastName', $contactLastName);
             $stmt->bindParam(':contactFirstName', $contactFirstName);
+            $stmt->bindParam(':phone', $phone);
             $stmt->bindParam(':addressLine1', $addressLine1);
             $stmt->bindParam(':city', $city);
             $stmt->bindParam(':country', $country);
