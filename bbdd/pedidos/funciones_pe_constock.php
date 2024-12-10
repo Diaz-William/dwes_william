@@ -29,7 +29,7 @@
     function consultarStockProducto($productLine) {
         try {
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
-            $stmt = $conn->prepare("SELECT productName, quantityInStock FROM products WHERE productLine = :productLine ORDER BY quantityInStock");
+            $stmt = $conn->prepare("SELECT productName, quantityInStock FROM products WHERE productLine = :productLine ORDER BY quantityInStock DESC");
             $stmt->bindParam(':productLine', $productLine);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
