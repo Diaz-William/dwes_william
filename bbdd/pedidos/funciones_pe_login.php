@@ -56,9 +56,11 @@
     function aumentarErroresSesion($customerNumber) {
         try {
             $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
+            empezarTransaccion($conn);
             $stmt = $conn->prepare("UPDATE customers SET errorCounter = errorCounter + 1 WHERE customerNumber = :customerNumber");
             $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->execute();
+            validar($conn);
             $stmt = $conn->prepare("SELECT errorCounter FROM customers WHERE customerNumber = :customerNumber");
             $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->execute();
@@ -68,6 +70,7 @@
                 trigger_error("El contactLastName es incorrecto, " . (3 - $resultado) . " intentos");
             }
         } catch (PDOException $e) {
+            deshacer($conn);
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }

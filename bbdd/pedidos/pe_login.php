@@ -27,8 +27,8 @@
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $customerNumber = test_input($_POST["customerNumber"]);
-                $contactLastName = password_hash(test_input($_POST["contactLastName"]), PASSWORD_DEFAULT);
-                var_dump($contactLastName);
+                $contactLastName = test_input($_POST["contactLastName"]);
+                
                 if (empty($customerNumber) || empty($contactLastName)) {
                     trigger_error("Tiene que introducir el customerNumber y el contactLastName");
                 }else {
