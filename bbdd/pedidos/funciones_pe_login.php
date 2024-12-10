@@ -28,13 +28,6 @@
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
             cerrarConexion($conn);
-            if (password_verify($resultado, $hash)) {
-                var_dump("CORRECTO");
-            }else {
-                var_dump("INCORRECTO");
-            }
-            var_dump($resultado);
-            var_dump($hash);
             return password_verify($resultado, $hash);
         } catch (PDOException $e) {
             cerrarConexion($conn);
@@ -43,7 +36,7 @@
     }
 //--------------------------------------------------------------------------
     // Función para comprobar si un usuario no esta bloqueado.
-    function comprobarUsusarioBloqueado($customerNumber) {
+    function comprobarUsuarioBloqueado($customerNumber) {
         try {
             $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
             $stmt = $conn->prepare("SELECT errorCounter FROM customers WHERE customerNumber = :customerNumber");
@@ -51,7 +44,7 @@
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
             cerrarConexion($conn);
-            return $resultado == 3;
+            return $resultado >= 3;
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
@@ -59,7 +52,7 @@
     }
 //--------------------------------------------------------------------------
     // Función para aumentar un contador de errores de inicio de sesión.
-    function aumentarErroresSesión($customerNumber) {
+    function aumentarErroresSesion($customerNumber) {
         try {
             $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
             $stmt = $conn->prepare("UPDATE customers SET errorCounter = errorCounter + 1 WHERE customerNumber = :customerNumber");
