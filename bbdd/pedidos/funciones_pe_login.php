@@ -20,15 +20,15 @@
     }
 //--------------------------------------------------------------------------
     // Función para comprobar la contraseña del usuario.
-    function comprobarClave($customerNumber, $hash) {
+    function comprobarClave($customerNumber, $contactLastName) {
         try {
             $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
-            $stmt = $conn->prepare("SELECT contactLastName FROM customers WHERE customerNumber = :customerNumber");
+            $stmt = $conn->prepare("SELECT hashPassword FROM customers WHERE customerNumber = :customerNumber");
             $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
             cerrarConexion($conn);
-            return password_verify($resultado, $hash);
+            return password_verify($contactLastName, $resultado);
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
