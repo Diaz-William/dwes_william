@@ -3,8 +3,8 @@
     // Incluir el archivo de funciones generales.
     include "funciones.php";
 //--------------------------------------------------------------------------
-    // Función para visualizar los producto disponibles en un desplegable.
-    function imprimirSeleccionProductosDisponibles() {
+    // Función para visualizar los producto en un desplegable.
+    function imprimirSeleccionProductos() {
         try {
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
             echo "<label for='producto'>Producto: </label>";

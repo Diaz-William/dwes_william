@@ -24,6 +24,7 @@
             $stmt->execute();
             validar($conn);
             cerrarConexion($conn);
+            echo "<p>Tu número de cliente/ususario es $customerNumber</p>";
         } catch (PDOException $e) {
             deshacer($conn);
             cerrarConexion($conn);
