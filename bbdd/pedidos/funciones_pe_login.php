@@ -28,6 +28,13 @@
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
             cerrarConexion($conn);
+            if (password_verify($resultado, $hash)) {
+                var_dump("CORRECTO");
+            }else {
+                var_dump("INCORRECTO");
+            }
+            var_dump($resultado);
+            var_dump($hash);
             return password_verify($resultado, $hash);
         } catch (PDOException $e) {
             cerrarConexion($conn);
