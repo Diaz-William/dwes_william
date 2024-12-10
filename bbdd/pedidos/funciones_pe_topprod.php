@@ -26,7 +26,7 @@
         try {
             $productos = array();
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
-            foreach ($ordenes as $row => $orderNumber) {
+            foreach ($ordenes as $key => $orderNumber) {
                 $stmt = $conn->prepare("SELECT p.productCode, od.quantityOrdered from products p, orderdetails od WHERE p.productCode = od.productCode AND od.orderNumber = :orderNumber");
                 $stmt->bindParam(':orderNumber', $orderNumber);
                 $stmt->execute();
