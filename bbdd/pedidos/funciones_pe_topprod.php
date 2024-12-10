@@ -26,10 +26,9 @@
         try {
             $productos = array();
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
-            foreach ($ordenes as $key => $orderNumber) {
-                var_dump($orderNumber);
+            foreach ($ordenes as $order) {
                 $stmt = $conn->prepare("SELECT p.productCode, od.quantityOrdered from products p, orderdetails od WHERE p.productCode = od.productCode AND od.orderNumber = :orderNumber");
-                $stmt->bindParam(':orderNumber', $orderNumber);
+                $stmt->bindParam(':orderNumber', $order["orderNumber"]);
                 $stmt->execute();
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 $resultado = $stmt->fetchAll();
