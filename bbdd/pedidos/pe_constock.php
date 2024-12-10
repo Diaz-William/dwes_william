@@ -34,7 +34,7 @@
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST["consultar"])) {
-                    if (empty($_POST["producto"])) {
+                    if (empty($_POST["productLine"])) {
                         trigger_error("Tiene que seleccionar la línea de producto.");
                     } else {
                         $productLine = test_input($_POST["productLine"]);
