@@ -23,7 +23,7 @@
     function comprobarClave($customerNumber, $hash) {
         try {
             $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
-            $stmt = $conn->prepare("stmt contactLastName FROM customers WHERE customerNumber = :customerNumber");
+            $stmt = $conn->prepare("SELECT contactLastName FROM customers WHERE customerNumber = :customerNumber");
             $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
