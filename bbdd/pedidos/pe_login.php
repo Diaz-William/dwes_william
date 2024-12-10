@@ -34,6 +34,7 @@
                     if (comprobarUsuario($customerNumber)) {
                         if (!comprobarUsusarioBloqueado($customerNumber)) {
                             if (comprobarClave($customerNumber, $contactLastName)) {
+                                reiniciarErroresSesion($customerNumber);
                                 crearSesionCookies($customerNumber);
                             }else {
                                 aumentarErroresSesión($customerNumber);
