@@ -39,11 +39,11 @@
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST["consultar"])) {
                     if (empty($_POST["fecha_in"]) || empty($_POST["fecha_fin"])) {
-                        trigger_error("Tiene que introducir la fecha de inicio y la fecha de fin.");
+                        verPagos();
                     }else {
                         $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
                         $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
-                        obtenerProductosVendidos($fecha_in, $fecha_fin);
+                        verPagosFehcas($fecha_in, $fecha_fin);
                     }
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();
