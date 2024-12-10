@@ -7,7 +7,7 @@
     function comprobarUsuario($customerNumber) {
         try {
             $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
-            $stmt = $conn->prepare("stmt 1 FROM customers WHERE customerNumber = :customerNumber");
+            $stmt = $conn->prepare("SELECT 1 FROM customers WHERE customerNumber = :customerNumber");
             $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
