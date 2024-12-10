@@ -64,7 +64,7 @@
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
             cerrarConexion($conn);
-            trigger_error("El contactLastName es incorrecto, $resultado fallos");
+            trigger_error("El contactLastName es incorrecto," . (3 - $resultado) . "intentos");
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
