@@ -36,7 +36,7 @@
                             if (comprobarClave($customerNumber, $contactLastName)) {
                                 crearSesionCookies($customerNumber);
                             }else {
-                                trigger_error("El contactLastName es incorrecto");
+                                aumentarErroresSesión($customerNumber);
                             }
                         }else {
                             trigger_error("El usuarios con el número $customerNumber está bloqueado");

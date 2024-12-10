@@ -43,6 +43,7 @@
             $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
+            cerrarConexion($conn);
             return $resultado <= 3;
         } catch (PDOException $e) {
             cerrarConexion($conn);
@@ -50,4 +51,22 @@
         }
     }
 //--------------------------------------------------------------------------
+    // Función para aumentar un contador de errores de inicio de sesión.
+    function aumentarErroresSesión($customerNumber) {
+        try {
+            $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
+            $stmt = $conn->prepare("UPDATE customers SET errorCounter = errorCounter + 1 WHERE customerNumber = :customerNumber");
+            $stmt->bindParam(':customerNumber', $customerNumber);
+            $stmt->execute();
+            $stmt = $conn->prepare("SELECT errorCounter FROM customers WHERE customerNumber = :customerNumber");
+            $stmt->bindParam(':customerNumber', $customerNumber);
+            $stmt->execute();
+            $resultado = $stmt->fetchColumn();
+            cerrarConexion($conn);
+            trigger_error("El contactLastName es incorrecto, $resultado fallos");
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
 //--------------------------------------------------------------------------
