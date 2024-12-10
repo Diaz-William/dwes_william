@@ -70,3 +70,17 @@
         }
     }
 //--------------------------------------------------------------------------
+    // Función para reiniciar el contador de errores si la sesión es correcta.
+    function reiniciarErroresSesion($customerNumber) {
+        try {
+            $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
+            $stmt = $conn->prepare("UPDATE customers SET errorCounter = 0 WHERE customerNumber = :customerNumber");
+            $stmt->bindParam(':customerNumber', $customerNumber);
+            $stmt->execute();
+            cerrarConexion($conn);
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
