@@ -35,11 +35,13 @@
                             $stmt->execute();
                         }
                         validar($conn);
+                        echo "<p>¡ENCRIPTADO!</p>";
                     } catch (PDOException $e) {
                         deshacer($conn);
                         cerrarConexion($conn);
                         error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
                     }
+                    encriptar();
                 }
             }
         ?>
