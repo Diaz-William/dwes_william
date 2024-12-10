@@ -33,14 +33,14 @@
                     trigger_error("Tiene que introducir el customerNumber y el contactLastName");
                 }else {
                     if (comprobarUsuario($customerNumber)) {
-                        if (!comprobarUsuarioBloqueado($customerNumber)) {
+                        if (comprobarUsuarioBloqueado($customerNumber)) {
                             if (comprobarClave($customerNumber, $contactLastName)) {
                                 reiniciarErroresSesion($customerNumber);
                                 crearSesionCookies($customerNumber);
                             }else {
                                 aumentarErroresSesion($customerNumber);
                                 //☻
-                                if (!comprobarUsuarioBloqueado($customerNumber)) {
+                                if (comprobarUsuarioBloqueado($customerNumber)) {
                                     trigger_error("El usuario con el número $customerNumber está bloqueado");
                                 }
                             }
