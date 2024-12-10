@@ -40,7 +40,9 @@
                             }else {
                                 aumentarErroresSesion($customerNumber);
                                 //☻
-                                
+                                if (comprobarUsuarioBloqueado($customerNumber)) {
+                                    trigger_error("El usuario con el número $customerNumber está bloqueado");
+                                }
                             }
                         }else {
                             trigger_error("El usuario con el número $customerNumber está bloqueado");
