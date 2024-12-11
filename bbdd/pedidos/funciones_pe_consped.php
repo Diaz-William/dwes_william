@@ -8,6 +8,7 @@
         try {
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
             $stmt = $conn->prepare("SELECT orderNumber, orderDate, status FROM orders WHERE customerNumber = :customerNumber");
+            $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $stmt->fetchAll();
