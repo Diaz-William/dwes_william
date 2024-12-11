@@ -58,7 +58,6 @@
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();
                 }
-                header("Refresh:0");
             }
         ?>
     </body>
