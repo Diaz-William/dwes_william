@@ -10,13 +10,13 @@
             echo "<label for='producto'>Producto: </label>";
             echo "<select name='producto' id='producto'>";
             echo "<option value=''>--Seleccionar Producto--</option>";
-            $stmt = $conn->prepare("SELECT productCode, productName FROM products WHERE quantityInStock > 0");
+            $stmt = $conn->prepare("SELECT productCode, productName, buyPrice FROM products WHERE quantityInStock > 0");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $stmt->fetchAll();
             cerrarConexion($conn);
             foreach($resultado as $row) {
-                echo "<option value='{$row['productCode']}#{$row['productName']}'>{$row['productCode']} - {$row['productName']}</option>";
+                echo "<option value='{$row['productCode']}#{$row['productName']}#{$row['buyPrice']}'>{$row['productCode']} - {$row['productName']}</option>";
             }
             echo "</select>";
         } catch (PDOException $e) {
@@ -26,15 +26,14 @@
     }
 //--------------------------------------------------------------------------
     // Función para guardar producto.
-    function guardarProductoCookies($productCode, $productName, $unidades) {
+    function guardarProductoCookies($productCode, $productName, $priceEach, $unidades) {
         $stockTotal = comprobarStockProducto($productCode);
-        $precio = 15.99;
     
         if ($unidades > $stockTotal) {
             trigger_error("No hay suficiente stock del producto para $unidades unidades solicitadas");
         } else {
             $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
-            $cesta[$productCode] = isset($cesta[$productCode]) ? $cesta[$productCode]['unidades'] += $unidades : ['precio' => $precio, 'unidades' => $unidades, 'nombre' => $productName];
+            $cesta[$productCode] = isset($cesta[$productCode]) ? $cesta[$productCode]['unidades'] += $unidades : ['precio' => $priceEach, 'unidades' => $unidades, 'nombre' => $productName];
             setcookie("cesta", serialize($cesta), time() + 86400, "/");
         }
     }
@@ -68,7 +67,7 @@
     }
 //--------------------------------------------------------------------------
     // Función para comprar producto por sesión.
-    function comprarProductoSesionCookies() {
+    function comprarProductoSesionCookies($checkNumber) {
         try {
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
 
@@ -78,6 +77,7 @@
                 actualizarCantidadProducto($conn, $productCode, $productData["unidades"]);
             }
             insertarOrden($conn, $_COOKIE["usuario"]);
+            insertarPago($conn, $checkNumber);
             validar($conn);
             cerrarConexion($conn);
             echo "<p>Ha realizado sus compras corrctamente.</p>";
@@ -133,5 +133,24 @@
             $stmt->bindParam(':orderLineNumber', 2);
             $stmt->execute();
         }
+    }
+//--------------------------------------------------------------------------
+    // Función para insertar el pago.
+    function insertarPago($conn, $checkNumber) {
+        $fecha = date("Y-m-d");
+        $amount = 0;
+
+        $stmt = $conn->prepare("INSERT INTO payments(customerNumber, checkNumber, paymentDate, amount) VALUES (:customerNumber, :checkNumber, :paymentDate, :amount)");
+        $stmt->bindParam(':customerNumber', $_COOKIE["usuario"]);
+        $stmt->bindParam(':checkNumber', $checkNumber);
+        $stmt->bindParam(':paymentDate', $fecha);
+        $stmt->bindParam(':amount', $amount);
+
+        $cesta = unserialize($_COOKIE["cesta"]);
+        foreach ($cesta as $productCode) {
+            $amount += $productCode["precio"];
+        }
+
+        $stmt->execute();
     }
 //--------------------------------------------------------------------------
