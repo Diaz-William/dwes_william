@@ -98,6 +98,8 @@
         }
 
         $stmt = $conn->prepare("UPDATE products SET quantityInStock = quantityInStock - :unidades WHERE productCode = :productCode");
+        $stmt->bindParam(':unidades', $unidades);
+        $stmt->bindParam(':productCode', $productCode);
         $stmt->execute();
     }
 //--------------------------------------------------------------------------
