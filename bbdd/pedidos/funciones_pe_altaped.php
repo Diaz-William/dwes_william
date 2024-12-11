@@ -151,8 +151,7 @@
 
         $cesta = unserialize($_COOKIE["cesta"]);
         foreach ($cesta as $productCode) {
-            var_dump($productCode["precio"]);
-            $amount += $productCode["precio"];
+            $amount += $productCode["precio"] * $productCode["unidades"];
         }
 
         $stmt->execute();
