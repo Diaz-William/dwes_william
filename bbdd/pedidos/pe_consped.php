@@ -1,6 +1,6 @@
 <?php
     // Incluir el archivo de funciones.
-    include "funciones_pe_altaped.php";
+    include "funciones_pe_consped.php";
     // Incluir el archivo de manejo de errores.
     include "errores.php";
     // Establecer la función "error_function" para el manejo de errores.
