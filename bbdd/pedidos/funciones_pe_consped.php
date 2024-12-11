@@ -13,12 +13,16 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $stmt->fetchAll();
             cerrarConexion($conn);
-            echo "<ul>";
-            foreach ($resultado as $row) {
-                echo "<li>{$row['orderNumber']} - {$row['orderDate']} - {$row['status']}</li>";
-                mostrarDetallesPedido($row["orderNumber"]);
+            if (!empty($resultado)) {
+                echo "<ul>";
+                foreach ($resultado as $row) {
+                    echo "<li>{$row['orderNumber']} - {$row['orderDate']} - {$row['status']}</li>";
+                    mostrarDetallesPedido($row["orderNumber"]);
+                }
+                echo "</ul>";
+            }else {
+                echo "<p>No se han realizado pedidos</p>";
             }
-            echo "</ul>";
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());

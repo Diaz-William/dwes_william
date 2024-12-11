@@ -14,11 +14,15 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $stmt->fetchAll();
             cerrarConexion($conn);
-            echo "<ul>";
-            foreach ($resultado as $row) {
-                echo "<li>{$row['productName']} - {$row['totalQuantityOrdered']}</li>";
+            if (!empty($resultado)) {
+                echo "<ul>";
+                foreach ($resultado as $row) {
+                    echo "<li>{$row['productName']} - {$row['totalQuantityOrdered']}</li>";
+                }
+                echo "</ul>";
+            }else {
+                echo "<p>No hay compras entre el $fecha_in y el $fecha_fin</p>";
             }
-            echo "</ul>";
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
