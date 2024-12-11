@@ -81,7 +81,6 @@
             validar($conn);
             cerrarConexion($conn);
             setcookie("cesta", "", time() + 86400, "/");
-            header("Refresh:0");
         } catch (PDOException $e) {
             deshacer($conn);
             cerrarConexion($conn);
