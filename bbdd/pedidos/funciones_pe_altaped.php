@@ -40,7 +40,12 @@
             } else {
                 $cesta[$productCode] = ['precio' => $precio, 'unidades' => $unidades, 'nombre' => $productName];
             }
-            setcookie("cesta", serialize($cesta), time() + 86400, "/");
+            //setcookie("cesta", serialize($cesta), time() + 86400, "/");
+            if (!headers_sent()) {
+                setcookie("cesta", serialize($cesta), time() + 86400, "/");
+            } else {
+                trigger_error("No se pueden modificar las cookies, las cabeceras ya se han enviado.");
+            }
         }
     }
 //--------------------------------------------------------------------------
