@@ -73,6 +73,7 @@
     // Función para crear una sesión con cookies.
     function crearSesionCookies($usuario) {
         setcookie("usuario", $usuario, time() + 86400, "/");
+        setcookie("cesta", "", time() + 3600, "/");
         header("Location: ./pe_inicio.php");
     }
 //--------------------------------------------------------------------------
