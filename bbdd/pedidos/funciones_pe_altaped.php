@@ -80,8 +80,9 @@
             insertarPago($conn, $checkNumber);
             validar($conn);
             cerrarConexion($conn);
-            echo "<p>Ha realizado sus compras corrctamente.</p>";
             setcookie("cesta", "", time() + 86400, "/");
+            header("Refresh:0");
+            echo "<p>Ha realizado sus compras corrctamente.</p>";
         } catch (PDOException $e) {
             deshacer($conn);
             cerrarConexion($conn);
