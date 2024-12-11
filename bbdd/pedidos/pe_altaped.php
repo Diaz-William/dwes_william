@@ -46,7 +46,6 @@
                     }else {
                         list($productCode, $productName, $priceEach) = explode("#", test_input($_POST["producto"]));
                         $unidades = intval(test_input($_POST["unidades"]));
-                        $checkNumber = test_input($_POST["numPago"]);
                         guardarProductoCookies($productCode, $productName, $priceEach, $unidades);
                     }
                 }else if (isset($_POST["comprar"])) {
@@ -58,7 +57,7 @@
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();
                 }
-                //header("Refresh:0");
+                header("Refresh:0");
             }
             ob_end_flush();
         ?>
