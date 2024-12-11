@@ -111,12 +111,13 @@
         $stmt->execute();
         $resultado = $stmt->fetchColumn();
         $null = null;
+        $estado = "Shipped";
 
         $stmt = $conn->prepare("INSERT INTO orders (orderNumber, orderDate, requiredDate, status, comments, customerNumber) VALUES (:orderNumber, :orderDate, :requiredDate, :status, :comments, :customerNumber)");
         $stmt->bindParam(':orderNumber', $resultado);
         $stmt->bindParam(':orderDate', $fecha);
         $stmt->bindParam(':requiredDate', $fecha);
-        $stmt->bindParam(':status', "Shipped");
+        $stmt->bindParam(':status', $estado);
         $stmt->bindParam(':comments', $null);
         $stmt->bindParam(':customerNumber', $customerNumber);
         $stmt->execute();
