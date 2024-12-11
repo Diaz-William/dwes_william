@@ -126,6 +126,7 @@
 //--------------------------------------------------------------------------
     // Función para insertar los detalles de la orden del pedido.
     function insertarOrdenDetalles($conn, $orderNumber) {
+        $orderLineNumber = 2;
         $cesta = unserialize($_COOKIE["cesta"]);
         foreach ($cesta as $productCode => $productData) {
             $stmt = $conn->prepare("INSERT INTO orderdetails (orderNumber, productCode, quantityOrdered, priceEach, orderLineNumber) VALUES (:orderNumber, :productCode, :quantityOrdered, :priceEach, :orderLineNumber)");
@@ -133,7 +134,7 @@
             $stmt->bindParam(':productCode', $productCode);
             $stmt->bindParam(':quantityOrdered', $productData["unidades"]);
             $stmt->bindParam(':priceEach', $productData["precio"]);
-            $stmt->bindParam(':orderLineNumber', 2);
+            $stmt->bindParam(':orderLineNumber', $orderLineNumber);
             $stmt->execute();
         }
     }
