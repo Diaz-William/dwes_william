@@ -29,7 +29,7 @@
     function mostrarDetallesPedido($orderNumber) {
         try {
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
-            $stmt = $conn->prepare("SELECT od.orderLineNumber, p.productName, od.quantityOrdered, od.priceEach FROM orderdatails od, products p WHERE p.productCode = od.productCode AND od.orderNumber = :orderNumber ORDER BY od.orderLineNumber");
+            $stmt = $conn->prepare("SELECT od.orderLineNumber, p.productName, od.quantityOrdered, od.priceEach FROM orderdetails od, products p WHERE p.productCode = od.productCode AND od.orderNumber = :orderNumber ORDER BY od.orderLineNumber");
             $stmt->bindParam(':orderNumber', $orderNumber);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
