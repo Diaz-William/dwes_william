@@ -36,7 +36,11 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $pagos = $stmt->fetchAll();
             cerrarConexion($conn);
-            visualizarPagos($pagos);
+            if ($pagos !== false) {
+                visualizarPagos($pagos);
+            }else {
+                echo "<p>No hay compras</p>";
+            }
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
