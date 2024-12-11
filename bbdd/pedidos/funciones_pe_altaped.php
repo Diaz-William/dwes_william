@@ -34,7 +34,12 @@
             trigger_error("No hay suficiente stock del producto para $unidades unidades solicitadas");
         } else {
             $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
-            $cesta[$productCode] = isset($cesta[$productCode]) ? $cesta[$productCode]['unidades'] + $unidades : ['precio' => $precio, 'unidades' => $unidades, 'nombre' => $productName];
+            //$cesta[$productCode] = isset($cesta[$productCode]) ? $cesta[$productCode]['unidades'] + $unidades : ['precio' => $precio, 'unidades' => $unidades, 'nombre' => $productName];
+            if (isset($cesta[$productCode])) {
+                $cesta[$productCode]['unidades'] += $unidades;
+            } else {
+                $cesta[$productCode] = ['precio' => $precio, 'unidades' => $unidades, 'nombre' => $productName];
+            }
             setcookie("cesta", serialize($cesta), time() + 86400, "/");
         }
     }
