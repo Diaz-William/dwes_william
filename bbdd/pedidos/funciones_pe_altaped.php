@@ -110,14 +110,14 @@
         $stmt = $conn->prepare("SELECT (MAX(orderNumber) + 1) FROM orders");
         $stmt->execute();
         $resultado = $stmt->fetchColumn();
+        $null = null;
 
-        $stmt = $conn->prepare("INSERT INTO orders (orderNumber, orderDate, requiredDate, shippedDate, status, comments, customerNumber) VALUES (:orderNumber, :orderDate, :requiredDate, :shippedDate, :status, :comments, :customerNumber)");
+        $stmt = $conn->prepare("INSERT INTO orders (orderNumber, orderDate, requiredDate, status, comments, customerNumber) VALUES (:orderNumber, :orderDate, :requiredDate, :status, :comments, :customerNumber)");
         $stmt->bindParam(':orderNumber', $resultado);
         $stmt->bindParam(':orderDate', $fecha);
         $stmt->bindParam(':requiredDate', $fecha);
-        $stmt->bindParam(':shippedDate', null);
         $stmt->bindParam(':status', "Shipped");
-        $stmt->bindParam(':comments', null);
+        $stmt->bindParam(':comments', $null);
         $stmt->bindParam(':customerNumber', $customerNumber);
         $stmt->execute();
         insertarOrdenDetalles($conn, $resultado);
