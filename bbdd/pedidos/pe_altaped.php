@@ -44,7 +44,8 @@
                     if (empty($_POST["producto"]) || empty($_POST["unidades"])) {
                         trigger_error("Tiene que seleccionar las unidades del producto, el producto y el número de pago.");
                     }else {
-                        list($productCode, $productName, floatval($priceEach)) = explode("#", test_input($_POST["producto"]));
+                        list($productCode, $productName, $priceEach) = explode("#", test_input($_POST["producto"]));
+                        $priceEach = floatval($priceEach);
                         $unidades = intval(test_input($_POST["unidades"]));
                         guardarProductoCookies($productCode, $productName, $priceEach, $unidades);
                         header("Refresh:0");
