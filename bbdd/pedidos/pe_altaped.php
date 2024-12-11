@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     // Incluir el archivo de funciones.
     include "funciones_pe_altaped.php";
     // Incluir el archivo de manejo de errores.
@@ -60,6 +61,7 @@
                 }
                 header("Refresh:0");
             }
+            ob_end_flush();
         ?>
     </body>
 </html>
