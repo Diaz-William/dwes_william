@@ -16,7 +16,7 @@
             $resultado = $stmt->fetchAll();
             cerrarConexion($conn);
             foreach($resultado as $row) {
-                echo "<option value='{$row['productCode']}'>{$row['productCode']} - {$row['productName']}</option>";
+                echo "<option value='{$row['productCode']}#{$row['productName']}'>{$row['productCode']} - {$row['productName']}</option>";
             }
             echo "</select>";
         } catch (PDOException $e) {
@@ -26,14 +26,15 @@
     }
 //--------------------------------------------------------------------------
     // Función para guardar producto.
-    function guardarProductoCookies($productCode, $precio, $unidades) {
+    function guardarProductoCookies($productCode, $productName, $unidades) {
         $stockTotal = comprobarStockProducto($productCode);
+        $precio = 15.99;
     
         if ($unidades > $stockTotal) {
             trigger_error("No hay suficiente stock del producto para $unidades unidades solicitadas");
         } else {
             $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
-            $cesta[$productCode] = ['precio' => $precio, 'unidades' => isset($cesta[$productCode]) ? $cesta[$productCode]['unidades'] + $unidades : $unidades];
+            $cesta[$productCode] = isset($cesta[$productCode]) ? $cesta[$productCode]['unidades'] + $unidades : ['precio' => $precio, 'unidades' => $unidades, 'nombre' => $productName];
             setcookie("cesta", serialize($cesta), time() + 86400, "/");
         }
     }
@@ -51,6 +52,18 @@
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para imprimir la cesta en una lista.
+    function imprimirCestaCookies() {
+        if (isset($_COOKIE["cesta"])) {
+            echo "<ul>";
+            $cesta = unserialize($_COOKIE["cesta"]);
+            foreach ($cesta as $productCode) {
+                echo "<li>{$productCode['nombre']} - {$productCode['unidades']}</li>";
+            }
+            echo "</ul>";
         }
     }
 //--------------------------------------------------------------------------

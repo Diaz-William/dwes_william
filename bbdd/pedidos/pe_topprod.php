@@ -20,6 +20,7 @@
         <title>Consulta de unidades vendidas</title>
     </head>
     <body>
+        <a href="./pe_inicio.php">Inicio</a>
         <h1>Usuario: <?php echo $_COOKIE["usuario"] ?></h1>
         <h2>Consulta de unidades vendidas</h2>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

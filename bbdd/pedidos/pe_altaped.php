@@ -46,10 +46,10 @@
                     if (empty($_POST["producto"]) || empty($_POST["unidades"]) || empty($_POST["numPago"])) {
                         trigger_error("Tiene que seleccionar las unidades del producto, el producto y el número de pago.");
                     }else if (preg_match("/^[a-z][a-z]\d{5}$/i", test_input($_POST["numPago"]))) {
-                        $productCode = test_input($_POST["producto"]);
+                        list($productCode, $productName) = explode("#", test_input($_POST["producto"]));
                         $unidades = intval(test_input($_POST["unidades"]));
                         $checkNumber = test_input($_POST["numPago"]);
-                        guardarProductoCookies($productCode, $unidades);
+                        guardarProductoCookies($productCode, $productName, $unidades);
                     }else {
                         trigger_error("El número de pago tiene un formato incorrecto");
                     }
