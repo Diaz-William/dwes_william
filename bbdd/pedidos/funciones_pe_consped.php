@@ -15,7 +15,7 @@
             cerrarConexion($conn);
             echo "<ul>";
             foreach ($resultado as $row) {
-                echo "<li>{$row['orderNumber']}-{$row['orderDate']}-{$row['status']}</li>";
+                echo "<li>{$row['orderNumber']} - {$row['orderDate']} - {$row['status']}</li>";
                 mostrarDetallesPedido($row["orderNumber"]);
             }
             echo "</ul>";
@@ -37,7 +37,7 @@
             cerrarConexion($conn);
             echo "<ul>";
             foreach ($resultado as $row) {
-                echo "<li>{$row['orderLineNumber']}-{$row['productName']}-{$row['quantityOrdered']}-{$row['priceEach']}</li>";
+                echo "<li>{$row['orderLineNumber']} - {$row['productName']} - {$row['quantityOrdered']} - {$row['priceEach']}</li>";
             }
             echo "</ul>";
         } catch (PDOException $e) {
