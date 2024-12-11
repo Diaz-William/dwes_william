@@ -15,6 +15,7 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $pagos = $stmt->fetchAll();
             cerrarConexion($conn);
+            var_dump($pagos);
             if ($pagos !== false) {
                 visualizarPagos($pagos);
             }else {
@@ -36,6 +37,7 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $pagos = $stmt->fetchAll();
             cerrarConexion($conn);
+            var_dump($pagos);
             if ($pagos !== false) {
                 visualizarPagos($pagos);
             }else {
