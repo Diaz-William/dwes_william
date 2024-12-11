@@ -16,7 +16,7 @@
             $pagos = $stmt->fetchAll();
             cerrarConexion($conn);
             var_dump($pagos);
-            if ($pagos !== false) {
+            if (!empty($pagos)) {
                 visualizarPagos($pagos);
             }else {
                 echo "<p>No hay compras</p>";
@@ -38,7 +38,7 @@
             $pagos = $stmt->fetchAll();
             cerrarConexion($conn);
             var_dump($pagos);
-            if ($pagos !== false) {
+            if (!empty($pagos)) {
                 visualizarPagos($pagos);
             }else {
                 echo "<p>No hay compras</p>";
