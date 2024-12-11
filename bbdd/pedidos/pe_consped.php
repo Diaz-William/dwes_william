@@ -24,9 +24,7 @@
         <h1>Usuario: <?php echo $_COOKIE["usuario"] ?></h1>
         <h2>Consultar pedidos</h2>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <?php  ?>
-            <br><br>
-            <input type="submit" name="enviar" id="enviar" value="Enviar">
+            <input type="submit" name="consultar" id="consultar" value="Consultar">
             <br><br>
             <input type="submit" name="cerrar" id="cerrar" value="Cerrar Sesión">
         </form>
@@ -34,14 +32,8 @@
         <?php
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (isset($_POST["enviar"])) {
-                    if (empty($_POST["fecha_in"]) || empty($_POST["fecha_fin"])) {
-                        trigger_error("Tiene que introducir la fecha de inicio y la fecha de fin.");
-                    }else {
-                        $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
-                        $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
-                        visualizarComprasClienteSesion($fecha_in, $fecha_fin, $_COOKIE["usuario"]);
-                    }
+                if (isset($_POST["consultar"])) {
+                    mostrarPedidos($_COOKIE["usuario"]);
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();
                 }
