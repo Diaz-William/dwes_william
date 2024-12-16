@@ -28,10 +28,10 @@
     // Función para guardar producto.
     function guardarProductoCookies($productCode, $productName, $priceEach, $unidades) {
         $stockTotal = comprobarStockProducto($productCode);
+        $correcto = true;
     
         if ($unidades > $stockTotal) {
-            trigger_error("No hay suficiente stock del producto para $unidades unidades solicitadas");
-            sleep(3);
+            $correcto = false;
         } else {
             $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
             
@@ -43,6 +43,8 @@
     
             setcookie("cesta", serialize($cesta), time() + 86400, "/");
         }
+
+        return $correcto;
     }    
 //--------------------------------------------------------------------------
     // Función para comprobar stock por producto.

@@ -47,8 +47,11 @@
                         list($productCode, $productName, $priceEach) = explode("#", test_input($_POST["producto"]));
                         $priceEach = floatval($priceEach);
                         $unidades = intval(test_input($_POST["unidades"]));
-                        guardarProductoCookies($productCode, $productName, $priceEach, $unidades);
-                        header("Refresh:0");
+                        if (guardarProductoCookies($productCode, $productName, $priceEach, $unidades)) {
+                            header("Refresh:0");
+                        }else {
+                            trigger_error("No hay suficiente stock del producto para $unidades unidades solicitadas");
+                        }
                     }
                 }else if (isset($_POST["comprar"])) {
                     if (isset($_COOKIE["cesta"])) {
