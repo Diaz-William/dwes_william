@@ -31,6 +31,7 @@
     
         if ($unidades > $stockTotal) {
             trigger_error("No hay suficiente stock del producto para $unidades unidades solicitadas");
+            sleep(3);
         } else {
             $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
             
