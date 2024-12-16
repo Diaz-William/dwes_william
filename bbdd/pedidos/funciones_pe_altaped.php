@@ -69,6 +69,7 @@
     // Función para comprar producto por sesión.
     function comprarProductoSesionCookies($checkNumber) {
         try {
+            var_dump("dentro");
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
 
             $cesta = unserialize($_COOKIE["cesta"]);
