@@ -49,7 +49,7 @@
                                 trigger_error("El usuario con el número $customerNumber está bloqueado");
                             }
                         }else {
-                            trigger_error("Usuario incorrecto");
+                            trigger_error("Usuario incorrecto o clave incorrecta");
                         }
                     }
                 }else if ($_POST["registrar"]) {
