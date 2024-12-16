@@ -40,11 +40,11 @@
                 if (isset($_POST["comprar"])) {
                     if (empty($_POST["numPago"])) {
                         trigger_error("Tiene que introducir el número de pago.");
-                    }else if (preg_match("/^[a-z][a-z]\d{5}$/i", test_input($_POST["numPago"]))) {
+                    }else if (preg_match("/^[a-z][a-z]\d{5}$/i", test_input($_POST["numPago"])) && obtenerCheckNumber(test_input($_POST["numPago"]))) {
                         comprarProductoSesionCookies(test_input($_POST["numPago"]));
-                        //header("Location: ./pe_altaped.php");
+                        header("Location: ./pe_altaped.php");
                     }else {
-                        trigger_error("El número de pago tiene un formato incorrecto");
+                        trigger_error("El número de pago tiene un formato incorrecto o ya ha sido utilizado");
                     }
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();

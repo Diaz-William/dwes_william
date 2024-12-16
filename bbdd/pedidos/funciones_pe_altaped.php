@@ -89,6 +89,23 @@
         }
     }
 //--------------------------------------------------------------------------
+    // Función para obtener el checkNumber de un cliente.
+    function obtenerCheckNumber($checkNumber) {
+        try {
+            $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
+            $stmt = $conn->prepare("SELECT 1 FROM payments WHERE customerNumber = :customerNumber AND checkNumber = :checkNumber");
+            $stmt->bindParam(':customerNumber', $customerNumber);
+            $stmt->bindParam(':checkNumber', $checkNumber);
+            $stmt->execute();
+            $resultado = $stmt->fetchColumn();
+            cerrarConexion($conn);
+            return $resultado !== false;
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
     // Función para actualizar la cantidad de un producto.
     function actualizarCantidadProducto($conn, $productCode, $unidades) {
         $stockTotal = comprobarStockProducto($productCode);
