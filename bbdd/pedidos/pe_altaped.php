@@ -48,7 +48,7 @@
                         $priceEach = floatval($priceEach);
                         $unidades = intval(test_input($_POST["unidades"]));
                         guardarProductoCookies($productCode, $productName, $priceEach, $unidades);
-                        header("Refresh:5");
+                        header("Refresh:0");
                     }
                 }else if (isset($_POST["comprar"])) {
                     if (isset($_COOKIE["cesta"])) {
