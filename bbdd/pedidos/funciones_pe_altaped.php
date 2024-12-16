@@ -69,7 +69,6 @@
     // Función para comprar producto por sesión.
     function comprarProductoSesionCookies($checkNumber) {
         try {
-            var_dump("dentro");
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
 
             $cesta = unserialize($_COOKIE["cesta"]);
@@ -159,19 +158,23 @@
     // Función para insertar el pago.
     function insertarPago($conn, $checkNumber) {
         $fecha = date("Y-m-d");
-        $amount = 0;
+        $amount = obtenerMonto();
 
         $stmt = $conn->prepare("INSERT INTO payments(customerNumber, checkNumber, paymentDate, amount) VALUES (:customerNumber, :checkNumber, :paymentDate, :amount)");
         $stmt->bindParam(':customerNumber', $_COOKIE["usuario"]);
         $stmt->bindParam(':checkNumber', $checkNumber);
         $stmt->bindParam(':paymentDate', $fecha);
         $stmt->bindParam(':amount', $amount);
-
+        $stmt->execute();
+    }
+//--------------------------------------------------------------------------
+    // Función para obtener el monto del pedido.
+    function obtenerMonto() {
         $cesta = unserialize($_COOKIE["cesta"]);
+        $amount = 0;
         foreach ($cesta as $productCode) {
             $amount += $productCode["precio"] * $productCode["unidades"];
         }
-
-        $stmt->execute();
+        return $amount;
     }
 //--------------------------------------------------------------------------

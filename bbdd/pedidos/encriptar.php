@@ -18,10 +18,8 @@
             set_error_handler("error_function");
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                var_dump("dentro");
                 function encriptar() {
                     try {
-                        var_dump("encriptando...");
                         $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
                         $stmt = $conn->prepare("SELECT customerNumber, contactLastName FROM customers");
                         $stmt->execute();
@@ -39,7 +37,6 @@
                         validar($conn);
                         echo "<p>¡ENCRIPTADO!</p>";
                     } catch (PDOException $e) {
-                        var_dump("¡La puta madre error!");
                         deshacer($conn);
                         cerrarConexion($conn);
                         error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
