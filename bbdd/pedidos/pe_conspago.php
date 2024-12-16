@@ -44,7 +44,11 @@
                     }else {
                         $fecha_in = date("Y-m-d", strtotime(test_input($_POST["fecha_in"])));
                         $fecha_fin = date("Y-m-d", strtotime(test_input($_POST["fecha_fin"])));
-                        verPagosFehcas($fecha_in, $fecha_fin);
+                        if ($fecha_fin < $fecha_in) {
+                            trigger_error("La fecha de fin no puedo ser anterior a la fecha de inicio");
+                        }else {
+                            verPagosFechas($fecha_in, $fecha_fin);
+                        }
                     }
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();

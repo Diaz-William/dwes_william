@@ -4,7 +4,7 @@
     include "funciones.php";
 //--------------------------------------------------------------------------
     // Función para ver los pagos realizados de un cliente entre dos fechas.
-    function verPagosFehcas($fecha_in, $fecha_fin) {
+    function verPagosFechas($fecha_in, $fecha_fin) {
         try {
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
             $stmt = $conn->prepare("SELECT checkNumber, paymentDate, amount FROM payments WHERE customerNumber = :customerNumber AND paymentDate BETWEEN :fecha_in AND :fecha_fin");
