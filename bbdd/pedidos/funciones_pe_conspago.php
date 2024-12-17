@@ -26,7 +26,7 @@
     function verPagos() {
         try {
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
-            $stmt = $conn->prepare("SELECT checkNumber, paymentDate, amount FROM payments WHERE customerNumber = :customerNumber");
+            $stmt = $conn->prepare("SELECT checkNumber, paymentDate, amount FROM payments WHERE customerNumber = :customerNumber ORDER BY paymentDate");
             $stmt->bindParam(':customerNumber', $_COOKIE["usuario"]);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
