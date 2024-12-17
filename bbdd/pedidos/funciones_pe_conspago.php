@@ -15,11 +15,7 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $pagos = $stmt->fetchAll();
             cerrarConexion($conn);
-            if (!empty($pagos)) {
-                visualizarPagos($pagos);
-            }else {
-                echo "<p>No hay compras</p>";
-            }
+            visualizarPagos($pagos);
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
@@ -36,11 +32,7 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $pagos = $stmt->fetchAll();
             cerrarConexion($conn);
-            if (!empty($pagos)) {
-                visualizarPagos($pagos);
-            }else {
-                echo "<p>No hay compras</p>";
-            }
+            visualizarPagos($pagos);
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
@@ -49,10 +41,14 @@
 //--------------------------------------------------------------------------
     // Función para visualizar los datos de los pagos de un cliente.
     function visualizarPagos($pagos) {
-        echo "<ul>";
-        foreach ($pagos as $pago) {
-            echo "<li>{$pago['checkNumber']} - {$pago['paymentDate']} - {$pago['amount']}</li>";
+        if (!empty($pagos)) {
+            echo "<ul>";
+            foreach ($pagos as $pago) {
+                echo "<li>{$pago['checkNumber']} - {$pago['paymentDate']} - {$pago['amount']}</li>";
+            }
+            echo "</ul>";
+        }else {
+            echo "<p>No hay compras</p>";
         }
-        echo "</ul>";
     }
 //--------------------------------------------------------------------------

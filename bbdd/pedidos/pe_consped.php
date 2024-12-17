@@ -33,7 +33,7 @@
             // Comprobar si se han enviado los datos del formulario por el método POST.
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST["consultar"])) {
-                    mostrarPedidos($_COOKIE["usuario"]);
+                    obtenerPedidosYDetalles($_COOKIE["usuario"]);
                 }else if (isset($_POST["cerrar"])) {
                     cerrarSesionCookies();
                 }

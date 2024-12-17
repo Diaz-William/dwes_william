@@ -3,50 +3,32 @@
     // Incluir el archivo de funciones generales.
     include "funciones.php";
 //--------------------------------------------------------------------------
-    // Función para mostrar todos los pedidos de un cliente.
-    function mostrarPedidos($customerNumber) {
+    // Función para obtener todos los pedidos y sus detalles.
+    function obtenerPedidosYDetalles($customerNumber) {
         try {
-            $conn = realizarConexion("pedidos","localhost","root","rootroot");
-            $stmt = $conn->prepare("SELECT orderNumber, orderDate, status FROM orders WHERE customerNumber = :customerNumber");
+            $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
+            $stmt = $conn->prepare("SELECT o.orderNumber, o.orderDate, o.status, od.orderLineNumber, p.productName, od.quantityOrdered, od.priceEach FROM orders o, orderdetails od, products p WHERE o.orderNumber = od.orderNumber AND od.productCode = p.productCode AND o.customerNumber = :customerNumber ORDER BY o.orderNumber, od.orderLineNumber");
             $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $stmt->fetchAll();
             cerrarConexion($conn);
-            if (!empty($resultado)) {
-                echo "<ul>";
-                foreach ($resultado as $row) {
-                    echo "<li>{$row['orderNumber']} - {$row['orderDate']} - {$row['status']}</li>";
-                    mostrarDetallesPedido($row["orderNumber"]);
-                }
-                echo "</ul>";
-            }else {
-                echo "<p>No se han realizado pedidos</p>";
-            }
+            mostrarPedidosYDetalles($resultado);
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
     }
 //--------------------------------------------------------------------------
-    // Función para mostrar los detalles de un pedido.
-    function mostrarDetallesPedido($orderNumber) {
-        try {
-            $conn = realizarConexion("pedidos","localhost","root","rootroot");
-            $stmt = $conn->prepare("SELECT od.orderLineNumber, p.productName, od.quantityOrdered, od.priceEach FROM orderdetails od, products p WHERE p.productCode = od.productCode AND od.orderNumber = :orderNumber ORDER BY od.orderLineNumber");
-            $stmt->bindParam(':orderNumber', $orderNumber);
-            $stmt->execute();
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $resultado = $stmt->fetchAll();
-            cerrarConexion($conn);
+    // Función para mostrar todos los pedidos y sus detalles.
+    function mostrarPedidosYDetalles($resultado) {
+        echo "<ul>";
+        foreach ($resultado as $row) {
+            echo "<li>{$row['orderNumber']} - {$row['orderDate']} - {$row['status']}</li>";
             echo "<ul>";
-            foreach ($resultado as $row) {
                 echo "<li>{$row['orderLineNumber']} - {$row['productName']} - {$row['quantityOrdered']} - {$row['priceEach']}</li>";
-            }
             echo "</ul>";
-        } catch (PDOException $e) {
-            cerrarConexion($conn);
-            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
+        echo "</ul>";
     }
 //--------------------------------------------------------------------------

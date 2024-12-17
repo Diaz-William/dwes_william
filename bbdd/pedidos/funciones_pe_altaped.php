@@ -3,26 +3,32 @@
     // Incluir el archivo de funciones generales.
     include "funciones.php";
 //--------------------------------------------------------------------------
-    // Función para visualizar los producto disponibles en un desplegable.
-    function imprimirSeleccionProductosDisponibles() {
+    // Función para obtener los productos disponibles.
+    function obtenerProductosDisponibles() {
         try {
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
-            echo "<label for='producto'>Producto: </label>";
-            echo "<select name='producto' id='producto'>";
-            echo "<option value=''>--Seleccionar Producto--</option>";
             $stmt = $conn->prepare("SELECT productCode, productName, buyPrice FROM products WHERE quantityInStock > 0");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $stmt->fetchAll();
             cerrarConexion($conn);
-            foreach($resultado as $row) {
-                echo "<option value='{$row['productCode']}#{$row['productName']}#{$row['buyPrice']}'>{$row['productCode']} - {$row['productName']}</option>";
-            }
-            echo "</select>";
+            return $resultado;
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
+    }
+//--------------------------------------------------------------------------
+    // Función para visualizar los producto disponibles en un desplegable.
+    function imprimirSeleccionProductosDisponibles() {
+        $resultado = obtenerProductosDisponibles();
+        echo "<label for='producto'>Producto: </label>";
+        echo "<select name='producto' id='producto'>";
+        echo "<option value=''>--Seleccionar Producto--</option>";
+        foreach($resultado as $row) {
+            echo "<option value='{$row['productCode']}#{$row['productName']}#{$row['buyPrice']}'>{$row['productCode']} - {$row['productName']}</option>";
+        }
+        echo "</select>";
     }
 //--------------------------------------------------------------------------
     // Función para guardar producto.
@@ -82,11 +88,11 @@
 
             $cesta = unserialize($_COOKIE["cesta"]);
             empezarTransaccion($conn);
+            insertarOrden($conn, $_COOKIE["usuario"]);
+            insertarPago($conn, $checkNumber);
             foreach ($cesta as $productCode => $productData) {
                 actualizarCantidadProducto($conn, $productCode, $productData["unidades"]);
             }
-            insertarOrden($conn, $_COOKIE["usuario"]);
-            insertarPago($conn, $checkNumber);
             validar($conn);
             cerrarConexion($conn);
             setcookie("cesta", "", time() + 86400, "/");
@@ -151,7 +157,7 @@
 //--------------------------------------------------------------------------
     // Función para insertar los detalles de la orden del pedido.
     function insertarOrdenDetalles($conn, $orderNumber) {
-        $orderLineNumber = 2;
+        $orderLineNumber = 0;
         $cesta = unserialize($_COOKIE["cesta"]);
         foreach ($cesta as $productCode => $productData) {
             $stmt = $conn->prepare("INSERT INTO orderdetails (orderNumber, productCode, quantityOrdered, priceEach, orderLineNumber) VALUES (:orderNumber, :productCode, :quantityOrdered, :priceEach, :orderLineNumber)");
@@ -159,6 +165,7 @@
             $stmt->bindParam(':productCode', $productCode);
             $stmt->bindParam(':quantityOrdered', $productData["unidades"]);
             $stmt->bindParam(':priceEach', $productData["precio"]);
+            $orderLineNumber += 1;
             $stmt->bindParam(':orderLineNumber', $orderLineNumber);
             $stmt->execute();
         }

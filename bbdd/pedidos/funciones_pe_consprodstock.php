@@ -3,26 +3,32 @@
     // Incluir el archivo de funciones generales.
     include "funciones.php";
 //--------------------------------------------------------------------------
-    // Función para visualizar los producto en un desplegable.
-    function imprimirSeleccionProductos() {
+    // Función para obtener los productos.
+    function obtenerProductos() {
         try {
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
-            echo "<label for='producto'>Producto: </label>";
-            echo "<select name='producto' id='producto'>";
-            echo "<option value=''>--Seleccionar Producto--</option>";
             $stmt = $conn->prepare("SELECT productCode, productName FROM products");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $stmt->fetchAll();
             cerrarConexion($conn);
-            foreach($resultado as $row) {
-                echo "<option value='{$row['productCode']}'>{$row['productName']}</option>";
-            }
-            echo "</select>";
+            return $resultado;
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
+    }
+//--------------------------------------------------------------------------
+    // Función para visualizar los producto en un desplegable.
+    function imprimirSeleccionProductos() {
+        $resultado = obtenerProductos();
+        echo "<label for='producto'>Producto: </label>";
+        echo "<select name='producto' id='producto'>";
+        echo "<option value=''>--Seleccionar Producto--</option>";
+        foreach($resultado as $row) {
+            echo "<option value='{$row['productCode']}'>{$row['productName']}</option>";
+        }
+        echo "</select>";
     }
 //--------------------------------------------------------------------------
     // Función para consultar stock de un producto.
@@ -34,10 +40,15 @@
             $stmt->execute();
             $resultado = $stmt->fetchColumn();
             cerrarConexion($conn);
-            echo "<p>Hay $resultado unidades.</p>";
+            visualizarStock($resultado);
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
         }
+    }
+//--------------------------------------------------------------------------
+    // Función para visualizar el stock.
+    function visualizarStock($resultado) {
+        echo "<p>Hay $resultado unidades.</p>";
     }
 //--------------------------------------------------------------------------

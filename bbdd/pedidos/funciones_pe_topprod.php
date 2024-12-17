@@ -14,18 +14,23 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $resultado = $stmt->fetchAll();
             cerrarConexion($conn);
-            if (!empty($resultado)) {
-                echo "<ul>";
-                foreach ($resultado as $row) {
-                    echo "<li>{$row['productName']} - {$row['totalQuantityOrdered']}</li>";
-                }
-                echo "</ul>";
-            }else {
-                echo "<p>No hay compras entre el $fecha_in y el $fecha_fin</p>";
-            }
+            visualizarProductosVendidos($resultado, $fecha_in, $fecha_fin);
         } catch (PDOException $e) {
             cerrarConexion($conn);
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
+    // Función para visualizar las unidades totales de cada uno de los productos vendidos entre dos fechas.
+    function visualizarProductosVendidos($resultado, $fecha_in, $fecha_fin) {
+        if (!empty($resultado)) {
+            echo "<ul>";
+            foreach ($resultado as $row) {
+                echo "<li>{$row['productName']} - {$row['totalQuantityOrdered']}</li>";
+            }
+            echo "</ul>";
+        }else {
+            echo "<p>No hay compras entre el $fecha_in y el $fecha_fin</p>";
         }
     }
 //--------------------------------------------------------------------------
