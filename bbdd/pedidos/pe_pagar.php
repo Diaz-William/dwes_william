@@ -22,7 +22,7 @@
 	$url="";
 	$urlOKKO="http://localhost/ApiPhpRedsys/ApiRedireccion/redsysHMAC256_API_PHP_7.0.0/ejemploRecepcionaPet.php";
 	$orderNumber=obtenerPkOrden();
-	$amount=obtenerMonto();	
+	$amount=obtenerMonto() * 100;	
 	
 	// Se Rellenan los campos
 	$miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
