@@ -4,8 +4,6 @@
     include "funciones.php";
     // Se incluye la librería.
 	include 'apiRedsys.php';
-	// Se crea Objeto.
-	$miObj = new RedsysAPI;
 //--------------------------------------------------------------------------
     // Función para obtener los productos disponibles.
     function obtenerProductosDisponibles() {
@@ -208,28 +206,5 @@
             $amount += $productCode["precio"] * $productCode["unidades"];
         }
         return $amount;
-    }
-//--------------------------------------------------------------------------
-    function rellenarObjeto($miObj) {
-        // Valores de entrada que no hemos cmbiado para ningun ejemplo
-        $fuc="999008881";
-        $terminal="1";
-        $moneda="978";
-        $trans="0";
-        //$url="";
-        //$urlOKKO="http://localhost/ApiPhpRedsys/ApiRedireccion/redsysHMAC256_API_PHP_7.0.0/ejemploRecepcionaPet.php";
-        $orderNumber = obtenerPkOrden();
-        $amount = obtenerMonto();	
-        
-        // Se Rellenan los campos
-        $miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
-        $miObj->setParameter("DS_MERCHANT_ORDER",$orderNumber);
-        $miObj->setParameter("DS_MERCHANT_MERCHANTCODE",$fuc);
-        $miObj->setParameter("DS_MERCHANT_CURRENCY",$moneda);
-        $miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE",$trans);
-        $miObj->setParameter("DS_MERCHANT_TERMINAL",$terminal);
-        //$miObj->setParameter("DS_MERCHANT_MERCHANTURL",$url);
-        //$miObj->setParameter("DS_MERCHANT_URLOK",$urlOKKO);
-        //$miObj->setParameter("DS_MERCHANT_URLKO",$urlOKKO);
     }
 //--------------------------------------------------------------------------
