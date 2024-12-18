@@ -2,6 +2,10 @@
 //--------------------------------------------------------------------------
     // Incluir el archivo de funciones generales.
     include "funciones.php";
+    // Se incluye la librería.
+	include 'apiRedsys.php';
+	// Se crea Objeto.
+	$miObj = new RedsysAPI;
 //--------------------------------------------------------------------------
     // Función para obtener los productos disponibles.
     function obtenerProductosDisponibles() {
@@ -84,11 +88,12 @@
     // Función para comprar producto por sesión.
     function comprarProductoSesionCookies($checkNumber) {
         try {
+            $orderNumber = obtenerPkOrden();
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
 
             $cesta = unserialize($_COOKIE["cesta"]);
             empezarTransaccion($conn);
-            insertarOrden($conn, $_COOKIE["usuario"]);
+            insertarOrden($conn, $_COOKIE["usuario"], $orderNumber);
             insertarPago($conn, $checkNumber);
             foreach ($cesta as $productCode => $productData) {
                 actualizarCantidadProducto($conn, $productCode, $productData["unidades"]);
@@ -134,25 +139,36 @@
         $stmt->execute();
     }
 //--------------------------------------------------------------------------
+    // Función para obtener el siguiente número de orden.
+    function obtenerPkOrden() {
+        try {
+            $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
+            $stmt = $conn->prepare("SELECT (MAX(orderNumber) + 1) FROM orders");
+            $stmt->execute();
+            $orderNumber = $stmt->fetchColumn();
+            cerrarConexion($conn);
+            return $orderNumber;
+        } catch (PDOException $e) {
+            cerrarConexion($conn);
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+    }
+//--------------------------------------------------------------------------
     // Función para insertar la orden del pedido.
-    function insertarOrden($conn, $customerNumber) {
+    function insertarOrden($conn, $customerNumber, $orderNumber) {
         $fecha = date("Y-m-d");
-
-        $stmt = $conn->prepare("SELECT (MAX(orderNumber) + 1) FROM orders");
-        $stmt->execute();
-        $resultado = $stmt->fetchColumn();
         $null = null;
         $estado = "Shipped";
 
         $stmt = $conn->prepare("INSERT INTO orders (orderNumber, orderDate, requiredDate, status, comments, customerNumber) VALUES (:orderNumber, :orderDate, :requiredDate, :status, :comments, :customerNumber)");
-        $stmt->bindParam(':orderNumber', $resultado);
+        $stmt->bindParam(':orderNumber', $orderNumber);
         $stmt->bindParam(':orderDate', $fecha);
         $stmt->bindParam(':requiredDate', $fecha);
         $stmt->bindParam(':status', $estado);
         $stmt->bindParam(':comments', $null);
         $stmt->bindParam(':customerNumber', $customerNumber);
         $stmt->execute();
-        insertarOrdenDetalles($conn, $resultado);
+        insertarOrdenDetalles($conn, $orderNumber);
     }
 //--------------------------------------------------------------------------
     // Función para insertar los detalles de la orden del pedido.
@@ -192,5 +208,28 @@
             $amount += $productCode["precio"] * $productCode["unidades"];
         }
         return $amount;
+    }
+//--------------------------------------------------------------------------
+    function rellenarObjeto($miObj) {
+        // Valores de entrada que no hemos cmbiado para ningun ejemplo
+        $fuc="999008881";
+        $terminal="1";
+        $moneda="978";
+        $trans="0";
+        //$url="";
+        //$urlOKKO="http://localhost/ApiPhpRedsys/ApiRedireccion/redsysHMAC256_API_PHP_7.0.0/ejemploRecepcionaPet.php";
+        $orderNumber = obtenerPkOrden();
+        $amount = obtenerMonto();	
+        
+        // Se Rellenan los campos
+        $miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
+        $miObj->setParameter("DS_MERCHANT_ORDER",$orderNumber);
+        $miObj->setParameter("DS_MERCHANT_MERCHANTCODE",$fuc);
+        $miObj->setParameter("DS_MERCHANT_CURRENCY",$moneda);
+        $miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE",$trans);
+        $miObj->setParameter("DS_MERCHANT_TERMINAL",$terminal);
+        //$miObj->setParameter("DS_MERCHANT_MERCHANTURL",$url);
+        //$miObj->setParameter("DS_MERCHANT_URLOK",$urlOKKO);
+        //$miObj->setParameter("DS_MERCHANT_URLKO",$urlOKKO);
     }
 //--------------------------------------------------------------------------
