@@ -98,7 +98,7 @@
             }
             validar($conn);
             cerrarConexion($conn);
-            setcookie("cesta", "", time() + 86400, "/");
+            //setcookie("cesta", "", time() + 86400, "/");
         } catch (PDOException $e) {
             deshacer($conn);
             cerrarConexion($conn);
