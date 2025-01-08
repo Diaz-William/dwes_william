@@ -27,7 +27,7 @@
     $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params); 
 
     // Validar la firma.
-    if ($signatureCalculada === $signatureRecibida) { 
+    if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) { 
         echo "FIRMA OK. Realizar tareas en el servidor";
         comprarProductoSesionCookies($_COOKIE["numPago"], true);
     } else { 
