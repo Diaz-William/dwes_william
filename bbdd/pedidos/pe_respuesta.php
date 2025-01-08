@@ -1,4 +1,6 @@
 <?php
+    // Incluir el archivo de funciones.
+	include "funciones_pe_altaped.php";
     // Se incluye la librería de Redsys.
     include 'apiRedsys.php';
     // Incluir el archivo de manejo de errores.
