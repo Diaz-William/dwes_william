@@ -64,4 +64,7 @@
             <input type="submit" name="pagar" id="pagar" value="Pagar">
         </form>
     </body>
+	<?php
+		echo $orderNumber;
+	?>
 </html>
