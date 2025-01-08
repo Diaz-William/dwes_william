@@ -111,6 +111,7 @@
         try {
             $conn = realizarConexion("pedidos", "localhost", "root", "rootroot");
             $stmt = $conn->prepare("SELECT 1 FROM payments WHERE customerNumber = :customerNumber AND checkNumber = :checkNumber");
+            $customerNumber = $_COOKIE["usuario"];
             $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->bindParam(':checkNumber', $checkNumber);
             $stmt->execute();
