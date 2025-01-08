@@ -10,9 +10,9 @@
     $miObj = new RedsysAPI; 
 
     // Capturar los parámetros de la notificación on-line.
-    $version = $_POST["Ds_SignatureVersion"]; 
-    $params = $_POST["Ds_MerchantParameters"]; 
-    $signatureRecibida = $_POST["Ds_Signature"];
+    $version = $_REQUEST["Ds_SignatureVersion"]; 
+    $params = $_REQUEST["Ds_MerchantParameters"]; 
+    $signatureRecibida = $_REQUEST["Ds_Signature"];
 
     // Decodificar el parámetro Ds_MerchantParameters.
     $decodec = $miObj->decodeMerchantParameters($params); 
