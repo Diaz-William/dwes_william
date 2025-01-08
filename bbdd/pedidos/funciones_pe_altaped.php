@@ -2,8 +2,6 @@
 //--------------------------------------------------------------------------
     // Incluir el archivo de funciones generales.
     include "funciones.php";
-    // Se incluye la librería.
-	include 'apiRedsys.php';
 //--------------------------------------------------------------------------
     // Función para obtener los productos disponibles.
     function obtenerProductosDisponibles() {

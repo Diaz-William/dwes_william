@@ -41,7 +41,7 @@
                     if (empty($_POST["numPago"])) {
                         trigger_error("Tiene que introducir el número de pago.");
                     }else if (preg_match("/^[a-z][a-z]\d{5}$/i", test_input($_POST["numPago"])) && obtenerCheckNumber(test_input($_POST["numPago"]))) {
-                        comprarProductoSesionCookies(test_input($_POST["numPago"]));
+                        setcookie("numPago", test_input($_POST["numPago"]), time() + 86400, "/");
                         header("Location: ./pe_pagar.php");
                     }else {
                         trigger_error("El número de pago tiene un formato incorrecto o ya ha sido utilizado");

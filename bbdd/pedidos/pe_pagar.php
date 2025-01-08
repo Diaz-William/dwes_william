@@ -1,6 +1,6 @@
 <?php
-    // Incluir el archivo de funciones.
-    include "funciones_pe_altaped.php";
+    // Se incluye la librería de Redsys.
+	include 'apiRedsys.php';
     // Incluir el archivo de manejo de errores.
     include "errores.php";
     // Establecer la función "error_function" para el manejo de errores.
@@ -20,7 +20,7 @@
 	$moneda="978";
 	$trans="0";
 	$url="";
-	$urlOKKO="http://localhost/ApiPhpRedsys/ApiRedireccion/redsysHMAC256_API_PHP_7.0.0/ejemploRecepcionaPet.php";
+	$urlOKKO="http://192.168.206.221/ApiPhpRedsys/ApiRedireccion/redsysHMAC256_API_PHP_7.0.0/pe_respuesta.php";
 	$orderNumber=obtenerPkOrden();
 	$amount=obtenerMonto() * 100;	
 	
