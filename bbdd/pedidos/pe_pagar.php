@@ -22,7 +22,7 @@
 	$moneda="978";
 	$trans="0";
 	$url="";
-	$urlOKKO="http://192.168.206.221/dwes/bbdd/pedidos/pe_respuesta.php";
+	$urlOKKO="http://192.168.206.221/dwes_william/bbdd/pedidos/pe_respuesta.php";
 	$orderNumber=obtenerPkOrden();
 	$amount=obtenerMonto() * 100;	
 	
