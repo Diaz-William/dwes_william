@@ -17,8 +17,8 @@
 	$miObj = new RedsysAPI;
 
 	// Valores de entrada que no hemos cmbiado para ningun ejemplo
-	$fuc="999008881";
-	$terminal="1";
+	$fuc="263100000";
+	$terminal="13";
 	$moneda="978";
 	$trans="0";
 	$url="";
