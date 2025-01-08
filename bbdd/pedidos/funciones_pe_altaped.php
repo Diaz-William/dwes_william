@@ -82,15 +82,17 @@
     }
 //--------------------------------------------------------------------------
     // Función para comprar producto por sesión.
-    function comprarProductoSesionCookies($checkNumber) {
+    function comprarProductoSesionCookies($checkNumber, $pagoRealizado) {
         try {
             $orderNumber = obtenerPkOrden();
             $conn = realizarConexion("pedidos","localhost","root","rootroot");
 
             $cesta = unserialize($_COOKIE["cesta"]);
             empezarTransaccion($conn);
-            insertarOrden($conn, $_COOKIE["usuario"], $orderNumber);
-            insertarPago($conn, $checkNumber);
+            insertarOrden($conn, $_COOKIE["usuario"], $orderNumber, $pagoRealizado);
+            if ($pagoRealizado) {
+                insertarPago($conn, $checkNumber);
+            }
             foreach ($cesta as $productCode => $productData) {
                 actualizarCantidadProducto($conn, $productCode, $productData["unidades"]);
             }
@@ -151,10 +153,10 @@
     }
 //--------------------------------------------------------------------------
     // Función para insertar la orden del pedido.
-    function insertarOrden($conn, $customerNumber, $orderNumber) {
+    function insertarOrden($conn, $customerNumber, $orderNumber, $pagoRealizado) {
         $fecha = date("Y-m-d");
         $null = null;
-        $estado = "Shipped";
+        $estado = $pagoRealizado ? "Shipped" : "In Proccess";
 
         $stmt = $conn->prepare("INSERT INTO orders (orderNumber, orderDate, requiredDate, status, comments, customerNumber) VALUES (:orderNumber, :orderDate, :requiredDate, :status, :comments, :customerNumber)");
         $stmt->bindParam(':orderNumber', $orderNumber);

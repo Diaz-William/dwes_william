@@ -29,10 +29,10 @@
     // Validar la firma.
     if ($signatureCalculada === $signatureRecibida) { 
         echo "FIRMA OK. Realizar tareas en el servidor";
-        comprarProductoSesionCookies($_COOKIE["numPago"]);
+        comprarProductoSesionCookies($_COOKIE["numPago"], true);
     } else { 
         echo "FIRMA KO. Error, firma inválida";
-        comprarProductoSesionCookies($_COOKIE["numPago"]);
+        comprarProductoSesionCookies($_COOKIE["numPago"], false);
     }
 ?>
 
