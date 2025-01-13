@@ -1,5 +1,5 @@
 <?php
-    function comprobar($email, $password) {
+    function comprobar() {
         try {
             $conexion = conectar();
             $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE");

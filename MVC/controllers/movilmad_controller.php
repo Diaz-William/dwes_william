@@ -8,7 +8,7 @@
         $password = test_input($_POST["password"]);
         var_dump($email);
         var_dump($password);
-        $correcto = comprobar($email, $password);
+        $correcto = comprobar();
         echo $correcto;
         if ($correcto === true) {
             //header("Location: ./views/movwelcome.php");
