@@ -10,7 +10,7 @@
         private $movilmad;
     
         public function __construct(){
-            $this->db = Conectar::conexion();
+            //$this->db = Conectar::conexion();
             $this->movilmad = array();
         }
         public function get_movilmad(){
