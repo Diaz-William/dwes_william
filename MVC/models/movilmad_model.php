@@ -10,12 +10,12 @@
         private $movilmad;
     
         public function __construct(){
-            $this->db=Conectar::conexion();
-            $this->movilmad=array();
+            $this->db = Conectar::conexion();
+            $this->movilmad = array();
         }
         public function get_movilmad(){
-            $consulta=$this->db->query("select * from film;");
-            while($filas=$consulta->fetch_assoc()){
+            $stmt = $this->db->query("select * from film;");
+            while($filas=$stmt->fetch_assoc()){
                 $this->movilmad[]=$filas;
             }
             return $this->movilmad;
