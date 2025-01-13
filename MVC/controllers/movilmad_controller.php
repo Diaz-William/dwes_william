@@ -8,7 +8,7 @@
         $password = test_input("password");
         $correcto = comprobar();
         if ($correcto) {
-            header("Location: ./movwelcome.php");
+            header("Location: ./views/movwelcome.php");
         } else {
             echo "Email o clave incorrectos";
         }
