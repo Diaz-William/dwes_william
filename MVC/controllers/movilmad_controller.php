@@ -4,8 +4,10 @@
     require_once("data_controller.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = test_input("email");
-        $password = test_input("password");
+        $email = test_input($_POST["email"]);
+        $password = test_input($_POST["password"]);
+        var_dump($email);
+        var_dump($password);
         $correcto = comprobar($email, $password);
         echo $correcto;
         if ($correcto === true) {
