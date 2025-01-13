@@ -6,7 +6,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = test_input("email");
         $password = test_input("password");
-        $correcto = comprobar();
+        $correcto = comprobar($email, $password);
         echo $correcto;
         if ($correcto === true) {
             //header("Location: ./views/movwelcome.php");
