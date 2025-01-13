@@ -7,7 +7,8 @@
             $stmt->bindParam(":IDCLIENTE", $password);
             $stmt->execute();
             $conexion = null;
-            return $stmt === false ? false : true;
+            $devolver = $stmt === false ? false : true;
+            return $devolver;
         } catch (PDOException $ex) {
             echo "Error: ". $ex->getMessage();
             return null;
