@@ -1,7 +1,6 @@
 <?php
-    require_once("views/movlogin.php");
+    require_once("views/login_view.php");
     require_once("models/login_model.php");
-    require_once("data_controller.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = test_input($_POST["email"]);
@@ -9,7 +8,7 @@
         $correcto = comprobar($email, $password);
         
         if ($correcto === true) {
-            header("Location: ./views/movwelcome.php");
+            header("Location: ./views/welcome_view.php");
         } else if ($correcto === false){
             echo "Email o clave incorrectos";
         } else if ($correcto === null) {

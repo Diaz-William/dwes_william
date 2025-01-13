@@ -9,11 +9,10 @@
             $result = $stmt->fetchColumn();
             $conexion = null;
             return $result !== false;
-        } catch (PDOException $ex) {
-            /*echo $ex->getMessage();
-            return null;*/
-
-            return $ex->getMessage();
+        } catch (PDOException $e) {
+            $conexion = null;
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            return null;
         }
     }
 ?>
