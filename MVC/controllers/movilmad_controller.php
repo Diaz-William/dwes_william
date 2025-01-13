@@ -8,15 +8,14 @@
         $password = test_input($_POST["password"]);
         var_dump($email);
         var_dump($password);
-        $correcto = comprobar();
+        $correcto = comprobar($email, $password);
         echo $correcto;
         if ($correcto === true) {
-            //header("Location: ./views/movwelcome.php");
-            echo "Dentro";
+            header("Location: ./views/movwelcome.php");
         } else if ($correcto === false){
             echo "Email o clave incorrectos";
         } else if ($correcto === null) {
-            echo "VALOR NULO";
+            echo $correcto;
         }
     }
 ?>

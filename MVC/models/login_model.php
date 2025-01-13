@@ -1,5 +1,5 @@
 <?php
-    function comprobar() {
+    function comprobar($email, $password) {
         try {
             $conexion = conectar();
             $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE");
@@ -8,11 +8,12 @@
             $stmt->execute();
             $result = $stmt->fetchColumn();
             $conexion = null;
-            var_dump($result);
             return $result !== false;
         } catch (PDOException $ex) {
-            echo "Error: ". $ex->getMessage();
-            return null;
+            /*echo $ex->getMessage();
+            return null;*/
+
+            return $ex->getMessage();
         }
     }
 ?>
