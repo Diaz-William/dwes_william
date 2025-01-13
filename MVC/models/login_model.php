@@ -6,6 +6,8 @@
             $stmt->bindParam(":EMAIL", $email);
             $stmt->bindParam(":IDCLIENTE", $password);
             $stmt->execute();
+            var_dump($stmt);
+            var_dump($stmt->fetchColumn());
             $conexion = null;
             return $stmt->fetchColumn() === false ? false : true;
         } catch (PDOException $ex) {
