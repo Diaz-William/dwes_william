@@ -8,6 +8,7 @@
             $stmt->execute();
             $result = $stmt->fetchColumn();
             $conexion = null;
+            var_dump($result);
             return $result !== false;
         } catch (PDOException $ex) {
             echo "Error: ". $ex->getMessage();
