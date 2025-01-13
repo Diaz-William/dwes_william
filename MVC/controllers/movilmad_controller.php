@@ -7,10 +7,14 @@
         $email = test_input("email");
         $password = test_input("password");
         $correcto = comprobar();
-        if ($correcto) {
-            header("Location: ./views/movwelcome.php");
-        } else {
+        echo $correcto;
+        if ($correcto === true) {
+            //header("Location: ./views/movwelcome.php");
+            echo "Dentro";
+        } else if ($correcto === false){
             echo "Email o clave incorrectos";
+        } else if ($correcto === null) {
+            echo "VALOR NULO";
         }
     }
 ?>
