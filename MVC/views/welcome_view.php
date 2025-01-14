@@ -18,7 +18,7 @@
 		<div class="card-body">
 
 
-		<B>Bienvenido/a:</B>    <BR><BR>
+		<B>Bienvenido/a:</B> <?php echo $_COOKIE["usuario"] ?> <BR><BR>
 		<B>Identificador Cliente:</B>  <BR><BR>
 	 
 		

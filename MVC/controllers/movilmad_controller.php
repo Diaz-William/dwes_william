@@ -5,14 +5,12 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = test_input($_POST["email"]);
         $password = test_input($_POST["password"]);
-        $correcto = comprobar($email, $password);
+        $nombre = comprobar($email, $password);
         
-        if ($correcto === true) {
+        if (gettype($nombre) === 'string') {
             header("Location: ./views/welcome_view.php");
-        } else if ($correcto === false){
-            echo "Email o clave incorrectos";
-        } else if ($correcto === null) {
-            echo $correcto;
+        } else if ($nombre === false){
+            echo "Email o clave innombres";
         }
     }
 ?>
