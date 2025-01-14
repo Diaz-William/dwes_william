@@ -20,14 +20,20 @@
 
 	<!-- INICIO DEL FORMULARIO -->
 	<form action="" method="post">
-	
-		<B>Bienvenido/a:</B>  <BR><BR>
-		<B>Identificador Cliente:</B>   <BR><BR>
+		<?php list($usuario, $id) = explode("#", $_COOKIE["datos"]) ?>
+		<B>Bienvenido/a:</B> <?php echo $usuario ?> <BR><BR>
+		<B>Identificador Cliente:</B> <?php echo $id ?> <BR><BR>
 		
 		<B>Vehiculos disponibles en este momento:</B>  <BR><BR>
 		
-			<B>Matricula/Marca/Modelo: </B><select name="vehiculos" class="form-control">
-				
+			<B>Matricula/Marca/Modelo: </B>
+			<select name="vehiculos" class="form-control">
+				<option value="">-- Seleccionar Vehículo --</option>
+				<?php
+					foreach ($vehiculos as $vehiculo) {
+						echo "<option value='{$vehiculo['MATRICULA']}'>{$vehiculo['MATRICULA']} | {$vehiculo['MARCA']} | {$vehiculo['MODELO']}</option>";
+					}
+				?>
 			</select>
 			
 		
