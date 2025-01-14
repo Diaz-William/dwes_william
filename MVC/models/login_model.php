@@ -8,6 +8,11 @@
             $stmt->execute();
             $result = $stmt->fetchColumn();
             $conexion = null;
+            if (comprobarPendientePago($email, $password, $conexion)) {
+                $result = "Pendiente de pago";
+            } else if (comprobarBaja($email, $password, $conexion)) {
+                $result = "La cuenta ha sido dada de baja";
+            }
             return $result;
         } catch (PDOException $e) {
             $conexion = null;
@@ -16,7 +21,31 @@
         }
     }
 
-    function crearSesionCookie($nombre, $id) {
-        setcookie("datos", $nombre."#".$id, time() + 86400, "/");
+    function comprobarPendientePago($email, $password, $conexion) {
+        try {
+            $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND PEDIENTE_PAGO = 0");
+            $stmt->bindParam(':EMAIL', $email);
+            $stmt->bindParam(':IDCLIENTE', $password);
+            $stmt->execute();
+            return $stmt->fetchColumn() === false;
+        } catch (PDOException $e) {
+            $conexion = null;
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            return null;
+        }
+    }
+
+    function comprobarBaja($email, $password, $conexion) {
+        try {
+            $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND FECHA_BAJA IS NOT NULL");
+            $stmt->bindParam(':EMAIL', $email);
+            $stmt->bindParam(':IDCLIENTE', $password);
+            $stmt->execute();
+            return $stmt->fetchColumn() === false;
+        } catch (PDOException $e) {
+            $conexion = null;
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            return null;
+        }
     }
 ?>
