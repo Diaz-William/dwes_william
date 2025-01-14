@@ -13,6 +13,8 @@
             header("Location: ./views/welcome_view.php");
         } else if ($nombre === false){
             echo "Email o clave innombres";
+        } else if (gettype($nombre) =='string') {
+            echo $nombre;
         }
     }
 ?>
