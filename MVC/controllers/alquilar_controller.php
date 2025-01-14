@@ -1,6 +1,6 @@
 <?php
-    header("Cache-Control: no-cache, must-revalidate");
-    header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+    /*header("Cache-Control: no-cache, must-revalidate");
+    header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");*/
     
     require_once("../db/db.php");
     require_once("../helpers/error_helper.php");
