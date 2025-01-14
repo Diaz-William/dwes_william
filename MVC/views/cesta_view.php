@@ -1,6 +1,6 @@
 <?php
     function imprimirCesta() {
-        if (isset($_COOKIE["cesta"])) {
+        if (isset($_COOKIE["cesta"]) && $_COOKIE["cesta"] != "") {
             echo "<ul>";
             $cesta = unserialize($_COOKIE["cesta"]);
             foreach ($cesta as $matricula => $datos) {
