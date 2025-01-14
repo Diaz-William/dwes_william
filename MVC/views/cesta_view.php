@@ -8,6 +8,7 @@
                 echo "<li>$matricula | $marca | $modelo</li>";
             }
             echo "</ul>";
-        }
+        } else
+         echo "";
     }
 ?>
