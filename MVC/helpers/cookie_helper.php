@@ -10,15 +10,20 @@
     }
 
     function cesta($vehiculo) {
+        // Divide los datos del vehículo en sus componentes.
         list($matricula, $marca, $modelo) = explode("#", $vehiculo);
-
-        if (!isset($_COOKIE["cesta"])) {
-            setcookie("cesta", $matricula, time() + 86400, "/");
-        }
-
+    
+        // Si la cookie "cesta" ya existe, deserialízala; de lo contrario, crea un array vacío.
         $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
-        $cesta[$matricula] = $marca."#".$modelo;
+    
+        // Agrega o actualiza el vehículo en la cesta.
+        $cesta[$matricula] = $marca . "#" . $modelo;
+    
+        // Serializa y guarda la cookie "cesta".
         setcookie("cesta", serialize($cesta), time() + 86400, "/");
-        $_COOKIE["cesta"] = $cesta;
+    
+        // Actualiza el superglobal para uso inmediato en el script.
+        $_COOKIE["cesta"] = serialize($cesta);
     }
+    
 ?>
