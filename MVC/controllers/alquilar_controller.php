@@ -8,7 +8,13 @@
     require_once("../models/alquilar_model.php");
     require_once("../helpers/cookie_helper.php");
 
-    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["agregar"]) && !empty($_POST["vehiculos"])) {
+            cesta($_POST["vehiculos"]);
+        } else {
+            echo "Debe seleccionar un vehículo";
+        }
+    }
 
     $vehiculos = obtenerVehiculosDisponibles();
 
@@ -16,9 +22,7 @@
     require_once("../views/alquilar_view.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["agregar"]) && !empty($_POST["vehiculos"])) {
-            cesta($_POST["vehiculos"]);
-        } else {
+        if (!isset($_POST)) {
             echo "Debe seleccionar un vehículo";
         }
     }
