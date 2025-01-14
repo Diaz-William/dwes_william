@@ -11,9 +11,9 @@
             var_dump($result);
             $result = !empty($result) ? $result["NOMBRE"] . " " . $result["APELLIDO"] : false;
             
-            if (comprobarPendientePago($email, $password, $conexion) && $result !== false) {
+            if (comprobarPendientePago($email, $password, $conexion) && !empty($result)) {
                 $result = "Pendiente de pago";
-            } else if (comprobarBaja($email, $password, $conexion) && $result !== false) {
+            } else if (comprobarBaja($email, $password, $conexion) && !empty($result)) {
                 $result = "La cuenta ha sido dada de baja";
             }
 
