@@ -8,11 +8,11 @@
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $result = $stmt->fetchAll();
-            $result = $result[0] . " " . $result[1];
+            $result = $result !== false ? $result[0] . " " . $result[1] : false;
             
-            if (comprobarPendientePago($email, $password, $conexion)) {
+            if (comprobarPendientePago($email, $password, $conexion) && $result !== false) {
                 $result = "Pendiente de pago";
-            } else if (comprobarBaja($email, $password, $conexion)) {
+            } else if (comprobarBaja($email, $password, $conexion) && $result !== false) {
                 $result = "La cuenta ha sido dada de baja";
             }
 
