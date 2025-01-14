@@ -5,6 +5,6 @@
 
     function cerrarSesionCookie() {
         setcookie("datos", "", time() - 86400, "/");
-        header("Location: /index.php");
+        header("Location: index.php");
     }
 ?>
