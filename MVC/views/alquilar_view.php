@@ -35,6 +35,7 @@
 					}
 				?>
 			</select>
+			<br><br>
 			
 			<?php imprimirCesta(); ?>
 		
