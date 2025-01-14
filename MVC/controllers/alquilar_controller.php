@@ -11,8 +11,10 @@
     require_once("../views/alquilar_view.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["agregar"])) {
+        if (isset($_POST["agregar"]) && empty($_POST["vehiculos"])) {
             cesta($_POST["vehiculos"]);
+        } else {
+            echo "Debe seleccionar un vehículo";
         }
     }
 ?>
