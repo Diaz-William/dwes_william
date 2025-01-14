@@ -8,13 +8,16 @@
         $password = test_input($_POST["password"]);
         $nombre = comprobar($email, $password);
         
-        if ($nombre !== "Pendiente de pago" && $nombre !== "La cuenta ha sido dada de baja") {
+        if ($nombre === false) {
+            echo "Email o clave incorrectos";
+        } elseif ($nombre === "Pendiente de pago" || $nombre === "La cuenta ha sido dada de baja") {
+            echo $nombre;
+        } elseif (is_string($nombre)) {
             crearSesionCookie($nombre, $password);
             header("Location: ./views/welcome_view.php");
-        } else if ($nombre === false){
-            echo "Email o clave innombres";
-        } else if (gettype($nombre) =='string') {
-            echo $nombre;
+            exit;
+        } else {
+            echo "Ha ocurrido un error. Inténtelo más tarde.";
         }
     }
 ?>

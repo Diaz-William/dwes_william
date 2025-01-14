@@ -36,7 +36,6 @@
             $stmt->execute();
             return $stmt->fetchColumn() === false;
         } catch (PDOException $e) {
-            $conexion = null;
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
             return null;
         }
@@ -50,7 +49,6 @@
             $stmt->execute();
             return $stmt->fetchColumn() === false;
         } catch (PDOException $e) {
-            $conexion = null;
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
             return null;
         }
