@@ -26,7 +26,7 @@
 
     function comprobarPendientePago($email, $password, $conexion) {
         try {
-            $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND PEDIENTE_PAGO = 0");
+            $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND PENDIENTE_PAGO = 0");
             $stmt->bindParam(':EMAIL', $email);
             $stmt->bindParam(':IDCLIENTE', $password);
             $stmt->execute();
