@@ -7,7 +7,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["agregar"]) && !empty($_POST["vehiculos"])) {
-            cesta($_POST["vehiculos"]);
+            $mensaje = cesta($_POST["vehiculos"]);
         }
     }
 
@@ -19,6 +19,8 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["agregar"]) && empty($_POST["vehiculos"])) {
             echo "Debe seleccionar un vehículo";
+        } else if (!$mensaje) {
+            echo "No puede seleccionar más de 3 vehículos";
         }
     }
 ?>

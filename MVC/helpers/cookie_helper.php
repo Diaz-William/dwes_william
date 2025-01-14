@@ -13,12 +13,14 @@
         list($matricula, $marca, $modelo) = explode("#", $vehiculo);
         $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
 
-        if (count($cesta) < 3) {
-            echo "No puede seleccionar más de 3 vehículos";
+        if (count($cesta) >= 3) {
+            //echo "No puede seleccionar más de 3 vehículos";
+            return false;
         } else {
             $cesta[$matricula] = $marca . "#" . $modelo;
             setcookie("cesta", serialize($cesta), time() + 86400, "/");
             $_COOKIE["cesta"] = serialize($cesta);
+            return true;
         }
     }
     
