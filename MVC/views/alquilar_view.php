@@ -31,18 +31,20 @@
 				<option value="">-- Seleccionar Vehículo --</option>
 				<?php
 					foreach ($vehiculos as $vehiculo) {
-						echo "<option value='{$vehiculo['MATRICULA']}'>{$vehiculo['MATRICULA']} | {$vehiculo['MARCA']} | {$vehiculo['MODELO']}</option>";
+						echo "<option value='{$vehiculo['MATRICULA']}#{$vehiculo['MARCA']}#{$vehiculo['MODELO']}'>{$vehiculo['MATRICULA']} | {$vehiculo['MARCA']} | {$vehiculo['MODELO']}</option>";
 					}
 				?>
 			</select>
 			
+			<?php imprimirCesta(); ?>
 		
 		<BR> <BR><BR><BR><BR><BR>
 		<div>
 			<input type="submit" value="Agregar a Cesta" name="agregar" class="btn btn-warning disabled">
 			<input type="submit" value="Realizar Alquiler" name="alquilar" class="btn btn-warning disabled">
 			<input type="submit" value="Vaciar Cesta" name="vaciar" class="btn btn-warning disabled">
-		</div>		
+		</div>
+		<BR><a href="./logout_controller.php">Cerrar Sesión</a>
 	</form>
 	<!-- FIN DEL FORMULARIO -->
   </body>
