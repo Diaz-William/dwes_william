@@ -15,7 +15,7 @@
             }
 
             $conexion = null;
-            
+
             return $result;
         } catch (PDOException $e) {
             $conexion = null;
@@ -40,7 +40,7 @@
 
     function comprobarBaja($email, $password, $conexion) {
         try {
-            $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND FECHA_BAJA IS NOT NULL");
+            $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND FECHA_BAJA IS NULL");
             $stmt->bindParam(':EMAIL', $email);
             $stmt->bindParam(':IDCLIENTE', $password);
             $stmt->execute();
