@@ -32,8 +32,7 @@
 		
 		
 		
-		  <BR><a href="../index.php">Cerrar Sesión</a>
-		  <input type="submit" name="cerrar" id="cerrar" value="Cerrar Sesión">
+		  <BR><a href="./logout_controller.php">Cerrar Sesión</a>
 	</div>  
 	  
 	  

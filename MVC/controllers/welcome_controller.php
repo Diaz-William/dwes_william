@@ -3,9 +3,6 @@
     require_once("../helpers/cookie_helper.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["cerrar"])) {
-            cerrarSesionCookie();
-            header("Location: /index.php");
-        }
+        
     }
 ?>
