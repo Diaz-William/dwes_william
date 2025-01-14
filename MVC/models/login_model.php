@@ -7,12 +7,15 @@
             $stmt->bindParam(':IDCLIENTE', $password);
             $stmt->execute();
             $result = $stmt->fetchColumn();
-            $conexion = null;
+            
             if (comprobarPendientePago($email, $password, $conexion)) {
                 $result = "Pendiente de pago";
             } else if (comprobarBaja($email, $password, $conexion)) {
                 $result = "La cuenta ha sido dada de baja";
             }
+
+            $conexion = null;
+            
             return $result;
         } catch (PDOException $e) {
             $conexion = null;
