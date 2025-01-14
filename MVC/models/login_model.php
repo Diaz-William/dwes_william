@@ -8,7 +8,8 @@
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $result = $stmt->fetchAll();
-            $result = $result !== false ? $result["NOMBRE"] . " " . $result["APELLIDO"] : false;
+            var_dump($result);
+            //$result = $result !== false ? $result["NOMBRE"] . " " . $result["APELLIDO"] : false;
             
             if (comprobarPendientePago($email, $password, $conexion) && $result !== false) {
                 $result = "Pendiente de pago";
