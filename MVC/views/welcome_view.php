@@ -33,6 +33,7 @@
 		
 		
 		  <BR><a href="../index.php">Cerrar Sesión</a>
+		  <input type="submit" name="cerrar" id="cerrar" value="Cerrar Sesión">
 	</div>  
 	  
 	  
