@@ -17,9 +17,10 @@
 		<div class="card-header">Menú Usuario - OPERACIONES </div>
 		<div class="card-body">
 
+		<?php list($usuario, $id) = explode("#", $_COOKIE["datos"]) ?>
 
-		<B>Bienvenido/a:</B> <?php echo $_COOKIE["usuario"] ?> <BR><BR>
-		<B>Identificador Cliente:</B>  <BR><BR>
+		<B>Bienvenido/a:</B> <?php echo $usuario ?> <BR><BR>
+		<B>Identificador Cliente:</B> <?php echo $id ?> <BR><BR>
 	 
 		
        <!--Formulario con botones -->

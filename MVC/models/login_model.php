@@ -16,7 +16,7 @@
         }
     }
 
-    function crearSesionCookie($nombre) {
-        setcookie("usuario", $nombre, time() + 86400, "/");
+    function crearSesionCookie($nombre, $id) {
+        setcookie("datos", $nombre."#".$id, time() + 86400, "/");
     }
 ?>

@@ -8,7 +8,7 @@
         $nombre = comprobar($email, $password);
         
         if (gettype($nombre) === 'string') {
-            crearSesionCookie($nombre);
+            crearSesionCookie($nombre, $password);
             header("Location: ./views/welcome_view.php");
         } else if ($nombre === false){
             echo "Email o clave innombres";
