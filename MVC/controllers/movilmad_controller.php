@@ -15,7 +15,6 @@
         } elseif (is_string($nombre)) {
             crearSesionCookie($nombre, $password);
             header("Location: ./views/welcome_view.php");
-            exit;
         } else {
             echo "Ha ocurrido un error. Inténtelo más tarde.";
         }
