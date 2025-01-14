@@ -19,5 +19,6 @@
         $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
         $cesta[$matricula] = $marca."#".$modelo;
         setcookie("cesta", serialize($cesta), time() + 86400, "/");
+        $_COOKIE["cesta"] = $cesta;
     }
 ?>

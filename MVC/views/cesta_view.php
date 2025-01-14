@@ -1,6 +1,5 @@
 <?php
     function imprimirCesta() {
-        header("Refresh:0");
         if (isset($_COOKIE["cesta"])) {
             echo "<ul>";
             $cesta = unserialize($_COOKIE["cesta"]);
