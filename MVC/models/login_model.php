@@ -2,11 +2,13 @@
     function comprobar($email, $password) {
         try {
             $conexion = conectar();
-            $stmt = $conexion->prepare("SELECT NOMBRE FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE");
+            $stmt = $conexion->prepare("SELECT NOMBRE, APELLIDO FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE");
             $stmt->bindParam(':EMAIL', $email);
             $stmt->bindParam(':IDCLIENTE', $password);
             $stmt->execute();
-            $result = $stmt->fetchColumn();
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll();
+            $result = $result[0] . " " . $result[1];
             
             if (comprobarPendientePago($email, $password, $conexion)) {
                 $result = "Pendiente de pago";
