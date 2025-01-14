@@ -8,6 +8,8 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["agregar"]) && !empty($_POST["vehiculos"])) {
             $mensaje = cesta($_POST["vehiculos"]);
+        } else if (isset($_POST["vaciar"])) {
+            vaciarCesta();
         }
     }
 
