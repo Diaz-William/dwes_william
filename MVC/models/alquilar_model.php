@@ -14,4 +14,6 @@
             return null;
         }
     }
+
+    function realizarAlquiler() {}
 ?>
