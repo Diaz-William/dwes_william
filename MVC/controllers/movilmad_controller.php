@@ -8,7 +8,7 @@
         $password = test_input($_POST["password"]);
         $nombre = comprobar($email, $password);
         
-        if ($nombre !== "Pendiente pago" || $nombre !== "La cuenta ha sido dada de baja") {
+        if ($nombre !== "Pendiente pago" && $nombre !== "La cuenta ha sido dada de baja") {
             crearSesionCookie($nombre, $password);
             header("Location: ./views/welcome_view.php");
         } else if ($nombre === false){
