@@ -6,14 +6,15 @@
             $stmt->bindParam(':EMAIL', $email);
             $stmt->bindParam(':IDCLIENTE', $password);
             $stmt->execute();
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $result = $stmt->fetchAll();
-            var_dump($result);
-            $result = !empty($result) ? $result["NOMBRE"] . " " . $result["APELLIDO"] : false;
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if (comprobarPendientePago($email, $password, $conexion) && !empty($result)) {
+            if ($result !== false) {
+                $result = $result["NOMBRE"] . " " . $result["APELLIDO"];
+            }
+            
+            if (comprobarPendientePago($email, $password, $conexion) && $result !== false) {
                 $result = "Pendiente de pago";
-            } else if (comprobarBaja($email, $password, $conexion) && !empty($result)) {
+            } else if (comprobarBaja($email, $password, $conexion) && $result !== false) {
                 $result = "La cuenta ha sido dada de baja";
             }
 
