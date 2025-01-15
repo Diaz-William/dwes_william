@@ -16,10 +16,11 @@
             if (isset($_COOKIE["cesta"]) && !empty($_COOKIE["cesta"])) {
                 $cesta = unserialize($_COOKIE["cesta"]);
                 $alquilados = comprobarAlquilados();
-
+                var_dump("dentro1");
                 if ((count($cesta) + $alquilados) < 3) {
                     $auxAlquilar = realizarAlquiler($cesta);
                 }
+                var_dump("dentro2");
             }
         } else if (isset($_POST["vaciar"])) {
             vaciarCesta();
