@@ -2,7 +2,7 @@
     function comprobarAlquilados() {
         try {
             $conn = conectar();
-            $stmt = $conn->prepare("SELECT IDCLIENTE FROM RALQUILERES WHERE IDCLIENTE = :IDCLIENTE");
+            $stmt = $conn->prepare("SELECT IDCLIENTE FROM RALQUILERES WHERE IDCLIENTE = :IDCLIENTE AND FECHA_DEVOLUCION IS NULL AND PRECIOTOTAL IS NULL AND FECHAHORAPAGO IS NULL");
             $id = explode("#", $_COOKIE["datos"]);
             $id = $id[1];
             $stmt->bindParam("IDCLIENTE", $id);
