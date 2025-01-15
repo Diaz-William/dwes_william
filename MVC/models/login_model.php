@@ -1,8 +1,8 @@
 <?php
     function comprobar($email, $password) {
         try {
-            $conexion = conectar();
-            $stmt = $conexion->prepare("SELECT NOMBRE, APELLIDO FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE");
+            $conn = conectar();
+            $stmt = $conn->prepare("SELECT NOMBRE, APELLIDO FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE");
             $stmt->bindParam(':EMAIL', $email);
             $stmt->bindParam(':IDCLIENTE', $password);
             $stmt->execute();
@@ -12,25 +12,25 @@
                 $result = $result["NOMBRE"] . " " . $result["APELLIDO"];
             }
             
-            if (comprobarPendientePago($email, $password, $conexion) && $result !== false) {
+            if (comprobarPendientePago($email, $password, $conn) && $result !== false) {
                 $result = "Pendiente de pago";
-            } else if (comprobarBaja($email, $password, $conexion) && $result !== false) {
+            } else if (comprobarBaja($email, $password, $conn) && $result !== false) {
                 $result = "La cuenta ha sido dada de baja";
             }
 
-            $conexion = null;
+            $conn = null;
 
             return $result;
         } catch (PDOException $e) {
-            $conexion = null;
+            $conn = null;
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
             return null;
         }
     }
 
-    function comprobarPendientePago($email, $password, $conexion) {
+    function comprobarPendientePago($email, $password, $conn) {
         try {
-            $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND PENDIENTE_PAGO = 0");
+            $stmt = $conn->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND PENDIENTE_PAGO = 0");
             $stmt->bindParam(':EMAIL', $email);
             $stmt->bindParam(':IDCLIENTE', $password);
             $stmt->execute();
@@ -41,9 +41,9 @@
         }
     }
 
-    function comprobarBaja($email, $password, $conexion) {
+    function comprobarBaja($email, $password, $conn) {
         try {
-            $stmt = $conexion->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND FECHA_BAJA IS NULL");
+            $stmt = $conn->prepare("SELECT 1 FROM RCLIENTES WHERE EMAIL = :EMAIL AND IDCLIENTE = :IDCLIENTE AND FECHA_BAJA IS NULL");
             $stmt->bindParam(':EMAIL', $email);
             $stmt->bindParam(':IDCLIENTE', $password);
             $stmt->execute();

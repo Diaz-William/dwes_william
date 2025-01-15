@@ -9,7 +9,11 @@
         if (isset($_POST["agregar"]) && !empty($_POST["vehiculos"])) {
             $mensaje = cesta($_POST["vehiculos"]);
         } else if (isset($_POST["alquilar"])) {
-            realizarAlquiler();
+            //realizarAlquiler();
+            $cesta = unserialize($_COOKIE["cesta"]);
+            foreach ($cesta as $matricula) {
+                echo $matricula;
+            }
         } else if (isset($_POST["vaciar"])) {
             vaciarCesta();
         }
