@@ -5,15 +5,15 @@
             $conn->beginTransaction();
             $id = explode("#", $_COOKIE["datos"]);
             $id = $id[1];
+            date_default_timezone_set('Europe/Madrid');
             foreach ($cesta as $matricula => $datos) {
-                var_dump("realizando...");
                 $stmt = $conn->prepare("UPDATE RVEHICULOS SET DISPONIBLE = 'N' WHERE MATRICULA = :MATRICULA");
                 $stmt->bindParam(":MATRICULA", $matricula);
                 $stmt->execute();
                 $stmt = $conn->prepare("INSERT INTO RALQUILERES (IDCLIENTE, MATRICULA, FECHA_ALQUILER, FECHA_DEVOLUCION, PRECIOTOTAL, FECHAHORAPAGO) VALUES (:IDCLIENTE, :MATRICULA, :FECHA_ALQUILER, null, null, null)");
                 $stmt->bindParam(':IDCLIENTE', $id);
                 $stmt->bindParam(':MATRICULA', $matricula);
-                $fecha_alquiler = date("Y-m-d H:i:s", strtotime("+1 hour"));
+                $fecha_alquiler = date("Y-m-d H:i:s");
                 $stmt->bindParam(':FECHA_ALQUILER', $fecha_alquiler);
                 $stmt->execute();
             }
