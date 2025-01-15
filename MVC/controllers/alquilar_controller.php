@@ -11,7 +11,7 @@
         } else if (isset($_POST["alquilar"])) {
             //realizarAlquiler();
             $cesta = unserialize($_COOKIE["cesta"]);
-            foreach ($cesta as $matricula) {
+            foreach ($cesta as $matricula => $datos) {
                 echo $matricula;
             }
         } else if (isset($_POST["vaciar"])) {
