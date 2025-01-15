@@ -35,7 +35,7 @@
             echo "Debe seleccionar un vehículo.";
         } else if (isset($auxAgregar) && !$auxAgregar) {
             echo "No puede seleccionar más de 3 vehículos.";
-        } else if (isset($_POST["alquilar"]) && (!isset($_COOKIE["cesta"]) || empty($_COOKIE["cesta"]))) {
+        } else if (isset($_POST["alquilar"]) && (!isset($_COOKIE["cesta"]) || empty($_COOKIE["cesta"])) && $auxAlquilar) {
             echo "Debe añadir vehículos a la cesta.";
         } else if (isset($auxAlquilar) && $auxAlquilar) {
             echo "El alquiler se ha realizado correctamente.";
