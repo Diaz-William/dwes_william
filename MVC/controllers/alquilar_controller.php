@@ -6,7 +6,7 @@
     require_once("../helpers/cookie_helper.php");
 
     //$auxAgregar = false;
-    $auxAlquilar = false;
+    //$auxAlquilar = false;
     //$alquilados = 0;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,8 +18,9 @@
                 $alquilados = comprobarAlquilados();
                 var_dump("dentro1");
                 var_dump((count($cesta) + $alquilados));
-                if ((count($cesta) + $alquilados) < 3) {
-                    var_dump("dentro2");
+                if ((count($cesta) + $alquilados) > 3) {
+                    $auxAlquilar = false;
+                } else {
                     $auxAlquilar = realizarAlquiler($cesta);
                 }
             }
