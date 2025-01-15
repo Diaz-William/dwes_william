@@ -5,9 +5,9 @@
     require_once("../models/alquilar_model.php");
     require_once("../helpers/cookie_helper.php");
 
-    /*$auxAgregar = false;
+    //$auxAgregar = false;
     $auxAlquilar = false;
-    $alquilados = 0;*/
+    //$alquilados = 0;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["agregar"]) && !empty($_POST["vehiculos"])) {
@@ -19,9 +19,9 @@
                 var_dump("dentro1");
                 var_dump((count($cesta) + $alquilados));
                 if ((count($cesta) + $alquilados) < 3) {
+                    var_dump("dentro2");
                     $auxAlquilar = realizarAlquiler($cesta);
                 }
-                var_dump("dentro2");
             }
         } else if (isset($_POST["vaciar"])) {
             vaciarCesta();
