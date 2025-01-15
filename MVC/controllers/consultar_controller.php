@@ -4,6 +4,7 @@
     require_once("../helpers/data_helper.php");
     require_once("../views/consultar_view.php");
     require_once("../helpers/cookie_helper.php");
+    require_once("../models/consultar_model.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["fechadesde"]) || empty($_POST["fechahasta"])) {
