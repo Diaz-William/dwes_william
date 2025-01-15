@@ -26,6 +26,17 @@
             $conn = null;
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
             return null;
+        } catch (Exception $e) {
+            if ($conn) {
+                $conn->rollBack();
+            }
+            $conn = null;
+            error_function(0, $e->getMessage(), $e->getFile(), $e->getLine());
+            return null;
+        } finally {
+            if ($conn) {
+                $conn = null;
+            }
         }
     }
 ?>
