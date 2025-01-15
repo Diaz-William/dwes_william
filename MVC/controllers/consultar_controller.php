@@ -1,6 +1,7 @@
 <?php
     require_once("../helpers/error_helper.php");
     set_error_handler("error_function");
+    require_once("../helpers/data_helper.php");
     require_once("../views/consultar_view.php");
     require_once("../helpers/cookie_helper.php");
 
