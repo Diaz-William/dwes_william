@@ -41,6 +41,7 @@
         } else if (isset($_POST["alquilar"]) && (!isset($_COOKIE["cesta"]) || empty($_COOKIE["cesta"]))) {
             echo "Debe añadir vehículos a la cesta.";
         } else if (isset($auxAlquilar) && $auxAlquilar) {
+            vaciarCesta();
             echo "El alquiler se ha realizado correctamente.";
         } else if (isset($auxAlquilar) && !$auxAlquilar && $alquilados >= 3) {
             echo "Ya tiene 3 vehículos alquilados.";
