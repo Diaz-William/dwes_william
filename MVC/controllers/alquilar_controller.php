@@ -33,9 +33,9 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["agregar"]) && empty($_POST["vehiculos"])) {
             echo "Debe seleccionar un vehículo.";
-        } else if (isset($auxAgregar) && !$auxAgregar) {
+        } else if (isset($_POST["agregar"]) && isset($auxAgregar) && !$auxAgregar) {
             echo "No puede seleccionar más de 3 vehículos.";
-        } else if (isset($_POST["alquilar"]) && (!isset($_COOKIE["cesta"]) || empty($_COOKIE["cesta"])) && $auxAlquilar) {
+        } else if (isset($_POST["alquilar"]) && !isset($_COOKIE["cesta"]) || isset($_POST["alquilar"]) && !isset($_COOKIE["cesta"]) && isset($auxAlquilar) && $auxAlquilar) {
             echo "Debe añadir vehículos a la cesta.";
         } else if (isset($auxAlquilar) && $auxAlquilar) {
             echo "El alquiler se ha realizado correctamente.";
