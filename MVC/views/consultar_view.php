@@ -26,13 +26,13 @@
 		<B>Bienvenido/a:</B> <?php echo $usuario ?> <BR><BR>
 		<B>Identificador Cliente:</B> <?php echo $id ?> <BR><BR>
 		     
-			 Fecha Desde: <input type='date' name='fechadesde' value='' size=10 placeholder="fechadesde" class="form-control">
-			 Fecha Hasta: <input type='date' name='fechahasta' value='' size=10 placeholder="fechahasta" class="form-control"><br><br>
+			 Fecha Desde: <input type='date' name='fechadesde' value='' size=8 placeholder="fechadesde" class="form-control">
+			 Fecha Hasta: <input type='date' name='fechahasta' value='' size=8 placeholder="fechahasta" class="form-control"><br><br>
 				
 		<div>
 			<input type="submit" value="Consultar" name="Volver" class="btn btn-warning disabled">
 		
-			<input type="submit" value="Volver" name="Volver" class="btn btn-warning disabled">
+			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled">
 		
 		</div>		
 	</form>
