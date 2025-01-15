@@ -6,6 +6,7 @@
             $id = explode("#", $_COOKIE["datos"]);
             $id = $id[1];
             foreach ($cesta as $matricula => $datos) {
+                var_dump("realizando...");
                 $stmt = $conn->prepare("UPDATE RVEHICULOS SET DISPONIBLE = 'N' WHERE MATRICULA = :MATRICULA");
                 $stmt->bindParam(":MATRICULA", $matricula);
                 $stmt->execute();

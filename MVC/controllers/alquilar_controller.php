@@ -17,6 +17,7 @@
                 $cesta = unserialize($_COOKIE["cesta"]);
                 $alquilados = comprobarAlquilados();
                 var_dump("dentro1");
+                var_dump((count($cesta) + $alquilados));
                 if ((count($cesta) + $alquilados) < 3) {
                     $auxAlquilar = realizarAlquiler($cesta);
                 }
