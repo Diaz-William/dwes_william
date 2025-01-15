@@ -24,7 +24,7 @@
 		<B>Bienvenido/a:</B> <?php echo $usuario ?> <BR><BR>
 		<B>Identificador Cliente:</B> <?php echo $id ?> <BR><BR>
 		
-		<B>Vehiculos disponibles en este momento:</B>  <BR><BR>
+		<B>Vehiculos disponibles en este momento:</B> <?php echo date("d/m/Y H:i"); ?> <BR><BR>
 		
 			<B>Matricula/Marca/Modelo: </B>
 			<select name="vehiculos" class="form-control">
