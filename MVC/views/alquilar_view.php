@@ -63,6 +63,7 @@
 			<input type="submit" value="Agregar a Cesta" name="agregar" class="btn btn-warning disabled">
 			<input type="submit" value="Realizar Alquiler" name="alquilar" class="btn btn-warning disabled">
 			<input type="submit" value="Vaciar Cesta" name="vaciar" class="btn btn-warning disabled">
+			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcome_controller.php'">
 		</div>
 		<BR><a href="./logout_controller.php">Cerrar Sesión</a>
 	</form>
