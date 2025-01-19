@@ -33,7 +33,6 @@
 				if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					if (!empty($alquilados)) {
 						foreach ($alquilados as $row) {
-							list($marca, $modelo) = explode("#", $datos);
 							echo "{$row['MATRICULA']} | {$row['MARCA']} | {$row['MODELO']} | {$row['FECHA_ALQUILER']} | {$row['FECHA_DEVOLUCION']} | {$row['PRECIOTOTAL']}<br><br>";
 						}
 					} else {
