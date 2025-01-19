@@ -1,4 +1,5 @@
 <?php
+    require_once("../db/db.php");
     require_once("../helpers/error_helper.php");
     set_error_handler("error_function");
     require_once("../helpers/data_helper.php");
@@ -12,8 +13,13 @@
         } else {
             $fechadesde = date("Y-m-d", strtotime(test_input($_POST["fechadesde"])));
             $fechahasta = date("Y-m-d", strtotime(test_input($_POST["fechahasta"])));
-            var_dump($fechadesde);
-            var_dump($fechahasta);
+            $matriculas = consultarAlquileres($fechadesde, $fechahasta);
+
+            if ($matriculas !== false) {
+                var_dump($matriculas);
+            } else {
+                echo "No hay coches alquilados";
+            }
         }
     }
 ?>
