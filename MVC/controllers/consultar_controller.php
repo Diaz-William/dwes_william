@@ -14,8 +14,8 @@
             $fechadesde = date("Y-m-d", strtotime(test_input($_POST["fechadesde"])));
             $fechahasta = date("Y-m-d", strtotime(test_input($_POST["fechahasta"])));
             $matriculas = consultarAlquileres($fechadesde, $fechahasta);
-            var_dump($matriculas);
-            if ($matriculas !== false) {
+
+            if (!empty($matriculas)) {
                 $alquilados = obtenerDatosVehiculos($matriculas);
             } else {
                 echo "No hay coches alquilados entre las fecha seleccionadas";
