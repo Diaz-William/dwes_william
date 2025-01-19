@@ -37,7 +37,7 @@
 							echo "$matricula | $marca | $modelo <br><br>";
 						}
 					} else {
-						echo "No hay coches alquilados entre las fecha seleccionadas";
+						echo "No hay coches alquilados entre las fecha seleccionadas<br><br>";
 					}
 				}
 			?>

@@ -30,20 +30,5 @@
     require_once("../views/cesta_view.php");
     require_once("../views/alquilar_view.php");
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["agregar"]) && empty($_POST["vehiculos"])) {
-            echo "Debe seleccionar un vehículo.";
-        } else if (isset($_POST["agregar"]) && isset($auxAgregar) && !$auxAgregar) {
-            echo "No puede seleccionar más de 3 vehículos.";
-        } else if (isset($_POST["alquilar"]) && !isset($_COOKIE["cesta"]) || isset($_POST["alquilar"]) && !isset($_COOKIE["cesta"]) && isset($auxAlquilar) && $auxAlquilar) {
-            echo "Debe añadir vehículos a la cesta.";
-        } else if (isset($auxAlquilar) && $auxAlquilar) {
-            echo "El alquiler se ha realizado correctamente.";
-        } else if (isset($auxAlquilar) && !$auxAlquilar && $alquilados >= 3) {
-            echo "Ya tiene 3 vehículos alquilados.";
-        } else if (isset($auxAlquilar) && !$auxAlquilar) {
-            $maxDisponibles = 3 - $alquilados;
-            echo "Tiene $alquilados vehículos alquilados, solo puede alquilar $maxDisponibles vehículos.";
-        }
-    }
+    
 ?>
