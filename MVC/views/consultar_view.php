@@ -33,7 +33,7 @@
 				if (isset($alquilados)) {
 					foreach ($alquilados as $matricula => $datos) {
 						list($marca, $modelo) = explode("#", $datos);
-						echo "$matricula | $marca | $modelo <br>";
+						echo "$matricula | $marca | $modelo <br><br>";
 					}
 				}
 			?>
