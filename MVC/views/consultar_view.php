@@ -45,7 +45,7 @@
 		<div>
 			<input type="submit" value="Consultar" name="Volver" class="btn btn-warning disabled">
 		
-			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled">
+			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcome_controller.php'">
 		
 		</div>		
 	</form>
