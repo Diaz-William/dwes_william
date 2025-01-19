@@ -11,6 +11,7 @@
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $conn = null;
+            var_dump($result);
             return $result;
         } catch (PDOException $e) {
             $conn = null;
