@@ -5,7 +5,6 @@
     require_once("../helpers/data_helper.php");
     require_once("../helpers/cookie_helper.php");
     require_once("../models/consultar_model.php");
-    require_once("../models/datosVehiculosAlquilados_model.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["fechadesde"]) || empty($_POST["fechahasta"])) {
@@ -13,13 +12,7 @@
         } else {
             $fechadesde = date("Y-m-d", strtotime(test_input($_POST["fechadesde"])));
             $fechahasta = date("Y-m-d", strtotime(test_input($_POST["fechahasta"])));
-            $matriculas = consultarAlquileres($fechadesde, $fechahasta);
-
-            if (!empty($matriculas)) {
-                $alquilados = obtenerDatosVehiculos($matriculas);
-            } /*else {
-                echo "No hay coches alquilados entre las fecha seleccionadas";
-            }*/
+            $alquilados = consultarAlquileres($fechadesde, $fechahasta);
         }
     }
 

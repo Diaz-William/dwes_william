@@ -31,10 +31,10 @@
 
 			<?php
 				if ($_SERVER["REQUEST_METHOD"] == "POST") {
-					if (isset($alquilados)) {
-						foreach ($alquilados as $matricula => $datos) {
+					if (!empty($alquilados)) {
+						foreach ($alquilados as $row) {
 							list($marca, $modelo) = explode("#", $datos);
-							echo "$matricula | $marca | $modelo <br><br>";
+							echo "{$row['MATRICULA']} | {$row['MARCA']} | {$row['MODELO']} | {$row['FECHA_ALQUILER']} | {$row['FECHA_DEVOLUCION']} | {$row['PRECIOTOTAL']}<br><br>";
 						}
 					} else {
 						echo "No hay coches alquilados entre las fecha seleccionadas<br><br>";
