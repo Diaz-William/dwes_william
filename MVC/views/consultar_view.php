@@ -32,7 +32,8 @@
 			<?php
 				if (isset($alquilados)) {
 					foreach ($alquilados as $matricula) {
-						var_dump($matricula);
+						list($marca, $modelo) = explode("#", $matricula);
+						echo "$matricula | $marca | $modelo <br>";
 					}
 				}
 			?>
