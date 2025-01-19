@@ -9,7 +9,8 @@
             $stmt->bindParam(":FECHADESDE", $fechadesde);
             $stmt->bindParam(":FECHAHASTA", $fechahasta);
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll();
             $conn = null;
             var_dump($result);
             return $result;
