@@ -30,10 +30,14 @@
 			Fecha Hasta: <input type='date' name='fechahasta' value='' size=10 placeholder="fechahasta" class="form-control"><br><br>
 
 			<?php
-				if (isset($alquilados)) {
-					foreach ($alquilados as $matricula => $datos) {
-						list($marca, $modelo) = explode("#", $datos);
-						echo "$matricula | $marca | $modelo <br><br>";
+				if ($_SERVER["REQUEST_METHOD"] == "POST") {
+					if (isset($alquilados)) {
+						foreach ($alquilados as $matricula => $datos) {
+							list($marca, $modelo) = explode("#", $datos);
+							echo "$matricula | $marca | $modelo <br><br>";
+						}
+					} else {
+						echo "No hay coches alquilados entre las fecha seleccionadas";
 					}
 				}
 			?>

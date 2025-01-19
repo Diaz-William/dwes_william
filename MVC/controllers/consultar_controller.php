@@ -17,9 +17,9 @@
 
             if (!empty($matriculas)) {
                 $alquilados = obtenerDatosVehiculos($matriculas);
-            } else {
+            } /*else {
                 echo "No hay coches alquilados entre las fecha seleccionadas";
-            }
+            }*/
         }
     }
 
