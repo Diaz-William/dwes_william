@@ -18,7 +18,6 @@
 
             if ($matriculas !== false) {
                 $alquilados = obtenerDatosVehiculos($matriculas);
-                var_dump($alquilados);
             } else {
                 echo "No hay coches alquilados";
             }
