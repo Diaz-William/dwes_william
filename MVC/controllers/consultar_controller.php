@@ -10,8 +10,8 @@
         if (empty($_POST["fechadesde"]) || empty($_POST["fechahasta"])) {
             echo "Tiene que introducir las dos fechas";
         } else {
-            $fechadesde = date("Y-m-d", strtotime(test_input($_POST["fechadesde"])));
-            $fechahasta = date("Y-m-d", strtotime(test_input($_POST["fechahasta"])));
+            $fechadesde = date("Y-m-d H:i:s", strtotime(test_input($_POST["fechadesde"]) . "00:00:00"));
+            $fechahasta = date("Y-m-d H:i:s", strtotime(test_input($_POST["fechahasta"]) . "23:59:59"));
             $alquilados = consultarAlquileres($fechadesde, $fechahasta);
         }
     }
