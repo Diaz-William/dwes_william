@@ -12,7 +12,6 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $result = $stmt->fetchAll();
             $conn = null;
-            var_dump($result);
             return $result;
         } catch (PDOException $e) {
             $conn = null;
