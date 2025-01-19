@@ -1,11 +1,16 @@
 <?php
     function obtenerDatosVehiculos($matriculas) {
         try {
+            $alquilados = array();
             $conn = conectar();
+
+            foreach ($matriculas as $i) {
+                var_dump($i);
+            }
+
             $stmt = $conn->prepare("SELECT MATRICULA, MARCA, MODELO FROM RVEHICULOS WHERE MATRICULA = :MATRICULA");
             $stmt->execute();
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $result = $stmt->fetchAll();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $conn = null;
             return $result;
         } catch (PDOException $e) {

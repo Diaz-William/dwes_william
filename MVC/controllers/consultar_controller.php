@@ -6,6 +6,7 @@
     require_once("../views/consultar_view.php");
     require_once("../helpers/cookie_helper.php");
     require_once("../models/consultar_model.php");
+    require_once("../models/datosVehiculosAlquilados_model.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["fechadesde"]) || empty($_POST["fechahasta"])) {
@@ -16,7 +17,10 @@
             $matriculas = consultarAlquileres($fechadesde, $fechahasta);
 
             if ($matriculas !== false) {
-                var_dump($matriculas);
+                //$alquilados = obtenerDatosVehiculos($matriculas);
+                foreach ($matriculas as $i) {
+                    var_dump($i);
+                }
             } else {
                 echo "No hay coches alquilados";
             }
