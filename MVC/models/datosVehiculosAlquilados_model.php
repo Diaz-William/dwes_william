@@ -3,16 +3,17 @@
         try {
             $alquilados = array();
             $conn = conectar();
+            $stmt = $conn->prepare("SELECT MARCA, MODELO FROM RVEHICULOS WHERE MATRICULA = :MATRICULA");
 
-            foreach ($matriculas as $i) {
-                var_dump($i);
+            foreach ($matriculas as $row) {
+                $stmt->bindParam("MATRICULA", $row["MATRICULA"]);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                $alquilados[$row["MATRICULA"]] = $result["MARCA"] . "#" . $result["MODELO"];
             }
-
-            $stmt = $conn->prepare("SELECT MATRICULA, MARCA, MODELO FROM RVEHICULOS WHERE MATRICULA = :MATRICULA");
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
             $conn = null;
-            return $result;
+            return $alquilados;
         } catch (PDOException $e) {
             $conn = null;
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());

@@ -17,10 +17,8 @@
             $matriculas = consultarAlquileres($fechadesde, $fechahasta);
 
             if ($matriculas !== false) {
-                //$alquilados = obtenerDatosVehiculos($matriculas);
-                foreach ($matriculas as $row) {
-                    var_dump($row["MATRICULA"]);
-                }
+                $alquilados = obtenerDatosVehiculos($matriculas);
+                var_dump($alquilados);
             } else {
                 echo "No hay coches alquilados";
             }
