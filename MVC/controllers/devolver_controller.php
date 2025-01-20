@@ -26,7 +26,7 @@
             $urlOKKO="http://192.168.206.221/dwes_william/MVC/controllers/respuesta_controller.php";
             $orderNumber=sigNumPago();
             $amount=obtenerPrecio($fecha_devolver, $matricula) * 100;	
-            var_dump($amount);
+            var_dump("Precio" . $amount);
             
             $miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
             $miObj->setParameter("DS_MERCHANT_ORDER",$orderNumber);
