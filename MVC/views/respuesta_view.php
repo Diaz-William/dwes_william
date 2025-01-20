@@ -23,6 +23,18 @@
                         <input type="button" value="Seguir" name="Seguir" class="btn btn-warning" onclick="window.location.href='devolver_controller.php'">
                     </div>
                 </form>
+
+                <?php
+                    if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) { 
+                        echo "El pago se ha realizado correctamente";
+                        list($fecha_devolver, $matricula, $precio, $num_pago) = explode("#", $_COOKIE["datosPago"]);
+                        actualizarAlquileres($num_pago, $matricula, $fecha_devolver, $precio);
+                    } else { 
+                        echo "Pendiente de pago $precio €";
+                        pendientePago($precio);
+                    }
+                ?>
+
                 <a href="./logout_controller.php">Cerrar Sesión</a><br><br>
             </div>
         </div>

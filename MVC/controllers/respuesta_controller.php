@@ -25,14 +25,14 @@
     $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params); 
 
     // Validar la firma.
-    if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) { 
+    /*if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) { 
         echo "El pago se ha realizado correctamente";
         list($fecha_devolver, $matricula, $precio, $num_pago) = explode("#", $_COOKIE["datosPago"]);
         actualizarAlquileres($num_pago, $matricula, $fecha_devolver, $precio);
     } else { 
         echo "Pendiente de pago $precio €";
         pendientePago($precio);
-    }
+    }*/
 
     require_once("../views/respuesta_view.php");
 ?>
