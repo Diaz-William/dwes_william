@@ -25,6 +25,7 @@
             $url="";
             $urlOKKO="http://192.168.206.221/dwes_william/MVC/";
             $orderNumber=sigNumPago();
+            var_dump($orderNumber);
             $amount=obtenerPrecio($fecha_devolver, $matricula) * 100;	
             
             $miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
