@@ -26,9 +26,6 @@
             $urlOKKO="http://192.168.206.221/dwes_william/MVC/controllers/respuesta_controller.php";
             $orderNumber=sigNumPago();
             $amount=intval(obtenerPrecio($fecha_devolver, $matricula) * 100);
-            var_dump(gettype($amount));
-            var_dump($amount);
-            var_dump("Precio " . $amount);
             
             $miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
             $miObj->setParameter("DS_MERCHANT_ORDER",$orderNumber);
@@ -40,7 +37,8 @@
             $miObj->setParameter("DS_MERCHANT_URLOK",$urlOKKO);
             $miObj->setParameter("DS_MERCHANT_URLKO",$urlOKKO);
             // ♠
-            setcookie("datosPago", $fecha_devolver."#".$matricula."#".$amount."#".$orderNumber, time() + 86400, "/");
+            $precio = floatval($amount / 100);
+            setcookie("datosPago", $fecha_devolver."#".$matricula."#".$precio."#".$orderNumber, time() + 86400, "/");
 
             $version="HMAC_SHA256_V1";
             $kc = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
