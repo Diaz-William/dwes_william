@@ -19,10 +19,6 @@
 
     // Obtener el valor de cualquier parámetro.
     $codigoRespuesta = $miObj->getParameter("Ds_Response");
-    $matricula = $miObj->getParameter("matricula");
-    $fecha_devolver = $miObj->getParameter("fecha_devolver");
-    $precio = $miObj->getParameter("DS_MERCHANT_AMOUNT");
-    $num_pago = $miObj->getOrder();
 
     // Calcular la firma del proceso.
     $claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7'; 
@@ -31,6 +27,7 @@
     // Validar la firma.
     if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) { 
         echo "El pago se ha realizado correctamente";
+        list($fecha_devolver, $matricula, $precio, $num_pago) = explode("#", $_COOKIE["datosPago"]);
         actualizarAlquileres($num_pago, $matricula, $fecha_devolver, $precio);
     } else { 
         echo "Pendiente de pago $precio €";

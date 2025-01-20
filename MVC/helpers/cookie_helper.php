@@ -14,7 +14,6 @@
         $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
 
         if (count($cesta) >= 3) {
-            //echo "No puede seleccionar más de 3 vehículos";
             return false;
         } else {
             $cesta[$matricula] = $marca . "#" . $modelo;

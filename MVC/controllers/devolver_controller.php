@@ -37,8 +37,8 @@
             $miObj->setParameter("DS_MERCHANT_MERCHANTURL",$url);
             $miObj->setParameter("DS_MERCHANT_URLOK",$urlOKKO);
             $miObj->setParameter("DS_MERCHANT_URLKO",$urlOKKO);
-            $miObj->setParameter("fecha_devolver", $fecha_devolver);
-            $miObj->setParameter("matricula", $matricula);
+            // ♠
+            setcookie("datosPago", $fecha_devolver."#".$matricula."#".$amount."#".$orderNumber, time() + 86400, "/");
 
             $version="HMAC_SHA256_V1";
             $kc = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
