@@ -20,7 +20,7 @@
                     <b>Identificador Cliente:</b> <?php echo htmlspecialchars($id); ?> <br><br>
                     <br><br>
                     <div>
-                        <input type="button" value="Seguir" name="Seguir" class="btn btn-warning" onclick="window.location.href='devolver_controller.php'">
+                        <input type="button" value="Seguir" name="Seguir" class="btn btn-warning" onclick="window.location.href='devolver_controller.php'"><br><br>
                     </div>
                 </form>
 

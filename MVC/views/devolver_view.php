@@ -46,7 +46,7 @@
 					<input type='hidden' name='Ds_SignatureVersion' value='".$version."'/>
 					<input type='hidden' name='Ds_MerchantParameters' value='".$params."'/>
 					<input type='hidden' name='Ds_Signature' value='".$signature."'/>
-					<input type='submit' name='pagar' id='pagar' value='Pagar'>
+					<input type='submit' name='pagar' id='pagar' value='Pagar' class='btn btn-warning disabled'>
 				</form>";
 		}
 	?>
