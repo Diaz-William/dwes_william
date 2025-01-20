@@ -20,7 +20,7 @@
 	   
 
 	<!-- INICIO DEL FORMULARIO -->
-	<form action="" method="post">
+	<form action="https://sis-t.redsys.es:25443/sis/realizarPago" method="post">
 		<?php list($usuario, $id) = explode("#", $_COOKIE["datos"]) ?>
 		<B>Bienvenido/a:</B> <?php echo $usuario ?> <BR><BR>
 		<B>Identificador Cliente:</B> <?php echo $id ?> <BR><BR>
@@ -37,7 +37,10 @@
 		<div>
 			<input type="submit" value="Devolver Vehiculo" name="devolver" class="btn btn-warning disabled">
 			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcome_controller.php'">
-		</div>		
+		</div>
+		<input type="hidden" name="Ds_SignatureVersion" value="<?php echo $version; ?>"/>
+		<input type="hidden" name="Ds_MerchantParameters" value="<?php echo $params; ?>"/>
+		<input type="hidden" name="Ds_Signature" value="<?php echo $signature; ?>"/>	
 	</form>
 	<!-- FIN DEL FORMULARIO -->
 	<a href = "">Cerrar Sesion</a>

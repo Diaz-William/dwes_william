@@ -38,18 +38,19 @@ insert into rvehiculos (matricula , marca , modelo , kms , fecha_matriculacion, 
 
 
 DROP TABLE IF EXISTS ralquileres;
-create table ralquileres (idcliente integer(5), matricula varchar(7), fecha_alquiler timestamp, fecha_devolucion timestamp, preciototal float(8), fechahorapago timestamp)
+create table ralquileres (idcliente integer(5), matricula varchar(7), fecha_alquiler timestamp, fecha_devolucion timestamp, preciototal float(8), fechahorapago timestamp, num_pago integer)
 ENGINE=InnoDB;
 
 alter table ralquileres add constraint pk_ralquileres primary key (idcliente,matricula, fecha_alquiler);
 alter table ralquileres add constraint fk_ralquileres1 foreign key (idcliente) references rclientes(idcliente);
 alter table ralquileres add constraint fk_ralquileres2 foreign key (matricula) references rvehiculos(matricula);
+alter table ralquileres add constraint uk_ralquileres unique (num_pago);
 
-insert into ralquileres  (idcliente , matricula , fecha_alquiler , fecha_devolucion, preciototal, fechahorapago) values
-(1,'1477KLT','2019-01-01 13:00:00','2019-01-01 13:15:00',15*0.30,'2019-01-01 13:16:00'),
-(5,'1477KLT','2019-02-01 07:00:00','2019-02-01 07:45:20',45*0.30,'2019-02-01 07:49:20'),
-(5,'4001MKT','2019-03-03 19:02:03','2019-03-03 19:12:03',10*0.50,'2019-03-03 19:13:30'),
-(5,'4001MKT','2019-03-03 19:22:00','2019-03-03 19:42:00',20*0.50,'2019-03-03 19:45:00'),
-(3,'4545BGT','2021-03-04 10:00:00',null,null,null);
+insert into ralquileres  (idcliente , matricula , fecha_alquiler , fecha_devolucion, preciototal, fechahorapago, num_pago) values
+(1,'1477KLT','2019-01-01 13:00:00','2019-01-01 13:15:00',15*0.30,'2019-01-01 13:16:00', 1),
+(5,'1477KLT','2019-02-01 07:00:00','2019-02-01 07:45:20',45*0.30,'2019-02-01 07:49:20', 2),
+(5,'4001MKT','2019-03-03 19:02:03','2019-03-03 19:12:03',10*0.50,'2019-03-03 19:13:30', 3),
+(5,'4001MKT','2019-03-03 19:22:00','2019-03-03 19:42:00',20*0.50,'2019-03-03 19:45:00', 4),
+(3,'4545BGT','2021-03-04 10:00:00',null,null,null, null);
 
 commit;	
