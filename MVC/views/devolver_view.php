@@ -29,7 +29,7 @@
 			<option value="">-- Seleccionar Vehículo --</option>
 				<?php
 					foreach ($alquilados as $alquilado) {
-						echo "<option value='{$alquilado['MATRICULA']}#{$alquilado['MARCA']}#{$alquilado['MODELO']}'>{$alquilado['MATRICULA']} | {$alquilado['MARCA']} | {$alquilado['MODELO']}</option>";
+						echo "<option value='{$alquilado['MATRICULA']}'>{$alquilado['MATRICULA']} | {$alquilado['MARCA']} | {$alquilado['MODELO']}</option>";
 					}
 				?>
 			</select>
