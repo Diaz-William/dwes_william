@@ -6,7 +6,7 @@
             $stmt->execute();
             $result = $stmt->fetchColumn();
             $conn = null;
-            return $result;
+            return intval($result);
         } catch (PDOException $e) {
             if ($conn) {
                 $conn = null;
