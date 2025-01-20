@@ -6,7 +6,7 @@
             $stmt->execute();
             $result = $stmt->fetchColumn();
             $conn = null;
-            return "00000000000" . $result;
+            return str_pad($result, 12, "0", STR_PAD_LEFT);
         } catch (PDOException $e) {
             if ($conn) {
                 $conn = null;
