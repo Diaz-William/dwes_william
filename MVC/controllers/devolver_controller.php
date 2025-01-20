@@ -23,7 +23,7 @@
             $moneda="978";
             $trans="0";
             $url="";
-            $urlOKKO="http://192.168.206.221/dwes_william/MVC/";
+            $urlOKKO="http://192.168.206.221/dwes_william/MVC/controllers/respuesta_controller.php";
             $orderNumber=sigNumPago();
             $amount=obtenerPrecio($fecha_devolver, $matricula) * 100;	
             var_dump($amount);
