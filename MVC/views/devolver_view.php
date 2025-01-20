@@ -43,9 +43,9 @@
 	<?php
 		if ($pagar) {
 			echo "<form action='https://sis-t.redsys.es:25443/sis/realizarPago' method='post'>
-					<input type='hidden' name='Ds_SignatureVersion' value='<?php echo $version; ?>'/>
-					<input type='hidden' name='Ds_MerchantParameters' value='<?php echo $params; ?>'/>
-					<input type='hidden' name='Ds_Signature' value='<?php echo $signature; ?>'/>
+					<input type='hidden' name='Ds_SignatureVersion' value='".$version."'/>
+					<input type='hidden' name='Ds_MerchantParameters' value='".$params."'/>
+					<input type='hidden' name='Ds_Signature' value='".$signature."'/>
 					<input type='submit' name='pagar' id='pagar' value='Pagar'>
 				</form>";
 		}
