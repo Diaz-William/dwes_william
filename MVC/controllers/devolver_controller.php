@@ -9,6 +9,7 @@
 
     date_default_timezone_set('Europe/Madrid');
     $alquilados = obtenerVehiculosAlquilados();
+    $pagar = false;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!empty($_POST["vehiculos"])) {
@@ -42,6 +43,8 @@
             $request = "";
             $params = $miObj->createMerchantParameters();
             $signature = $miObj->createMerchantSignature($kc);
+
+            $pagar = true;
         } else {
             echo "Tiene que seleccionar un vehículo a devolver";
         }
