@@ -3,7 +3,8 @@
     require_once("../helpers/error_helper.php");
     set_error_handler("error_function");
     require_once("./apiRedsys.php");
-    require_once("../views/respuesta_view.php");
+    require_once("../models/respuesta_model.php");
+    require_once("../models/pendientePago_model.php");
 
     // Definir un objeto de la clase principal de la librería.
     $miObj = new RedsysAPI; 
@@ -17,7 +18,11 @@
     $decodec = $miObj->decodeMerchantParameters($params); 
 
     // Obtener el valor de cualquier parámetro.
-    $codigoRespuesta = $miObj->getParameter("Ds_Response"); 
+    $codigoRespuesta = $miObj->getParameter("Ds_Response");
+    $matricula = $miObj->getParameter("matricula");
+    $fecha_devolver = $miObj->getParameter("fecha_devolver");
+    $precio = $miObj->getParameter("DS_MERCHANT_AMOUNT");
+    $num_pago = $miObj->getOrder();
 
     // Calcular la firma del proceso.
     $claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7'; 
@@ -25,10 +30,12 @@
 
     // Validar la firma.
     if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) { 
-        echo "FIRMA OK. Realizar tareas en el servidor";
-        //comprarProductoSesionCookies($_COOKIE["numPago"], true);
+        echo "El pago se ha realizado correctamente";
+        actualizarAlquileres($num_pago, $matricula, $fecha_devolver, $precio);
     } else { 
-        echo "FIRMA KO. Error, firma inválida";
-        //comprarProductoSesionCookies($_COOKIE["numPago"], false);
+        echo "Pendiente de pago $precio €";
+        pendientePago($precio);
     }
+
+    require_once("../views/respuesta_view.php");
 ?>
