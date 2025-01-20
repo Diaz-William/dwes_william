@@ -11,11 +11,6 @@
             $stmt->execute();
             $result = $stmt->fetchColumn();
 
-            var_dump($matricula);
-            var_dump($fecha_devolver);
-            var_dump($id);
-            var_dump($result);
-
             $conn = null;
             return $result;
         } catch (PDOException $e) {
