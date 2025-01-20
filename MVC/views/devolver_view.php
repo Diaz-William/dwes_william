@@ -43,7 +43,7 @@
 		<input type="hidden" name="Ds_Signature" value="<?php echo $signature; ?>"/>	
 	</form>
 	<!-- FIN DEL FORMULARIO -->
-	<a href = "">Cerrar Sesion</a>
+	<a href="./logout_controller.php">Cerrar Sesión</a><br><br>
 	
   </body>
    
