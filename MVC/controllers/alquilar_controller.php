@@ -29,6 +29,4 @@
     $vehiculos = obtenerVehiculosDisponibles();
     require_once("../views/cesta_view.php");
     require_once("../views/alquilar_view.php");
-
-    
 ?>
