@@ -21,17 +21,22 @@
 
 	<!-- INICIO DEL FORMULARIO -->
 	<form action="" method="post">
-	
-		<B>Bienvenido/a:</B>  <BR><BR>
-		<B>Identificador Cliente:</B>  <BR><BR>
+		<?php list($usuario, $id) = explode("#", $_COOKIE["datos"]) ?>
+		<B>Bienvenido/a:</B> <?php echo $usuario ?> <BR><BR>
+		<B>Identificador Cliente:</B> <?php echo $id ?> <BR><BR>
 				
 			<B>Matricula/Marca/Modelo: </B><select name="vehiculos" class="form-control">
-				
+			<option value="">-- Seleccionar Vehículo --</option>
+				<?php
+					foreach ($alquilados as $alquilado) {
+						echo "<option value='{$alquilado['MATRICULA']}#{$alquilado['MARCA']}#{$alquilado['MODELO']}'>{$alquilado['MATRICULA']} | {$alquilado['MARCA']} | {$alquilado['MODELO']}</option>";
+					}
+				?>
 			</select>
 		<BR><BR>
 		<div>
 			<input type="submit" value="Devolver Vehiculo" name="devolver" class="btn btn-warning disabled">
-			<input type="submit" value="Volver" name="volver" class="btn btn-warning disabled">
+			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcome_controller.php'">
 		</div>		
 	</form>
 	<!-- FIN DEL FORMULARIO -->

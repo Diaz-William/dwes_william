@@ -3,5 +3,8 @@
     require_once("../helpers/error_helper.php");
     set_error_handler("error_function");
     require_once("../models/devolver_model.php");
+
+    $alquilados = obtenerVehiculosAlquilados();
+
     require_once("../views/devolver_view.php");
 ?>
