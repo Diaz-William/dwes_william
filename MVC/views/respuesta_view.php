@@ -25,9 +25,9 @@
                 </form>
 
                 <?php
+                    list($fecha_devolver, $matricula, $precio, $num_pago) = explode("#", $_COOKIE["datosPago"]);
                     if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) { 
                         echo "El pago se ha realizado correctamente";
-                        list($fecha_devolver, $matricula, $precio, $num_pago) = explode("#", $_COOKIE["datosPago"]);
                         setcookie("datosPago", "", time() - 86400, "/");
                         actualizarAlquileres($num_pago, $matricula, $fecha_devolver, $precio);
                     } else { 
