@@ -37,7 +37,7 @@
             $miObj->setParameter("DS_MERCHANT_URLOK",$urlOKKO);
             $miObj->setParameter("DS_MERCHANT_URLKO",$urlOKKO);
             // ♠
-            $precio = round($amount / 100, 2);
+            $precio = number_format(round($amount / 100, 2), 2, '.', '');
             var_dump($amount);
             var_dump($precio);
             setcookie("datosPago", $fecha_devolver."#".$matricula."#".$precio."#".$orderNumber, time() + 86400, "/");
