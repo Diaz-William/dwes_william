@@ -34,8 +34,8 @@
                     <label for="F">Mujer</label><br>
                 </div>
 
-                <label for="dept">Departamento</label>
-                <select name="dept" class="form-control" required>
+                <label for="deptno">Departamento</label>
+                <select name="deptno" class="form-control" required>
                     <option value="">-- Seleccionar Departamento --</option>
                     <?php
                         foreach ($depts as $row) {
