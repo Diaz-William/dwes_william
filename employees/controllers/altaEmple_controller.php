@@ -4,7 +4,7 @@
     require_once("../db/db.php");
     require_once("../helpers/data_helper.php");
     require_once("../views/altaEmple_view.php");
-    require_once("../models/altaEmple.php");
+    require_once("../models/altaEmple_model.php");
     require_once("../helpers/cookie_helper.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
