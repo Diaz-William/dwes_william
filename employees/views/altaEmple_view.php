@@ -51,6 +51,7 @@
                     Cargo <input type="text" name="title" class="form-control" required>
                 </div>
                 <input type="submit" name="submit" value="Login" class="btn btn-warning disabled">
+                <?php var_dump($depts) ?>
             </form>
 	    </div>
     </div>
