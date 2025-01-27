@@ -11,7 +11,7 @@
         $lastname = test_input($_POST["lastname"]);
         $birthdate = date("Y-m-d", strtotime(test_input($_POST["birthdate"])));
         $gender = test_input($_POST["gender"]);
-        $deptno = test_input($_POST["dept_no"]);
+        $deptno = test_input($_POST["deptno"]);
         $salary = test_input($_POST["salary"]);
         $title = test_input($_POST["title"]);
 
