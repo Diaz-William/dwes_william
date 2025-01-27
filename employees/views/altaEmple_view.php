@@ -9,7 +9,7 @@
  </head>
       
 <body>
-    <h1>Employees</h1>
+    <h1>RRHH</h1>
 
     <div class="container ">
         <!--Aplicacion-->
@@ -27,13 +27,14 @@
                     Fecha de nacimiento <input type="date" name="birthdate" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    Género<br><br>
+                    Género<br>
                     <input type="radio" id="M" name="gender" value="M" required>
                     <label for="M">Hombre</label><br>
                     <input type="radio" id="F" name="gender" value="F" required>
                     <label for="F">Mujer</label><br>
                 </div>
 
+                <label for="dept">Departamento:</label>
                 <select name="dept" class="form-control" required>
                     <option value="">-- Seleccionar Departamento --</option>
                     <?php
@@ -42,7 +43,7 @@
                         }
                     ?>
 			    </select>
-
+                        <br>
                 <div class="form-group">
                     Salario Anual <input type="number" name="salary" class="form-control" required>
                 </div>
