@@ -17,6 +17,13 @@
 
         $c = altaEmple($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
         var_dump($c);
+        var_dump($firstname);
+        var_dump($lastname);
+        var_dump($birthdate);
+        var_dump($gender);
+        var_dump($deptno);
+        var_dump($salary);
+        var_dump($title);
     }
 
     require_once("../models/obtenerDept_model.php");
