@@ -27,7 +27,7 @@
                     Fecha de nacimiento <input type="date" name="birthdate" placeholder="birthdate" class="form-control">
                 </div>
                 <div class="form-group">
-                    Género
+                    Género<br>
                     <input type="radio" id="M" name="gender" value="M">
                     <label for="M">Hombre</label><br>
                     <input type="radio" id="F" name="gender" value="F">
