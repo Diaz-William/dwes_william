@@ -10,9 +10,6 @@
         $empno = test_input($_POST["empno"]);
         $password = test_input($_POST["password"]);
         $correcto = comprobar($empno, $password);
-        var_dump($empno);
-        var_dump($password);
-        var_dump($correcto);
         
         if ($correcto === false) {
             echo "El número del empleado o la contraseña son incorrectos";
