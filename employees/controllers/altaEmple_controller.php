@@ -8,9 +8,9 @@
     require_once("../helpers/cookie_helper.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = test_input($_POST["name"]);
+        $firstname = test_input($_POST["firstname"]);
         $lastname = test_input($_POST["lastname"]);
-        $birthdate = test_input($_POST["birthdate"]);
+        $birthdate = date("Y-m-d", strtotime(test_input($_POST["birthdate"])));
         $gender = test_input($_POST["gender"]);
     }
 ?>

@@ -18,16 +18,16 @@
 		<div class="card-body">
             <form id="" name="" action="" method="post" class="card-body">
                 <div class="form-group">
-                    Nombre <input type="text" name="name" placeholder="name" class="form-control">
+                    Nombre <input type="text" name="firstname" placeholder="Jhon" class="form-control">
                 </div>
                 <div class="form-group">
-                    Apellido <input type="text" name="lastname" placeholder="lastname" class="form-control">
+                    Apellido <input type="text" name="lastname" placeholder="Doe" class="form-control">
                 </div>
                 <div class="form-group">
-                    Fecha de nacimiento <input type="date" name="birthdate" placeholder="birthdate" class="form-control">
+                    Fecha de nacimiento <input type="date" name="birthdate" class="form-control">
                 </div>
                 <div class="form-group">
-                    Género<br>
+                    Género<br><br>
                     <input type="radio" id="M" name="gender" value="M">
                     <label for="M">Hombre</label><br>
                     <input type="radio" id="F" name="gender" value="F">
