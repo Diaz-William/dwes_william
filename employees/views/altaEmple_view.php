@@ -52,7 +52,7 @@
                 </div>
                 <input type="submit" name="submit" value="Login" class="btn btn-warning disabled">
                 <input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
-                <br><a href="./logout_controller.php">Cerrar Sesión</a>
+                <br><br><a href="./logout_controller.php">Cerrar Sesión</a>
             </form>
 	    </div>
     </div>
