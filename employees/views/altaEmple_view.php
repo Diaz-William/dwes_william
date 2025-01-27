@@ -18,20 +18,36 @@
 		<div class="card-body">
             <form id="" name="" action="" method="post" class="card-body">
                 <div class="form-group">
-                    Nombre <input type="text" name="firstname" placeholder="Jhon" class="form-control">
+                    Nombre <input type="text" name="firstname" placeholder="Jhon" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    Apellido <input type="text" name="lastname" placeholder="Doe" class="form-control">
+                    Apellido <input type="text" name="lastname" placeholder="Doe" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    Fecha de nacimiento <input type="date" name="birthdate" class="form-control">
+                    Fecha de nacimiento <input type="date" name="birthdate" class="form-control" required>
                 </div>
                 <div class="form-group">
                     Género<br><br>
-                    <input type="radio" id="M" name="gender" value="M">
+                    <input type="radio" id="M" name="gender" value="M" required>
                     <label for="M">Hombre</label><br>
-                    <input type="radio" id="F" name="gender" value="F">
+                    <input type="radio" id="F" name="gender" value="F" required>
                     <label for="F">Mujer</label><br>
+                </div>
+
+                <select name="dept" class="form-control" required>
+                    <option value="">-- Seleccionar Departamento --</option>
+                    <?php
+                        foreach ($depts as $row) {
+                            echo "<option value='{$row['DEPT_NO']}'>{$row['DEPT_NAME']}</option>";
+                        }
+                    ?>
+			    </select>
+
+                <div class="form-group">
+                    Salario Anual <input type="number" name="salary" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    Cargo <input type="text" name="title" class="form-control" required>
                 </div>
                 <input type="submit" name="submit" value="Login" class="btn btn-warning disabled">
             </form>
