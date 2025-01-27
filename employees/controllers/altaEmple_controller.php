@@ -15,15 +15,13 @@
         $salary = test_input($_POST["salary"]);
         $title = test_input($_POST["title"]);
 
-        $c = altaEmple($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
-        var_dump($c);
-        var_dump($firstname);
-        var_dump($lastname);
-        var_dump($birthdate);
-        var_dump($gender);
-        var_dump($deptno);
-        var_dump($salary);
-        var_dump($title);
+        $alta = altaEmple($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
+
+        if ($alta) {
+            echo "Se ha dado de alta al empleado correctamente";
+        } else {
+            echo "Ha ocurrido un error";
+        }
     }
 
     require_once("../models/obtenerDept_model.php");

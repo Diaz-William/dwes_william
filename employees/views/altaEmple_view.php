@@ -51,7 +51,7 @@
                     Cargo <input type="text" name="title" class="form-control" required>
                 </div>
                 <input type="submit" name="submit" value="Login" class="btn btn-warning disabled">
-                <?php var_dump($depts) ?>
+                <input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
             </form>
 	    </div>
     </div>
