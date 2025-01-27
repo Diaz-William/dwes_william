@@ -10,17 +10,17 @@
         header("Location: ../index.php");
     }
 
-    function cesta($vehiculo) {
-        list($matricula, $marca, $modelo) = explode("#", $vehiculo);
-        $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
-
-        if (count($cesta) >= 3) {
-            return false;
-        } else {
-            $cesta[$matricula] = $marca . "#" . $modelo;
+    function cesta($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title) {
+        try {
+            $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
+            $index = count($cesta) !== 0 ? count($cesta) : 1;
+            $cesta[$index] = $birthdate."#".$firstname."#". $lastname."#". $gender."#". $deptno."#". $salary."#". $title;
             setcookie("cesta", serialize($cesta), time() + 86400, "/");
             $_COOKIE["cesta"] = serialize($cesta);
             return true;
+        } catch (Exception $e) {
+            error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+            return false;
         }
     }
     
