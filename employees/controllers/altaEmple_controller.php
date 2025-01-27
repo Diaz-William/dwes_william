@@ -15,7 +15,8 @@
         $salary = test_input($_POST["salary"]);
         $title = test_input($_POST["title"]);
 
-        altaEmple($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
+        $c = altaEmple($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
+        var_dump($c);
     }
 
     require_once("../models/obtenerDept_model.php");
