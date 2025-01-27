@@ -25,14 +25,12 @@
 		
        <!--Formulario con botones -->
 	
-		<input type="button" value="Alta Empleado" onclick="window.location.href='alquilar_controller.php'" class="btn btn-warning disabled">
+		<input type="button" value="Alta Empleado" onclick="window.location.href='altaEmple_controller.php'" class="btn btn-warning disabled">
 		<input type="button" value="Alta Masiva Empleados" onclick="window.location.href='consultar_controller.php'" class="btn btn-warning disabled">
 		<input type="button" value="Modificar Salario" onclick="window.location.href='devolver_controller.php'" class="btn btn-warning disabled">
-		<br>
 		<input type="button" value="Vida Laboral" onclick="window.location.href='alquilar_controller.php'" class="btn btn-warning disabled">
 		<input type="button" value="Info Departamentos" onclick="window.location.href='consultar_controller.php'" class="btn btn-warning disabled">
 		<input type="button" value="Cambio Departamento" onclick="window.location.href='devolver_controller.php'" class="btn btn-warning disabled">
-		<br>
 		<input type="button" value="Nuevo Jefe Departamento" onclick="window.location.href='alquilar_controller.php'" class="btn btn-warning disabled">
 		<input type="button" value="Baja Empleado" onclick="window.location.href='consultar_controller.php'" class="btn btn-warning disabled">
 		</br></br>
