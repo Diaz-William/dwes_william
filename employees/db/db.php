@@ -2,7 +2,7 @@
     define('DB_SERVER', 'localhost');
 	define('DB_USERNAME', 'root');
 	define('DB_PASSWORD', 'rootroot');
-	define('DB_DATABASE', 'employess');
+	define('DB_DATABASE', 'employees');
     
     function conectar() {
 		try {
