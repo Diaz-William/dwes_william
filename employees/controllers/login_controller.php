@@ -16,12 +16,13 @@
         
         if ($correcto === false) {
             echo "El número del empleado o la contraseña son incorrectos";
-        } else if (comprobarRRHH($empno)) {
+        } else if ($correcto === true) {
             crearSesionCookie($correcto, $password);
-            header("Location: controllers/welcomeRRHH_controller.php");
-        } else if (is_string($correcto)) {
-            crearSesionCookie($correcto, $password);
-            header("Location: controllers/welcomeEmployees_controller.php");
+            if (comprobarRRHH($empno)) {
+                header("Location: controllers/welcomeRRHH_controller.php");
+            } else {
+                header("Location: controllers/welcomeEmployees_controller.php");
+            }
         } else {
             echo "Ha ocurrido un error. Inténtelo más tarde.";
         }
