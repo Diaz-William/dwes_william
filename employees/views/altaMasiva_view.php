@@ -18,24 +18,24 @@
 		<div class="card-body">
             <form id="" name="" action="" method="post" class="card-body">
                 <div class="form-group">
-                    Nombre <input type="text" name="firstname" placeholder="Jhon" class="form-control" required>
+                    Nombre <input type="text" name="firstname" placeholder="Jhon" class="form-control">
                 </div>
                 <div class="form-group">
-                    Apellido <input type="text" name="lastname" placeholder="Doe" class="form-control" required>
+                    Apellido <input type="text" name="lastname" placeholder="Doe" class="form-control">
                 </div>
                 <div class="form-group">
-                    Fecha de nacimiento <input type="date" name="birthdate" class="form-control" required>
+                    Fecha de nacimiento <input type="date" name="birthdate" class="form-control">
                 </div>
                 <div class="form-group">
                     Género<br>
-                    <input type="radio" id="M" name="gender" value="M" required>
+                    <input type="radio" id="M" name="gender" value="M">
                     <label for="M">Hombre</label><br>
-                    <input type="radio" id="F" name="gender" value="F" required>
+                    <input type="radio" id="F" name="gender" value="F">
                     <label for="F">Mujer</label><br>
                 </div>
 
                 <label for="deptno">Departamento</label>
-                <select name="deptno" class="form-control" required>
+                <select name="deptno" class="form-control">
                     <option value="">-- Seleccionar Departamento --</option>
                     <?php
                         foreach ($depts as $row) {
@@ -45,10 +45,10 @@
 			    </select>
                         <br>
                 <div class="form-group">
-                    Salario Anual <input type="number" name="salary" class="form-control" required>
+                    Salario Anual <input type="number" name="salary" class="form-control">
                 </div>
                 <div class="form-group">
-                    Cargo <input type="text" name="title" class="form-control" required>
+                    Cargo <input type="text" name="title" class="form-control">
                 </div>
                 <input type="submit" name="add" value="Añadir" class="btn btn-warning disabled">
                 <input type="submit" name="hire" value="Alta" class="btn btn-warning disabled">

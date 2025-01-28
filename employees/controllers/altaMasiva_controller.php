@@ -5,16 +5,20 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["add"])) {
-            require_once("../helpers/data_helper.php");
-            $firstname = test_input($_POST["firstname"]);
-            $lastname = test_input($_POST["lastname"]);
-            $birthdate = date("Y-m-d", strtotime(test_input($_POST["birthdate"])));
-            $gender = test_input($_POST["gender"]);
-            $deptno = test_input($_POST["deptno"]);
-            $salary = test_input($_POST["salary"]);
-            $title = test_input($_POST["title"]);
-            require_once("../helpers/cookie_helper.php");
-            basketEmp($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
+            if (!empty($_POST["firstname"]) && !empty($_POST["lastname"]) && !empty($_POST["birthdate"]) && !empty($_POST["gender"]) && !empty($_POST["deptno"]) && !empty($_POST["salary"]) && !empty($_POST["title"])) {
+                require_once("../helpers/data_helper.php");
+                $firstname = test_input($_POST["firstname"]);
+                $lastname = test_input($_POST["lastname"]);
+                $birthdate = date("Y-m-d", strtotime(test_input($_POST["birthdate"])));
+                $gender = test_input($_POST["gender"]);
+                $deptno = test_input($_POST["deptno"]);
+                $salary = test_input($_POST["salary"]);
+                $title = test_input($_POST["title"]);
+                require_once("../helpers/cookie_helper.php");
+                basketEmp($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
+            } else {
+                echo "Tiene que rellenar todos los datos del nuevo empleado";
+            }
         } else if (isset($_POST["hire"]) && isset($_COOKIE["basketEmp"])) {
             require_once("../models/altaEmple_model.php");
             $basketEmp = unserialize($_COOKIE["basketEmp"]);
