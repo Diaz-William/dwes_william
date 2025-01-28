@@ -16,8 +16,6 @@
                 $salary = test_input($_POST["salary"]);
                 $title = test_input($_POST["title"]);
                 basketEmp($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
-            } else {
-                echo "Tiene que rellenar todos los datos del nuevo empleado";
             }
         } else if (isset($_POST["hire"]) && isset($_COOKIE["basketEmp"])) {
             require_once("../models/altaEmple_model.php");

@@ -54,10 +54,6 @@
                 <input type="submit" name="hire" value="Alta" class="btn btn-warning disabled">
                 <input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'"><br><br>
                 <?php
-                    // if (isset($_COOKIE["basketEmp"])) {
-                    //     echo "Hay " . count(unserialize($_COOKIE["basketEmp"])) . " empleados en la cesta";
-                    // }
-
                     if (isset($_COOKIE["basketEmp"])) {
                         $basketEmp = unserialize($_COOKIE["basketEmp"]);
                         if ($basketEmp !== false && is_array($basketEmp)) {
@@ -66,7 +62,6 @@
                             echo "La cesta de empleados no contiene datos válidos.";
                         }
                     }
-                    
 
                     if (isset($_POST["add"]) && empty($_POST["firstname"]) && empty($_POST["lastname"]) && empty($_POST["birthdate"]) && empty($_POST["gender"]) && empty($_POST["deptno"]) && empty($_POST["salary"]) && empty($_POST["title"])) {
                         echo "Tiene que rellenar todos los datos del nuevo empleado";
