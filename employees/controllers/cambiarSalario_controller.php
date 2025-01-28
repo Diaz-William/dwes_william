@@ -11,7 +11,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["change"]) && !empty($_POST["empno"]) && !empty($_POST["percentage"]) && !empty($_POST["action"])) {
             $empno = test_input($_POST["empno"]);
-            $percentage = intval(test_input($_POST["percentage"]));
+            $percentage = intval(test_input($_POST["percentage"])) / 100;
             $action = test_input($_POST["action"]);
             if ($action === "-") {
                 $percentage *= -1;
