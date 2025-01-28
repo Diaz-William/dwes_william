@@ -13,7 +13,7 @@
     function cesta($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title) {
         try {
             $cesta = isset($_COOKIE["cesta"]) ? unserialize($_COOKIE["cesta"]) : array();
-            $index = count($cesta) !== 0 ? count($cesta) : 1;
+            $index = count($cesta) !== 0 ? count($cesta) : 0;
             $cesta[$index] = $birthdate."#".$firstname."#". $lastname."#". $gender."#". $deptno."#". $salary."#". $title;
             setcookie("cesta", serialize($cesta), time() + 86400, "/");
             $_COOKIE["cesta"] = serialize($cesta);

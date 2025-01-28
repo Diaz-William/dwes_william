@@ -50,7 +50,7 @@
                 <div class="form-group">
                     Cargo <input type="text" name="title" class="form-control" required>
                 </div>
-                <input type="submit" name="submit" value="Login" class="btn btn-warning disabled">
+                <input type="submit" name="add" value="Añadir" class="btn btn-warning disabled">
                 <input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
                 <br><br><a href="./logout_controller.php">Cerrar Sesión</a>
             </form>
