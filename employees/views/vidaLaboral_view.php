@@ -53,7 +53,8 @@
 					if (!is_null($info)) {
 						echo $fullname;
 						echo "<br>";
-						echo $info["INFO"];
+						//echo $info["INFO"];
+						var_dump($info);
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
 					}
