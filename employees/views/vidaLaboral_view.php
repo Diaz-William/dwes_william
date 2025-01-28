@@ -33,7 +33,7 @@
 					}
 				?>
 			</select>
-
+			<br>
 			<B>Tipo de información: </B><select name="info" class="form-control">
 			<option value="">-- Seleccionar Información --</option>
 			<option value="dataEmp">Datos personales</option>
@@ -41,20 +41,23 @@
 			<option value="salaries">Salarios</option>
 			<option value="titles">Cargos</option>
 			</select>
+			<br>
 		<div>
 			<input type="submit" value="Consultar" name="consult" class="btn btn-warning disabled">
 			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
 		</div>
 		<br>
 		<?php
-			if (isset($_POST["consult"]) && !empty($_POST["empno"]) && !empty($_POST["info"])) {
-				if (!is_null($info)) {
-					echo $info;
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+				if (isset($_POST["consult"]) && !empty($_POST["empno"]) && !empty($_POST["info"])) {
+					if (!is_null($info)) {
+						echo $info;
+					} else {
+						echo "Ha ocurrido un error, intentelo más tarde";
+					}
 				} else {
-					echo "Ha ocurrido un error, intentelo más tarde";
+					echo "Tiene que seleccionar el empleado y el tipo de información";
 				}
-			} else {
-				echo "Tiene que seleccionar el empleado y el tipo de información";
 			}
 		?>
 	</form>
