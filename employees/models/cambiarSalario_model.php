@@ -8,7 +8,7 @@
             }else {
                 $conn->beginTransaction();
                 $stmt = $conn->prepare("UPDATE SALARIES SET SALARY = :SALARY WHERE EMP_NO = :EMP_NO");
-                $salarioNuevo = max(0, round(($salarioAntiguo + ($salarioAntiguo * $percentage)), 2, PHP_ROUND_HALF_DOWN));
+                $salarioNuevo = max(0, $salarioAntiguo + ($salarioAntiguo * $percentage));
                 $stmt->bindParam(':EMP_NO', $empno);
                 $stmt->bindParam(':SALARY', $salarioNuevo);
                 $stmt->execute();
