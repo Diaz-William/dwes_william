@@ -43,7 +43,6 @@
                     <input type="radio" id="-" name="action" value="-">
                     <label for="-">-</label><br>
                 </div>
-		<BR><BR>
 		<div>
 			<input type="submit" value="Cambiar Salario" name="change" class="btn btn-warning disabled">
 			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">

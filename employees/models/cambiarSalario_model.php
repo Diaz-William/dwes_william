@@ -7,7 +7,7 @@
                 echo "<p>No se puede actualizar el salario del empleado con el número $empno porque es 0.</p>";
             }else {
                 $conn->beginTransaction();
-                $stmt = $conn->prepare("UPDATE EMPLOYESS SET SALARY = :SALARY WHERE EMP_NO = :EMP_NO");
+                $stmt = $conn->prepare("UPDATE SALARIES SET SALARY = :SALARY WHERE EMP_NO = :EMP_NO");
                 $salarioNuevo = max(0, round(($salarioAntiguo + ($salarioAntiguo * $percentage)), 2, PHP_ROUND_HALF_DOWN));
                 $stmt->bindParam(':EMP_NO', $empno);
                 $stmt->bindParam(':SALARY', $salarioNuevo);
