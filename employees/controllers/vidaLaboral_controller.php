@@ -9,7 +9,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["consult"]) && !empty($_POST["emp"]) && !empty($_POST["info"])) {
-            $$dataEmp = test_input($_POST["emp"]);
+            $dataEmp = test_input($_POST["emp"]);
             $info = test_input($_POST["info"]);
             list($empno, $fullname) = explode("#", $dataEmp);
 
