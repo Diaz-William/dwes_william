@@ -25,11 +25,11 @@
 		<B>Bienvenido/a:</B> <?php /*echo $usuario*/ ?> <BR><BR>
 		<B>Identificador Cliente:</B> <?php /*echo $id*/ ?> <BR><BR>
 				
-			<B>Empleados: </B><select name="empno" class="form-control">
+			<B>Empleados: </B><select name="emp" class="form-control">
 			<option value="">-- Seleccionar Empleado --</option>
 				<?php
 					foreach ($empleados as $empleado) {
-						echo "<option value='{$empleado['EMP_NO']}'>{$empleado['EMP_NO']} | {$empleado['FIRST_NAME']} | {$empleado['LAST_NAME']}</option>";
+						echo "<option value='{$empleado['EMP_NO']}#{$empleado['FIRST_NAME']} {$empleado['LAST_NAME']}'>{$empleado['EMP_NO']} | {$empleado['FIRST_NAME']} | {$empleado['LAST_NAME']}</option>";
 					}
 				?>
 			</select>
@@ -49,10 +49,11 @@
 		<br>
 		<?php
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
-				if (isset($_POST["consult"]) && !empty($_POST["empno"]) && !empty($_POST["info"])) {
+				if (isset($_POST["consult"]) && !empty($_POST["emp"]) && !empty($_POST["info"])) {
 					if (!is_null($info)) {
-						//echo $info;
-						var_dump($info);
+						echo $fullname;
+						echo "<br>";
+						echo $info["INFO"];
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
 					}
