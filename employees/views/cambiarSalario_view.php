@@ -34,7 +34,7 @@
 				?>
 			</select>
 			<div class="form-group">
-				Contraseña <input type="number" name="percentage" placeholder="50" class="form-control">
+				<b>Porcentaje</b> <input type="number" name="percentage" placeholder="50" class="form-control">
         	</div>
 			<div class="form-group">
                     Acción<br>
