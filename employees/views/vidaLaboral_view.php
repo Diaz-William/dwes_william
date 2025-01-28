@@ -53,7 +53,10 @@
 					if (!is_null($info)) {
 						echo $fullname;
 						echo "<br>";
-						var_dump($info);
+						foreach ($info as $index => $text) {
+							var_dump($index);
+							var_dump($text);
+						}
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
 					}
