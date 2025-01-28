@@ -2,6 +2,7 @@
     require_once("../db/db.php");
     require_once("../helpers/error_helper.php");
     set_error_handler("error_function");
+    require_once("../helpers/data_helper.php");
     require_once("../models/obtenerEmp_model.php");
     require_once("../models/cambiarSalario_model.php");
 
