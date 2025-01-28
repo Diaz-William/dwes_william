@@ -18,16 +18,16 @@
                     $info = getDataEmp($empno);
                     break;
                 case "depts":
-                    require_once("../models/datosEmp_model.php");
-                    // funcion();
+                    require_once("../models/deptEmp_model.php");
+                    $info = getDeptEmp($empno);
                     break;
                 case "salaries":
-                    require_once("../models/datosEmp_model.php");
-                    // funcion();
+                    require_once("../models/salaryEmp_model.php");
+                    $info = getSalEmp($empno);
                     break;
                 case "titles":
-                    require_once("../models/datosEmp_model.php");
-                    // funcion();
+                    require_once("../models/titlesEmp_model.php");
+                    $info = getTitEmp($empno);
                     break;
             }
         }

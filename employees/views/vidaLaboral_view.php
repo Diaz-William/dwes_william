@@ -51,7 +51,8 @@
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				if (isset($_POST["consult"]) && !empty($_POST["empno"]) && !empty($_POST["info"])) {
 					if (!is_null($info)) {
-						echo $info;
+						//echo $info;
+						var_dump($info);
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
 					}
