@@ -15,6 +15,7 @@
         $salary = test_input($_POST["salary"]);
         $title = test_input($_POST["title"]);
         cesta($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
+        var_dump($_COOKIE["cesta"]);
     }
 
     require_once("../models/obtenerDept_model.php");
