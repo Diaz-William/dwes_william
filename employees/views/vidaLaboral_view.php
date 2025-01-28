@@ -54,8 +54,7 @@
 						echo $fullname;
 						echo "<br>";
 						foreach ($info as $index => $text) {
-							var_dump($index);
-							var_dump($text);
+							echo $text["INFO"];
 						}
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
