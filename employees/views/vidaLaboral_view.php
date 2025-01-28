@@ -52,9 +52,10 @@
 				if (isset($_POST["consult"]) && !empty($_POST["emp"]) && !empty($_POST["info"])) {
 					if (!is_null($info)) {
 						echo $fullname;
-						echo "<br>";
+						echo "<br><br>";
 						foreach ($info as $index => $text) {
-							echo $text["INFO"];
+							echo $text["INFO"]."<br>";
+							
 						}
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
