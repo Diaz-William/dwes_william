@@ -2,6 +2,7 @@
     require_once("../helpers/error_helper.php");
     set_error_handler("error_function");
     require_once("../db/db.php");
+    require_once("../helpers/cookie_helper.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["add"])) {
@@ -14,7 +15,6 @@
                 $deptno = test_input($_POST["deptno"]);
                 $salary = test_input($_POST["salary"]);
                 $title = test_input($_POST["title"]);
-                require_once("../helpers/cookie_helper.php");
                 basketEmp($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
             } else {
                 echo "Tiene que rellenar todos los datos del nuevo empleado";
