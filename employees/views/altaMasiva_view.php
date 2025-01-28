@@ -52,7 +52,7 @@
                 </div>
                 <input type="submit" name="add" value="Añadir" class="btn btn-warning disabled">
                 <input type="submit" name="hire" value="Alta" class="btn btn-warning disabled">
-                <input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
+                <input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'"><br><br>
                 <?php
                     if (isset($_COOKIE["basketEmp"])) {
                         echo "Hay " . count(unserialize($_COOKIE["basketEmp"])) . " empleados en la cesta";
