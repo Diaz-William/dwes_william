@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ALta EMpleado - Employees</title>
+    <title>Alta Masiva - Employees</title>
     <link rel="stylesheet" href="../views/css/bootstrap.min.css">
  </head>
       
