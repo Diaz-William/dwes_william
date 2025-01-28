@@ -23,9 +23,11 @@
             require_once("../models/altaEmple_model.php");
             $basketEmp = unserialize($_COOKIE["basketEmp"]);
             foreach ($basketEmp as $index => $dataEmp) {
-                var_dump($index);
-                var_dump($dataEmp);
-                // altaEmple($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
+                list($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title) = explode("#", $dataEmp);
+                $alta = altaEmple($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
+                if ($alta === null) {
+                    echo "El nuevo empleado con la posición " . $index + 1 . " en la cesta no se ha contratado";
+                }
             }
         } else {
             echo "Tiene que añadir empleados nuevos a la cesta";

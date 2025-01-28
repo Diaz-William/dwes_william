@@ -57,6 +57,10 @@
                     if (isset($_COOKIE["basketEmp"])) {
                         echo "Hay " . count(unserialize($_COOKIE["basketEmp"])) . " empleados en la cesta";
                     }
+
+                    if (empty($_POST["firstname"]) && empty($_POST["lastname"]) && empty($_POST["birthdate"]) && empty($_POST["gender"]) && empty($_POST["deptno"]) && empty($_POST["salary"]) && empty($_POST["title"])) {
+                        echo "Tiene que rellenar todos los datos del nuevo empleado";
+                    }
                 ?>
                 <br><br><a href="./logout_controller.php">Cerrar Sesión</a>
             </form>
