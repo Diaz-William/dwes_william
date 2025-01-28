@@ -13,12 +13,11 @@
             $empno = test_input($_POST["empno"]);
             $percentage = intval(test_input($_POST["percentage"])) / 100;
             $action = test_input($_POST["action"]);
+            $currentsalary = obtenerSalario($empno);
             if ($action === "-") {
                 $percentage *= -1;
             }
-            cambiarSalario($empno, $percentage);
-        } else {
-            echo "Tiene que seleccionar y rellenar todos los datos";
+            $cambio = cambiarSalario($empno, $percentage, $currentsalary);
         }
     }
 

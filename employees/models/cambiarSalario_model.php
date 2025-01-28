@@ -1,22 +1,20 @@
 <?php
-    function cambiarSalario($empno, $percentage) {
+    function cambiarSalario($empno, $percentage, $currentsalary) {
         try {
             $conn = conectar();
-            $salarioAntiguo = obtenerSalario($conn, $empno);
-            if ($salarioAntiguo == 0) {
-                echo "<p>No se puede actualizar el salario del empleado con el número $empno porque es 0.</p>";
+            if ($currentsalary == 0) {
+                return false;
             }else {
                 $conn->beginTransaction();
                 $stmt = $conn->prepare("UPDATE SALARIES SET SALARY = :SALARY WHERE EMP_NO = :EMP_NO");
-                $salarioNuevo = max(0, $salarioAntiguo + ($salarioAntiguo * $percentage));
+                $newsalary = max(0, $currentsalary + ($currentsalary * $percentage));
                 $stmt->bindParam(':EMP_NO', $empno);
-                $stmt->bindParam(':SALARY', $salarioNuevo);
+                $stmt->bindParam(':SALARY', $newsalary);
                 $stmt->execute();
                 $conn->commit();
-                echo "<p>Se ha actualizado el salario del empleado con el número $empno de $salarioAntiguo a $salarioNuevo</p>";
             }
             $conn = null;
-            return true;
+            return $newsalary;
         } catch (PDOException $e) {
             if ($conn) {
                 $conn->rollBack();
@@ -27,12 +25,15 @@
         }
     }
 
-    function obtenerSalario($conn, $empno) {
+    function obtenerSalario($empno) {
         try {
+            $conn = conectar();
             $select = $conn->prepare("SELECT IFNULL(SALARY, 0) AS 'SALARY' FROM SALARIES WHERE EMP_NO = :EMP_NO");
             $select->bindParam(':EMP_NO', $empno);
             $select->execute();
-            return $select->fetchColumn();
+            $result = $select->fetchColumn();
+            $conn = null;
+            return $result;
         } catch (PDOException $e) {
             error_function($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
             return null;

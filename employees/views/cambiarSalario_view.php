@@ -47,6 +47,19 @@
 			<input type="submit" value="Cambiar Salario" name="change" class="btn btn-warning disabled">
 			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
 		</div>
+		<?php
+			if (isset($_POST["change"]) && !empty($_POST["empno"]) && !empty($_POST["percentage"]) && !empty($_POST["action"])) {
+				if ($cambio === 0) {
+					echo "No se puede actualizar el salario del empleado con el número $empno porque es 0";
+				} else if ($cambio >= 0) {
+					echo "Se ha actualizado el salario del empleado con el número $empno de $currentsalary a $cambio";
+				} else {
+					echo "Ha ocurrido un error, intentelo más tarde";
+				}
+			} else {
+				echo "Tiene que seleccionar y rellenar todos los datos";
+			}
+		?>
 	</form>
 	<!-- FIN DEL FORMULARIO -->
 	<a href="./logout_controller.php">Cerrar Sesión</a><br><br>
