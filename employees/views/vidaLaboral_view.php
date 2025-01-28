@@ -29,7 +29,7 @@
 			<option value="">-- Seleccionar Empleado --</option>
 				<?php
 					foreach ($empleados as $empleado) {
-						echo "<option value='{$empleado['EMP_NO']}#{$empleado['FIRST_NAME']} {$empleado['LAST_NAME']}'>{$empleado['EMP_NO']} | {$empleado['FIRST_NAME']} {$empleado['LAST_NAME']}</option>";
+						echo "<option value='{$empleado['EMP_NO']}#{$empleado['FIRST_NAME']} {$empleado['LAST_NAME']}'>{$empleado['EMP_NO']} - {$empleado['FIRST_NAME']} {$empleado['LAST_NAME']}</option>";
 					}
 				?>
 			</select>

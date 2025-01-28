@@ -2,7 +2,7 @@
     function getSalEmp($empno) {
         try {
             $conn = conectar();
-            $stmt = $conn->prepare("SELECT CONCAT('Sueldo de ', SALARY, ' desde ', FROM_DATE, ' hasta ', COALESCE(TO_DATE,'la actualidad'))) AS INFO FROM SALARIES");
+            $stmt = $conn->prepare("SELECT CONCAT('Salario de ', SALARY, ' desde ', FROM_DATE, ' hasta ', COALESCE(TO_DATE,'la actualidad')) AS INFO FROM SALARIES WHERE EMP_NO = :EMP_NO");
             $stmt->bindParam(":EMP_NO", $empno);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
