@@ -53,9 +53,7 @@
 					if (!is_null($info)) {
 						echo $fullname;
 						echo "<br>";
-						foreach ($info as $row => $value) {
-							echo $value;
-						}
+						var_dump($info);
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
 					}
