@@ -51,7 +51,13 @@
                     Cargo <input type="text" name="title" class="form-control" required>
                 </div>
                 <input type="submit" name="add" value="Añadir" class="btn btn-warning disabled">
+                <input type="submit" name="hire" value="Alta" class="btn btn-warning disabled">
                 <input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
+                <?php
+                    if (isset($_COOKIE["basketEmp"])) {
+                        echo "Hay " . count(unserialize($_COOKIE["basketEmp"])) . " empleados en la cesta";
+                    }
+                ?>
                 <br><br><a href="./logout_controller.php">Cerrar Sesión</a>
             </form>
 	    </div>
