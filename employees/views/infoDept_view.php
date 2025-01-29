@@ -40,15 +40,16 @@
 		</div>
 		<br>
 		<?php
-			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {//☻
 				if (isset($_POST["consult"]) && !empty($_POST["deptdata"])) {
 					if (!is_null($info)) {
 						echo "$deptno - $deptname";
 						echo "<br><br>";
-						echo "Encargado: {$info['MANAGER']} - {$info['FULLNAMEMANAGER']}";
+						echo "Encargado: {$info[0]['MANAGER']} - {$info[0]['FULLNAMEMANAGER']}";
 						echo "<ul>";
-						foreach ($info as $row) {
-							echo "<li>{$row['EMP_NO']} - {$row['FULLNAME']}</li>";
+						foreach ($info as $index => $x) {
+							var_dump($x);
+							//echo "<li>{$row['EMP_NO']} - {$row['FULLNAME']}</li>";
 						}
 						echo "</ul>";
 					} else {
