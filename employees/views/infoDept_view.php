@@ -58,7 +58,7 @@
 						echo "Ha ocurrido un error, intentelo más tarde";
 					}
 				} else {
-					echo "Tiene que seleccionar el empleado y el tipo de información";
+					echo "Tiene que seleccionar el departamento";
 				}
 			}
 		?>
