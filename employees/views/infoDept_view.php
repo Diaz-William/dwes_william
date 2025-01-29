@@ -47,9 +47,10 @@
 						echo "<br><br>";
 						echo "Encargado: {$info[0]['MANAGER']} - {$info[0]['FULLNAMEMANAGER']}";
 						echo "<ul>";
-						foreach ($info as $index => $x) {
-							var_dump($x);
-							//echo "<li>{$row['EMP_NO']} - {$row['FULLNAME']}</li>";
+						foreach ($info as $index => $row) {
+							if ($index != 0) {
+								echo "<li>{$row['EMP_NO']} - {$row['FULLNAME']}</li>";
+							}
 						}
 						echo "</ul>";
 					} else {
