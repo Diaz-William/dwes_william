@@ -46,6 +46,7 @@
 						echo "$deptno - $deptname";
 						echo "<br><br>";
 						echo "Encargado: {$info[0]['MANAGER']} - {$info[0]['FULLNAMEMANAGER']}";
+						echo "<br><br>";
 						echo "<ul>";
 						foreach ($info as $index => $row) {
 							if ($index != 0) {
