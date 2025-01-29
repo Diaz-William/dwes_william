@@ -29,7 +29,7 @@
 			<option value="">-- Seleccionar Departamento --</option>
 				<?php
 					foreach ($depts as $dept) {
-						echo "<option value='{$dept['DEPT_NO']}#{$dept['DEPT_NO']}'>{$dept['DEPT_NAME']}</option>";
+						echo "<option value='{$dept['DEPT_NO']}#{$dept['DEPT_NAME']}'>{$dept['DEPT_NAME']}</option>";
 					}
 				?>
 			</select>
