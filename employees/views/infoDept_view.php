@@ -25,11 +25,11 @@
 		<B>Bienvenido/a:</B> <?php /*echo $usuario*/ ?> <BR><BR>
 		<B>Identificador Cliente:</B> <?php /*echo $id*/ ?> <BR><BR>
 				
-			<B>Departamentos: </B><select name="deptno" class="form-control">
+			<B>Departamentos: </B><select name="deptdata" class="form-control">
 			<option value="">-- Seleccionar Departamento --</option>
 				<?php
 					foreach ($depts as $dept) {
-						echo "<option value='{$dept['DEPT_NO']}'>{$dept['DEPT_NAME']}</option>";
+						echo "<option value='{$dept['DEPT_NO']}#{$dept['DEPT_NO']}'>{$dept['DEPT_NAME']}</option>";
 					}
 				?>
 			</select>
@@ -41,11 +41,11 @@
 		<br>
 		<?php
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
-				if (isset($_POST["consult"]) && !empty($_POST["deptno"])) {
+				if (isset($_POST["consult"]) && !empty($_POST["deptdata"])) {
 					if (!is_null($info)) {
-						/*echo "$empno - $fullname";
+						echo "$deptno - $deptname";
 						echo "<br><br>";
-						foreach ($info as $index => $text) {
+						/*foreach ($info as $index => $text) {
 							echo $text["INFO"]."<br>";
 							
 						}*/

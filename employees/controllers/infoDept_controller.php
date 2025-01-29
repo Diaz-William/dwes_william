@@ -9,8 +9,8 @@
     $depts = obtenerDept();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["consult"]) && !empty($_POST["deptno"])) {
-            $deptno = test_input($_POST["deptno"]);
+        if (isset($_POST["consult"]) && !empty($_POST["deptdata"])) {
+            list($deptno, $deptname) = explode("#", test_input($_POST["deptdata"]));
             $info = getDeptData($deptno);
         }
     }
