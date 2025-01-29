@@ -43,12 +43,13 @@
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				if (isset($_POST["consult"]) && !empty($_POST["deptno"])) {
 					if (!is_null($info)) {
-						echo "$empno - $fullname";
+						/*echo "$empno - $fullname";
 						echo "<br><br>";
 						foreach ($info as $index => $text) {
 							echo $text["INFO"]."<br>";
 							
-						}
+						}*/
+						var_dump($info);
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
 					}
