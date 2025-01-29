@@ -3,7 +3,7 @@
         try {
             $conn = conectar();
             $result = array();
-            $stmt = $conn->prepare("SELECT E.EMP_NO AS MANAGER, CONCAT(E.FIRST_NAME, ' ', E.LAST_NAME) AS FULLNAME FROM EMPLOYEES E, DEPT_MANAGER DM WHERE E.EMP_NO = DM.EMP_NO AND DM.DEPT_NO = :DEPT_NO");
+            $stmt = $conn->prepare("SELECT E.EMP_NO AS MANAGER, CONCAT(E.FIRST_NAME, ' ', E.LAST_NAME) AS FULLNAMEMANAGER FROM EMPLOYEES E, DEPT_MANAGER DM WHERE E.EMP_NO = DM.EMP_NO AND DM.DEPT_NO = :DEPT_NO");
             $stmt->bindParam(":DEPT_NO", $deptno);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);

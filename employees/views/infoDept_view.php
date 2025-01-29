@@ -45,11 +45,12 @@
 					if (!is_null($info)) {
 						echo "$deptno - $deptname";
 						echo "<br><br>";
-						/*foreach ($info as $index => $text) {
-							echo $text["INFO"]."<br>";
-							
-						}*/
-						var_dump($info);
+						echo "Encargado: {$info['MANAGER']} - {$info['FULLNAMEMANAGER']}";
+						echo "<ul>";
+						foreach ($info as $row) {
+							echo "<li>{$row['EMP_NO']} - {$row['FULLNAME']}</li>";
+						}
+						echo "</ul>";
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
 					}
