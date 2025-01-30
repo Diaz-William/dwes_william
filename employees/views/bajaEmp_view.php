@@ -25,8 +25,8 @@
 		<B>Bienvenido/a:</B> <?php /*echo $usuario*/ ?> <BR><BR>
 		<B>Identificador Cliente:</B> <?php /*echo $id*/ ?> <BR><BR>
 				
-			<B>Departamentos: </B><select name="empdata" class="form-control">
-			<option value="">-- Seleccionar Departamento --</option>
+			<B>Empleados: </B><select name="empdata" class="form-control">
+			<option value="">-- Seleccionar Empleado --</option>
 				<?php
 					foreach ($empleados as $empleado) {
 						echo "<option value='{$empleado['EMP_NO']}#{$empleado['FIRST_NAME']} {$empleado['LAST_NAME']}'>{$empleado['FIRST_NAME']} {$empleado['LAST_NAME']}</option>";

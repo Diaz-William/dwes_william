@@ -4,6 +4,7 @@
     set_error_handler("error_function");
     require_once("../helpers/data_helper.php");
     require_once("../models/obtenerEmp_model.php");
+    require_once("../models/bajaEmp_model.php");
 
     $empleados = obtenerEmpleados();
 
