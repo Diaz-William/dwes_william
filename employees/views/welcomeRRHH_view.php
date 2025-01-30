@@ -20,7 +20,7 @@
 		<?php list($fullname, $empno) = explode("#", $_COOKIE["usuario"]) ?>
 
 		<B>Bienvenido/a:</B> <?php echo $fullname ?> <BR><BR>
-		<B>Identificador Cliente:</B> <?php echo $empno ?> <BR><BR>
+		<B>Número de Empleado:</B> <?php echo $empno ?> <BR><BR>
 	 
 		
        <!--Formulario con botones -->
