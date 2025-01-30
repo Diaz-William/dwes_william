@@ -49,6 +49,7 @@
 		</div>
 		<br>
 		<?php
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (isset($_POST["change"]) && !empty($_POST["empno"]) && !empty($_POST["percentage"]) && !empty($_POST["action"])) {
 				if ($cambio === 0) {
 					echo "No se puede actualizar el salario del empleado con el número $empno porque es 0";
@@ -60,6 +61,7 @@
 			} else {
 				echo "Tiene que seleccionar y rellenar todos los datos";
 			}
+		}
 		?>
 	</form>
 	<!-- FIN DEL FORMULARIO -->
