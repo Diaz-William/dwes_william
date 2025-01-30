@@ -1,4 +1,10 @@
-﻿<html>
+﻿<?php
+    if (!isset($_COOKIE["usuario"])) {
+        header("Location: ../index.php");
+    }
+?>
+
+<html>
    
  <head>
     <meta charset="UTF-8">

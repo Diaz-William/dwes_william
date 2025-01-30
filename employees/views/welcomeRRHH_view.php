@@ -1,4 +1,10 @@
-﻿<html>
+﻿<?php
+    if (!isset($_COOKIE["usuario"])) {
+        header("Location: ../index.php");
+    }
+?>
+
+<html>
    
  <head>
     <meta charset="UTF-8">
@@ -36,6 +42,10 @@
 		<input type="button" value="Nuevo Jefe Departamento" onclick="window.location.href='cambiarDeptMan_controller.php'" class="btn btn-warning disabled">
 		<input type="button" value="Baja Empleado" onclick="window.location.href='bajaEmp_controller.php'" class="btn btn-warning disabled">
 		</br></br>
+		<hr>
+		</br></br>
+		<input type="button" value="Mi Nómina" onclick="window.location.href='nomina_controller.php'" class="btn btn-warning disabled">
+		<input type="button" value="Historial Laboral" onclick="window.location.href='bajaEmp_controller.php'" class="btn btn-warning disabled">
 		
 		
 		
