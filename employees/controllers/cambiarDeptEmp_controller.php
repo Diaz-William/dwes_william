@@ -9,6 +9,9 @@
     $empleados = obtenerEmpleados();
     $depts = obtenerDept();
 
+    var_dump($empleados);
+    var_dump($depts);
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["change"]) && !empty($_POST["empdata"]) && !empty($_POST["deptdata"])) {
             list($empno, $empname) = explode("#", test_input($_POST["empdata"]));
