@@ -52,7 +52,11 @@
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				if (isset($_POST["change"]) && !empty($_POST["empdata"]) && !empty($_POST["deptdata"])) {
 					if (!is_null($change)) {
-						echo "Se ha cambiado al empleado, $empno - $empname, al departamento de $deptname";
+						if ($change) {
+							echo "Se ha cambiado al empleado, $empno - $empname, al departamento de $deptname";
+						} else {
+							echo "El empleado, $empno - $empname, ya pertenece al departamento de $deptname";
+						}
 					} else {
 						echo "Ha ocurrido un error, intentelo más tarde";
 					}
