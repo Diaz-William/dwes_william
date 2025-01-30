@@ -14,5 +14,5 @@
         }
     }
 
-    require_once("../views/infoDept_view.php");
+    require_once("../views/bajaEmp_view.php");
 ?>
