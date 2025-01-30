@@ -34,7 +34,7 @@
 		<input type="button" value="Cambio Departamento" onclick="window.location.href='cambiarDeptEmp_controller.php'" class="btn btn-warning disabled">
 		<br><br>
 		<input type="button" value="Nuevo Jefe Departamento" onclick="window.location.href='cambiarDeptMan_controller.php'" class="btn btn-warning disabled">
-		<input type="button" value="Baja Empleado" onclick="window.location.href='consultar_controller.php'" class="btn btn-warning disabled">
+		<input type="button" value="Baja Empleado" onclick="window.location.href='bajaEmp_controller.php'" class="btn btn-warning disabled">
 		</br></br>
 		
 		
