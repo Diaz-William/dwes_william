@@ -6,7 +6,7 @@
             $stmt->bindParam(":EMP_NO", $empno);
             $stmt->execute();
             //$stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $result = $stmt->fetch();
+            $result = $stmt->fetchAll();
             return $result;
         } catch (PDOException $e) {
             if ($conn) {
