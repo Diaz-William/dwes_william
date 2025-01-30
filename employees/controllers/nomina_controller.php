@@ -5,6 +5,7 @@
     require_once("../helpers/data_helper.php");
     require_once("../models/getEmpData_model.php");
     require_once("../models/getEmpSal_model.php");
+    require_once("../models/comprobarEnginner_model.php");
 
     list(, $empno) = explode("#", $_COOKIE["usuario"]);
     $empdata = getEmpData($empno);
