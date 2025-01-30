@@ -11,7 +11,7 @@
     $empdata = getEmpData($empno);
     $salary = getEmpSal($empno);
     $x = comprobarEngineer($empno);
-    var_dump($x);
+    var_dump($salary);
 
     require_once("../views/nomina_view.php");
 ?>
