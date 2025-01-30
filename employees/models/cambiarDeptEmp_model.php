@@ -10,7 +10,7 @@
             $result = $stmt->fetchColumn();
             if ($result === false) {
                 $conn->beginTransaction();
-                $stmt = $conn->prepare("UPDATE DEPT_EMP SET DETP_NO = :DEPT_NO, TO_DATE = :DATE WHERE EMP_NO = :EMP_NO");
+                $stmt = $conn->prepare("UPDATE DEPT_EMP SET DEPT_NO = :DEPT_NO, TO_DATE = :DATE WHERE EMP_NO = :EMP_NO");
                 $stmt->bindParam(":DEPT_NO", $deptno);
                 $stmt->bindParam(":EMP_NO", $empno);
                 $date = date("Y-m-d");
