@@ -14,7 +14,7 @@
             var_dump($result === false);
             if ($result === false) {
                 $conn->beginTransaction();
-                $stmt = $conn->prepare("UPDATE DEPT_EMP SET DEPT_NO = :DEPT_NO, TO_DATE = :DATE WHERE EMP_NO = :EMP_NO");
+                $stmt = $conn->prepare("UPDATE DEPT_EMP SET DEPT_NO = :DEPT_NO, TO_DATE = :DATE WHERE EMP_NO = :EMP_NO AND TO_DATE IS NULL");
                 $stmt->bindParam(":DEPT_NO", $deptno);
                 $stmt->bindParam(":EMP_NO", $empno);
                 $date = date("Y-m-d");
