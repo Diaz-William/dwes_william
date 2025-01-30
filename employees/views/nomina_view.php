@@ -35,6 +35,10 @@
 				echo "Contratación: {$empdata[0]['HIRE_DATE']} <br>";
 			?>
 			<br>
+			Salario Bruto: <?php number_format($salary, 2) ?> €
+			Descuento Seguridad Social (7.5%): <?php number_format($seguridad_social, 2) ?> €
+			Descuento IRPF: <?php number_format($irpf, 2) ?> €
+			Salario Neto: <?php number_format($net_salary, 2) ?> €
 		<div>
 			<input type="submit" value="Consultar" name="consult" class="btn btn-warning disabled">
 			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
