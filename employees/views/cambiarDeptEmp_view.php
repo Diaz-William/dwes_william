@@ -33,7 +33,7 @@
 					}
 				?>
 			</select>
-			<br>
+			<br><br><br><br><br><br>
 			<B>Departamentos: </B><select name="deptdata" class="form-control">
 			<option value="">-- Seleccionar Departamento --</option>
 				<?php
