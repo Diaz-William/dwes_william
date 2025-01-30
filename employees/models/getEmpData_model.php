@@ -2,7 +2,7 @@
     function getEmpData($empno) {
         try {
             $conn = conectar();
-            $stmt = $conn->prepare("SELECT BIRTH_DATE, FIRST_NAME, LAST_NAME, IF(GENDER = 'M', 'Hombre', 'Mujer'), HIRE_DATE WHERE EMP_NO = :EMP_NO");
+            $stmt = $conn->prepare("SELECT BIRTH_DATE, FIRST_NAME, LAST_NAME, IF(GENDER = 'M', 'Hombre', 'Mujer'), HIRE_DATE FROM EMPLOYEES WHERE EMP_NO = :EMP_NO");
             $stmt->bindParam(":EMP_NO", $empno);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
