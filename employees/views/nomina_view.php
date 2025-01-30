@@ -33,10 +33,10 @@
 				echo "Nacimiento: {$empdata[0]['BIRTH_DATE']} <br>";
 				echo "Género: {$empdata[0]['GENDER']} <br>";
 				echo "Contratación: {$empdata[0]['HIRE_DATE']} <br>";
-				echo "Salario Bruto: $salary €";
-				echo "Descuento Seguridad Social (7.5%): $seguridad_social €";
-				echo "Descuento IRPF: $irpf €";
-				echo "Salario Neto: $net_salary €";
+				echo "Salario Bruto: $salary € <br>";
+				echo "Descuento Seguridad Social (7.5%): $seguridad_social € <br>";
+				echo "Descuento IRPF: $irpf € <br>";
+				echo "Salario Neto: $net_salary € <br>";
 			?>
 			<br>
 		<div>
