@@ -6,7 +6,7 @@
             $stmt->bindParam(":EMP_NO", $empno);
             $stmt->execute();
             $result = $stmt->fetchColumn();
-            return $result;
+            return $result !== false;
         } catch (PDOException $e) {
             if ($conn) {
                 $conn = null;
