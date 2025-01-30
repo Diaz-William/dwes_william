@@ -2,7 +2,7 @@
     function comprobar($empno, $lastname) {
         try {
             $conn = conectar();
-            $stmt = $conn->prepare("SELECT 1 FROM EMPLOYEES WHERE EMP_NO = :EMP_NO AND LAST_NAME = :LAST_NAME");
+            $stmt = $conn->prepare("SELECT 1 FROM EMPLOYEES WHERE EMP_NO = :EMP_NO AND LAST_NAME = :LAST_NAME AND BLOCKED = 0");
             $stmt->bindParam(':EMP_NO', $empno);
             $stmt->bindParam(':LAST_NAME', $lastname);
             $stmt->execute();

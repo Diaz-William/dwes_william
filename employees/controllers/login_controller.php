@@ -12,7 +12,7 @@
         $correcto = comprobar($empno, $password);
         
         if ($correcto === false) {
-            echo "El número del empleado o la contraseña son incorrectos";
+            echo "El número del empleado, la contraseña son incorrectos o el usuario ha sido bloqueado";
         } else if ($correcto === true) {
             crearSesionCookie($correcto, $password);
             if (comprobarRRHH($empno)) {

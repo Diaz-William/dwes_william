@@ -15,6 +15,7 @@ CREATE TABLE employees (
     last_name   VARCHAR(16)     NOT NULL,
     gender      ENUM ('M','F')  NOT NULL,   
     hire_date   DATE            NOT NULL,
+    BLOCKED   BOOLEAN            NOT NULL,
     PRIMARY KEY (emp_no)
 );
 CREATE TABLE departments (
@@ -60,15 +61,15 @@ CREATE TABLE salaries (
 )
 ;
 -- Inserts para la tabla employees
-INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hire_date) VALUES
-(10001, '1980-01-01', 'John', 'Doe', 'M', '2005-03-15'),
-(10002, '1985-05-23', 'Jane', 'Smith', 'F', '2010-07-19');
+INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hire_date, BLOCKED) VALUES
+(10001, '1980-01-01', 'John', 'Doe', 'M', '2005-03-15', false),
+(10002, '1985-05-23', 'Jane', 'Smith', 'F', '2010-07-19', false);
 -- Inserts para nuevos empleados
-INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hire_date) VALUES
-(10003, '1990-02-14', 'Alice', 'Johnson', 'F', '2012-09-01'),
-(10004, '1978-12-22', 'Robert', 'Brown', 'M', '2000-11-10'),
-(10005, '1995-07-08', 'Emily', 'Davis', 'F', '2018-06-15'),
-(10006, '1982-04-03', 'Michael', 'Wilson', 'M', '2008-01-25');
+INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hire_date, BLOCKED) VALUES
+(10003, '1990-02-14', 'Alice', 'Johnson', 'F', '2012-09-01', false),
+(10004, '1978-12-22', 'Robert', 'Brown', 'M', '2000-11-10', false),
+(10005, '1995-07-08', 'Emily', 'Davis', 'F', '2018-06-15', false),
+(10006, '1982-04-03', 'Michael', 'Wilson', 'M', '2008-01-25', false);
 -- Inserts para la tabla departments
 INSERT INTO departments (dept_no, dept_name) VALUES
 ('d001', 'Marketing'),

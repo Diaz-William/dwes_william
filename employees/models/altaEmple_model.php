@@ -7,7 +7,7 @@
             $conn->beginTransaction();
             $empno = obtenerSigEmpNo($conn);
             // Insertar en employees.
-            $stmt = $conn->prepare("INSERT INTO EMPLOYEES (EMP_NO, BIRTH_DATE, FIRST_NAME, LAST_NAME, GENDER, HIRE_DATE) VALUES (:EMP_NO, :BIRTH_DATE, :FIRST_NAME, :LAST_NAME, :GENDER, :HIRE_DATE)");
+            $stmt = $conn->prepare("INSERT INTO EMPLOYEES (EMP_NO, BIRTH_DATE, FIRST_NAME, LAST_NAME, GENDER, HIRE_DATE, BLOCKED) VALUES (:EMP_NO, :BIRTH_DATE, :FIRST_NAME, :LAST_NAME, :GENDER, :HIRE_DATE, FALSE)");
             $stmt->bindParam(":EMP_NO", $empno);
             $stmt->bindParam(":BIRTH_DATE", $birthdate);
             $stmt->bindParam(":FIRST_NAME", $firstname);
