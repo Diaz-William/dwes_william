@@ -3,9 +3,8 @@
         try {
             date_default_timezone_set('Europe/Madrid');
             $conn = conectar();
-            $stmt = $conn->prepare("SELECT 1 FROM DEPT_MANAGER WHERE EMP_NO = :EMP_NO AND DEPT_NO = :DEPT_NO AND TO_DATE IS NULL");
+            $stmt = $conn->prepare("SELECT 1 FROM DEPT_MANAGER WHERE EMP_NO = :EMP_NO AND TO_DATE IS NULL");
             $stmt->bindParam(":EMP_NO", $empno);
-            $stmt->bindParam(":DEPT_NO", $deptno);
             $stmt->execute();
             $result = $stmt->fetchColumn();
             if ($result === false) {
