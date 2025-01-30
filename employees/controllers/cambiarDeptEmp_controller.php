@@ -5,6 +5,7 @@
     require_once("../helpers/data_helper.php");
     require_once("../models/obtenerEmp_model.php");
     require_once("../models/obtenerDept_model.php");
+    require_once("../models/cambiarDeptEmp_model.php");
 
     $empleados = obtenerEmpleados();
     $depts = obtenerDept();
