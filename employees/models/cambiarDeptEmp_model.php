@@ -8,6 +8,9 @@
             $stmt->bindParam(":DEPT_NO", $deptno);
             $stmt->execute();
             $result = $stmt->fetchColumn();
+            var_dump($empno);
+            var_dump($deptno);
+            var_dump($result);
             if ($result === false) {
                 $conn->beginTransaction();
                 $stmt = $conn->prepare("UPDATE DEPT_EMP SET DEPT_NO = :DEPT_NO, TO_DATE = :DATE WHERE EMP_NO = :EMP_NO");
