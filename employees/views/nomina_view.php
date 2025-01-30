@@ -28,11 +28,11 @@
 	<!-- INICIO DEL FORMULARIO -->
 	<form action="" method="post">
 			<?php
-				echo "Primer Nombre: {$empdata[0]['FIRST_NAME']}";
-				echo "Apellido: {$empdata[0]['LAST_NAME']}";
-				echo "Nacimiento: {$empdata[0]['BIRTH_DATE']}";
-				echo "Género: {$empdata[0]['GENDER']}";
-				echo "Contratación: {$empdata[0]['HIRE_DATE']}";
+				echo "Primer Nombre: {$empdata[0]['FIRST_NAME']} <br>";
+				echo "Apellido: {$empdata[0]['LAST_NAME']} <br>";
+				echo "Nacimiento: {$empdata[0]['BIRTH_DATE']} <br>";
+				echo "Género: {$empdata[0]['GENDER']} <br>";
+				echo "Contratación: {$empdata[0]['HIRE_DATE']} <br>";
 			?>
 			<br>
 		<div>
