@@ -14,7 +14,8 @@
         if ($correcto === false) {
             echo "El número del empleado, la contraseña son incorrectos o el usuario ha sido bloqueado";
         } else if ($correcto === true) {
-            crearSesionCookie($correcto, $password);
+            $fullname = getUserData($empno);
+            crearSesionCookie($fullname, $empno);
             if (comprobarRRHH($empno)) {
                 header("Location: controllers/welcomeRRHH_controller.php");
             } else {

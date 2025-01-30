@@ -14,13 +14,13 @@
     <div class="container ">
         <!--Aplicacion-->
 		<div class="card border-success mb-3" style="max-width: 30rem;">
-		<div class="card-header">Menú Usuario - OPERACIONES </div>
+		<div class="card-header">Menú RRHH - OPERACIONES </div>
 		<div class="card-body">
 
-		<?php /*list($usuario, $id) = explode("#", $_COOKIE["datos"])*/ ?>
+		<?php list($fullname, $empno) = explode("#", $_COOKIE["usuario"]) ?>
 
-		<B>Bienvenido/a:</B> <?php /*echo $usuario*/ ?> <BR><BR>
-		<B>Identificador Cliente:</B> <?php /*echo $id*/ ?> <BR><BR>
+		<B>Bienvenido/a:</B> <?php echo $fullname ?> <BR><BR>
+		<B>Identificador Cliente:</B> <?php echo $empno ?> <BR><BR>
 	 
 		
        <!--Formulario con botones -->

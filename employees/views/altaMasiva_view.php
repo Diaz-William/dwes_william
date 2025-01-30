@@ -1,3 +1,9 @@
+<?php
+    if (!isset($_COOKIE["usuario"])) {
+        header("Location: /index.php");
+    }
+?>
+
 <html>
    
  <head>
@@ -14,7 +20,7 @@
     <div class="container ">
         <!--Aplicacion-->
 		<div class="card border-success mb-3" style="max-width: 30rem;">
-		<div class="card-header">Alta Empleado</div>
+		<div class="card-header">Alta Masiva Empleados</div>
 		<div class="card-body">
             <form id="" name="" action="" method="post" class="card-body">
                 <div class="form-group">

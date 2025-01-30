@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <title>Datos Empleado - Employees</title>
+     <title>CambiarDeptMan - Employees</title>
     <link rel="stylesheet" href="../views/css/bootstrap.min.css">
   </head>
    
@@ -14,17 +14,13 @@
     <div class="container ">
         <!--Aplicacion-->
 		<div class="card border-success mb-3" style="max-width: 30rem;">
-		<div class="card-header">Menú Usuario - DEVOLUCIÓN VEHÍCULO </div>
+		<div class="card-header">Cambiar Encargado Departamento</div>
 		<div class="card-body">
 	  
 	   
 
 	<!-- INICIO DEL FORMULARIO -->
 	<form action="" method="post">
-		<?php /*list($usuario, $id) = explode("#", $_COOKIE["datos"])*/ ?>
-		<B>Bienvenido/a:</B> <?php /*echo $usuario*/ ?> <BR><BR>
-		<B>Identificador Cliente:</B> <?php /*echo $id*/ ?> <BR><BR>
-				
 			<B>Empleados: </B><select name="empdata" class="form-control">
 			<option value="">-- Seleccionar Empleado --</option>
 				<?php

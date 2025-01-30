@@ -14,17 +14,13 @@
     <div class="container ">
         <!--Aplicacion-->
 		<div class="card border-success mb-3" style="max-width: 30rem;">
-		<div class="card-header">Menú Usuario - DEVOLUCIÓN VEHÍCULO </div>
+		<div class="card-header">Vida Laboral Empleado</div>
 		<div class="card-body">
 	  
 	   
 
 	<!-- INICIO DEL FORMULARIO -->
 	<form action="" method="post">
-		<?php /*list($usuario, $id) = explode("#", $_COOKIE["datos"])*/ ?>
-		<B>Bienvenido/a:</B> <?php /*echo $usuario*/ ?> <BR><BR>
-		<B>Identificador Cliente:</B> <?php /*echo $id*/ ?> <BR><BR>
-				
 			<B>Empleados: </B><select name="emp" class="form-control">
 			<option value="">-- Seleccionar Empleado --</option>
 				<?php

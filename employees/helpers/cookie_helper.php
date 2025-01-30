@@ -1,12 +1,11 @@
 <?php
-    function crearSesionCookie($nombre, $id) {
-        setcookie("datos", $nombre."#".$id, time() + 86400, "/");
+    function crearSesionCookie($fullname, $empno) {
+        setcookie("usuario", $fullname."#".$empno, time() + 86400, "/");
     }
 
     function cerrarSesionCookie() {
-        setcookie("datos", "", time() - 86400, "/");
+        setcookie("usuario", "", time() - 86400, "/");
         setcookie("basketEmp", "", time() - 86400, "/");
-        setcookie("datosPago", "", time() - 86400, "/");
         header("Location: ../index.php");
     }
 
