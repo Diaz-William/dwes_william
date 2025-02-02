@@ -28,7 +28,8 @@
 	<!-- INICIO DEL FORMULARIO -->
 	<form action="" method="post">
 			<?php
-				var_dump($historial);
+				var_dump($deptEmp);
+				var_dump($salEmp);
 			?>
 			<br>
 		<div>

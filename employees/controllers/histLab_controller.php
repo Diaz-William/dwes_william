@@ -6,7 +6,10 @@
     require_once("../models/histLab_model.php");
 
     list(, $empno) = explode("#", $_COOKIE["usuario"]);
-    $historial = getEmpHistory($empno);
+    require_once("../models/deptEmp_model.php");
+    $deptEmp = getDeptEmp($empno);
+    require_once("../models/salaryEmp_model.php");
+    $salEmp = getSalEmp($empno);
 
     require_once("../views/histLab_view.php");
 ?>
