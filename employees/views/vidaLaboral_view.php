@@ -15,7 +15,7 @@
   </head>
    
   <body>
-    <h1>RRHH</h1> 
+    <h1>Employee</h1> 
 
     <div class="container ">
         <!--Aplicacion-->

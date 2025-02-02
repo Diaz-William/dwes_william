@@ -31,9 +31,8 @@
 		
        <!--Formulario con botones -->
 	
-		<input type="button" value="Alquilar Vehículo" onclick="window.location.href='alquilar_controller.php'" class="btn btn-warning disabled">
-		<input type="button" value="Consultar Alquileres" onclick="window.location.href='consultar_controller.php'" class="btn btn-warning disabled">
-		<input type="button" value="Devolver Vehículo" onclick="window.location.href='devolver_controller.php'" class="btn btn-warning disabled">
+	   <input type="button" value="Mi Nómina" onclick="window.location.href='nomina_controller.php'" class="btn btn-warning disabled">
+	   <input type="button" value="Historial Laboral" onclick="window.location.href='histLab_controller.php'" class="btn btn-warning disabled">
 		</br></br>
 		
 		
