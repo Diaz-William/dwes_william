@@ -28,10 +28,13 @@
 	<!-- INICIO DEL FORMULARIO -->
 	<form action="" method="post">
 			<?php
+			echo "<b>Historial Departamentos</b><br><br>";
 				foreach ($deptEmp as $index => $text) {
 					echo $text["INFO"]."<br>";
 					
 				}
+				echo "<br>";
+				echo "<b>Historial Salario</b><br><br>";
 				foreach ($salEmp as $index => $text) {
 					echo $text["INFO"]."<br>";
 					
