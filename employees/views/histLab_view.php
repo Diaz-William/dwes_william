@@ -42,7 +42,6 @@
 			?>
 			<br>
 		<div>
-			<input type="submit" value="Consultar" name="consult" class="btn btn-warning disabled">
 			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
 		</div>
 		<br>

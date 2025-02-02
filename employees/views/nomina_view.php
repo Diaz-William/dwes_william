@@ -28,19 +28,18 @@
 	<!-- INICIO DEL FORMULARIO -->
 	<form action="" method="post">
 			<?php
-				echo "Primer Nombre: {$empdata[0]['FIRST_NAME']} <br>";
-				echo "Apellido: {$empdata[0]['LAST_NAME']} <br>";
-				echo "Nacimiento: {$empdata[0]['BIRTH_DATE']} <br>";
-				echo "Género: {$empdata[0]['GENDER']} <br>";
-				echo "Contratación: {$empdata[0]['HIRE_DATE']} <br>";
-				echo "Salario Bruto: $salary € <br>";
-				echo "Descuento Seguridad Social (7.5%): $seguridad_social € <br>";
-				echo "Descuento IRPF: $irpf € <br>";
-				echo "Salario Neto: $net_salary € <br>";
+				echo "<b>Primer Nombre</b>: {$empdata[0]['FIRST_NAME']} <br><br>";
+				echo "<b>Apellido</b>: {$empdata[0]['LAST_NAME']} <br><br>";
+				echo "<b>Nacimiento</b>: {$empdata[0]['BIRTH_DATE']} <br><br>";
+				echo "<b>Género</b>: {$empdata[0]['GENDER']} <br><br>";
+				echo "<b>Contratación</b>: {$empdata[0]['HIRE_DATE']} <br><br>";
+				echo "<b>Salario Bruto</b>: $salary € <br><br>";
+				echo "<b>Descuento Seguridad Social (7.5%)</b>: $seguridad_social € <br><br>";
+				echo "<b>Descuento IRPF</b>: $irpf € <br><br>";
+				echo "<b>Salario Neto</b>: $net_salary € <br><br>";
 			?>
 			<br>
 		<div>
-			<input type="submit" value="Consultar" name="consult" class="btn btn-warning disabled">
 			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
 		</div>
 		<br>
