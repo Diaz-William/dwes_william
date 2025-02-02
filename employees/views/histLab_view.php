@@ -42,7 +42,13 @@
 			?>
 			<br>
 		<div>
-			<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
+			<?php
+				if (comprobarRRHH($empno)) {
+					echo '<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href=\'welcomeRRHH_controller.php\'">';
+				} else {
+					echo '<input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href=\'welcomeEmployees_controller.php\'">';
+				}
+			?>
 		</div>
 		<br>
 	</form>

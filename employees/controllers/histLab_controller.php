@@ -10,5 +10,6 @@
     require_once("../models/salaryEmp_model.php");
     $salEmp = getSalEmp($empno);
 
+    require_once("../models/comprobarRRHH_model.php");
     require_once("../views/histLab_view.php");
 ?>
