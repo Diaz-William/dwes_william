@@ -28,8 +28,14 @@
 	<!-- INICIO DEL FORMULARIO -->
 	<form action="" method="post">
 			<?php
-				var_dump($deptEmp);
-				var_dump($salEmp);
+				foreach ($deptEmp as $index => $text) {
+					echo $text["INFO"]."<br>";
+					
+				}
+				foreach ($salEmp as $index => $text) {
+					echo $text["INFO"]."<br>";
+					
+				}
 			?>
 			<br>
 		<div>

@@ -3,7 +3,6 @@
     require_once("../helpers/error_helper.php");
     set_error_handler("error_function");
     require_once("../helpers/data_helper.php");
-    require_once("../models/histLab_model.php");
 
     list(, $empno) = explode("#", $_COOKIE["usuario"]);
     require_once("../models/deptEmp_model.php");
