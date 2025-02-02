@@ -28,5 +28,6 @@
 
     $net_salary = $salary - $seguridad_social - $irpf;
 
+    require_once("../models/comprobarRRHH_model.php");
     require_once("../views/nomina_view.php");
 ?>
