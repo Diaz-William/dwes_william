@@ -37,6 +37,18 @@
 				echo "<b>Descuento Seguridad Social (7.5%)</b>: $seguridad_social € <br><br>";
 				echo "<b>Descuento IRPF</b>: $irpf € <br><br>";
 				echo "<b>Salario Neto</b>: $net_salary € <br><br>";
+
+				echo "<b>Historial Departamentos</b><br><br>";
+				foreach ($depts as $index => $text) {
+					echo $text["INFO"]."<br>";
+					
+				}
+				echo "<br>";
+				echo "<b>Historial Titulos</b><br><br>";
+				foreach ($titles as $index => $text) {
+					echo $text["INFO"]."<br>";
+					
+				}
 			?>
 			<br>
 		<div>

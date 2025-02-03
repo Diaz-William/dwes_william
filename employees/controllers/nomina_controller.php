@@ -6,10 +6,14 @@
     require_once("../models/getEmpData_model.php");
     require_once("../models/getEmpSal_model.php");
     require_once("../models/comprobarEngineer_model.php");
+    require_once("../models/titlesEmp_model.php");
+    require_once("../models/deptEmp_model.php");
 
     list(, $empno) = explode("#", $_COOKIE["usuario"]);
 
     $empdata = getEmpData($empno);
+    $titles = getTitEmp($empno);
+    $depts = getDeptEmp($empno);
     $salary = getEmpSal($empno);
     $engineer = comprobarEngineer($empno);
 
@@ -18,6 +22,7 @@
     }
 
     $seguridad_social = $salary * 0.075;
+
     if ($salary < 40000) {
         $irpf = $salary * 0.10;
     } elseif ($salary >= 40000 && $salary < 70000) {
