@@ -15,7 +15,13 @@
   </head>
    
   <body>
-    <h1>Employee</h1> 
+	<?php
+		if (comprobarRRHH($empno)) {
+			echo "<h1>RRHH</h1>";
+		} else {
+			echo "<h1>Employee</h1>";
+		}
+	?>
 
     <div class="container ">
         <!--Aplicacion-->
