@@ -56,6 +56,15 @@
                 <div class="form-group">
                     Cargo <input type="text" name="title" class="form-control" required>
                 </div>
+                <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if ($alta) {
+                            echo "Se ha dado de alta al empleado correctamente";
+                        } else {
+                            echo "Ha ocurrido un error";
+                        }
+                    }
+                ?>
                 <input type="submit" name="submit" value="Login" class="btn btn-warning disabled">
                 <input type="button" value="Volver" name="Volver" class="btn btn-warning disabled" onclick="window.location.href='welcomeRRHH_controller.php'">
                 <br><br><a href="./logout_controller.php">Cerrar Sesión</a>

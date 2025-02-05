@@ -16,12 +16,6 @@
         $title = test_input($_POST["title"]);
 
         $alta = altaEmple($birthdate, $firstname, $lastname, $gender, $deptno, $salary, $title);
-
-        if ($alta) {
-            echo "Se ha dado de alta al empleado correctamente";
-        } else {
-            echo "Ha ocurrido un error";
-        }
     }
 
     require_once("../models/obtenerDept_model.php");
