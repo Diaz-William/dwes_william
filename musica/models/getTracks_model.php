@@ -7,7 +7,7 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $result = $stmt->fetchAll();
             $conn = null;
-            return intval($result);
+            return $result;
         } catch (PDOException $e) {
             if ($conn) {
                 $conn = null;
