@@ -7,7 +7,7 @@
         <title>Login Page - Música</title>
         <link rel="stylesheet" href="./views/css/bootstrap.min.css">
         <style>
-            .border-success {
+            .card .border-success .mb-3 .mx-auto {
                 border: 1px solid #325D88;
             }
         </style>
