@@ -1,7 +1,6 @@
 <?php
     require_once("helpers/error_helper.php");
     set_error_handler("error_function");
-    require_once("views/login_view.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once("helpers/data_helper.php");
@@ -18,4 +17,6 @@
             exit;
         }
     }
+
+    require_once("views/login_view.php");
 ?>
