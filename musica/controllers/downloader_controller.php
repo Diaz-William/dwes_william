@@ -14,5 +14,5 @@
         }
     }
 
-    require_once("views/downloader_view.php");
+    require_once("../views/downloader_view.php");
 ?>
