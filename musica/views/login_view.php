@@ -6,6 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Login Page - Música</title>
         <link rel="stylesheet" href="./views/css/bootstrap.min.css">
+        <style>
+            .container {
+                border: 1px solid #325D88;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
