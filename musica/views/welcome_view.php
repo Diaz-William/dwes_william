@@ -31,7 +31,7 @@
 
                     <!-- Formulario con botones -->
                     <div class="d-grid gap-2">
-                        <button class="btn btn-warning" onclick="window.location.href='nomina_controller.php'">Descargar</button>
+                        <button class="btn btn-warning" onclick="window.location.href='downloader_controller.php'">Descargar</button>
                         <button class="btn btn-warning" onclick="window.location.href='histLab_controller.php'">Historial Facturas</button>
                         <button class="btn btn-warning" onclick="window.location.href='histLab_controller.php'">Seleccionar Facturas</button>
                         <br><br>
