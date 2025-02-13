@@ -26,9 +26,9 @@
                     <form action="" method="post">
                         <label for="trackinfo">Canciones en la cesta:</label>
                         <?php
-                            $basketTrack = unserialize($_COOKIE["basketTrack"]);
+                            $basketTracks = unserialize($_COOKIE["basketTracks"]);
                             echo "<ul>";
-                            foreach ($basketTrack as $index => $trackinfo) {
+                            foreach ($basketTracks as $index => $trackinfo) {
                                 list(, $name, $composer, $unitprice) = explode("#", $trackinfo);
                                 echo "<li>$name - $composer - $unitprice</li>";
                             }
