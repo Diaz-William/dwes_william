@@ -24,13 +24,11 @@
                 <div class="card-header text-center">Comprar Música</div>
                 <div class="card-body">
                     <form action="" method="post">
-                        <label for="trackinfo">Canciones en la cesta:</label>
+                        <h5>Canciones en la cesta:</h5>
                         <?php
                             $basketTracks = unserialize($_COOKIE["basketTracks"]);
                             echo "<ul>";
                             foreach ($basketTracks as $trackid => $trackinfo) {
-                                var_dump($trackid);
-                                var_dump($trackinfo);
                                 list($name, $composer, $unitprice) = explode("#", $trackinfo);
                                 echo "<li>$name - $composer - $unitprice</li>";
                             }

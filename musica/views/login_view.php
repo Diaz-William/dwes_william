@@ -25,6 +25,17 @@
                         <div class="d-grid mt-4">
                             <input type="submit" name="submit" value="Login" class="btn btn-warning">
                         </div>
+                        <div class="mt-3">
+                            <?php
+                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                    if ($correcto === false) {
+                                        echo "<p class='text-danger'>El email o la contraseña son incorrectos.</p>";
+                                    } else if (is_null($correcto)) {
+                                        echo "<p class='text-danger'>Ha ocurrido un error. Inténtelo más tarde.</p>";
+                                    }
+                                }
+                            ?>
+                        </div>
                     </form>
                 </div>
             </div>

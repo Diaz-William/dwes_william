@@ -10,15 +10,12 @@
         require_once("models/login_model.php");
         $correcto = comprobar($email, $password);
         
-        if ($correcto === false) {
-            echo "El email o la contraseña son incorrectos";
-        } else if ($correcto === true) {
+        if ($correcto === true) {
             require_once("helpers/cookie_helper.php");
             $userdata = getUserData($email);
             crearSesionCookie($userdata);
             header("Location: controllers/welcome_controller.php");
-        } else {
-            echo "Ha ocurrido un error. Inténtelo más tarde.";
+            exit;
         }
     }
 ?>
