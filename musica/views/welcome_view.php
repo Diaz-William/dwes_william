@@ -24,10 +24,10 @@
                 <div class="card-header text-center">Menú Empleado - OPERACIONES</div>
                 <div class="card-body">
 
-                    <?php list($fullname, $id) = explode("#", $_COOKIE["usuario"]); ?>
+                    <?php list($fullname, $id) = explode("#", $_COOKIE["usuario"]); var_dump($_COOKIE["usuario"])?>
 
-                    <p class="mb-3"><strong>Bienvenido/a:</strong> <?php echo htmlspecialchars($fullname); ?></p>
-                    <p class="mb-3"><strong>ID de usuario:</strong> <?php echo htmlspecialchars($id); ?></p>
+                    <p class="mb-3"><strong>Bienvenido/a:</strong> <?php echo $fullname; ?></p>
+                    <p class="mb-3"><strong>ID de usuario:</strong> <?php echo $id; ?></p>
 
                     <!-- Formulario con botones -->
                     <div class="d-grid gap-2">
