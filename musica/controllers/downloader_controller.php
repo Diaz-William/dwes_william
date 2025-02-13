@@ -9,7 +9,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["add"]) && !empty($_POST["trackinfo"])) {
             require_once("../helpers/cookie_helper.php");
-            $added = basketTracks($trackinfo);
+            $added = basketTracks($_POST["trackinfo"]);
         } else if (isset($_POST["download"]) && isset($_COOKIE["basketTracks"])) {
             header("Location: ../purchases_controller.php");
             exit;
