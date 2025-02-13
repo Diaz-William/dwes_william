@@ -24,15 +24,17 @@
                 <div class="card-header text-center">Menú Empleado - OPERACIONES</div>
                 <div class="card-body">
 
-                    <?php list($fullname, $id) = explode("#", $_COOKIE["usuario"]); var_dump($_COOKIE["usuario"])?>
+                    <?php list($fullname, $id) = explode("#", $_COOKIE["usuario"]); ?>
 
                     <p class="mb-3"><strong>Bienvenido/a:</strong> <?php echo $fullname; ?></p>
                     <p class="mb-3"><strong>ID de usuario:</strong> <?php echo $id; ?></p>
 
                     <!-- Formulario con botones -->
                     <div class="d-grid gap-2">
-                        <button class="btn btn-warning" onclick="window.location.href='nomina_controller.php'">Mi Nómina</button>
-                        <button class="btn btn-warning" onclick="window.location.href='histLab_controller.php'">Historial Laboral</button>
+                        <button class="btn btn-warning" onclick="window.location.href='nomina_controller.php'">Descargar</button>
+                        <button class="btn btn-warning" onclick="window.location.href='histLab_controller.php'">Historial Facturas</button>
+                        <button class="btn btn-warning" onclick="window.location.href='histLab_controller.php'">Seleccionar Facturas</button>
+                        <button class="btn btn-warning" onclick="window.location.href='histLab_controller.php'">Seleccionar Descargas</button>
                     </div>
 
                     <div class="text-center mt-3">
