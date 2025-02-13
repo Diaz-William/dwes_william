@@ -7,20 +7,16 @@
     require_once("helpers/cookie_helper.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $empno = test_input($_POST["empno"]);
+        $email = test_input($_POST["email"]);
         $password = test_input($_POST["password"]);
-        $correcto = comprobar($empno, $password);
+        $correcto = comprobar($email, $password);
         
         if ($correcto === false) {
-            echo "El número del empleado, la contraseña son incorrectos o el usuario ha sido bloqueado";
+            echo "El email o la contraseña son incorrectos";
         } else if ($correcto === true) {
-            $fullname = getUserData($empno);
-            crearSesionCookie($fullname, $empno);
-            if (comprobarRRHH($empno)) {
-                header("Location: controllers/welcomeRRHH_controller.php");
-            } else {
-                header("Location: controllers/welcomeEmployees_controller.php");
-            }
+            $userdata = getUserData($email);
+            crearSesionCookie($userdata);
+            header("Location: controllers/welcome_controller.php");
         } else {
             echo "Ha ocurrido un error. Inténtelo más tarde.";
         }

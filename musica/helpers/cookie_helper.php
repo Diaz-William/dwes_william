@@ -1,6 +1,7 @@
 <?php
-    function crearSesionCookie($fullname, $empno) {
-        setcookie("usuario", $fullname."#".$empno, time() + 86400, "/");
+    function crearSesionCookie($userdata) {
+        list($fullname, $id) = explode("#", $userdata);
+        setcookie("usuario", $fullname."#".$id, time() + 86400, "/");
     }
 
     function cerrarSesionCookie() {
