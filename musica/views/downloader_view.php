@@ -24,7 +24,7 @@
                 <div class="card-header text-center">Descargar Música</div>
                 <div class="card-body">
                     <form action="" method="post">
-                        <label for="trackinfo">Canciones:</label>
+                        <label for="trackinfo"><b>Canciones</b>:</label>
                         <select name="trackinfo" id="trackinfo" class="form-control">
                             <option value="">-- Seleccionar Canción --</option>
                             <?php
