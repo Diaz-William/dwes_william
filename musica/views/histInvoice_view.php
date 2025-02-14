@@ -39,13 +39,14 @@ if (!isset($_COOKIE["usuario"])) {
                         <tbody>
                             <?php foreach ($invoices as $invoice): ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($invoice['InvoiceId']) ?></td>
-                                    <td><?= htmlspecialchars($invoice['InvoiceDate']) ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingAddress']) ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingCity']) ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingState'] ?? 'N/A') ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingCountry']) ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingPostalCode']) ?></td>
+                                    //echo htmlspecialchars($invoice['InvoiceId'], ENT_QUOTES, 'UTF-8');
+                                    <td><?= htmlspecialchars($invoice['InvoiceId'], ENT_QUOTES, 'UTF-8') ?></td>
+                                    <td><?= htmlspecialchars($invoice['InvoiceDate'], ENT_QUOTES, 'UTF-8') ?></td>
+                                    <td><?= htmlspecialchars($invoice['BillingAddress'], ENT_QUOTES, 'UTF-8') ?></td>
+                                    <td><?= htmlspecialchars($invoice['BillingCity'], ENT_QUOTES, 'UTF-8') ?></td>
+                                    <td><?= htmlspecialchars($invoice['BillingState'] ?? 'N/A', ENT_QUOTES, 'UTF-8') ?></td>
+                                    <td><?= htmlspecialchars($invoice['BillingCountry'], ENT_QUOTES, 'UTF-8') ?></td>
+                                    <td><?= htmlspecialchars($invoice['BillingPostalCode'], ENT_QUOTES, 'UTF-8') ?></td>
                                     <td>$<?= htmlspecialchars(number_format($invoice['Total'], 2)) ?></td>
                                 </tr>
                             <?php endforeach; ?>
