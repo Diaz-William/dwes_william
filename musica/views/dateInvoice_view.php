@@ -48,13 +48,13 @@ if (!isset($_COOKIE["usuario"])) {
                                     
                                     foreach ($invoices as $invoice) {
                                         echo '<tr>
-                                                <td>' . htmlspecialchars($invoice['InvoiceId'], ENT_QUOTES, 'UTF-8') . '</td>
-                                                <td>' . htmlspecialchars($invoice['InvoiceDate'], ENT_QUOTES, 'UTF-8') . '</td>
-                                                <td>' . htmlspecialchars($invoice['BillingAddress'], ENT_QUOTES, 'UTF-8') . '</td>
-                                                <td>' . htmlspecialchars($invoice['BillingCity'], ENT_QUOTES, 'UTF-8') . '</td>
-                                                <td>' . htmlspecialchars($invoice['BillingState'] ?? 'N/A', ENT_QUOTES, 'UTF-8') . '</td>
-                                                <td>' . htmlspecialchars($invoice['BillingCountry'], ENT_QUOTES, 'UTF-8') . '</td>
-                                                <td>' . htmlspecialchars($invoice['BillingPostalCode'], ENT_QUOTES, 'UTF-8') . '</td>
+                                                <td>' . htmlspecialchars(mb_convert_encoding($invoice['InvoiceId'], 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
+                                                <td>' . htmlspecialchars(mb_convert_encoding($invoice['InvoiceDate'], 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
+                                                <td>' . htmlspecialchars(mb_convert_encoding($invoice['BillingAddress'], 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
+                                                <td>' . htmlspecialchars(mb_convert_encoding($invoice['BillingCity'], 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
+                                                <td>' . htmlspecialchars(mb_convert_encoding($invoice['BillingState'] ?? 'N/A', 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
+                                                <td>' . htmlspecialchars(mb_convert_encoding($invoice['BillingCountry'], 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
+                                                <td>' . htmlspecialchars(mb_convert_encoding($invoice['BillingPostalCode'], 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
                                                 <td>$' . number_format((float)$invoice['Total'], 2) . '</td>
                                             </tr>';
                                     }
