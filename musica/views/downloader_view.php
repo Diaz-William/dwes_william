@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <form action="" method="post">
                         <label for="trackinfo"><b>Canciones</b>:</label>
-                        <select name="trackinfo" id="trackinfo" class="form-control">
+                        <select name="trackinfo" id="trackinfo" class="form-control form-select" aria-label="Default select example">
                             <option value="">-- Seleccionar Canción --</option>
                             <?php
                                 if (isset($tracks) && is_array($tracks)) {
