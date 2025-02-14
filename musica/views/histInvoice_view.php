@@ -22,38 +22,41 @@ if (!isset($_COOKIE["usuario"])) {
         <div class="card border-success mb-3 mx-auto">
             <div class="card-header text-center">Facturas</div>
             <div class="card-body">
-                <?php if (!empty($invoices)): ?>
-                    <table class="table table-bordered table-striped">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID Factura</th>
-                                <th>Fecha</th>
-                                <th>Dirección</th>
-                                <th>Ciudad</th>
-                                <th>Estado</th>
-                                <th>País</th>
-                                <th>Código Postal</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($invoices as $invoice): ?>
-                                <tr>
-                                    <td><?= htmlspecialchars($invoice['InvoiceId'], ENT_QUOTES, 'UTF-8') ?></td>
-                                    <td><?= htmlspecialchars($invoice['InvoiceDate'], ENT_QUOTES, 'UTF-8') ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingAddress'], ENT_QUOTES, 'UTF-8') ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingCity'], ENT_QUOTES, 'UTF-8') ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingState'] ?? 'N/A', ENT_QUOTES, 'UTF-8') ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingCountry'], ENT_QUOTES, 'UTF-8') ?></td>
-                                    <td><?= htmlspecialchars($invoice['BillingPostalCode'], ENT_QUOTES, 'UTF-8') ?></td>
-                                    <td>$<?= htmlspecialchars(number_format($invoice['Total'], 2)) ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                <?php else: ?>
-                    <p class="text-center">No hay facturas registradas.</p>
-                <?php endif; ?>
+                <?php
+                    if (!empty($invoices)) {
+                        echo '<table class="table table-bordered table-striped">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID Factura</th>
+                                        <th>Fecha</th>
+                                        <th>Dirección</th>
+                                        <th>Ciudad</th>
+                                        <th>Estado</th>
+                                        <th>País</th>
+                                        <th>Código Postal</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                        
+                        foreach ($invoices as $invoice) {
+                            echo '<tr>
+                                    <td>' . htmlspecialchars($invoice['InvoiceId'], ENT_QUOTES, 'UTF-8') . '</td>
+                                    <td>' . htmlspecialchars($invoice['InvoiceDate'], ENT_QUOTES, 'UTF-8') . '</td>
+                                    <td>' . htmlspecialchars($invoice['BillingAddress'], ENT_QUOTES, 'UTF-8') . '</td>
+                                    <td>' . htmlspecialchars($invoice['BillingCity'], ENT_QUOTES, 'UTF-8') . '</td>
+                                    <td>' . htmlspecialchars($invoice['BillingState'] ?? 'N/A', ENT_QUOTES, 'UTF-8') . '</td>
+                                    <td>' . htmlspecialchars($invoice['BillingCountry'], ENT_QUOTES, 'UTF-8') . '</td>
+                                    <td>' . htmlspecialchars($invoice['BillingPostalCode'], ENT_QUOTES, 'UTF-8') . '</td>
+                                    <td>$' . number_format((float)$invoice['Total'], 2) . '</td>
+                                  </tr>';
+                        }
+                    
+                        echo '</tbody></table>';
+                    } else {
+                        echo '<p class="text-center">No hay facturas registradas.</p>';
+                    }
+                ?>
 
                 <div class="d-grid gap-2 mt-3">
                     <button type="button" class="btn btn-warning" onclick="window.location.href='welcome_controller.php'">Volver</button>
