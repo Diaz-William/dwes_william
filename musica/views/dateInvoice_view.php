@@ -27,7 +27,7 @@ if (!isset($_COOKIE["usuario"])) {
                         <label for="fechadesde">Fecha Desde:</label>
                         <input type='date' name='fechadesde' value='' size=10 placeholder="fechadesde" class="form-control">
                         <label for="fechadesde">Fecha Hasta:</label>
-                        <input type='date' name='fechahasta' value='' size=10 placeholder="fechahasta" class="form-control"><br><br>
+                        <input type='date' name='fechahasta' value='' size=10 placeholder="fechahasta" class="form-control">
 
                         <?php
                             if ($_SERVER["REQUEST_METHOD"] == "POST") {
