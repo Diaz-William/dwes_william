@@ -8,7 +8,7 @@
             $fechadesde = date("Y-m-d H:i:s", strtotime(test_input($_POST["fechadesde"]) . "00:00:00"));
             $fechahasta = date("Y-m-d H:i:s", strtotime(test_input($_POST["fechahasta"]) . "23:59:59"));
             require_once("../db/db.php");
-            require_once("../models/getInvoice_model.php");
+            require_once("../models/getInvoiceDate_model.php");
             $invoices = getInvoiceDate($fechadesde, $fechahasta);
         }
     }
