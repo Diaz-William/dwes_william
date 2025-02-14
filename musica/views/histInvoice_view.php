@@ -24,6 +24,7 @@ if (!isset($_COOKIE["usuario"])) {
             <div class="card-body">
                 <?php
                     if (!empty($invoices)) {
+                        var_dump($invoices);
                         echo '<table class="table table-bordered table-striped">
                                 <thead class="table-dark">
                                     <tr>
