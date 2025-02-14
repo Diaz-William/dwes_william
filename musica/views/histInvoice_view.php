@@ -39,7 +39,6 @@ if (!isset($_COOKIE["usuario"])) {
                         <tbody>
                             <?php foreach ($invoices as $invoice): ?>
                                 <tr>
-                                    //echo htmlspecialchars($invoice['InvoiceId'], ENT_QUOTES, 'UTF-8');
                                     <td><?= htmlspecialchars($invoice['InvoiceId'], ENT_QUOTES, 'UTF-8') ?></td>
                                     <td><?= htmlspecialchars($invoice['InvoiceDate'], ENT_QUOTES, 'UTF-8') ?></td>
                                     <td><?= htmlspecialchars($invoice['BillingAddress'], ENT_QUOTES, 'UTF-8') ?></td>
