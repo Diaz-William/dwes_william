@@ -33,7 +33,7 @@
                     <div class="d-grid gap-2">
                         <button class="btn btn-warning" onclick="window.location.href='downloader_controller.php'">Descargar</button>
                         <button class="btn btn-warning" onclick="window.location.href='histInvoice_controller.php'">Historial Facturas</button>
-                        <button class="btn btn-warning" onclick="window.location.href='histLab_controller.php'">Seleccionar Facturas</button>
+                        <button class="btn btn-warning" onclick="window.location.href='dateInvoice_controller.php'">Seleccionar Facturas</button>
                         <br><br>
                         <button class="btn btn-warning" onclick="window.location.href='histLab_controller.php'">Seleccionar Descargas</button>
                     </div>
