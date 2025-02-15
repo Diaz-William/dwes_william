@@ -12,7 +12,7 @@
     $decodec = json_decode(urldecode($params), true);
     var_dump($decodec);
 
-    $codigoRespuesta = $miObj->getParameter("Ds_Response");
+    $codigoRespuesta = isset($decodec["Ds_Response"]) ? $decodec["Ds_Response"] : null;
 
     $claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7'; 
     $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
