@@ -8,10 +8,10 @@
             $fechadesde = date("Y-m-d H:i:s", strtotime(test_input($_POST["fechadesde"]) . "00:00:00"));
             $fechahasta = date("Y-m-d H:i:s", strtotime(test_input($_POST["fechahasta"]) . "23:59:59"));
             require_once("../db/db.php");
-            require_once("../models/getInvoiceDate_model.php");
+            require_once("../models/getDownloadDate_model.php");
             $downloads = getDownloadDate($fechadesde, $fechahasta);
         }
     }
 
-    require_once("../views/dateInvoice_view.php");
+    require_once("../views/dateHistDownload_view.php");
 ?>
