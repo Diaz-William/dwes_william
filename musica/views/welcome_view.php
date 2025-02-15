@@ -21,7 +21,7 @@
 
             <!-- Aplicación -->
             <div class="card border-success mb-3 mx-auto" style="max-width: 30rem;">
-                <div class="card-header text-center">Menú Empleado - OPERACIONES</div>
+                <div class="card-header text-center">Menú Usuaio - Operaciones</div>
                 <div class="card-body">
 
                     <?php list($fullname, $id) = explode("#", $_COOKIE["usuario"]); ?>
@@ -33,9 +33,9 @@
                     <div class="d-grid gap-2">
                         <button class="btn btn-warning" onclick="window.location.href='downloader_controller.php'">Descargar</button>
                         <button class="btn btn-warning" onclick="window.location.href='histInvoice_controller.php'">Historial Facturas</button>
-                        <button class="btn btn-warning" onclick="window.location.href='dateInvoice_controller.php'">Seleccionar Facturas</button>
+                        <button class="btn btn-warning" onclick="window.location.href='dateInvoice_controller.php'">Seleccionar Fecha Facturas</button>
                         <br><br>
-                        <button class="btn btn-warning" onclick="window.location.href='dateHistDownload_controller.php'">Seleccionar Descargas</button>
+                        <button class="btn btn-warning" onclick="window.location.href='dateHistDownload_controller.php'">Seleccionar Fecha Descargas</button>
                     </div>
 
                     <div class="text-center mt-3">
