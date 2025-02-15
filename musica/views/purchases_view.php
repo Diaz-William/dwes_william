@@ -28,9 +28,9 @@
                         <?php
                             $basketTracks = unserialize($_COOKIE["basketTracks"]);
                             echo "<ul>";
-                            foreach ($basketTracks as $index => $trackinfo) {
-                                list(, $name, $composer, $unitprice) = explode("#", $trackinfo);
-                                echo "<li>$name - $composer - $unitprice</li>";
+                            foreach ($basketTracks as $trackid => $trackinfo) {
+                                list($name, $composer, $unitprice, $quantity) = explode("#", $trackinfo);
+                                echo "<li>$name - $composer - $unitprice - $quantity</li>";
                             }
                             echo "</ul>";
                         ?>
@@ -50,6 +50,16 @@
                             <a href="./logout_controller.php">Cerrar Sesión</a>
                         </div>
                     </form>
+                    <?php
+                        if ($pay) {
+                            echo "<form action='https://sis-t.redsys.es:25443/sis/realizarPago' method='post'>
+                                    <input type='hidden' name='Ds_SignatureVersion' value='".$version."'/>
+                                    <input type='hidden' name='Ds_MerchantParameters' value='".$params."'/>
+                                    <input type='hidden' name='Ds_Signature' value='".$signature."'/>
+                                    <input type='submit' name='pay' id='pay' value='Pagar' class='btn btn-warning disabled'>
+                                </form>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>

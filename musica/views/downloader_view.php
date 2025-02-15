@@ -45,9 +45,7 @@
                         <div class="mt-3">
                             <?php
                                 if (isset($_COOKIE["basketTracks"])) {
-                                    $basketTracks = unserialize($_COOKIE["basketTracks"]);
-                                    $count = is_array($basketTracks) ? count($basketTracks) : 0;
-                                    echo "<p>Hay <strong>$count</strong> canciones en la cesta.</p>";
+                                    echo "<p>Hay <strong>$quantity</strong> canciones en la cesta.</p>";
                                 }
 
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
