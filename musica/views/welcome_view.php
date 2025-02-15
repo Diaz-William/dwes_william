@@ -26,7 +26,7 @@
 
                     <?php list($fullname, $id) = explode("#", $_COOKIE["usuario"]); ?>
 
-                    <p class="mb-3"><strong>Bienvenido/a:</strong> <?php echo htmlspecialchars($fullname, ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p class="mb-3"><strong>Bienvenido/a:</strong> <?php echo htmlspecialchars(mb_convert_encoding($fullname, 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8'); ?></p>
                     <p class="mb-3"><strong>ID de usuario:</strong> <?php echo $id; ?></p>
 
                     <!-- Formulario con botones -->
