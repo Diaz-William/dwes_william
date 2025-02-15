@@ -34,7 +34,7 @@
                         ?>
 
                         <div class="d-grid gap-2 mt-3">
-                            <input type="button" value="Seguir" name="Seguir" class="btn btn-warning" onclick="window.location.href='devolver_controller.php'">
+                            <input type="button" value="Seguir" name="Seguir" class="btn btn-warning" onclick="window.location.href='downloader_controller.php'">
                         </div>
 
                         <div class="text-center mt-3">
