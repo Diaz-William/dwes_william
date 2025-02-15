@@ -31,7 +31,9 @@
                             <?php
                                 if (isset($tracks) && is_array($tracks)) {
                                     foreach ($tracks as $track) {
-                                        echo "<option value='{$track['TrackId']}#{$track['Name']}#{$track['Composer']}#{$track['UnitPrice']}'>{$track['Name']} - {$track['Composer']} - $ {$track['UnitPrice']}</option>";
+                                        $value = htmlspecialchars("{$track['TrackId']}#{$track['Name']}#{$track['Composer']}#{$track['UnitPrice']}", ENT_QUOTES, 'UTF-8');
+                                        $display = htmlspecialchars("{$track['Name']} - {$track['Composer']} - $ {$track['UnitPrice']}", ENT_QUOTES, 'UTF-8');
+                                        echo "<option value='{$value}'>{$display}</option>";
                                     }
                                 }
                             ?>
