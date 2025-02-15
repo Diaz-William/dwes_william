@@ -2,7 +2,7 @@
     function getTracks() {
         try {
             $conn = conectar();
-            $stmt = $conn->prepare("SELECT TrackId, Name, Composer, UnitPrice FROM Track LIMIT 15");
+            $stmt = $conn->prepare("SELECT TrackId, Name, IFNULL(Composer, 'N/A') AS Composer, UnitPrice FROM Track LIMIT 15");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $result = $stmt->fetchAll();
