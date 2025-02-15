@@ -28,6 +28,7 @@
                         <select name="trackinfo" id="trackinfo" class="form-control">
                             <option value="">-- Seleccionar Canción --</option>
                             <?php
+                                var_dump($tracks);
                                 if (isset($tracks) && is_array($tracks)) {
                                     foreach ($tracks as $track) {
                                         echo "<option value='{$track['TrackId']}#{$track['Name']}#{$track['Composer']}#{$track['UnitPrice']}'>{$track['Name']} - {$track['Composer']} - $ {$track['UnitPrice']}</option>";
