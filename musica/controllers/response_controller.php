@@ -26,9 +26,9 @@
     var_dump($country);
 
     if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) {
-        pay($invoiceid, $invoicedate, $amount, $cardnumber, true);
+        pay($invoiceid, $invoicedate, $amount, $cardnumber, 0);
     } else {
-        pay($invoiceid, $invoicedate, $amount, $cardnumber, false);
+        pay($invoiceid, $invoicedate, $amount, $cardnumber, 1);
     }
 
     require_once("../views/response_view.php");
