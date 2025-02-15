@@ -28,8 +28,8 @@
                         <?php
                             $basketTracks = unserialize($_COOKIE["basketTracks"]);
                             echo "<ul>";
-                            foreach ($basketTracks as $trackid => $trackinfo) {
-                                list($name, $composer, $unitprice) = explode("#", $trackinfo);
+                            foreach ($basketTracks as $index => $trackinfo) {
+                                list(, $name, $composer, $unitprice) = explode("#", $trackinfo);
                                 echo "<li>$name - $composer - $unitprice</li>";
                             }
                             echo "</ul>";
