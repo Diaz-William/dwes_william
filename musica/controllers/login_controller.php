@@ -10,7 +10,7 @@
         $correcto = comprobar($email, $password);
         
         if ($correcto === true) {
-            require_once("helpers/cookie_helper.php");
+            require_once("helpers/crearSesion_helper.php");
             $userdata = getUserData($email);
             crearSesionCookie($userdata);
             header("Location: controllers/welcome_controller.php");
