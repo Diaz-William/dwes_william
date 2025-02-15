@@ -20,7 +20,7 @@
         $amount = getAmount();
         
         $miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
-        $miObj->setParameter("DS_MERCHANT_ORDER",$invoiceid);
+        $miObj->setParameter("DS_MERCHANT_ORDER",str_pad($invoiceid, 12, "0", STR_PAD_LEFT));
         $miObj->setParameter("DS_MERCHANT_MERCHANTCODE",$fuc);
         $miObj->setParameter("DS_MERCHANT_CURRENCY",$moneda);
         $miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE",$trans);
