@@ -20,7 +20,7 @@
             <h1 class="text-center mt-4">Música</h1>
 
             <div class="card border-success mb-3 mx-auto <?php echo !empty($downloads) ? 'w-100' : 'w-50'; ?>">
-                <div class="card-header text-center">Historial de Facturas</div>
+                <div class="card-header text-center">Historial de Descargas</div>
                 <div class="card-body">
                     <form action="" method="post">
                         <label for="fechadesde">Fecha Desde:</label>
