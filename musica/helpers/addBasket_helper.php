@@ -5,12 +5,7 @@
             $basketTracks = isset($_COOKIE["basketTracks"]) ? unserialize($_COOKIE["basketTracks"]) : array();
 
             // Extraer los valores del trackinfo recibido como parámetro.
-            var_dump($trackinfo);
             list($trackId, $name, $composer, $unitprice) = explode("#", $trackinfo);
-            var_dump($trackId);
-            var_dump($name);
-            var_dump($composer);
-            var_dump($unitprice);
 
             // Verificar si la pista ya está en el carrito.
             if (isset($basketTracks[$trackId])) {
