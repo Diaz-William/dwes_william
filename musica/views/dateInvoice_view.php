@@ -1,8 +1,8 @@
 <?php
-if (!isset($_COOKIE["usuario"])) {
-    header("Location: ../index.php");
-    exit;
-}
+    if (!isset($_COOKIE["usuario"])) {
+        header("Location: ../index.php");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +60,7 @@ if (!isset($_COOKIE["usuario"])) {
                                     }
                                     echo '</tbody></table>';
                                 } else {
-                                    echo '<p class="text-center text-danger mt-3">No hay facturas registradas entre las fechas seleccionadas.</p>';
+                                    echo "<p class='text-center mt-3'>No hay facturas registradas entre las fechas seleccionadas.</p>";
                                 }
                             }
                         ?>
@@ -73,7 +73,7 @@ if (!isset($_COOKIE["usuario"])) {
                         <div class="mt-3">
                             <?php
                                 if ($_SERVER["REQUEST_METHOD"] == "POST" && (empty($_POST["fechadesde"]) || empty($_POST["fechahasta"]))) {
-                                    echo "<p class='text-center text-danger'>Tiene que seleccionar ambas fechas.</p>";
+                                    echo "<p class='text-center text-danger mt-3'>Tiene que seleccionar ambas fechas.</p>";
                                 }
                             ?>
                         </div>

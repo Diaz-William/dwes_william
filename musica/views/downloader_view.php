@@ -52,15 +52,15 @@
 
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     if (isset($_POST["add"]) && empty($_POST["trackinfo"])) {
-                                        echo "<p class='text-danger'>Tiene que seleccionar una canción.</p>";
+                                        echo "<p class='text-center text-danger mt-3'>Tiene que seleccionar una canción.</p>";
                                     }
     
                                     if (isset($_POST["add"]) && !empty($_POST["trackinfo"]) && !$added) {
-                                        echo "<p class='text-danger'>Ha ocurrido un error. Inténtelo más tarde.</p>";
+                                        echo "<p class='text-center text-danger mt-3'>Ha ocurrido un error. Inténtelo más tarde.</p>";
                                     }
 
                                     if (isset($_POST["download"]) && !isset($_COOKIE["basketTracks"])) {
-                                        echo "<p class='text-danger'>Tiene que añadir canciones a la cesta para realizar la compra.</p>";
+                                        echo "<p class='text-center text-danger mt-3'>Tiene que añadir canciones a la cesta para realizar la compra.</p>";
                                     }
                                 }
                             ?>

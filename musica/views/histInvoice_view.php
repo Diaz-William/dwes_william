@@ -1,8 +1,8 @@
 <?php
-if (!isset($_COOKIE["usuario"])) {
-    header("Location: ../index.php");
-    exit;
-}
+    if (!isset($_COOKIE["usuario"])) {
+        header("Location: ../index.php");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +54,7 @@ if (!isset($_COOKIE["usuario"])) {
                     
                         echo '</tbody></table>';
                     } else {
-                        echo '<p class="text-center">No hay facturas registradas.</p>';
+                        echo '<p class="text-center mt-3">No hay facturas registradas.</p>';
                     }
                 ?>
 

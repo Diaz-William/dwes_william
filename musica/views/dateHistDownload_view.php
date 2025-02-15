@@ -11,7 +11,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Historial de Facturas - Música</title>
+        <title>Historial de Descargas - Música</title>
         <link rel="stylesheet" href="../views/css/bootstrap.min.css">
     </head>
     <body>
@@ -47,12 +47,12 @@
                                                 <td>' . htmlspecialchars(mb_convert_encoding($download['Name'], 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
                                                 <td>' . htmlspecialchars(mb_convert_encoding($download['Composer'], 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
                                                 <td>' . htmlspecialchars(mb_convert_encoding($download['InvoiceDate'], 'UTF-8', 'ISO-8859-1'), ENT_QUOTES, 'UTF-8') . '</td>
-                                                <td>$' . $download['Quantity'] . '</td>
+                                                <td>' . $download['Quantity'] . '</td>
                                             </tr>';
                                     }
                                     echo '</tbody></table>';
                                 } else {
-                                    echo '<p class="text-center text-danger mt-3">No hay descargas registradas entre las fechas seleccionadas.</p>';
+                                    echo "<p class='text-center mt-3'>No hay descargas registradas entre las fechas seleccionadas.</p>";
                                 }
                             }
                         ?>
@@ -65,7 +65,7 @@
                         <div class="mt-3">
                             <?php
                                 if ($_SERVER["REQUEST_METHOD"] == "POST" && (empty($_POST["fechadesde"]) || empty($_POST["fechahasta"]))) {
-                                    echo "<p class='text-center text-danger'>Tiene que seleccionar ambas fechas.</p>";
+                                    echo "<p class='text-center text-danger mt-3'>Tiene que seleccionar ambas fechas.</p>";
                                 }
                             ?>
                         </div>

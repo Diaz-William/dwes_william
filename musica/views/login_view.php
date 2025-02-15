@@ -6,11 +6,6 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Login Page - Música</title>
         <link rel="stylesheet" href="./views/css/bootstrap.min.css">
-        <style>
-            .card .border-success .mb-3 .mx-auto {
-                border: 1px solid #325D88;
-            }
-        </style>
     </head>
     <body>
         <div class="container">
@@ -34,9 +29,9 @@
                             <?php
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     if ($correcto === false) {
-                                        echo "<p class='text-center text-danger'>El email o la contraseña son incorrectos.</p>";
+                                        echo "<p class='text-center text-danger mt-3'>El email o la contraseña son incorrectos.</p>";
                                     } else if (is_null($correcto)) {
-                                        echo "<p class='text-center text-danger'>Ha ocurrido un error. Inténtelo más tarde.</p>";
+                                        echo "<p class='text-center text-danger mt-3'>Ha ocurrido un error. Inténtelo más tarde.</p>";
                                     }
                                 }
                             ?>
