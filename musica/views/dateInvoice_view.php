@@ -59,8 +59,6 @@
                                             </tr>';
                                     }
                                     echo '</tbody></table>';
-                                } else {
-                                    echo "<p class='text-center mt-3'>No hay facturas registradas entre las fechas seleccionadas.</p>";
                                 }
                             }
                         ?>
@@ -74,6 +72,12 @@
                             <?php
                                 if ($_SERVER["REQUEST_METHOD"] == "POST" && (empty($_POST["fechadesde"]) || empty($_POST["fechahasta"]))) {
                                     echo "<p class='text-center text-danger mt-3'>Tiene que seleccionar ambas fechas.</p>";
+                                }
+
+                                if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["fechadesde"]) && !empty($_POST["fechahasta"])) {
+                                    if (empty($invoices)) {
+                                        echo "<p class='text-center mt-3'>No hay facturas registradas entre las fechas seleccionadas.</p>";
+                                    }
                                 }
                             ?>
                         </div>
