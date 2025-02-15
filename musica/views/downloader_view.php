@@ -45,7 +45,13 @@
                         <div class="mt-3">
                             <?php
                                 if (isset($_COOKIE["basketTracks"])) {
-                                    echo "<p>Hay <strong>$quantity</strong> canciones en la cesta.</p>";
+                                    $basketTracks = unserialize($_COOKIE["basketTracks"]);
+                                    echo "<ul>";
+                                    foreach ($basketTracks as $trackid => $trackinfo) {
+                                        list($name, $composer, $unitprice, $quantity) = explode("#", $trackinfo);
+                                        echo "<li>$name - $composer - $unitprice - $quantity</li>";
+                                    }
+                                    echo "</ul>";
                                 }
 
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {

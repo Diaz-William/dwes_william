@@ -5,14 +5,11 @@
     require_once("../db/db.php");
     require_once("../models/getTracks_model.php");
     $tracks = getTracks();
-    $quantity = 0;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["add"]) && !empty($_POST["trackinfo"])) {
             require_once("../helpers/addBasket_helper.php");
             $added = basketTracks($_POST["trackinfo"]);
-            var_dump($_COOKIE["basketTracks"]);
-            $quantity += 1;
         } else if (isset($_POST["download"]) && isset($_COOKIE["basketTracks"])) {
             header("Location: ./purchases_controller.php");
             exit;
