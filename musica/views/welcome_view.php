@@ -35,7 +35,7 @@
                         <button class="btn btn-warning" onclick="window.location.href='histInvoice_controller.php'">Historial Facturas</button>
                         <button class="btn btn-warning" onclick="window.location.href='dateInvoice_controller.php'">Seleccionar Facturas</button>
                         <br><br>
-                        <button class="btn btn-warning" onclick="window.location.href='histLab_controller.php'">Seleccionar Descargas</button>
+                        <button class="btn btn-warning" onclick="window.location.href='dateHistDownload_controller.php'">Seleccionar Descargas</button>
                     </div>
 
                     <div class="text-center mt-3">
