@@ -9,7 +9,9 @@
     $params = $_REQUEST["Ds_MerchantParameters"]; 
     $signatureRecibida = $_REQUEST["Ds_Signature"];
 
-    $decodec = json_decode($params, true);
+    $decodec = $miObj->decodeMerchantParameters($params);
+    var_dump($decodec);
+    $decodec = json_decode($decodec, true);
     var_dump($decodec);
 
     $codigoRespuesta = isset($decodec["Ds_Response"]) ? $decodec["Ds_Response"] : null;
