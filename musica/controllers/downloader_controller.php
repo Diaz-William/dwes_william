@@ -11,7 +11,7 @@
             require_once("../helpers/addBasket_helper.php");
             $added = basketTracks($_POST["trackinfo"]);
         } else if (isset($_POST["download"]) && isset($_COOKIE["basketTracks"])) {
-            header("Location: ./purchases_controller.php");
+            header("Location: ./purchase_controller.php");
             exit;
         }
     }
