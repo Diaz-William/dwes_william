@@ -2,8 +2,6 @@
     require_once("../helpers/error_helper.php");
     set_error_handler("error_function");
 
-    $pay = false;
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_COOKIE["basketTracks"])) {
             require_once("./apiRedsys.php");
@@ -38,8 +36,6 @@
             $request = "";
             $params = $miObj->createMerchantParameters();
             $signature = $miObj->createMerchantSignature($kc);
-
-            $pay = true;
         } else {
             echo "La cesta esta vacía";
         }

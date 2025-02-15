@@ -23,7 +23,7 @@
             <div class="card border-success mb-3 mx-auto" style="max-width: 30rem;">
                 <div class="card-header text-center">Comprar Música</div>
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="https://sis-t.redsys.es:25443/sis/realizarPago" method="post">
                         <h5>Canciones en la cesta:</h5>
                         <?php
                             $basketTracks = unserialize($_COOKIE["basketTracks"]);
@@ -33,6 +33,10 @@
                                 echo "<li>$name - $composer - $unitprice - $quantity</li>";
                             }
                             echo "</ul>";
+
+                            echo "<input type='hidden' name='Ds_SignatureVersion' value='".$version."'/>";
+                            echo "<input type='hidden' name='Ds_MerchantParameters' value='".$params."'/>";
+                            echo "<input type='hidden' name='Ds_Signature' value='".$signature."'/>";
                         ?>
 
                         <div class="d-grid gap-2 mt-3">
@@ -50,16 +54,6 @@
                             <a href="./logout_controller.php">Cerrar Sesión</a>
                         </div>
                     </form>
-                    <?php
-                        if ($pay) {
-                            echo "<form action='https://sis-t.redsys.es:25443/sis/realizarPago' method='post'>
-                                    <input type='hidden' name='Ds_SignatureVersion' value='".$version."'/>
-                                    <input type='hidden' name='Ds_MerchantParameters' value='".$params."'/>
-                                    <input type='hidden' name='Ds_Signature' value='".$signature."'/>
-                                    <input type='submit' name='pay' id='pay' value='Pagar' class='btn btn-warning disabled'>
-                                </form>";
-                        }
-                    ?>
                 </div>
             </div>
         </div>
