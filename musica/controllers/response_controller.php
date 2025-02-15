@@ -49,9 +49,10 @@
     $signatureRecibida = $_REQUEST["Ds_Signature"];
 
     $decodec = $miObj->decodeMerchantParameters($params);
+    var_dump($decodec);
 
     $codigoRespuesta = $miObj->getParameter("Ds_Response");
-    $numeroTarjeta = $miObj->getParameter("Ds_CardNumber"); // Obtiene los últimos cuatro dígitos de la tarjeta
+    $cardnumber = $miObj->getParameter("Ds_CardNumber"); // Obtiene los últimos cuatro dígitos de la tarjeta
 
     $claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
     $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
@@ -63,10 +64,12 @@
     $amount = $miObj->getParameter("Ds_Amount");
     $country = $miObj->getParameter("Ds_Card_Country");
 
+    var_dump($invoiceid, $invoicedate, $amount, $cardnumber, $country);
+
     if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) {
-        //pay($invoiceid, $invoicedate, $amount, $numeroTarjeta, 0); // Pasa los últimos cuatro dígitos a la función pay
+        //pay($invoiceid, $invoicedate, $amount, $cardnumber, 0); // Pasa los últimos cuatro dígitos a la función pay
     } else {
-        //pay($invoiceid, $invoicedate, $amount, $numeroTarjeta, 1); // Pasa los últimos cuatro dígitos a la función pay
+        //pay($invoiceid, $invoicedate, $amount, $cardnumber, 1); // Pasa los últimos cuatro dígitos a la función pay
     }
 
     require_once("../views/response_view.php");
