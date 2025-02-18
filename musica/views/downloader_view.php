@@ -47,7 +47,7 @@
 
                         <div class="mt-3">
                             <?php
-                                if (isset($_COOKIE["basketTracks"])) {
+                                if (isset($_COOKIE["basketTracks"]) && isset($_POST["add"]) && !empty($_POST["trackinfo"])) {
                                     $basketTracks = unserialize($_COOKIE["basketTracks"]);
                                     echo "<ul>";
                                     foreach ($basketTracks as $trackid => $trackinfo) {
