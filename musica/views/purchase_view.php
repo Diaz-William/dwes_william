@@ -34,7 +34,7 @@
                             }
                             echo "</ul>";
 
-                            echo "<p class='text-center mt-3'>Total $$amount</p>";
+                            echo "<p class='text-center mt-3'>Total $". ($amount / 100) ."</p>";
 
                             echo "<input type='hidden' name='Ds_SignatureVersion' value='".$version."'/>";
                             echo "<input type='hidden' name='Ds_MerchantParameters' value='".$params."'/>";
