@@ -36,5 +36,8 @@
         pay($invoiceid, $invoicedate, $amount, $cardcountry, 1);
     }
 
+    require_once("../helpers/emptyBasket_helper.php");
+    vaciarbasketTracks();
+
     require_once("../views/response_view.php");
 ?>
