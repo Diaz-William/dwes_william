@@ -24,7 +24,7 @@
             foreach ($basketTracks as $trackid => $trackinfo) {
                 list(, , $unitprice, $quantity) = explode("#", $trackinfo);
 
-                $stmt = $conn->prepare("INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES InvoiceLine (:InvoiceLineId, :InvoiceId, :TrackId, :UnitPrice, :Quantity)");
+                $stmt = $conn->prepare("INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (:InvoiceLineId, :InvoiceId, :TrackId, :UnitPrice, :Quantity)");
 
                 $invoicelineid = getInvoiceLineId();
                 $stmt->bindParam(":InvoiceLineId", $invoicelineid);
@@ -34,7 +34,7 @@
                 $stmt->bindParam(":Quantity", $quantity);
                 $stmt->execute();
             }
-            
+
             $conn->commit();
         } catch (PDOException $e) {
             if ($conn) {
