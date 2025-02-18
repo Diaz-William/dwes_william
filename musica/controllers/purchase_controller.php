@@ -11,8 +11,8 @@
         $moneda = "978";
         $trans = "0";
         $url = "";
-        //$urlOKKO = "http://192.168.206.221/dwes_william/musica/controllers/response_controller.php";
-        $urlOKKO = "http://192.168.0.111/dwes_william/musica/controllers/response_controller.php";
+        $urlOKKO = "http://192.168.206.221/dwes_william/musica/controllers/response_controller.php";
+        //$urlOKKO = "http://192.168.0.111/dwes_william/musica/controllers/response_controller.php";
         require_once("../db/db.php");
         require_once("../models/getInvoiceId_model.php");
         $invoiceid = getInvoiceId();

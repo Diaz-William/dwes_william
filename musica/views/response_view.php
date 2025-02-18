@@ -29,7 +29,7 @@
                             if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) { 
                                 echo "El pago se ha realizado correctamente";
                             } else { 
-                                echo "Pendiente de pago $" . ($amount / 100);
+                                echo "Pendiente de pago $" . ($amount * 100);
                             }
                         ?>
 

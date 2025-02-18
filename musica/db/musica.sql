@@ -43,7 +43,7 @@ CREATE TABLE `Invoice`
     `BillingPostalCode` NVARCHAR(10),
     `Total` NUMERIC(10,2) NOT NULL,
     `Paid` BOOLEAN,
-    `CardNumber` NVARCHAR(20),
+    `CardCountry` NVARCHAR(20),
     CONSTRAINT `PK_Invoice` PRIMARY KEY  (`InvoiceId`)
 );
 
