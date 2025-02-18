@@ -34,6 +34,8 @@
                             }
                             echo "</ul>";
 
+                            echo "<p class='text-center mt-3'>Total $$amount</p>";
+
                             echo "<input type='hidden' name='Ds_SignatureVersion' value='".$version."'/>";
                             echo "<input type='hidden' name='Ds_MerchantParameters' value='".$params."'/>";
                             echo "<input type='hidden' name='Ds_Signature' value='".$signature."'/>";
