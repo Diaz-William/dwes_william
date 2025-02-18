@@ -12,7 +12,7 @@
             $stmt->bindParam(":InvoiceId", $invoiceid);
             $stmt->bindParam(":InvoiceDate", $invoicedate);
             $stmt->bindParam(":CardCountry", $cardcountry);
-            $amount *= 100;
+            $amount /= 100;
             $stmt->bindParam(":Total", $amount);
             $stmt->bindParam(":Paid", $paid);
             $stmt->bindParam(":CustomerId", $customerid);
