@@ -31,9 +31,9 @@
     require_once("../db/db.php");
     require_once("../models/payment_model.php");
     if ($signatureCalculada === $signatureRecibida && $codigoRespuesta >= 0 && $codigoRespuesta < 100) {
-        //pay($invoiceid, $invoicedate, $amount, $cardcountry, 0);
+        pay($invoiceid, $invoicedate, $amount, $cardcountry, 0);
     } else {
-        //pay($invoiceid, $invoicedate, $amount, $cardcountry, 1);
+        pay($invoiceid, $invoicedate, $amount, $cardcountry, 1);
     }
 
     require_once("../views/response_view.php");
