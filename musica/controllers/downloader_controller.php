@@ -13,6 +13,9 @@
         } else if (isset($_POST["download"]) && isset($_COOKIE["basketTracks"])) {
             header("Location: ./purchase_controller.php");
             exit;
+        } else if (isset($_POST["empty"])) {
+            require_once("../helpers/emptyBasket_helper.php");
+            vaciarbasketTracks();
         }
     }
 

@@ -41,6 +41,7 @@
                         <div class="d-grid gap-2 mt-3">
                             <input type="submit" name="add" value="Añadir" class="btn btn-warning">
                             <input type="submit" name="download" value="Descargar" class="btn btn-warning">
+                            <input type="submit" name="empty" value="Vaciar Cesta" class="btn btn-warning">
                             <button type="button" class="btn btn-warning" onclick="window.location.href='welcome_controller.php'">Volver</button>
                         </div>
 
