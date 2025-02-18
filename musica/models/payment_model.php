@@ -1,15 +1,16 @@
 <?php
-    function pay($invoiceid, $invoicedate, $amount, $cardcountry, $paid) {
+    function pay($invoiceid, $amount, $cardcountry, $paid) {
         try {
+            date_default_timezone_set('Europe/Madrid');
             $conn = conectar();
             require_once("../models/getCustomerId_model.php");
             $customerid = getCustomerId();
             $conn->beginTransaction();
-            //$stmt = $conn->prepare("INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode, Total, Paid, CardCountry) VALUES (:InvoiceId, :CustomerId, :InvoiceDate, NULL, NULL, NULL, NULL, NULL, :Total, :Paid, :CardCountry)");
 
             $stmt = $conn->prepare("INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode, CardCountry, Total, Paid) SELECT :InvoiceId, CustomerId, :InvoiceDate, Address, City, COALESCE(State, NULL), Country, COALESCE(PostalCode, NULL), :CardCountry, :Total, :Paid FROM Customer WHERE CustomerId = :CustomerId");
 
             $stmt->bindParam(":InvoiceId", $invoiceid);
+            $invoicedate = date("Y-m-d H:i:s");
             $stmt->bindParam(":InvoiceDate", $invoicedate);
             $stmt->bindParam(":CardCountry", $cardcountry);
             $amount /= 100;
