@@ -1,6 +1,7 @@
 <?php
     function getAmount() {
         try {
+            $conn = conectar();
             $basketTracks = isset($_COOKIE["basketTracks"]) ? unserialize($_COOKIE["basketTracks"]) : null;
             if (!is_null($basketTracks)) {
                 $amount = 0;
