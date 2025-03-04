@@ -10,4 +10,9 @@ class WelcomeController extends Controller
     {
         return view('employees.welcome_rrhh');
     }
+
+    public function showWelcomeEMP()
+    {
+        return view('employees.welcome_employees');
+    }
 }
