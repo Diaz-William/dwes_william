@@ -17,18 +17,6 @@
                 <b>Identificador Empleado: </b> {{ Cookie::get('USERPASS') }}<br><br>
 
                 <!-- Botones del menú -->
-                <?php
-                
-                /*<!-- <button onclick="window.location.href='{{ route('altaEmpleado') }}'" class="btn btn-warning disabled">Alta de empleado</button>
-                <button onclick="window.location.href='{{ route('altaMasiva') }}'" class="btn btn-warning disabled">Alta masiva de empleados</button><br><br>
-                <button onclick="window.location.href='{{ route('modificarSalario') }}'" class="btn btn-warning disabled">Modificar salario</button>
-                <button onclick="window.location.href='{{ route('vidaLaboral') }}'" class="btn btn-warning disabled">Vida laboral</button><br><br>
-                <button onclick="window.location.href='{{ route('infoDepartamento') }}'" class="btn btn-warning disabled">Info del departamento</button>
-                <button onclick="window.location.href='{{ route('cambioDepartamento') }}'" class="btn btn-warning disabled">Cambio de departamento</button><br><br>
-                <button onclick="window.location.href='{{ route('cambioJefe') }}'" class="btn btn-warning disabled">Cambio de jefe de departamento</button>
-                <button onclick="window.location.href='{{ route('bajaEmpleado') }}'" class="btn btn-warning disabled">Baja de empleado</button> -->*/
-                ?>
-                
                 <button onclick="window.location.href=''" class="btn btn-warning disabled">Alta de empleado</button>
                 <button onclick="window.location.href=''" class="btn btn-warning disabled">Alta masiva de empleados</button><br><br>
                 <button onclick="window.location.href=''" class="btn btn-warning disabled">Modificar salario</button>
@@ -39,10 +27,6 @@
                 <button onclick="window.location.href=''" class="btn btn-warning disabled">Baja de empleado</button>
                 
                 <hr>
-                <?php
-                /*<!-- <button onclick="window.location.href='{{ route('nomina') }}'" class="btn btn-warning disabled">Mi nómina</button>
-                <button onclick="window.location.href='{{ route('historialLaboral') }}'" class="btn btn-warning disabled">Historial laboral</button><br><br> -->*/
-                ?>
                 
                 <button onclick="window.location.href=''" class="btn btn-warning disabled">Mi nómina</button>
                 <button onclick="window.location.href=''" class="btn btn-warning disabled">Historial laboral</button><br><br>
